@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 /** Neither column is worth using below this. */
-const MIN = 500;
+const MIN = 250;
 const KEY = 'stack-ui:split';
 
 /**

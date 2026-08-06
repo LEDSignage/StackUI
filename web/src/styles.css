@@ -2170,6 +2170,10 @@ input[type='number'].param-input {
     position: relative;
     width: 16px;
     margin: 0 -8px;
+    /* The grid aligns children to the top, so without this the handle is only
+       as tall as the grip inside it — a stub at the top of a full-height
+       boundary, and nothing to aim at further down. */
+    align-self: stretch;
     cursor: col-resize;
     display: flex;
     align-items: center;
@@ -2180,14 +2184,14 @@ input[type='number'].param-input {
   }
   .split-grip {
     width: 2px;
-    height: 46px;
+    height: 100%;
     border-radius: 999px;
     background: var(--line);
     transition: background var(--ease-dur) var(--ease);
   }
   .split-handle:hover .split-grip {
     background: #6a6a76;
-    height: 76px;
+    width: 3px;
   }
   .use-inner.is-dragging .split-grip {
     background: var(--cta);
