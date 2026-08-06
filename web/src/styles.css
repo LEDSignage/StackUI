@@ -1,32 +1,38 @@
 /* Stack UI. Spec §7. */
 
 :root {
-  --bg: #14161a;
-  --panel: #1b1e24;
-  --tile: #232730;
-  --tile-hi: #2b303b;
-  --line: #333a46;
-  --text: #e6e8ec;
-  --muted: #8b93a1;
-  --accent: #5b9dff;
+  /* Near-black page, cards a step above it, inputs a step below. Three flat
+     surfaces and one hairline border carry the whole app — no gradients, no
+     shadows, nothing that needs a second look to place. */
+  --bg: #0c0c0e;
+  --panel: #18181b;
+  --tile: #121214;
+  --tile-hi: #202024;
+  --line: #2a2a2f;
+  --text: #f2f2f4;
+  --muted: #8a8a93;
+
+  /* The primary action is white on black. It is the only bright thing on the
+     page, so it never has to compete for attention. */
+  --cta: #fafafa;
+  --cta-text: #101012;
+
+  --accent: #6ea8ff;
   --ok: #47c07d;
   --warn: #e2b341;
   --err: #f2664f;
-  --radius: 8px;
+
+  --radius: 12px;
+  --radius-sm: 9px;
 
   /* Vertical gap between lines must read as bigger than the gap within one. */
   --gap-line: 22px;
   --gap-tile: 10px;
 
-  /* Type scale. Secondary text sits at --fs-small, not at 11px — most of this
-     UI *is* secondary text (summaries, port lists, param labels), so making it
-     tiny makes the whole thing unreadable. */
-  --fs-body: 15px;
+  --fs-body: 14px;
   --fs-small: 13px;
   --fs-tiny: 12px;
 
-  /* Motion. Slightly overshooting ease-out, so opening a drop zone feels like
-     it settles rather than stops dead. */
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-dur: 190ms;
 }
@@ -1588,4 +1594,308 @@ button.stop:hover {
 .derived-value {
   font-size: 17px;
   font-variant-numeric: tabular-nums;
+}
+
+/* ══ Skin ═════════════════════════════════════════════════════════════════
+   Everything below restyles surfaces already defined above; the layout and
+   the markup are untouched. Kept in one block at the end so the look can be
+   read, adjusted or lifted out in one place rather than hunted through the
+   file rule by rule.
+
+   The reference is MiniMax's own generator page: flat near-black, cards with
+   a generous radius and a hairline border, sentence-case headings instead of
+   letterspaced caps, segmented pills where the selected item is solid white,
+   and one white call to action at the bottom. */
+
+/* ── Surfaces ───────────────────────────────────────────────────────────── */
+
+.header {
+  background: var(--bg);
+  padding: 10px 16px;
+}
+
+.use-group {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+/* Headings read as words, not as micro-caps. Uppercase letterspacing shouts
+   at a scale where there are six headings on one screen. */
+.use-group-title,
+.panel-label,
+.input-count {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.use-group-title {
+  font-size: var(--fs-body);
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+.panel-label {
+  font-size: var(--fs-small);
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+/* A control inside a section is not its own card — one border per group. */
+.use-group-body > .panel,
+.script .panel {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+/* ── Fields ─────────────────────────────────────────────────────────────── */
+
+.param-input,
+.stack-picker,
+.library-search,
+.shot-time {
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 9px 11px;
+  color: var(--text);
+  transition: border-color var(--ease-dur) var(--ease);
+}
+.param-input:focus,
+.stack-picker:focus,
+.library-search:focus {
+  outline: none;
+  border-color: #4a4a52;
+}
+.param-input::placeholder {
+  color: #5f5f68;
+}
+.param-textarea {
+  min-height: 84px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.stack-name {
+  font-size: 15px;
+  border-radius: var(--radius-sm);
+}
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+
+button.primary,
+button.primary.big {
+  background: var(--cta);
+  color: var(--cta-text);
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 11px 20px;
+  font-weight: 600;
+  font-size: var(--fs-body);
+  transition: opacity var(--ease-dur) var(--ease);
+}
+button.primary:hover:not(:disabled) {
+  opacity: 0.88;
+}
+button.primary:disabled,
+button.primary.big:disabled {
+  background: #202024;
+  color: #5f5f68;
+}
+
+/* The one action the whole page builds towards, across the full width. */
+.use-actions .primary.big {
+  flex: 1;
+}
+
+.ghost,
+a.ghost {
+  background: var(--tile-hi);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 8px 14px;
+  color: var(--text);
+  font-size: var(--fs-small);
+  transition:
+    background var(--ease-dur) var(--ease),
+    border-color var(--ease-dur) var(--ease);
+}
+.ghost:hover:not(:disabled) {
+  background: #2a2a30;
+  border-color: #3a3a42;
+}
+.ghost:disabled {
+  color: #5f5f68;
+  cursor: not-allowed;
+}
+
+button.stop {
+  background: transparent;
+  border: 1px solid var(--err);
+  color: var(--err);
+  border-radius: var(--radius-sm);
+  padding: 11px 18px;
+}
+
+.link {
+  color: var(--muted);
+}
+.link:hover {
+  color: var(--text);
+}
+
+/* ── Segmented control ──────────────────────────────────────────────────── */
+/* One track, the selected item solid white. Reads as a switch rather than as
+   two buttons that happen to be adjacent. */
+
+.modeswitch {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.modeswitch .mode {
+  border: none;
+  background: transparent;
+  border-radius: 7px;
+  padding: 6px 14px;
+  color: var(--muted);
+  font-weight: 500;
+}
+.modeswitch .mode:hover {
+  color: var(--text);
+}
+.modeswitch .mode-on,
+.modeswitch .mode-on:hover {
+  background: var(--cta);
+  color: var(--cta-text);
+  font-weight: 600;
+}
+
+/* The per-line switches in Build keep their outlined form — they are states,
+   not a choice of one from a set. */
+.line-modes .mode {
+  border: 1px solid var(--line);
+  border-radius: 7px;
+}
+
+.status {
+  background: var(--tile);
+  border-radius: 999px;
+  padding: 6px 13px;
+  font-size: var(--fs-small);
+}
+
+/* ── Media ──────────────────────────────────────────────────────────────── */
+
+.use-output {
+  background: #0a0a0c;
+  border-radius: var(--radius);
+}
+.use-media,
+.media-thumb,
+.upload-preview {
+  border-radius: var(--radius-sm);
+}
+
+/* The drop zone is an invitation, so it is dashed and centred rather than
+   another filled box. */
+.upload {
+  background: var(--tile);
+  border: 1px dashed #3a3a42;
+  border-radius: var(--radius-sm);
+  transition: border-color var(--ease-dur) var(--ease);
+}
+.upload:hover {
+  border-color: #55555f;
+}
+.upload-empty {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+.input-add {
+  border-radius: var(--radius-sm);
+  border-style: dashed;
+}
+
+.use-progress {
+  height: 6px;
+  border: none;
+  border-radius: 999px;
+  background: var(--tile-hi);
+}
+.use-progress-fill {
+  background: var(--cta);
+  border-radius: 999px;
+}
+/* At six pixels tall there is no room for a label inside the bar. */
+.use-progress-label {
+  position: static;
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+.use-progress {
+  height: auto;
+  background: none;
+  overflow: visible;
+}
+.use-progress::before {
+  content: '';
+  display: block;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--tile-hi);
+}
+.use-progress-fill {
+  height: 6px;
+  bottom: auto;
+}
+
+/* ── Shots and sections ─────────────────────────────────────────────────── */
+
+.shot {
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+}
+.add-shot,
+.add-shot-inline {
+  background: var(--tile-hi);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--text);
+  padding: 7px 13px;
+}
+.add-shot:hover {
+  background: #2a2a30;
+}
+
+.input-slot,
+.library-item,
+.tile {
+  border-radius: var(--radius-sm);
+}
+
+.media-panel,
+.confirm {
+  border-radius: var(--radius);
+}
+.media-item {
+  border-radius: var(--radius-sm);
+  background: var(--panel);
 }
