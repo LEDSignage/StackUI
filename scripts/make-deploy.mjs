@@ -13,7 +13,7 @@
  */
 
 import { cp, mkdir, rm, writeFile, readFile } from 'node:fs/promises';
-import { dirname, join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -23,7 +23,13 @@ await rm(OUT, { recursive: true, force: true });
 await mkdir(OUT, { recursive: true });
 
 for (const dir of ['dist', 'server', 'shared', 'modules', 'stacks']) {
-  await cp(join(ROOT, dir), join(OUT, dir), { recursive: true });
+  await cp(join(ROOT, dir), join(OUT, dir), {
+    recursive: true,
+    // Skip dotfiles. A stray .tmp-empty.json from a test once rode along to the
+    // GPU box and showed up as a duplicate pipeline in the model list, because
+    // it held the same stack id as a real one.
+    filter: (src) => !basename(src).startsWith('.'),
+  });
 }
 
 // Only the dependencies the server actually needs at runtime — the web app is
