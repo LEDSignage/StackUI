@@ -1533,3 +1533,11 @@ button.stop:hover {
   flex: 1;
   text-align: center;
 }
+
+/* Page-level actions, above the fields they act on. Right-aligned so it does
+   not compete with the first control for attention. */
+.use-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: -4px;
+}
