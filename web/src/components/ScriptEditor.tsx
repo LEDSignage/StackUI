@@ -92,43 +92,28 @@ export function ScriptEditor({ script, clipSeconds, onChange }: Props) {
 
         {script.shots.map((shot, i) => (
           <div className="shot" key={i}>
-            {/* Both fields are points on the clip's timeline, not a length.
-                They were two bare number boxes with a dash between them, which
-                reads as "starts at, lasts" — a shot entered as 2 and 2 became a
-                zero-length shot at the two second mark, silently, and left a
-                hole in the clip. The labels are visible now, and problems()
-                below says so when the numbers do not add up. */}
             <div className="shot-head">
               <span className="shot-n">Shot {i + 1}</span>
-
-              <label className="shot-field">
-                <span className="shot-field-label">from</span>
-                <input
-                  type="number"
-                  className="param-input shot-time"
-                  min={0}
-                  step={0.5}
-                  value={shot.from}
-                  onChange={(e) => setShot(i, { from: Number(e.target.value) })}
-                />
-              </label>
-
-              <label className="shot-field">
-                <span className="shot-field-label">to</span>
-                <input
-                  type="number"
-                  className="param-input shot-time"
-                  min={0}
-                  step={0.5}
-                  value={shot.to}
-                  onChange={(e) => setShot(i, { to: Number(e.target.value) })}
-                />
-              </label>
-
-              <span className="muted small">
-                seconds{shot.to > shot.from && ` · ${fmt(shot.to - shot.from)} long`}
-              </span>
-
+              <input
+                type="number"
+                className="param-input shot-time"
+                min={0}
+                step={0.5}
+                value={shot.from}
+                onChange={(e) => setShot(i, { from: Number(e.target.value) })}
+                title="Starts at (seconds)"
+              />
+              <span className="shot-dash">–</span>
+              <input
+                type="number"
+                className="param-input shot-time"
+                min={0}
+                step={0.5}
+                value={shot.to}
+                onChange={(e) => setShot(i, { to: Number(e.target.value) })}
+                title="Ends at (seconds)"
+              />
+              <span className="muted small">s</span>
               <span className="spacer" />
               <button
                 className="link danger"

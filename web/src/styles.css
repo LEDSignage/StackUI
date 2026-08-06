@@ -1560,17 +1560,3 @@ button.stop:hover {
   margin-top: 4px;
 }
 
-/* Shot timing. The labels are the point — two bare number boxes with a dash
-   between them read as "starts at, lasts", and got entered that way. */
-.shot-field {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 5px;
-}
-.shot-field-label {
-  font-size: var(--fs-tiny);
-  color: var(--muted);
-}
-.shot-head .shot-time {
-  width: 5.5ch;
-}
