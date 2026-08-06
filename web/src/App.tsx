@@ -38,6 +38,21 @@ export default function App() {
 
   /** Clear the card before queueing. See freeMemory for why this matters. */
   const [clearFirst, setClearFirst] = useState(true);
+
+  /**
+   * The page as it was before Clear, kept so a mis-click is recoverable.
+   *
+   * Edits autosave to disk the moment they happen, so there is no "don't save"
+   * escape hatch — the undo has to be here, holding the previous stack. It
+   * lapses after a while so the button does not sit there forever offering to
+   * restore a prompt from an hour ago.
+   */
+  const [beforeClear, setBeforeClear] = useState<Stack | null>(null);
+  useEffect(() => {
+    if (!beforeClear) return;
+    const t = setTimeout(() => setBeforeClear(null), 30_000);
+    return () => clearTimeout(t);
+  }, [beforeClear]);
   const [vram, setVram] = useState<VramStats | null>(null);
 
   useEffect(() => {
@@ -374,6 +389,18 @@ export default function App() {
             onInterrupt={() => void interrupt()}
             clearFirst={clearFirst}
             onClearFirst={setClearFirst}
+            onClearFields={() => {
+              setBeforeClear(stack);
+              setStack((s) => ops.clearJobFields(s, library));
+            }}
+            onUndoClear={
+              beforeClear
+                ? () => {
+                    setStack(beforeClear);
+                    setBeforeClear(null);
+                  }
+                : null
+            }
             vram={vram}
             onBuild={() => setMode('stack')}
             activeTileName={activeTileName}

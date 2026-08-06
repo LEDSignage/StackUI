@@ -42,6 +42,10 @@ type Props = {
   /** Clear the card before queueing. */
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
+  /** Empty the page's prompts, files and script, ready for the next job. */
+  onClearFields: () => void;
+  /** Present for a while after clearing, so a mis-click is recoverable. */
+  onUndoClear?: (() => void) | null;
   vram?: { total: number; free: number } | null;
 };
 
@@ -76,6 +80,8 @@ export function UseScreen({
   onScript,
   clearFirst,
   onClearFirst,
+  onClearFields,
+  onUndoClear,
   vram,
 }: Props) {
   const busy = run.status === 'queued' || run.status === 'running';
@@ -199,6 +205,23 @@ export function UseScreen({
           )}
 
           {run.startedAt && <span className="muted mono">{elapsed.toFixed(0)}s</span>}
+
+          {/* Next to Generate, because that is where you are when you finish a
+              job and want the page empty for the next one. */}
+          {onUndoClear ? (
+            <button className="ghost" onClick={onUndoClear}>
+              ↩ Undo clear
+            </button>
+          ) : (
+            <button
+              className="ghost"
+              disabled={busy}
+              onClick={onClearFields}
+              title="Empties the prompts, chosen files and shot list. Size, seed, steps and frame rate stay as they are."
+            >
+              Clear
+            </button>
+          )}
 
           <span className="spacer" />
 

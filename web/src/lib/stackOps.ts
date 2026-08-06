@@ -9,6 +9,7 @@ import {
   type Line,
   type LineMode,
   type Module,
+  type ModuleLibrary,
   type Stack,
   type Tile,
 } from '@shared/types.ts';
@@ -208,6 +209,48 @@ export function removeInput(stack: Stack, group: string): Stack {
 /** How many of this kind exist, for the ceiling check. */
 export const inputCount = (stack: Stack, kindId: string) =>
   inputList(stack).filter((r) => r.kind === kindId).length;
+
+/**
+ * Empty the page ready for the next job.
+ *
+ * Only the things you fill in per job: prompts, chosen files, the script. Sizes,
+ * seed, steps and frame rate are the pipeline's own settings — wiping those
+ * would mean re-dialling the whole page after every run, which is not what
+ * "clear" means here.
+ *
+ * Input slots stay, emptied. A pipeline ships with the slots it needs — LTX has
+ * a start and an end frame — so deleting them would be a change to the pipeline
+ * rather than a clearing of the form.
+ */
+export function clearJobFields(stack: Stack, library: ModuleLibrary): Stack {
+  let out = stack;
+
+  for (const control of stack.controls ?? []) {
+    const tile = findTile(out, control.tileId);
+    const param = tile && library[tile.moduleId]?.params.find((p) => p.name === control.param);
+    if (!param) continue;
+    if (param.type !== 'STRING' && param.type !== 'IMAGE_UPLOAD') continue;
+    // Back to what the module declares, not to blank: a negative prompt with an
+    // authored default should come back, not vanish.
+    const empty = param.default ?? '';
+    out = setParam(out, control.tileId, control.param, empty);
+    for (const also of control.also ?? []) out = setParam(out, also.tileId, also.param, empty);
+  }
+
+  for (const ref of inputList(out)) {
+    const kind = stack.inputs?.kinds.find((k) => k.id === ref.kind);
+    if (!kind) continue;
+    const tile = inputTile(out, ref, kind.file.index);
+    if (tile) out = setParam(out, tile.id, kind.file.param, '');
+  }
+
+  if (out.script) {
+    const script = { target: out.script.target, vision: '', shots: [], audio: '', rules: '' };
+    out = setParam({ ...out, script }, script.target.tileId, script.target.param, '');
+  }
+
+  return out;
+}
 
 /**
  * Carry what you were working on across a model switch.
