@@ -1,0 +1,38 @@
+{
+  "id": "gen.Mahiro",
+  "name": "Positive-Biased Guidance",
+  "category": "ComfyUI / experimental",
+  "description": "Mahiro — Modify the guidance to scale more on the 'direction' of the positive prompt rather than the difference between the negative prompt.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "patched_model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "Mahiro",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "patched_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "patched_model"
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "id": "gen.KlingAvatarNode",
+  "name": "Kling Avatar 2.0",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingAvatarNode — Generate broadcast-style digital human videos from a single photo and an audio file.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "sound_file",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "std",
+      "options": [
+        "std",
+        "pro"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingAvatarNode",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingAvatarNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "sound_file": {
+          "$port": "sound_file"
+        },
+        "mode": "std",
+        "seed": 0,
+        "prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "mode",
+    "seed",
+    "prompt"
+  ]
+}

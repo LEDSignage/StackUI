@@ -1,0 +1,67 @@
+{
+  "id": "gen.TextEncodeJoyImageEdit",
+  "name": "TextEncodeJoyImageEdit",
+  "category": "ComfyUI / model/conditioning/joyimage",
+  "description": "TextEncodeJoyImageEdit",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE",
+      "optional": true
+    },
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeJoyImageEdit",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "prompt": "",
+        "vae": {
+          "$port": "vae"
+        },
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt"
+  ]
+}

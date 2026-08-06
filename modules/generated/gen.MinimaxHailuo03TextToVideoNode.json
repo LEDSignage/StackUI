@@ -1,0 +1,76 @@
+{
+  "id": "gen.MinimaxHailuo03TextToVideoNode",
+  "name": "MiniMax H3 Text to Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxHailuo03TextToVideoNode — Generate video from a text prompt using the MiniMax H3 model.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "MiniMax H3",
+      "options": [
+        "MiniMax H3"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxHailuo03TextToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxHailuo03TextToVideoNode",
+      "inputs": {
+        "model": "MiniMax H3",
+        "seed": 42,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

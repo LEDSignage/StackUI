@@ -1,0 +1,100 @@
+{
+  "id": "gen.UNetTemporalAttentionMultiply",
+  "name": "UNetTemporalAttentionMultiply",
+  "category": "ComfyUI / experimental/attention_experiments",
+  "description": "UNetTemporalAttentionMultiply",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "self_structural",
+      "label": "Self structural",
+      "target": {
+        "node": "n",
+        "input": "self_structural"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "self_temporal",
+      "label": "Self temporal",
+      "target": {
+        "node": "n",
+        "input": "self_temporal"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "cross_structural",
+      "label": "Cross structural",
+      "target": {
+        "node": "n",
+        "input": "cross_structural"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "cross_temporal",
+      "label": "Cross temporal",
+      "target": {
+        "node": "n",
+        "input": "cross_temporal"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "UNetTemporalAttentionMultiply",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "self_structural": 1,
+        "self_temporal": 1,
+        "cross_structural": 1,
+        "cross_temporal": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "self_structural",
+    "self_temporal",
+    "cross_structural"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "gen.SelectCLIPDevice",
+  "name": "Select CLIP Device",
+  "category": "ComfyUI / advanced/multigpu",
+  "description": "SelectCLIPDevice — Place the CLIP text encoder on a specific device (default / cpu / gpu:N).",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "SelectCLIPDevice",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SelectCLIPDevice",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip": "clip"
+  },
+  "summary": [
+    "device"
+  ]
+}

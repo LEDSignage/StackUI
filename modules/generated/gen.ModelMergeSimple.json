@@ -1,0 +1,63 @@
+{
+  "id": "gen.ModelMergeSimple",
+  "name": "ModelMergeSimple",
+  "category": "ComfyUI / model/merging",
+  "description": "ModelMergeSimple",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeSimple",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "ratio": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "ratio"
+  ]
+}

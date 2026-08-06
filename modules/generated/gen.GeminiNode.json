@@ -1,0 +1,124 @@
+{
+  "id": "gen.GeminiNode",
+  "name": "Google Gemini",
+  "category": "ComfyUI / partner/text/Gemini",
+  "description": "GeminiNode — Generate text responses with Google's Gemini AI model. You can provide multiple types of inputs (text, images, audio, video) as context for generating more relevant and meaningful responses.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    },
+    {
+      "name": "video",
+      "type": "VIDEO",
+      "optional": true
+    },
+    {
+      "name": "files",
+      "type": "GEMINI_INPUT_FILES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "gemini-3-1-pro",
+      "options": [
+        "gemini-2.5-pro",
+        "gemini-2.5-flash",
+        "gemini-3-pro-preview",
+        "gemini-3-1-pro",
+        "gemini-3-1-flash-lite"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GeminiNode",
+      "inputs": {
+        "prompt": "",
+        "model": "gemini-3-1-pro",
+        "seed": 42,
+        "images": {
+          "$port": "images"
+        },
+        "audio": {
+          "$port": "audio"
+        },
+        "video": {
+          "$port": "video"
+        },
+        "files": {
+          "$port": "files"
+        },
+        "system_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "gen.GrokVideoReferenceNode",
+  "name": "Grok Reference-to-Video",
+  "category": "ComfyUI / partner/video/Grok",
+  "description": "GrokVideoReferenceNode — Generate video guided by reference images, with optional preset voice references.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "grok-imagine-video-1.5",
+      "options": [
+        "grok-imagine-video-1.5",
+        "grok-imagine-video"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokVideoReferenceNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrokVideoReferenceNode",
+      "inputs": {
+        "prompt": "",
+        "model": "grok-imagine-video-1.5",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "sample-advanced",
+  "name": "Sample (advanced)",
+  "category": "sampling",
+  "description": "SamplerCustomAdvanced. Publishes one latent rather than two — the generated version emits both `output` and `denoised_output`, which leaves anything downstream unable to tell which it wants.",
+  "inPorts": [
+    { "name": "noise", "type": "NOISE" },
+    { "name": "guider", "type": "GUIDER" },
+    { "name": "sampler", "type": "SAMPLER" },
+    { "name": "sigmas", "type": "SIGMAS" },
+    { "name": "latent", "type": "LATENT" }
+  ],
+  "outPorts": [{ "name": "latent", "type": "LATENT" }],
+  "outputs": { "latent": { "node": "s", "out": 0 } },
+  "passThrough": { "latent": "latent" },
+  "params": [],
+  "nodes": {
+    "s": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": { "$port": "noise" },
+        "guider": { "$port": "guider" },
+        "sampler": { "$port": "sampler" },
+        "sigmas": { "$port": "sigmas" },
+        "latent_image": { "$port": "latent" }
+      }
+    }
+  }
+}

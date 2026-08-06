@@ -1,0 +1,70 @@
+{
+  "id": "gen.LTXVCropGuides",
+  "name": "LTXVCropGuides",
+  "category": "ComfyUI / model/conditioning/ltxv",
+  "description": "LTXVCropGuides",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVCropGuides",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "latent": {
+          "$port": "latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative",
+    "latent": "latent"
+  }
+}

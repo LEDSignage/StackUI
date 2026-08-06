@@ -1,0 +1,46 @@
+{
+  "id": "gen.AudioEncoderLoader",
+  "name": "Load Audio Encoder",
+  "category": "ComfyUI / model/loaders",
+  "description": "AudioEncoderLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio_encoder",
+      "type": "AUDIO_ENCODER"
+    }
+  ],
+  "params": [
+    {
+      "name": "audio_encoder_name",
+      "label": "Audio encoder name",
+      "target": {
+        "node": "n",
+        "input": "audio_encoder_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "AudioEncoderLoader",
+        "input": "audio_encoder_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AudioEncoderLoader",
+      "inputs": {
+        "audio_encoder_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "audio_encoder": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "audio_encoder_name"
+  ]
+}

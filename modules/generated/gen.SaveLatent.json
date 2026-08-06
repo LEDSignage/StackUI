@@ -1,0 +1,54 @@
+{
+  "id": "gen.SaveLatent",
+  "name": "Save Latent",
+  "category": "ComfyUI / model/latent",
+  "description": "SaveLatent",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "latents/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveLatent",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "filename_prefix": "latents/ComfyUI"
+      }
+    }
+  },
+  "outputs": {
+    "samples": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "samples": "samples"
+  },
+  "summary": [
+    "filename_prefix"
+  ]
+}

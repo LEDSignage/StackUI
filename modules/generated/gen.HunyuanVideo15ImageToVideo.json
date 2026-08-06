@@ -1,0 +1,146 @@
+{
+  "id": "gen.HunyuanVideo15ImageToVideo",
+  "name": "HunyuanVideo15ImageToVideo",
+  "category": "ComfyUI / model/conditioning/hunyuan video",
+  "description": "HunyuanVideo15ImageToVideo",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 848,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 33,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HunyuanVideo15ImageToVideo",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 848,
+        "height": 480,
+        "length": 33,
+        "batch_size": 1,
+        "start_image": {
+          "$port": "start_image"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

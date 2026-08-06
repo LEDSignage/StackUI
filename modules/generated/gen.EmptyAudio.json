@@ -1,0 +1,73 @@
+{
+  "id": "gen.EmptyAudio",
+  "name": "Empty Audio",
+  "category": "ComfyUI / audio",
+  "description": "EmptyAudio",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "FLOAT",
+      "default": 60,
+      "min": 0,
+      "max": 18446744073709552000,
+      "step": 0.01
+    },
+    {
+      "name": "sample_rate",
+      "label": "Sample rate",
+      "target": {
+        "node": "n",
+        "input": "sample_rate"
+      },
+      "type": "INT",
+      "default": 44100,
+      "min": 1,
+      "max": 192000
+    },
+    {
+      "name": "channels",
+      "label": "Channels",
+      "target": {
+        "node": "n",
+        "input": "channels"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 1,
+      "max": 2
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyAudio",
+      "inputs": {
+        "duration": 60,
+        "sample_rate": 44100,
+        "channels": 2
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "duration",
+    "sample_rate",
+    "channels"
+  ]
+}

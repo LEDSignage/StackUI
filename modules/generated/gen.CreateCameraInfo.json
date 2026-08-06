@@ -1,0 +1,156 @@
+{
+  "id": "gen.CreateCameraInfo",
+  "name": "Create Camera Info",
+  "category": "ComfyUI / 3d",
+  "description": "CreateCameraInfo — Build a camera_infoMode 'orbit' aims with yaw/pitch/distance around the target; 'look_at' places the camera at world position. Coordinates are the viewer's world space (right-handed,Y-up).",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA"
+    }
+  ],
+  "params": [
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "orbit",
+      "options": [
+        "orbit",
+        "look_at",
+        "quaternion"
+      ],
+      "optionsFrom": {
+        "class_type": "CreateCameraInfo",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "target_x",
+      "label": "Target x",
+      "target": {
+        "node": "n",
+        "input": "target_x"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -1000,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "target_y",
+      "label": "Target y",
+      "target": {
+        "node": "n",
+        "input": "target_y"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -1000,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "target_z",
+      "label": "Target z",
+      "target": {
+        "node": "n",
+        "input": "target_z"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -1000,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "roll",
+      "label": "Roll",
+      "target": {
+        "node": "n",
+        "input": "roll"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -180,
+      "max": 180,
+      "step": 1
+    },
+    {
+      "name": "fov",
+      "label": "Fov",
+      "target": {
+        "node": "n",
+        "input": "fov"
+      },
+      "type": "FLOAT",
+      "default": 35,
+      "min": 1,
+      "max": 120,
+      "step": 1
+    },
+    {
+      "name": "zoom",
+      "label": "Zoom",
+      "target": {
+        "node": "n",
+        "input": "zoom"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "camera_type",
+      "label": "Camera type",
+      "target": {
+        "node": "n",
+        "input": "camera_type"
+      },
+      "type": "ENUM",
+      "default": "perspective",
+      "options": [
+        "perspective",
+        "orthographic"
+      ],
+      "optionsFrom": {
+        "class_type": "CreateCameraInfo",
+        "input": "camera_type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CreateCameraInfo",
+      "inputs": {
+        "mode": "orbit",
+        "target_x": 0,
+        "target_y": 0,
+        "target_z": 0,
+        "roll": 0,
+        "fov": 35,
+        "zoom": 1,
+        "camera_type": "perspective"
+      }
+    }
+  },
+  "outputs": {
+    "camera_info": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "mode",
+    "target_x",
+    "target_y"
+  ]
+}

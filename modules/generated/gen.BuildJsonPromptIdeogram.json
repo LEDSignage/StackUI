@@ -1,0 +1,125 @@
+{
+  "id": "gen.BuildJsonPromptIdeogram",
+  "name": "Build JSON Prompt (Ideogram)",
+  "category": "ComfyUI / text",
+  "description": "BuildJsonPromptIdeogram — Build a JSON prompt for the Ideogram 4 model.",
+  "inPorts": [
+    {
+      "name": "element",
+      "type": "ARRAY"
+    },
+    {
+      "name": "color_palette",
+      "type": "COLORS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "prompt",
+      "type": "DICT"
+    }
+  ],
+  "params": [
+    {
+      "name": "high_level_description",
+      "label": "High level description",
+      "target": {
+        "node": "n",
+        "input": "high_level_description"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "background",
+      "label": "Background",
+      "target": {
+        "node": "n",
+        "input": "background"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "style",
+      "label": "Style",
+      "target": {
+        "node": "n",
+        "input": "style"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none",
+        "photo",
+        "art_style"
+      ],
+      "optionsFrom": {
+        "class_type": "BuildJsonPromptIdeogram",
+        "input": "style"
+      }
+    },
+    {
+      "name": "aesthetics",
+      "label": "Aesthetics",
+      "target": {
+        "node": "n",
+        "input": "aesthetics"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "lighting",
+      "label": "Lighting",
+      "target": {
+        "node": "n",
+        "input": "lighting"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "medium",
+      "label": "Medium",
+      "target": {
+        "node": "n",
+        "input": "medium"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BuildJsonPromptIdeogram",
+      "inputs": {
+        "element": {
+          "$port": "element"
+        },
+        "high_level_description": "",
+        "background": "",
+        "style": "none",
+        "aesthetics": "",
+        "lighting": "",
+        "medium": "",
+        "color_palette": {
+          "$port": "color_palette"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "prompt": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "high_level_description",
+    "background",
+    "style"
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "id": "gen.PrimitiveString",
+  "name": "Text",
+  "category": "ComfyUI / utilities/primitive",
+  "description": "PrimitiveString",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "value",
+      "label": "Value",
+      "target": {
+        "node": "n",
+        "input": "value"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PrimitiveString",
+      "inputs": {
+        "value": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "value"
+  ]
+}

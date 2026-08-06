@@ -1,0 +1,59 @@
+{
+  "id": "gen.EmptyLatentAudio",
+  "name": "Empty Latent Audio",
+  "category": "ComfyUI / model/latent",
+  "description": "EmptyLatentAudio",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "seconds",
+      "label": "Seconds",
+      "target": {
+        "node": "n",
+        "input": "seconds"
+      },
+      "type": "FLOAT",
+      "default": 47.6,
+      "min": 1,
+      "max": 1000,
+      "step": 0.1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyLatentAudio",
+      "inputs": {
+        "seconds": 47.6,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "seconds",
+    "batch_size"
+  ]
+}

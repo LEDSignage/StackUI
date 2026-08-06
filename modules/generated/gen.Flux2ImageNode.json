@@ -1,0 +1,76 @@
+{
+  "id": "gen.Flux2ImageNode",
+  "name": "Flux.2 Image",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "Flux2ImageNode — Generate images via Flux.2 [pro] or Flux.2 [max] from a prompt and optional reference images.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Flux.2 [pro]",
+      "options": [
+        "Flux.2 [pro]",
+        "Flux.2 [max]"
+      ],
+      "optionsFrom": {
+        "class_type": "Flux2ImageNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Flux2ImageNode",
+      "inputs": {
+        "prompt": "",
+        "model": "Flux.2 [pro]",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

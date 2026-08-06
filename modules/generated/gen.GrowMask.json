@@ -1,0 +1,68 @@
+{
+  "id": "gen.GrowMask",
+  "name": "Grow Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "GrowMask",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "expand",
+      "label": "Expand",
+      "target": {
+        "node": "n",
+        "input": "expand"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -16384,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "tapered_corners",
+      "label": "Tapered corners",
+      "target": {
+        "node": "n",
+        "input": "tapered_corners"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrowMask",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        },
+        "expand": 0,
+        "tapered_corners": true
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "mask": "mask"
+  },
+  "summary": [
+    "expand",
+    "tapered_corners"
+  ]
+}

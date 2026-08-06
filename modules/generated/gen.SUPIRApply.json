@@ -1,0 +1,121 @@
+{
+  "id": "gen.SUPIRApply",
+  "name": "SUPIRApply",
+  "category": "ComfyUI / model/patch/supir",
+  "description": "SUPIRApply",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength_start",
+      "label": "Strength start",
+      "target": {
+        "node": "n",
+        "input": "strength_start"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "strength_end",
+      "label": "Strength end",
+      "target": {
+        "node": "n",
+        "input": "strength_end"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "restore_cfg",
+      "label": "Restore cfg",
+      "target": {
+        "node": "n",
+        "input": "restore_cfg"
+      },
+      "type": "FLOAT",
+      "default": 4,
+      "min": 0,
+      "max": 20,
+      "step": 0.1
+    },
+    {
+      "name": "restore_cfg_s_tmin",
+      "label": "Restore cfg s tmin",
+      "target": {
+        "node": "n",
+        "input": "restore_cfg_s_tmin"
+      },
+      "type": "FLOAT",
+      "default": 0.05,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SUPIRApply",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "model_patch": {
+          "$port": "model_patch"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "strength_start": 1,
+        "strength_end": 1,
+        "restore_cfg": 4,
+        "restore_cfg_s_tmin": 0.05
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "strength_start",
+    "strength_end",
+    "restore_cfg"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "gen.StringContains",
+  "name": "Contains Text",
+  "category": "ComfyUI / text",
+  "description": "StringContains",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "contains",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "substring",
+      "label": "Substring",
+      "target": {
+        "node": "n",
+        "input": "substring"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "case_sensitive",
+      "label": "Case sensitive",
+      "target": {
+        "node": "n",
+        "input": "case_sensitive"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringContains",
+      "inputs": {
+        "string": "",
+        "substring": "",
+        "case_sensitive": true
+      }
+    }
+  },
+  "outputs": {
+    "contains": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "substring",
+    "case_sensitive"
+  ]
+}

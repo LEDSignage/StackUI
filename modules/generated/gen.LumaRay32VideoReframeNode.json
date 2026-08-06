@@ -1,0 +1,120 @@
+{
+  "id": "gen.LumaRay32VideoReframeNode",
+  "name": "Luma Ray 3.2 Video Reframe",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32VideoReframeNode — Change the aspect ratio of an existing video, using Luma Ray 3.2 to fill the newly exposed canvas areas. Source video up to 30 seconds. Billed per second of output.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32VideoReframeNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32VideoReframeNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32VideoReframeNode",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "resolution": "720p",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "prompt",
+    "aspect_ratio",
+    "resolution"
+  ]
+}

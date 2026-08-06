@@ -1,0 +1,52 @@
+{
+  "id": "gen.USOStyleReference",
+  "name": "Apply USO Style Reference",
+  "category": "ComfyUI / model/patch/flux",
+  "description": "USOStyleReference",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "USOStyleReference",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "model_patch": {
+          "$port": "model_patch"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  }
+}

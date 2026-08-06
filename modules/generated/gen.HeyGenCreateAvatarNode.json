@@ -1,0 +1,58 @@
+{
+  "id": "gen.HeyGenCreateAvatarNode",
+  "name": "HeyGen Create Avatar",
+  "category": "ComfyUI / partner/video/HeyGen",
+  "description": "HeyGenCreateAvatarNode — Create your own reusable HeyGen avatar from a photo of a person or from a text prompt (a generated character). Feed the resulting avatar_id into HeyGen Avatar Video's custom_avatar_id — and save the ID somewhere to reuse the avatar in future workflows.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "avatar_id",
+      "type": "STRING"
+    },
+    {
+      "name": "preview",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "source",
+      "label": "Source",
+      "target": {
+        "node": "n",
+        "input": "source"
+      },
+      "type": "ENUM",
+      "default": "prompt",
+      "options": [
+        "prompt",
+        "photo"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenCreateAvatarNode",
+        "input": "source"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HeyGenCreateAvatarNode",
+      "inputs": {
+        "source": "prompt"
+      }
+    }
+  },
+  "outputs": {
+    "avatar_id": {
+      "node": "n",
+      "out": 0
+    },
+    "preview": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "source"
+  ]
+}

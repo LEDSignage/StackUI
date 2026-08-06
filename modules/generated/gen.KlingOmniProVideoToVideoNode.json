@@ -1,0 +1,159 @@
+{
+  "id": "gen.KlingOmniProVideoToVideoNode",
+  "name": "Kling 3.0 Omni Video to Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingOmniProVideoToVideoNode — Use a video and up to 4 reference images to generate a video with the latest Kling model.",
+  "inPorts": [
+    {
+      "name": "reference_video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "reference_images",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v3-omni",
+      "options": [
+        "kling-v3-omni",
+        "kling-video-o1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProVideoToVideoNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProVideoToVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 3,
+      "max": 10
+    },
+    {
+      "name": "keep_original_sound",
+      "label": "Keep original sound",
+      "target": {
+        "node": "n",
+        "input": "keep_original_sound"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1080p",
+      "options": [
+        "1080p",
+        "720p"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProVideoToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingOmniProVideoToVideoNode",
+      "inputs": {
+        "model_name": "kling-v3-omni",
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "duration": 3,
+        "reference_video": {
+          "$port": "reference_video"
+        },
+        "keep_original_sound": true,
+        "reference_images": {
+          "$port": "reference_images"
+        },
+        "resolution": "1080p",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "reference_video": "video"
+  },
+  "summary": [
+    "model_name",
+    "prompt",
+    "aspect_ratio"
+  ]
+}

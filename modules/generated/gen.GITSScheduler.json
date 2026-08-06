@@ -1,0 +1,74 @@
+{
+  "id": "gen.GITSScheduler",
+  "name": "GITSScheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "GITSScheduler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "coeff",
+      "label": "Coeff",
+      "target": {
+        "node": "n",
+        "input": "coeff"
+      },
+      "type": "FLOAT",
+      "default": 1.2,
+      "min": 0.8,
+      "max": 1.5,
+      "step": 0.05
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 10,
+      "min": 2,
+      "max": 1000
+    },
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "target": {
+        "node": "n",
+        "input": "denoise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GITSScheduler",
+      "inputs": {
+        "coeff": 1.2,
+        "steps": 10,
+        "denoise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "coeff",
+    "steps",
+    "denoise"
+  ]
+}

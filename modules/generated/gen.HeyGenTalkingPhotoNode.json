@@ -1,0 +1,135 @@
+{
+  "id": "gen.HeyGenTalkingPhotoNode",
+  "name": "HeyGen Talking Photo",
+  "category": "ComfyUI / partner/video/HeyGen",
+  "description": "HeyGenTalkingPhotoNode — Animate any image of a person into a lip-synced talking video (HeyGen Avatar IV). Drive it with a text script or your own audio.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "speech",
+      "label": "Speech",
+      "target": {
+        "node": "n",
+        "input": "speech"
+      },
+      "type": "ENUM",
+      "default": "script",
+      "options": [
+        "script",
+        "audio"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenTalkingPhotoNode",
+        "input": "speech"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1080p",
+      "options": [
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenTalkingPhotoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:5",
+        "5:4"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenTalkingPhotoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "expressiveness",
+      "label": "Expressiveness",
+      "target": {
+        "node": "n",
+        "input": "expressiveness"
+      },
+      "type": "ENUM",
+      "default": "low",
+      "options": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenTalkingPhotoNode",
+        "input": "expressiveness"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HeyGenTalkingPhotoNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "speech": "script",
+        "resolution": "1080p",
+        "aspect_ratio": "auto",
+        "expressiveness": "low",
+        "seed": 42
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "speech",
+    "resolution",
+    "aspect_ratio"
+  ]
+}

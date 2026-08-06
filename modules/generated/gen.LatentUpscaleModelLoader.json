@@ -1,0 +1,49 @@
+{
+  "id": "gen.LatentUpscaleModelLoader",
+  "name": "Load Latent Upscale Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "LatentUpscaleModelLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent_upscale_model",
+      "type": "LATENT_UPSCALE_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-spatial-upscaler-x2-1.1.safetensors",
+      "options": [
+        "ltx-2.3-spatial-upscaler-x2-1.1.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentUpscaleModelLoader",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentUpscaleModelLoader",
+      "inputs": {
+        "model_name": "ltx-2.3-spatial-upscaler-x2-1.1.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "latent_upscale_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

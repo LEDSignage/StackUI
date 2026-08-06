@@ -1,0 +1,59 @@
+{
+  "id": "gen.SplatToFile3D",
+  "name": "Create 3D File (from Splat)",
+  "category": "ComfyUI / 3d/splat",
+  "description": "SplatToFile3D — Serialize a gaussian splat to a File3D object for Save / Preview 3D nodes. Supports one item per batch only.",
+  "inPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_SPLAT_ANY"
+    }
+  ],
+  "params": [
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "ply",
+      "options": [
+        "ply",
+        "ksplat",
+        "spz"
+      ],
+      "optionsFrom": {
+        "class_type": "SplatToFile3D",
+        "input": "format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SplatToFile3D",
+      "inputs": {
+        "splat": {
+          "$port": "splat"
+        },
+        "format": "ply"
+      }
+    }
+  },
+  "outputs": {
+    "model_3d": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "format"
+  ]
+}

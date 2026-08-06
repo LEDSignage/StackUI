@@ -1,0 +1,52 @@
+{
+  "id": "gen.Tencent3DPartNode",
+  "name": "Hunyuan3D: 3D Part",
+  "category": "ComfyUI / partner/3d/Tencent",
+  "description": "Tencent3DPartNode — Automatically perform component identification and generation based on the model structure.",
+  "inPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_FBX,FILE_3D"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "fbx",
+      "type": "FILE_3D_FBX"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Tencent3DPartNode",
+      "inputs": {
+        "model_3d": {
+          "$port": "model_3d"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "fbx": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "seed"
+  ]
+}

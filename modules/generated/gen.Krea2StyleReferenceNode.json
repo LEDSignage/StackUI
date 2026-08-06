@@ -1,0 +1,61 @@
+{
+  "id": "gen.Krea2StyleReferenceNode",
+  "name": "Krea 2 Style Reference",
+  "category": "ComfyUI / partner/image/Krea",
+  "description": "Krea2StyleReferenceNode — Add an image style reference to a Krea 2 generation. Chain multiple Krea 2 Style Reference nodes (max 10) and feed the final `style_reference` output into Krea 2 Image. Each image is uploaded to ComfyAPI storage and passed as URL.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "style_reference",
+      "type": "KREA_STYLE_REF",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "style_reference",
+      "type": "KREA_STYLE_REF"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -2,
+      "max": 2,
+      "step": 0.05
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Krea2StyleReferenceNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "strength": 1,
+        "style_reference": {
+          "$port": "style_reference"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "style_reference": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "strength"
+  ]
+}

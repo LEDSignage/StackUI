@@ -1,0 +1,92 @@
+{
+  "id": "gen.LatentCut",
+  "name": "LatentCut",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentCut",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "dim",
+      "label": "Dim",
+      "target": {
+        "node": "n",
+        "input": "dim"
+      },
+      "type": "ENUM",
+      "default": "x",
+      "options": [
+        "x",
+        "y",
+        "t"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentCut",
+        "input": "dim"
+      }
+    },
+    {
+      "name": "index",
+      "label": "Index",
+      "target": {
+        "node": "n",
+        "input": "index"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -16384,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "amount",
+      "label": "Amount",
+      "target": {
+        "node": "n",
+        "input": "amount"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentCut",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "dim": "x",
+        "index": 0,
+        "amount": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "dim",
+    "index",
+    "amount"
+  ]
+}

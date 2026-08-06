@@ -1,0 +1,54 @@
+{
+  "id": "gen.ColorToRGBInt",
+  "name": "Color Picker",
+  "category": "ComfyUI / utilities",
+  "description": "ColorToRGBInt — Return a color RGB integer value and hexadecimal representation.",
+  "inPorts": [
+    {
+      "name": "color",
+      "type": "COLOR"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "rgb_int",
+      "type": "INT"
+    },
+    {
+      "name": "hex",
+      "type": "COLOR"
+    },
+    {
+      "name": "alpha",
+      "type": "FLOAT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ColorToRGBInt",
+      "inputs": {
+        "color": {
+          "$port": "color"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "rgb_int": {
+      "node": "n",
+      "out": 0
+    },
+    "hex": {
+      "node": "n",
+      "out": 1
+    },
+    "alpha": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "color": "hex"
+  }
+}

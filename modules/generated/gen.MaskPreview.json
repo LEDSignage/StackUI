@@ -1,0 +1,39 @@
+{
+  "id": "gen.MaskPreview",
+  "name": "Preview Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "MaskPreview — Preview the masks without saving them to the ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "MaskPreview",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "mask": "mask"
+  }
+}

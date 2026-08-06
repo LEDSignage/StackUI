@@ -1,0 +1,74 @@
+{
+  "id": "gen.Flux2Scheduler",
+  "name": "Flux2Scheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "Flux2Scheduler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Flux2Scheduler",
+      "inputs": {
+        "steps": 20,
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "steps",
+    "width",
+    "height"
+  ]
+}

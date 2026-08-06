@@ -1,0 +1,56 @@
+{
+  "id": "gen.VideoLinearCFGGuidance",
+  "name": "Video Linear CFG Guidance",
+  "category": "ComfyUI / model/sampling/guiders",
+  "description": "VideoLinearCFGGuidance",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "min_cfg",
+      "label": "Min cfg",
+      "target": {
+        "node": "n",
+        "input": "min_cfg"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.5
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VideoLinearCFGGuidance",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "min_cfg": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "min_cfg"
+  ]
+}

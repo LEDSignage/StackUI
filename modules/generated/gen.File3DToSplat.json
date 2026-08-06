@@ -1,0 +1,35 @@
+{
+  "id": "gen.File3DToSplat",
+  "name": "Get Splat",
+  "category": "ComfyUI / 3d/splat",
+  "description": "File3DToSplat — Parse a splat File3D into a gaussian splat. Inverse of Create 3D File (from Splat). Supported format:  PLY, SPLAT, KSPLAT, SPZ. PLY carries full spherical harmonics, the other formats are base color only. Format is auto-detected from the file contents.",
+  "inPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D,FILE_3D_SPLAT_ANY,FILE_3D_PLY,FILE_3D_SPLAT,FILE_3D_KSPLAT,FILE_3D_SPZ"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "File3DToSplat",
+      "inputs": {
+        "model_3d": {
+          "$port": "model_3d"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "splat": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

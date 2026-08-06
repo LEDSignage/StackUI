@@ -1,0 +1,64 @@
+{
+  "id": "gen.StringTrim",
+  "name": "Trim Text",
+  "category": "ComfyUI / text",
+  "description": "StringTrim",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "Both",
+      "options": [
+        "Both",
+        "Left",
+        "Right"
+      ],
+      "optionsFrom": {
+        "class_type": "StringTrim",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringTrim",
+      "inputs": {
+        "string": "",
+        "mode": "Both"
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "mode"
+  ]
+}

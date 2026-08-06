@@ -1,0 +1,76 @@
+{
+  "id": "gen.MinimaxHailuo03ReferenceNode",
+  "name": "MiniMax H3 Reference to Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxHailuo03ReferenceNode — Generate video conditioned on reference images, videos, and audio using the MiniMax H3 model. Refer to the references in the prompt by their order: 'Image 1', 'Image 2', 'Video 1', 'Audio 1', and so on.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "MiniMax H3",
+      "options": [
+        "MiniMax H3"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxHailuo03ReferenceNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxHailuo03ReferenceNode",
+      "inputs": {
+        "model": "MiniMax H3",
+        "seed": 42,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

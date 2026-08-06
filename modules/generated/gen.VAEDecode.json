@@ -1,0 +1,42 @@
+{
+  "id": "gen.VAEDecode",
+  "name": "VAE Decode",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEDecode — Decodes latent images back into pixel space images.",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VAEDecode",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

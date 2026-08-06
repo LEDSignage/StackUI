@@ -1,0 +1,115 @@
+{
+  "id": "gen.ReveImageRemixNode",
+  "name": "Reve Image Remix",
+  "category": "ComfyUI / partner/image/Reve",
+  "description": "ReveImageRemixNode — Combine reference images with text prompts to create new images using Reve.",
+  "inPorts": [
+    {
+      "name": "reference_images",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "reve-remix@20250915",
+      "options": [
+        "reve-remix@20250915",
+        "reve-remix-fast@20251030"
+      ],
+      "optionsFrom": {
+        "class_type": "ReveImageRemixNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "upscale",
+      "label": "Upscale",
+      "target": {
+        "node": "n",
+        "input": "upscale"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "enabled"
+      ],
+      "optionsFrom": {
+        "class_type": "ReveImageRemixNode",
+        "input": "upscale"
+      }
+    },
+    {
+      "name": "remove_background",
+      "label": "Remove background",
+      "target": {
+        "node": "n",
+        "input": "remove_background"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ReveImageRemixNode",
+      "inputs": {
+        "reference_images": {
+          "$port": "reference_images"
+        },
+        "prompt": "",
+        "model": "reve-remix@20250915",
+        "upscale": "disabled",
+        "remove_background": false,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "upscale"
+  ]
+}

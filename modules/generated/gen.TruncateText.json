@@ -1,0 +1,56 @@
+{
+  "id": "gen.TruncateText",
+  "name": "Truncate Text",
+  "category": "ComfyUI / text",
+  "description": "TruncateText",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "max_length",
+      "label": "Max length",
+      "target": {
+        "node": "n",
+        "input": "max_length"
+      },
+      "type": "INT",
+      "default": 77,
+      "min": 1,
+      "max": 10000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TruncateText",
+      "inputs": {
+        "texts": "",
+        "max_length": 77
+      }
+    }
+  },
+  "outputs": {
+    "texts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "texts",
+    "max_length"
+  ]
+}

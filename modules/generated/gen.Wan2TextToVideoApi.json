@@ -1,0 +1,96 @@
+{
+  "id": "gen.Wan2TextToVideoApi",
+  "name": "Wan 2.7 Text to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "Wan2TextToVideoApi — Generates a video based on a text prompt using the Wan 2.7 model.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "wan2.7-t2v",
+      "options": [
+        "wan2.7-t2v"
+      ],
+      "optionsFrom": {
+        "class_type": "Wan2TextToVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "prompt_extend",
+      "label": "Prompt extend",
+      "target": {
+        "node": "n",
+        "input": "prompt_extend"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Wan2TextToVideoApi",
+      "inputs": {
+        "model": "wan2.7-t2v",
+        "seed": 0,
+        "prompt_extend": true,
+        "watermark": false,
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "prompt_extend"
+  ]
+}

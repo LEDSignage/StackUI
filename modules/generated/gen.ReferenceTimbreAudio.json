@@ -1,0 +1,46 @@
+{
+  "id": "gen.ReferenceTimbreAudio",
+  "name": "Set Reference Audio",
+  "category": "ComfyUI / model/conditioning",
+  "description": "ReferenceTimbreAudio — This node sets the reference audio for ace step 1.5",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ReferenceTimbreAudio",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "latent": {
+          "$port": "latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  }
+}

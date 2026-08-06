@@ -1,0 +1,64 @@
+{
+  "id": "gen.ReplaceVideoLatentFrames",
+  "name": "Replace Video Latent Frames",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "ReplaceVideoLatentFrames",
+  "inPorts": [
+    {
+      "name": "destination",
+      "type": "LATENT"
+    },
+    {
+      "name": "source",
+      "type": "LATENT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "index",
+      "label": "Index",
+      "target": {
+        "node": "n",
+        "input": "index"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -16384,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ReplaceVideoLatentFrames",
+      "inputs": {
+        "destination": {
+          "$port": "destination"
+        },
+        "index": 0,
+        "source": {
+          "$port": "source"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "destination": "latent"
+  },
+  "summary": [
+    "index"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "load-end-frame",
+  "name": "End frame",
+  "category": "load",
+  "description": "LoadImage, published as last_frame. Two plain image loaders would both publish \"image\" and the second would quietly replace the first.",
+  "inPorts": [],
+  "outPorts": [{ "name": "last_frame", "type": "IMAGE" }],
+  "outputs": { "last_frame": { "node": "li", "out": 0 } },
+  "summary": ["image"],
+  "params": [
+    {
+      "name": "image",
+      "label": "End frame",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": { "node": "li", "input": "image" }
+    }
+  ],
+  "nodes": {
+    "li": { "class_type": "LoadImage", "inputs": { "image": "" } }
+  }
+}

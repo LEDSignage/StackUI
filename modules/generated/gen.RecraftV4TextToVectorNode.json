@@ -1,0 +1,114 @@
+{
+  "id": "gen.RecraftV4TextToVectorNode",
+  "name": "Recraft V4 Text to Vector",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftV4TextToVectorNode — Generates SVG using Recraft V4 and V4.1 models.",
+  "inPorts": [
+    {
+      "name": "recraft_controls",
+      "type": "RECRAFT_CONTROLS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "recraftv4_1_vector",
+      "options": [
+        "recraftv4_1_vector",
+        "recraftv4_1_utility_vector",
+        "recraftv4_1_pro_vector",
+        "recraftv4_1_utility_pro_vector",
+        "recraftv4",
+        "recraftv4_pro"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftV4TextToVectorNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "n",
+      "label": "N",
+      "target": {
+        "node": "n",
+        "input": "n"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 6
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftV4TextToVectorNode",
+      "inputs": {
+        "prompt": "",
+        "negative_prompt": "",
+        "model": "recraftv4_1_vector",
+        "n": 1,
+        "seed": 0,
+        "recraft_controls": {
+          "$port": "recraft_controls"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "model"
+  ]
+}

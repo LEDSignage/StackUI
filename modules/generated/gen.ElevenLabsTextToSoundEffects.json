@@ -1,0 +1,82 @@
+{
+  "id": "gen.ElevenLabsTextToSoundEffects",
+  "name": "ElevenLabs Text to Sound Effects",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsTextToSoundEffects — Generate sound effects from text descriptions.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "eleven_sfx_v2",
+      "options": [
+        "eleven_sfx_v2"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsTextToSoundEffects",
+        "input": "model"
+      }
+    },
+    {
+      "name": "output_format",
+      "label": "Output format",
+      "target": {
+        "node": "n",
+        "input": "output_format"
+      },
+      "type": "ENUM",
+      "default": "mp3_44100_192",
+      "options": [
+        "mp3_44100_192",
+        "opus_48000_192"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsTextToSoundEffects",
+        "input": "output_format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsTextToSoundEffects",
+      "inputs": {
+        "text": "",
+        "model": "eleven_sfx_v2",
+        "output_format": "mp3_44100_192"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text",
+    "model",
+    "output_format"
+  ]
+}

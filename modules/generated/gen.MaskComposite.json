@@ -1,0 +1,102 @@
+{
+  "id": "gen.MaskComposite",
+  "name": "Combine Masks",
+  "category": "ComfyUI / image/mask",
+  "description": "MaskComposite",
+  "inPorts": [
+    {
+      "name": "destination",
+      "type": "MASK"
+    },
+    {
+      "name": "source",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "operation",
+      "label": "Operation",
+      "target": {
+        "node": "n",
+        "input": "operation"
+      },
+      "type": "ENUM",
+      "default": "multiply",
+      "options": [
+        "multiply",
+        "add",
+        "subtract",
+        "and",
+        "or",
+        "xor"
+      ],
+      "optionsFrom": {
+        "class_type": "MaskComposite",
+        "input": "operation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MaskComposite",
+      "inputs": {
+        "destination": {
+          "$port": "destination"
+        },
+        "source": {
+          "$port": "source"
+        },
+        "x": 0,
+        "y": 0,
+        "operation": "multiply"
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "destination": "mask"
+  },
+  "summary": [
+    "x",
+    "y",
+    "operation"
+  ]
+}

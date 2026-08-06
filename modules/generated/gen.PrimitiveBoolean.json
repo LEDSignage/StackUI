@@ -1,0 +1,42 @@
+{
+  "id": "gen.PrimitiveBoolean",
+  "name": "Boolean",
+  "category": "ComfyUI / utilities/primitive",
+  "description": "PrimitiveBoolean",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "boolean",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [
+    {
+      "name": "value",
+      "label": "Value",
+      "target": {
+        "node": "n",
+        "input": "value"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PrimitiveBoolean",
+      "inputs": {
+        "value": false
+      }
+    }
+  },
+  "outputs": {
+    "boolean": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "value"
+  ]
+}

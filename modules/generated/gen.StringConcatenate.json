@@ -1,0 +1,68 @@
+{
+  "id": "gen.StringConcatenate",
+  "name": "Concatenate Text",
+  "category": "ComfyUI / text",
+  "description": "StringConcatenate",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string_a",
+      "label": "String a",
+      "target": {
+        "node": "n",
+        "input": "string_a"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "string_b",
+      "label": "String b",
+      "target": {
+        "node": "n",
+        "input": "string_b"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "delimiter",
+      "label": "Delimiter",
+      "target": {
+        "node": "n",
+        "input": "delimiter"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringConcatenate",
+      "inputs": {
+        "string_a": "",
+        "string_b": "",
+        "delimiter": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string_a",
+    "string_b",
+    "delimiter"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "id": "gen.CLIPSave",
+  "name": "CLIPSave",
+  "category": "ComfyUI / model/merging",
+  "description": "CLIPSave",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "clip/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPSave",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "filename_prefix": "clip/ComfyUI"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

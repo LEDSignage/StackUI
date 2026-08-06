@@ -1,0 +1,76 @@
+{
+  "id": "gen.BriaVideoGreenScreen",
+  "name": "Bria Video Green Screen",
+  "category": "ComfyUI / partner/video/Bria",
+  "description": "BriaVideoGreenScreen — Replace a video's background with a solid chroma-key screen using Bria.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "green_shade",
+      "label": "Green shade",
+      "target": {
+        "node": "n",
+        "input": "green_shade"
+      },
+      "type": "ENUM",
+      "default": "broadcast_green",
+      "options": [
+        "broadcast_green",
+        "chroma_green",
+        "blue_screen"
+      ],
+      "optionsFrom": {
+        "class_type": "BriaVideoGreenScreen",
+        "input": "green_shade"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaVideoGreenScreen",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "green_shade": "broadcast_green",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "green_shade",
+    "seed"
+  ]
+}

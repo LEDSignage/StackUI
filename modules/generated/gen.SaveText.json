@@ -1,0 +1,77 @@
+{
+  "id": "gen.SaveText",
+  "name": "Save Text",
+  "category": "ComfyUI / text",
+  "description": "SaveText — Save text content to a file in the output directory.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "text",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    },
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "txt",
+      "options": [
+        "txt",
+        "csv",
+        "md",
+        "json"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveText",
+        "input": "format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveText",
+      "inputs": {
+        "text": "",
+        "filename_prefix": "ComfyUI",
+        "format": "txt"
+      }
+    }
+  },
+  "outputs": {
+    "text": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "text",
+    "filename_prefix",
+    "format"
+  ]
+}

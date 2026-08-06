@@ -1,0 +1,53 @@
+{
+  "id": "gen.RecraftStyleV3LogoRaster",
+  "name": "Recraft Style - Logo Raster",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftStyleV3LogoRaster — Select realistic_image style and optional substyle.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "recraft_style",
+      "type": "RECRAFT_V3_STYLE"
+    }
+  ],
+  "params": [
+    {
+      "name": "substyle",
+      "label": "Substyle",
+      "target": {
+        "node": "n",
+        "input": "substyle"
+      },
+      "type": "ENUM",
+      "default": "emblem_graffiti",
+      "options": [
+        "emblem_graffiti",
+        "emblem_pop_art",
+        "emblem_punk",
+        "emblem_stamp",
+        "emblem_vintage"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftStyleV3LogoRaster",
+        "input": "substyle"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftStyleV3LogoRaster",
+      "inputs": {
+        "substyle": "emblem_graffiti"
+      }
+    }
+  },
+  "outputs": {
+    "recraft_style": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "substyle"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "gen.ElevenLabsSpeechToText",
+  "name": "ElevenLabs Speech to Text",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsSpeechToText — Transcribe audio to text. Supports automatic language detection, speaker diarization, and audio event tagging.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "text",
+      "type": "STRING"
+    },
+    {
+      "name": "language_code",
+      "type": "STRING"
+    },
+    {
+      "name": "words_json",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "scribe_v2",
+      "options": [
+        "scribe_v2"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsSpeechToText",
+        "input": "model"
+      }
+    },
+    {
+      "name": "language_code",
+      "label": "Language code",
+      "target": {
+        "node": "n",
+        "input": "language_code"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "num_speakers",
+      "label": "Num speakers",
+      "target": {
+        "node": "n",
+        "input": "num_speakers"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 32
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsSpeechToText",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "model": "scribe_v2",
+        "language_code": "",
+        "num_speakers": 0,
+        "seed": 1
+      }
+    }
+  },
+  "outputs": {
+    "text": {
+      "node": "n",
+      "out": 0
+    },
+    "language_code": {
+      "node": "n",
+      "out": 1
+    },
+    "words_json": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "model",
+    "language_code",
+    "num_speakers"
+  ]
+}

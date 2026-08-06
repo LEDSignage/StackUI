@@ -1,0 +1,79 @@
+{
+  "id": "gen.CLIPTextEncodePixArtAlpha",
+  "name": "CLIP Text Encode (PixArt Alpha)",
+  "category": "ComfyUI / model/conditioning/pixart",
+  "description": "CLIPTextEncodePixArtAlpha — Encodes text and sets the resolution conditioning for PixArt Alpha. Does not apply to PixArt Sigma.",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodePixArtAlpha",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "text": "",
+        "clip": {
+          "$port": "clip"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "text"
+  ]
+}

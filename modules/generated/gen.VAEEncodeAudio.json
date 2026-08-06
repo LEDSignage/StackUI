@@ -1,0 +1,42 @@
+{
+  "id": "gen.VAEEncodeAudio",
+  "name": "VAE Encode Audio",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEEncodeAudio",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VAEEncodeAudio",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

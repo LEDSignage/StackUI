@@ -1,0 +1,60 @@
+{
+  "id": "gen.BriaTransparentVideoBackground",
+  "name": "Bria Remove Video Background (Transparent)",
+  "category": "ComfyUI / partner/video/Bria",
+  "description": "BriaTransparentVideoBackground — Remove the background from a video using Bria and return the cut-out frames plus an alpha mask. Connect both to a compositing node, or feed them to Save WEBM to write a transparent video.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaTransparentVideoBackground",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "seed"
+  ]
+}

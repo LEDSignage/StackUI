@@ -1,0 +1,65 @@
+{
+  "id": "gen.TripoSplatConditioning",
+  "name": "TripoSplat Conditioning",
+  "category": "ComfyUI / model/conditioning/triposplat",
+  "description": "TripoSplatConditioning — Encode the image with DINOv3 and the Flux2 VAE into TripoSplat positive/negative conditioning, and create the fixed size noise target (latent + camera) for the KSampler",
+  "inPorts": [
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "TripoSplatConditioning",
+      "inputs": {
+        "clip_vision": {
+          "$port": "clip_vision"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  }
+}

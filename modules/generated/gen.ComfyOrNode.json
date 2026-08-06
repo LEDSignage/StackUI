@@ -1,0 +1,35 @@
+{
+  "id": "gen.ComfyOrNode",
+  "name": "Or",
+  "category": "ComfyUI / utilities/logic",
+  "description": "ComfyOrNode — Logical OR operation. Returns true if any of the values are truthy. Uses Python's rules for truthiness.",
+  "inPorts": [
+    {
+      "name": "values",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "boolean",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ComfyOrNode",
+      "inputs": {
+        "values": {
+          "$port": "values"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "boolean": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

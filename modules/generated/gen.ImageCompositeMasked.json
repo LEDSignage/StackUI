@@ -1,0 +1,98 @@
+{
+  "id": "gen.ImageCompositeMasked",
+  "name": "Image Composite Masked",
+  "category": "ComfyUI / image/compositing",
+  "description": "ImageCompositeMasked",
+  "inPorts": [
+    {
+      "name": "destination",
+      "type": "IMAGE"
+    },
+    {
+      "name": "source",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "resize_source",
+      "label": "Resize source",
+      "target": {
+        "node": "n",
+        "input": "resize_source"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageCompositeMasked",
+      "inputs": {
+        "destination": {
+          "$port": "destination"
+        },
+        "source": {
+          "$port": "source"
+        },
+        "x": 0,
+        "y": 0,
+        "resize_source": false,
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "destination": "image"
+  },
+  "summary": [
+    "x",
+    "y",
+    "resize_source"
+  ]
+}

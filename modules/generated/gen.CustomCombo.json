@@ -1,0 +1,54 @@
+{
+  "id": "gen.CustomCombo",
+  "name": "Custom Combo",
+  "category": "ComfyUI / utilities",
+  "description": "CustomCombo",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    },
+    {
+      "name": "index",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "choice",
+      "label": "Choice",
+      "target": {
+        "node": "n",
+        "input": "choice"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "CustomCombo",
+        "input": "choice"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CustomCombo",
+      "inputs": {
+        "choice": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    },
+    "index": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "choice"
+  ]
+}

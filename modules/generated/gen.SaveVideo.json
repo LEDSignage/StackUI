@@ -1,0 +1,94 @@
+{
+  "id": "gen.SaveVideo",
+  "name": "Save Video",
+  "category": "ComfyUI / video",
+  "description": "SaveVideo — Saves the input videos to your ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "video/ComfyUI"
+    },
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "mp4"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveVideo",
+        "input": "format"
+      }
+    },
+    {
+      "name": "codec",
+      "label": "Codec",
+      "target": {
+        "node": "n",
+        "input": "codec"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "h264"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveVideo",
+        "input": "codec"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveVideo",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "filename_prefix": "video/ComfyUI",
+        "format": "auto",
+        "codec": "auto"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "filename_prefix",
+    "format",
+    "codec"
+  ]
+}

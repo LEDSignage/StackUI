@@ -1,0 +1,97 @@
+{
+  "id": "gen.EasyCache",
+  "name": "EasyCache",
+  "category": "ComfyUI / advanced/debug",
+  "description": "EasyCache — Native EasyCache implementation.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "reuse_threshold",
+      "label": "Reuse threshold",
+      "target": {
+        "node": "n",
+        "input": "reuse_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.2,
+      "min": 0,
+      "max": 3,
+      "step": 0.01
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.15,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.95,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "verbose",
+      "label": "Verbose",
+      "target": {
+        "node": "n",
+        "input": "verbose"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EasyCache",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "reuse_threshold": 0.2,
+        "start_percent": 0.15,
+        "end_percent": 0.95,
+        "verbose": false
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "reuse_threshold",
+    "start_percent",
+    "end_percent"
+  ]
+}

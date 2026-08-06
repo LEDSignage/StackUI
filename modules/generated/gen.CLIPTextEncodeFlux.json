@@ -1,0 +1,79 @@
+{
+  "id": "gen.CLIPTextEncodeFlux",
+  "name": "CLIPTextEncodeFlux",
+  "category": "ComfyUI / model/conditioning/flux",
+  "description": "CLIPTextEncodeFlux",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_l",
+      "label": "Clip l",
+      "target": {
+        "node": "n",
+        "input": "clip_l"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "t5xxl",
+      "label": "T5xxl",
+      "target": {
+        "node": "n",
+        "input": "t5xxl"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "guidance",
+      "label": "Guidance",
+      "target": {
+        "node": "n",
+        "input": "guidance"
+      },
+      "type": "FLOAT",
+      "default": 3.5,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeFlux",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "clip_l": "",
+        "t5xxl": "",
+        "guidance": 3.5
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_l",
+    "t5xxl",
+    "guidance"
+  ]
+}

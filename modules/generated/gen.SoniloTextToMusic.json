@@ -1,0 +1,70 @@
+{
+  "id": "gen.SoniloTextToMusic",
+  "name": "Sonilo Text to Music",
+  "category": "ComfyUI / partner/audio/Sonilo",
+  "description": "SoniloTextToMusic — Generate music from a text prompt using Sonilo's AI model.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 30,
+      "min": 1,
+      "max": 360
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SoniloTextToMusic",
+      "inputs": {
+        "prompt": "",
+        "duration": 30,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "duration",
+    "seed"
+  ]
+}

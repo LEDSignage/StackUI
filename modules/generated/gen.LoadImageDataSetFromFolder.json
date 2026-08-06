@@ -1,0 +1,49 @@
+{
+  "id": "gen.LoadImageDataSetFromFolder",
+  "name": "Load Image (from Folder)",
+  "category": "ComfyUI / image",
+  "description": "LoadImageDataSetFromFolder — Load a dataset of images from a specified folder and return a list of images. Supported formats: PNG, JPG, JPEG, WEBP.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "folder",
+      "label": "Folder",
+      "target": {
+        "node": "n",
+        "input": "folder"
+      },
+      "type": "ENUM",
+      "default": "3d",
+      "options": [
+        "3d"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadImageDataSetFromFolder",
+        "input": "folder"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadImageDataSetFromFolder",
+      "inputs": {
+        "folder": "3d"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "folder"
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "id": "gen.CosmosPredict2ImageToVideoLatent",
+  "name": "CosmosPredict2ImageToVideoLatent",
+  "category": "ComfyUI / model/conditioning/cosmos",
+  "description": "CosmosPredict2ImageToVideoLatent",
+  "inPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "end_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 848,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 93,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CosmosPredict2ImageToVideoLatent",
+      "inputs": {
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 848,
+        "height": 480,
+        "length": 93,
+        "batch_size": 1,
+        "start_image": {
+          "$port": "start_image"
+        },
+        "end_image": {
+          "$port": "end_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

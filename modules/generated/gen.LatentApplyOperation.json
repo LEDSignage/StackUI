@@ -1,0 +1,45 @@
+{
+  "id": "gen.LatentApplyOperation",
+  "name": "LatentApplyOperation",
+  "category": "ComfyUI / model/latent/advanced/operations",
+  "description": "LatentApplyOperation",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "operation",
+      "type": "LATENT_OPERATION"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LatentApplyOperation",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "operation": {
+          "$port": "operation"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  }
+}

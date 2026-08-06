@@ -1,0 +1,153 @@
+{
+  "id": "gen.LumaImageToVideoNode",
+  "name": "Luma Image to Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaImageToVideoNode — Generates videos synchronously based on prompt, input images, and output_size.",
+  "inPorts": [
+    {
+      "name": "first_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "last_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "luma_concepts",
+      "type": "LUMA_CONCEPTS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "ray-2",
+      "options": [
+        "ray-2",
+        "ray-flash-2",
+        "ray-1-6"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaImageToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "540p",
+      "options": [
+        "540p",
+        "720p",
+        "1080p",
+        "4k"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaImageToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5s",
+      "options": [
+        "5s",
+        "9s"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaImageToVideoNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "loop",
+      "label": "Loop",
+      "target": {
+        "node": "n",
+        "input": "loop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaImageToVideoNode",
+      "inputs": {
+        "prompt": "",
+        "model": "ray-2",
+        "resolution": "540p",
+        "duration": "5s",
+        "loop": false,
+        "seed": 0,
+        "first_image": {
+          "$port": "first_image"
+        },
+        "last_image": {
+          "$port": "last_image"
+        },
+        "luma_concepts": {
+          "$port": "luma_concepts"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "resolution"
+  ]
+}

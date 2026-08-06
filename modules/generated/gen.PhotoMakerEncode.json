@@ -1,0 +1,65 @@
+{
+  "id": "gen.PhotoMakerEncode",
+  "name": "PhotoMaker Encode",
+  "category": "ComfyUI / model/conditioning/photomaker",
+  "description": "PhotoMakerEncode",
+  "inPorts": [
+    {
+      "name": "photomaker",
+      "type": "PHOTOMAKER"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "photograph of photomaker",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PhotoMakerEncode",
+      "inputs": {
+        "photomaker": {
+          "$port": "photomaker"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "clip": {
+          "$port": "clip"
+        },
+        "text": "photograph of photomaker"
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text"
+  ]
+}

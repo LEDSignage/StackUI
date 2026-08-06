@@ -1,0 +1,63 @@
+{
+  "id": "gen.PerpNeg",
+  "name": "Perp-Neg (DEPRECATED by Perp-Neg Guider)",
+  "category": "ComfyUI / experimental",
+  "description": "PerpNeg",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "empty_conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "neg_scale",
+      "label": "Neg scale",
+      "target": {
+        "node": "n",
+        "input": "neg_scale"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PerpNeg",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "empty_conditioning": {
+          "$port": "empty_conditioning"
+        },
+        "neg_scale": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "neg_scale"
+  ]
+}

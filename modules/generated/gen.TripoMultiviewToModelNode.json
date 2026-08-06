@@ -1,0 +1,248 @@
+{
+  "id": "gen.TripoMultiviewToModelNode",
+  "name": "Tripo: Multiview to Model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoMultiviewToModelNode",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image_left",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image_back",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image_right",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_version",
+      "label": "Model version",
+      "target": {
+        "node": "n",
+        "input": "model_version"
+      },
+      "type": "ENUM",
+      "default": "v3.1-20260211",
+      "options": [
+        "v3.1-20260211",
+        "v3.0-20250812",
+        "v2.5-20250123",
+        "v2.0-20240919",
+        "v1.4-20240625"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoMultiviewToModelNode",
+        "input": "model_version"
+      }
+    },
+    {
+      "name": "orientation",
+      "label": "Orientation",
+      "target": {
+        "node": "n",
+        "input": "orientation"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "align_image",
+        "default"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoMultiviewToModelNode",
+        "input": "orientation"
+      }
+    },
+    {
+      "name": "texture",
+      "label": "Texture",
+      "target": {
+        "node": "n",
+        "input": "texture"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "pbr",
+      "label": "Pbr",
+      "target": {
+        "node": "n",
+        "input": "pbr"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "model_seed",
+      "label": "Model seed",
+      "target": {
+        "node": "n",
+        "input": "model_seed"
+      },
+      "type": "INT",
+      "default": 42
+    },
+    {
+      "name": "texture_seed",
+      "label": "Texture seed",
+      "target": {
+        "node": "n",
+        "input": "texture_seed"
+      },
+      "type": "INT",
+      "default": 42
+    },
+    {
+      "name": "texture_quality",
+      "label": "Texture quality",
+      "target": {
+        "node": "n",
+        "input": "texture_quality"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "detailed"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoMultiviewToModelNode",
+        "input": "texture_quality"
+      }
+    },
+    {
+      "name": "texture_alignment",
+      "label": "Texture alignment",
+      "target": {
+        "node": "n",
+        "input": "texture_alignment"
+      },
+      "type": "ENUM",
+      "default": "original_image",
+      "options": [
+        "original_image",
+        "geometry"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoMultiviewToModelNode",
+        "input": "texture_alignment"
+      }
+    },
+    {
+      "name": "face_limit",
+      "label": "Face limit",
+      "target": {
+        "node": "n",
+        "input": "face_limit"
+      },
+      "type": "INT",
+      "default": -1,
+      "min": -1,
+      "max": 500000
+    },
+    {
+      "name": "quad",
+      "label": "Quad",
+      "target": {
+        "node": "n",
+        "input": "quad"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "geometry_quality",
+      "label": "Geometry quality",
+      "target": {
+        "node": "n",
+        "input": "geometry_quality"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "detailed"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoMultiviewToModelNode",
+        "input": "geometry_quality"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoMultiviewToModelNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "image_left": {
+          "$port": "image_left"
+        },
+        "image_back": {
+          "$port": "image_back"
+        },
+        "image_right": {
+          "$port": "image_right"
+        },
+        "model_version": "v3.1-20260211",
+        "orientation": "default",
+        "texture": true,
+        "pbr": true,
+        "model_seed": 42,
+        "texture_seed": 42,
+        "texture_quality": "standard",
+        "texture_alignment": "original_image",
+        "face_limit": -1,
+        "quad": false,
+        "geometry_quality": "standard"
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "model_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "model_version",
+    "orientation",
+    "texture"
+  ]
+}

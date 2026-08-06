@@ -1,0 +1,144 @@
+{
+  "id": "gen.CreateHookKeyframesInterpolated",
+  "name": "Create Hook Keyframes Interp.",
+  "category": "ComfyUI / advanced/hooks/scheduling",
+  "description": "CreateHookKeyframesInterpolated",
+  "inPorts": [
+    {
+      "name": "prev_hook_kf",
+      "type": "HOOK_KEYFRAMES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hook_kf",
+      "type": "HOOK_KEYFRAMES"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength_start",
+      "label": "Strength start",
+      "target": {
+        "node": "n",
+        "input": "strength_start"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.001
+    },
+    {
+      "name": "strength_end",
+      "label": "Strength end",
+      "target": {
+        "node": "n",
+        "input": "strength_end"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.001
+    },
+    {
+      "name": "interpolation",
+      "label": "Interpolation",
+      "target": {
+        "node": "n",
+        "input": "interpolation"
+      },
+      "type": "ENUM",
+      "default": "linear",
+      "options": [
+        "linear",
+        "ease_in",
+        "ease_out",
+        "ease_in_out"
+      ],
+      "optionsFrom": {
+        "class_type": "CreateHookKeyframesInterpolated",
+        "input": "interpolation"
+      }
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "keyframes_count",
+      "label": "Keyframes count",
+      "target": {
+        "node": "n",
+        "input": "keyframes_count"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 2,
+      "max": 100,
+      "step": 1
+    },
+    {
+      "name": "print_keyframes",
+      "label": "Print keyframes",
+      "target": {
+        "node": "n",
+        "input": "print_keyframes"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CreateHookKeyframesInterpolated",
+      "inputs": {
+        "strength_start": 1,
+        "strength_end": 1,
+        "interpolation": "linear",
+        "start_percent": 0,
+        "end_percent": 1,
+        "keyframes_count": 5,
+        "print_keyframes": false,
+        "prev_hook_kf": {
+          "$port": "prev_hook_kf"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hook_kf": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "strength_start",
+    "strength_end",
+    "interpolation"
+  ]
+}

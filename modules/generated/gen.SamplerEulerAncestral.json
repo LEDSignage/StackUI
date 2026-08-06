@@ -1,0 +1,60 @@
+{
+  "id": "gen.SamplerEulerAncestral",
+  "name": "SamplerEulerAncestral",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerEulerAncestral",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerEulerAncestral",
+      "inputs": {
+        "eta": 1,
+        "s_noise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "eta",
+    "s_noise"
+  ]
+}

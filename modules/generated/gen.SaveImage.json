@@ -1,0 +1,54 @@
+{
+  "id": "gen.SaveImage",
+  "name": "Save Image",
+  "category": "ComfyUI / image",
+  "description": "SaveImage — Saves the input images to your ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveImage",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "filename_prefix": "ComfyUI"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "filename_prefix"
+  ]
+}

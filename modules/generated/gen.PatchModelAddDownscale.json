@@ -1,0 +1,155 @@
+{
+  "id": "gen.PatchModelAddDownscale",
+  "name": "PatchModelAddDownscale (Kohya Deep Shrink)",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "PatchModelAddDownscale",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "block_number",
+      "label": "Block number",
+      "target": {
+        "node": "n",
+        "input": "block_number"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 1,
+      "max": 32,
+      "step": 1
+    },
+    {
+      "name": "downscale_factor",
+      "label": "Downscale factor",
+      "target": {
+        "node": "n",
+        "input": "downscale_factor"
+      },
+      "type": "FLOAT",
+      "default": 2,
+      "min": 0.1,
+      "max": 9,
+      "step": 0.001
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.35,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "downscale_after_skip",
+      "label": "Downscale after skip",
+      "target": {
+        "node": "n",
+        "input": "downscale_after_skip"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "downscale_method",
+      "label": "Downscale method",
+      "target": {
+        "node": "n",
+        "input": "downscale_method"
+      },
+      "type": "ENUM",
+      "default": "bicubic",
+      "options": [
+        "bicubic",
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bislerp"
+      ],
+      "optionsFrom": {
+        "class_type": "PatchModelAddDownscale",
+        "input": "downscale_method"
+      }
+    },
+    {
+      "name": "upscale_method",
+      "label": "Upscale method",
+      "target": {
+        "node": "n",
+        "input": "upscale_method"
+      },
+      "type": "ENUM",
+      "default": "bicubic",
+      "options": [
+        "bicubic",
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bislerp"
+      ],
+      "optionsFrom": {
+        "class_type": "PatchModelAddDownscale",
+        "input": "upscale_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PatchModelAddDownscale",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "block_number": 3,
+        "downscale_factor": 2,
+        "start_percent": 0,
+        "end_percent": 0.35,
+        "downscale_after_skip": true,
+        "downscale_method": "bicubic",
+        "upscale_method": "bicubic"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "block_number",
+    "downscale_factor",
+    "start_percent"
+  ]
+}

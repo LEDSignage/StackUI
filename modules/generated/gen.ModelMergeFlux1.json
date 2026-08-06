@@ -1,0 +1,933 @@
+{
+  "id": "gen.ModelMergeFlux1",
+  "name": "ModelMergeFlux1",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeFlux1",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "img_in.",
+      "label": "Img in.",
+      "target": {
+        "node": "n",
+        "input": "img_in."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "time_in.",
+      "label": "Time in.",
+      "target": {
+        "node": "n",
+        "input": "time_in."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "guidance_in",
+      "label": "Guidance in",
+      "target": {
+        "node": "n",
+        "input": "guidance_in"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "vector_in.",
+      "label": "Vector in.",
+      "target": {
+        "node": "n",
+        "input": "vector_in."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "txt_in.",
+      "label": "Txt in.",
+      "target": {
+        "node": "n",
+        "input": "txt_in."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.0.",
+      "label": "Double blocks.0.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.1.",
+      "label": "Double blocks.1.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.2.",
+      "label": "Double blocks.2.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.3.",
+      "label": "Double blocks.3.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.4.",
+      "label": "Double blocks.4.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.5.",
+      "label": "Double blocks.5.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.6.",
+      "label": "Double blocks.6.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.7.",
+      "label": "Double blocks.7.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.8.",
+      "label": "Double blocks.8.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.9.",
+      "label": "Double blocks.9.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.10.",
+      "label": "Double blocks.10.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.11.",
+      "label": "Double blocks.11.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.12.",
+      "label": "Double blocks.12.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.13.",
+      "label": "Double blocks.13.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.14.",
+      "label": "Double blocks.14.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.15.",
+      "label": "Double blocks.15.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.16.",
+      "label": "Double blocks.16.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.17.",
+      "label": "Double blocks.17.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_blocks.18.",
+      "label": "Double blocks.18.",
+      "target": {
+        "node": "n",
+        "input": "double_blocks.18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.0.",
+      "label": "Single blocks.0.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.1.",
+      "label": "Single blocks.1.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.2.",
+      "label": "Single blocks.2.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.3.",
+      "label": "Single blocks.3.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.4.",
+      "label": "Single blocks.4.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.5.",
+      "label": "Single blocks.5.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.6.",
+      "label": "Single blocks.6.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.7.",
+      "label": "Single blocks.7.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.8.",
+      "label": "Single blocks.8.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.9.",
+      "label": "Single blocks.9.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.10.",
+      "label": "Single blocks.10.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.11.",
+      "label": "Single blocks.11.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.12.",
+      "label": "Single blocks.12.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.13.",
+      "label": "Single blocks.13.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.14.",
+      "label": "Single blocks.14.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.15.",
+      "label": "Single blocks.15.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.16.",
+      "label": "Single blocks.16.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.17.",
+      "label": "Single blocks.17.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.18.",
+      "label": "Single blocks.18.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.19.",
+      "label": "Single blocks.19.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.19."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.20.",
+      "label": "Single blocks.20.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.20."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.21.",
+      "label": "Single blocks.21.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.21."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.22.",
+      "label": "Single blocks.22.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.22."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.23.",
+      "label": "Single blocks.23.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.23."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.24.",
+      "label": "Single blocks.24.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.24."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.25.",
+      "label": "Single blocks.25.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.25."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.26.",
+      "label": "Single blocks.26.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.26."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.27.",
+      "label": "Single blocks.27.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.27."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.28.",
+      "label": "Single blocks.28.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.28."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.29.",
+      "label": "Single blocks.29.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.29."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.30.",
+      "label": "Single blocks.30.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.30."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.31.",
+      "label": "Single blocks.31.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.31."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.32.",
+      "label": "Single blocks.32.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.32."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.33.",
+      "label": "Single blocks.33.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.33."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.34.",
+      "label": "Single blocks.34.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.34."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.35.",
+      "label": "Single blocks.35.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.35."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.36.",
+      "label": "Single blocks.36.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.36."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_blocks.37.",
+      "label": "Single blocks.37.",
+      "target": {
+        "node": "n",
+        "input": "single_blocks.37."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "final_layer.",
+      "label": "Final layer.",
+      "target": {
+        "node": "n",
+        "input": "final_layer."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeFlux1",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "img_in.": 1,
+        "time_in.": 1,
+        "guidance_in": 1,
+        "vector_in.": 1,
+        "txt_in.": 1,
+        "double_blocks.0.": 1,
+        "double_blocks.1.": 1,
+        "double_blocks.2.": 1,
+        "double_blocks.3.": 1,
+        "double_blocks.4.": 1,
+        "double_blocks.5.": 1,
+        "double_blocks.6.": 1,
+        "double_blocks.7.": 1,
+        "double_blocks.8.": 1,
+        "double_blocks.9.": 1,
+        "double_blocks.10.": 1,
+        "double_blocks.11.": 1,
+        "double_blocks.12.": 1,
+        "double_blocks.13.": 1,
+        "double_blocks.14.": 1,
+        "double_blocks.15.": 1,
+        "double_blocks.16.": 1,
+        "double_blocks.17.": 1,
+        "double_blocks.18.": 1,
+        "single_blocks.0.": 1,
+        "single_blocks.1.": 1,
+        "single_blocks.2.": 1,
+        "single_blocks.3.": 1,
+        "single_blocks.4.": 1,
+        "single_blocks.5.": 1,
+        "single_blocks.6.": 1,
+        "single_blocks.7.": 1,
+        "single_blocks.8.": 1,
+        "single_blocks.9.": 1,
+        "single_blocks.10.": 1,
+        "single_blocks.11.": 1,
+        "single_blocks.12.": 1,
+        "single_blocks.13.": 1,
+        "single_blocks.14.": 1,
+        "single_blocks.15.": 1,
+        "single_blocks.16.": 1,
+        "single_blocks.17.": 1,
+        "single_blocks.18.": 1,
+        "single_blocks.19.": 1,
+        "single_blocks.20.": 1,
+        "single_blocks.21.": 1,
+        "single_blocks.22.": 1,
+        "single_blocks.23.": 1,
+        "single_blocks.24.": 1,
+        "single_blocks.25.": 1,
+        "single_blocks.26.": 1,
+        "single_blocks.27.": 1,
+        "single_blocks.28.": 1,
+        "single_blocks.29.": 1,
+        "single_blocks.30.": 1,
+        "single_blocks.31.": 1,
+        "single_blocks.32.": 1,
+        "single_blocks.33.": 1,
+        "single_blocks.34.": 1,
+        "single_blocks.35.": 1,
+        "single_blocks.36.": 1,
+        "single_blocks.37.": 1,
+        "final_layer.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "img_in.",
+    "time_in.",
+    "guidance_in"
+  ]
+}

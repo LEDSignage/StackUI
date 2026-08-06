@@ -1,0 +1,83 @@
+{
+  "id": "gen.SaveImageTextDataSetToFolder",
+  "name": "Save Image-Text (to Folder)",
+  "category": "ComfyUI / image",
+  "description": "SaveImageTextDataSetToFolder — Save a dataset of pairs of images and text captions to a specified folder. Images are saved as PNG files and captions are saved as TXT files with the same filename_prefix.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "folder_name",
+      "label": "Folder name",
+      "target": {
+        "node": "n",
+        "input": "folder_name"
+      },
+      "type": "STRING",
+      "default": "dataset"
+    },
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "image"
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "overwrite",
+      "options": [
+        "overwrite",
+        "increment"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveImageTextDataSetToFolder",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveImageTextDataSetToFolder",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "folder_name": "dataset",
+        "filename_prefix": "image",
+        "mode": "overwrite",
+        "texts": ""
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "folder_name",
+    "filename_prefix",
+    "mode"
+  ]
+}

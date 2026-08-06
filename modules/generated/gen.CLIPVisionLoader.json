@@ -1,0 +1,46 @@
+{
+  "id": "gen.CLIPVisionLoader",
+  "name": "Load CLIP Vision",
+  "category": "ComfyUI / model/loaders",
+  "description": "CLIPVisionLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_name",
+      "label": "Clip name",
+      "target": {
+        "node": "n",
+        "input": "clip_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "CLIPVisionLoader",
+        "input": "clip_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPVisionLoader",
+      "inputs": {
+        "clip_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "clip_vision": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_name"
+  ]
+}

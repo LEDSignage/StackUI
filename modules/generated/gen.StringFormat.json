@@ -1,0 +1,51 @@
+{
+  "id": "gen.StringFormat",
+  "name": "Format Text",
+  "category": "ComfyUI / text",
+  "description": "StringFormat — Same as Python's string format method. Supports all of Python's format options and features.",
+  "inPorts": [
+    {
+      "name": "values",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "f_string",
+      "label": "F string",
+      "target": {
+        "node": "n",
+        "input": "f_string"
+      },
+      "type": "STRING",
+      "default": "{a}",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringFormat",
+      "inputs": {
+        "values": {
+          "$port": "values"
+        },
+        "f_string": "{a}"
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "f_string"
+  ]
+}

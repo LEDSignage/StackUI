@@ -1,0 +1,40 @@
+{
+  "id": "gen.ModelSave",
+  "name": "ModelSave",
+  "category": "ComfyUI / model/merging",
+  "description": "ModelSave",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "diffusion_models/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSave",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "filename_prefix": "diffusion_models/ComfyUI"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

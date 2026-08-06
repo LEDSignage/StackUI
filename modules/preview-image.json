@@ -1,0 +1,13 @@
+{
+  "id": "preview-image",
+  "name": "Preview",
+  "category": "output",
+  "description": "PreviewImage — shows the result without writing a file.",
+  "terminal": true,
+  "inPorts": [{ "name": "image", "type": "IMAGE" }],
+  "outPorts": [],
+  "params": [],
+  "nodes": {
+    "p": { "class_type": "PreviewImage", "inputs": { "images": { "$port": "image" } } }
+  }
+}

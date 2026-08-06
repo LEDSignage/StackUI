@@ -1,0 +1,55 @@
+{
+  "id": "gen.RepeatImageBatch",
+  "name": "Repeat Image Batch",
+  "category": "ComfyUI / image/batch",
+  "description": "RepeatImageBatch",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "amount",
+      "label": "Amount",
+      "target": {
+        "node": "n",
+        "input": "amount"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RepeatImageBatch",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "amount": 1
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "amount"
+  ]
+}

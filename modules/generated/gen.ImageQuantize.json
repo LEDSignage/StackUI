@@ -1,0 +1,80 @@
+{
+  "id": "gen.ImageQuantize",
+  "name": "Quantize Image",
+  "category": "ComfyUI / image/filters",
+  "description": "ImageQuantize",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "colors",
+      "label": "Colors",
+      "target": {
+        "node": "n",
+        "input": "colors"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 1,
+      "max": 256,
+      "step": 1
+    },
+    {
+      "name": "dither",
+      "label": "Dither",
+      "target": {
+        "node": "n",
+        "input": "dither"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none",
+        "floyd-steinberg",
+        "bayer-2",
+        "bayer-4",
+        "bayer-8",
+        "bayer-16"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageQuantize",
+        "input": "dither"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageQuantize",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "colors": 256,
+        "dither": "none"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "colors",
+    "dither"
+  ]
+}

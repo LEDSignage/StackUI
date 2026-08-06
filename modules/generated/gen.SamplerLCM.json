@@ -1,0 +1,75 @@
+{
+  "id": "gen.SamplerLCM",
+  "name": "SamplerLCM",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerLCM — LCM sampler with tunable per-step noise. s_noise is a multiplier on the model's training noise scale",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 64,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise_end",
+      "label": "S noise end",
+      "target": {
+        "node": "n",
+        "input": "s_noise_end"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 64,
+      "step": 0.01
+    },
+    {
+      "name": "noise_clip_std",
+      "label": "Noise clip std",
+      "target": {
+        "node": "n",
+        "input": "noise_clip_std"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerLCM",
+      "inputs": {
+        "s_noise": 1,
+        "s_noise_end": 1,
+        "noise_clip_std": 0
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "s_noise",
+    "s_noise_end",
+    "noise_clip_std"
+  ]
+}

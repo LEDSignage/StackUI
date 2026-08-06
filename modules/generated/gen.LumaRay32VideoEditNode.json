@@ -1,0 +1,124 @@
+{
+  "id": "gen.LumaRay32VideoEditNode",
+  "name": "Luma Ray 3.2 Video Edit",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32VideoEditNode — Re-render an existing video under a new prompt using Luma Ray 3.2 (restyle, relight, add or remove elements) while keeping the original motion. Source video up to 18 seconds; the edited video keeps the source's length.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32VideoEditNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "adhere_1",
+        "adhere_2",
+        "adhere_3",
+        "flex_1",
+        "flex_2",
+        "flex_3",
+        "reimagine_1",
+        "reimagine_2",
+        "reimagine_3"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32VideoEditNode",
+        "input": "strength"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32VideoEditNode",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "prompt": "",
+        "resolution": "720p",
+        "strength": "auto",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "prompt",
+    "resolution",
+    "strength"
+  ]
+}

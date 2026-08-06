@@ -1,0 +1,78 @@
+{
+  "id": "gen.ByteDance2ReferenceNode",
+  "name": "ByteDance Seedance 2.0 Reference to Video",
+  "category": "ComfyUI / partner/video/ByteDance",
+  "description": "ByteDance2ReferenceNode — Generate, edit, or extend video using Seedance 2.0 with reference images, videos, and audio. Supports multimodal reference, video editing, and video extension.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Seedance 2.0",
+      "options": [
+        "Seedance 2.0",
+        "Seedance 2.0 Fast",
+        "Seedance 2.0 Mini"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDance2ReferenceNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDance2ReferenceNode",
+      "inputs": {
+        "model": "Seedance 2.0",
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

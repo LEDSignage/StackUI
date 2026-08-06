@@ -1,0 +1,56 @@
+{
+  "id": "gen.CLIPSetLastLayer",
+  "name": "CLIP Set Last Layer",
+  "category": "ComfyUI / model/conditioning",
+  "description": "CLIPSetLastLayer",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "stop_at_clip_layer",
+      "label": "Stop at clip layer",
+      "target": {
+        "node": "n",
+        "input": "stop_at_clip_layer"
+      },
+      "type": "INT",
+      "default": -1,
+      "min": -24,
+      "max": -1,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPSetLastLayer",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "stop_at_clip_layer": -1
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip": "clip"
+  },
+  "summary": [
+    "stop_at_clip_layer"
+  ]
+}

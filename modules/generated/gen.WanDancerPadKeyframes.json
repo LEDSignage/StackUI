@@ -1,0 +1,93 @@
+{
+  "id": "gen.WanDancerPadKeyframes",
+  "name": "WanDancerPadKeyframes",
+  "category": "ComfyUI / image/video",
+  "description": "WanDancerPadKeyframes",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "keyframes_sequence",
+      "type": "IMAGE"
+    },
+    {
+      "name": "keyframes_mask",
+      "type": "MASK"
+    },
+    {
+      "name": "audio_segment",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "segment_length",
+      "label": "Segment length",
+      "target": {
+        "node": "n",
+        "input": "segment_length"
+      },
+      "type": "INT",
+      "default": 149,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "segment_index",
+      "label": "Segment index",
+      "target": {
+        "node": "n",
+        "input": "segment_index"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanDancerPadKeyframes",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "segment_length": 149,
+        "segment_index": 0,
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "keyframes_sequence": {
+      "node": "n",
+      "out": 0
+    },
+    "keyframes_mask": {
+      "node": "n",
+      "out": 1
+    },
+    "audio_segment": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "images": "keyframes_sequence",
+    "audio": "audio_segment"
+  },
+  "summary": [
+    "segment_length",
+    "segment_index"
+  ]
+}

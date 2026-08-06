@@ -1,0 +1,145 @@
+{
+  "id": "gen.SamplerSASolver",
+  "name": "SamplerSASolver",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerSASolver",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "sde_start_percent",
+      "label": "Sde start percent",
+      "target": {
+        "node": "n",
+        "input": "sde_start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.2,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "sde_end_percent",
+      "label": "Sde end percent",
+      "target": {
+        "node": "n",
+        "input": "sde_end_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.8,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "predictor_order",
+      "label": "Predictor order",
+      "target": {
+        "node": "n",
+        "input": "predictor_order"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 1,
+      "max": 6
+    },
+    {
+      "name": "corrector_order",
+      "label": "Corrector order",
+      "target": {
+        "node": "n",
+        "input": "corrector_order"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 0,
+      "max": 6
+    },
+    {
+      "name": "use_pece",
+      "label": "Use pece",
+      "target": {
+        "node": "n",
+        "input": "use_pece"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "simple_order_2",
+      "label": "Simple order 2",
+      "target": {
+        "node": "n",
+        "input": "simple_order_2"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerSASolver",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "eta": 1,
+        "sde_start_percent": 0.2,
+        "sde_end_percent": 0.8,
+        "s_noise": 1,
+        "predictor_order": 3,
+        "corrector_order": 4,
+        "use_pece": false,
+        "simple_order_2": false
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "eta",
+    "sde_start_percent",
+    "sde_end_percent"
+  ]
+}

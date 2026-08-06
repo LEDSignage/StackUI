@@ -1,0 +1,44 @@
+{
+  "id": "gen.SamplerLMS",
+  "name": "SamplerLMS",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerLMS",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "order",
+      "label": "Order",
+      "target": {
+        "node": "n",
+        "input": "order"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerLMS",
+      "inputs": {
+        "order": 4
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "order"
+  ]
+}

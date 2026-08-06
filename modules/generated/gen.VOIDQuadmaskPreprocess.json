@@ -1,0 +1,56 @@
+{
+  "id": "gen.VOIDQuadmaskPreprocess",
+  "name": "VOID Quadmask Preprocessor",
+  "category": "ComfyUI / image/mask",
+  "description": "VOIDQuadmaskPreprocess",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "quadmask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "dilate_width",
+      "label": "Dilate width",
+      "target": {
+        "node": "n",
+        "input": "dilate_width"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VOIDQuadmaskPreprocess",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        },
+        "dilate_width": 0
+      }
+    }
+  },
+  "outputs": {
+    "quadmask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "mask": "quadmask"
+  },
+  "summary": [
+    "dilate_width"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "id": "gen.TextOverlay",
+  "name": "Draw Text Overlay",
+  "category": "ComfyUI / text",
+  "description": "TextOverlay — Draw text overlay on an image or batch of images.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "color",
+      "type": "COLOR"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "font_size",
+      "label": "Font size",
+      "target": {
+        "node": "n",
+        "input": "font_size"
+      },
+      "type": "FLOAT",
+      "default": 5,
+      "min": 0.5,
+      "max": 50,
+      "step": 0.5
+    },
+    {
+      "name": "position",
+      "label": "Position",
+      "target": {
+        "node": "n",
+        "input": "position"
+      },
+      "type": "ENUM",
+      "default": "top",
+      "options": [
+        "top",
+        "bottom"
+      ],
+      "optionsFrom": {
+        "class_type": "TextOverlay",
+        "input": "position"
+      }
+    },
+    {
+      "name": "align",
+      "label": "Align",
+      "target": {
+        "node": "n",
+        "input": "align"
+      },
+      "type": "ENUM",
+      "default": "left",
+      "options": [
+        "left",
+        "center",
+        "right"
+      ],
+      "optionsFrom": {
+        "class_type": "TextOverlay",
+        "input": "align"
+      }
+    },
+    {
+      "name": "outline",
+      "label": "Outline",
+      "target": {
+        "node": "n",
+        "input": "outline"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextOverlay",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "text": "",
+        "font_size": 5,
+        "color": {
+          "$port": "color"
+        },
+        "position": "top",
+        "align": "left",
+        "outline": true
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "text",
+    "font_size",
+    "position"
+  ]
+}

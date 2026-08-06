@@ -1,0 +1,172 @@
+{
+  "id": "gen.Vidu2ReferenceVideoNode",
+  "name": "Vidu2 Reference-to-Video Generation",
+  "category": "ComfyUI / partner/video/Vidu",
+  "description": "Vidu2ReferenceVideoNode — Generate a video from multiple reference images and a prompt.",
+  "inPorts": [
+    {
+      "name": "subjects",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "viduq2",
+      "options": [
+        "viduq2"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ReferenceVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "audio",
+      "label": "Audio",
+      "target": {
+        "node": "n",
+        "input": "audio"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "4:3",
+        "3:4",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ReferenceVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ReferenceVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "movement_amplitude",
+      "label": "Movement amplitude",
+      "target": {
+        "node": "n",
+        "input": "movement_amplitude"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "small",
+        "medium",
+        "large"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ReferenceVideoNode",
+        "input": "movement_amplitude"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Vidu2ReferenceVideoNode",
+      "inputs": {
+        "model": "viduq2",
+        "subjects": {
+          "$port": "subjects"
+        },
+        "prompt": "",
+        "audio": false,
+        "duration": 5,
+        "seed": 1,
+        "aspect_ratio": "16:9",
+        "resolution": "720p",
+        "movement_amplitude": "auto"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "audio"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "gen.AddNoise",
+  "name": "AddNoise",
+  "category": "ComfyUI / model/sampling/noise",
+  "description": "AddNoise",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "noise",
+      "type": "NOISE"
+    },
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    },
+    {
+      "name": "latent_image",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "AddNoise",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "noise": {
+          "$port": "noise"
+        },
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "latent_image": {
+          "$port": "latent_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latent_image": "latent"
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "id": "gen.CreateHookModelAsLora",
+  "name": "Create Hook Model as LoRA",
+  "category": "ComfyUI / advanced/hooks/create",
+  "description": "CreateHookModelAsLora",
+  "inPorts": [
+    {
+      "name": "prev_hooks",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    }
+  ],
+  "params": [
+    {
+      "name": "ckpt_name",
+      "label": "Ckpt name",
+      "target": {
+        "node": "n",
+        "input": "ckpt_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-22b-dev-fp8.safetensors",
+      "options": [
+        "ltx-2.3-22b-dev-fp8.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "CreateHookModelAsLora",
+        "input": "ckpt_name"
+      }
+    },
+    {
+      "name": "strength_model",
+      "label": "Strength model",
+      "target": {
+        "node": "n",
+        "input": "strength_model"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -20,
+      "max": 20,
+      "step": 0.01
+    },
+    {
+      "name": "strength_clip",
+      "label": "Strength clip",
+      "target": {
+        "node": "n",
+        "input": "strength_clip"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -20,
+      "max": 20,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CreateHookModelAsLora",
+      "inputs": {
+        "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+        "strength_model": 1,
+        "strength_clip": 1,
+        "prev_hooks": {
+          "$port": "prev_hooks"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hooks": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "ckpt_name",
+    "strength_model",
+    "strength_clip"
+  ]
+}

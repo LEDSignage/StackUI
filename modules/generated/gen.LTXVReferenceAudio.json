@@ -1,0 +1,132 @@
+{
+  "id": "gen.LTXVReferenceAudio",
+  "name": "LTXV Reference Audio (ID-LoRA)",
+  "category": "ComfyUI / model/conditioning/ltxv",
+  "description": "LTXVReferenceAudio — Set reference audio for ID-LoRA speaker identity transfer. Encodes a reference audio clip into the conditioning and optionally patches the model with identity guidance (extra forward pass without reference, amplifying the speaker identity effect).",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "reference_audio",
+      "type": "AUDIO"
+    },
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "identity_guidance_scale",
+      "label": "Identity guidance scale",
+      "target": {
+        "node": "n",
+        "input": "identity_guidance_scale"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVReferenceAudio",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "reference_audio": {
+          "$port": "reference_audio"
+        },
+        "audio_vae": {
+          "$port": "audio_vae"
+        },
+        "identity_guidance_scale": 3,
+        "start_percent": 0,
+        "end_percent": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "positive": {
+      "node": "n",
+      "out": 1
+    },
+    "negative": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "model": "model",
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "identity_guidance_scale",
+    "start_percent",
+    "end_percent"
+  ]
+}

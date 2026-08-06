@@ -1,0 +1,102 @@
+{
+  "id": "gen.Ideogram4Scheduler",
+  "name": "Ideogram 4 Scheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "Ideogram4Scheduler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 200
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "mu",
+      "label": "Mu",
+      "target": {
+        "node": "n",
+        "input": "mu"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -10,
+      "max": 10,
+      "step": 0.05
+    },
+    {
+      "name": "std",
+      "label": "Std",
+      "target": {
+        "node": "n",
+        "input": "std"
+      },
+      "type": "FLOAT",
+      "default": 1.75,
+      "min": 0.1,
+      "max": 5,
+      "step": 0.05
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Ideogram4Scheduler",
+      "inputs": {
+        "steps": 20,
+        "width": 1024,
+        "height": 1024,
+        "mu": 0,
+        "std": 1.75
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "steps",
+    "width",
+    "height"
+  ]
+}

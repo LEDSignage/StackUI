@@ -1,0 +1,63 @@
+{
+  "id": "gen.ImageRotate",
+  "name": "Rotate Image",
+  "category": "ComfyUI / image/transform",
+  "description": "ImageRotate",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "rotation",
+      "label": "Rotation",
+      "target": {
+        "node": "n",
+        "input": "rotation"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none",
+        "90 degrees",
+        "180 degrees",
+        "270 degrees"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageRotate",
+        "input": "rotation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageRotate",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "rotation": "none"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "rotation"
+  ]
+}

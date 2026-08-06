@@ -1,0 +1,56 @@
+{
+  "id": "gen.Epsilon_Scaling",
+  "name": "Epsilon Scaling",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "Epsilon Scaling",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "scaling_factor",
+      "label": "Scaling factor",
+      "target": {
+        "node": "n",
+        "input": "scaling_factor"
+      },
+      "type": "FLOAT",
+      "default": 1.005,
+      "min": 0.5,
+      "max": 1.5,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Epsilon Scaling",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "scaling_factor": 1.005
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "scaling_factor"
+  ]
+}

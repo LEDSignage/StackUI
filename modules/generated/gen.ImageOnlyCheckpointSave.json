@@ -1,0 +1,54 @@
+{
+  "id": "gen.ImageOnlyCheckpointSave",
+  "name": "ImageOnlyCheckpointSave",
+  "category": "ComfyUI / model/merging",
+  "description": "ImageOnlyCheckpointSave",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "checkpoints/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageOnlyCheckpointSave",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "clip_vision": {
+          "$port": "clip_vision"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "filename_prefix": "checkpoints/ComfyUI"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

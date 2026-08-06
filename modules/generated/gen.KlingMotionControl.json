@@ -1,0 +1,131 @@
+{
+  "id": "gen.KlingMotionControl",
+  "name": "Kling Motion Control",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingMotionControl",
+  "inPorts": [
+    {
+      "name": "reference_image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "reference_video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "keep_original_sound",
+      "label": "Keep original sound",
+      "target": {
+        "node": "n",
+        "input": "keep_original_sound"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "character_orientation",
+      "label": "Character orientation",
+      "target": {
+        "node": "n",
+        "input": "character_orientation"
+      },
+      "type": "ENUM",
+      "default": "video",
+      "options": [
+        "video",
+        "image"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingMotionControl",
+        "input": "character_orientation"
+      }
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "pro",
+      "options": [
+        "pro",
+        "std"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingMotionControl",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "kling-v3",
+      "options": [
+        "kling-v3",
+        "kling-v2-6"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingMotionControl",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingMotionControl",
+      "inputs": {
+        "prompt": "",
+        "reference_image": {
+          "$port": "reference_image"
+        },
+        "reference_video": {
+          "$port": "reference_video"
+        },
+        "keep_original_sound": true,
+        "character_orientation": "video",
+        "mode": "pro",
+        "model": "kling-v3"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "reference_video": "video"
+  },
+  "summary": [
+    "prompt",
+    "keep_original_sound",
+    "character_orientation"
+  ]
+}

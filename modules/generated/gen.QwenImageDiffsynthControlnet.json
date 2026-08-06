@@ -1,0 +1,85 @@
+{
+  "id": "gen.QwenImageDiffsynthControlnet",
+  "name": "Apply Qwen Image DiffSynth ControlNet",
+  "category": "ComfyUI / model/patch/qwen",
+  "description": "QwenImageDiffsynthControlnet",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "QwenImageDiffsynthControlnet",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "model_patch": {
+          "$port": "model_patch"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "strength": 1,
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "strength"
+  ]
+}

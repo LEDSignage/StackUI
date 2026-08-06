@@ -1,0 +1,55 @@
+{
+  "id": "gen.RepeatLatentBatch",
+  "name": "Repeat Latent Batch",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "RepeatLatentBatch",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "amount",
+      "label": "Amount",
+      "target": {
+        "node": "n",
+        "input": "amount"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RepeatLatentBatch",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "amount": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "amount"
+  ]
+}

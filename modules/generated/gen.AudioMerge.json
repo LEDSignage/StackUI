@@ -1,0 +1,70 @@
+{
+  "id": "gen.AudioMerge",
+  "name": "Merge Audio",
+  "category": "ComfyUI / audio",
+  "description": "AudioMerge — Combine two audio tracks by overlaying their waveforms.",
+  "inPorts": [
+    {
+      "name": "audio1",
+      "type": "AUDIO"
+    },
+    {
+      "name": "audio2",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "merge_method",
+      "label": "Merge method",
+      "target": {
+        "node": "n",
+        "input": "merge_method"
+      },
+      "type": "ENUM",
+      "default": "add",
+      "options": [
+        "add",
+        "mean",
+        "subtract",
+        "multiply"
+      ],
+      "optionsFrom": {
+        "class_type": "AudioMerge",
+        "input": "merge_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AudioMerge",
+      "inputs": {
+        "audio1": {
+          "$port": "audio1"
+        },
+        "audio2": {
+          "$port": "audio2"
+        },
+        "merge_method": "add"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio1": "audio"
+  },
+  "summary": [
+    "merge_method"
+  ]
+}

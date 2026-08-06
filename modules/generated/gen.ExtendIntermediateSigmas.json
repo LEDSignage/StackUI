@@ -1,0 +1,105 @@
+{
+  "id": "gen.ExtendIntermediateSigmas",
+  "name": "ExtendIntermediateSigmas",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "ExtendIntermediateSigmas",
+  "inPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 1,
+      "max": 100
+    },
+    {
+      "name": "start_at_sigma",
+      "label": "Start at sigma",
+      "target": {
+        "node": "n",
+        "input": "start_at_sigma"
+      },
+      "type": "FLOAT",
+      "default": -1,
+      "min": -1,
+      "max": 20000,
+      "step": 0.01
+    },
+    {
+      "name": "end_at_sigma",
+      "label": "End at sigma",
+      "target": {
+        "node": "n",
+        "input": "end_at_sigma"
+      },
+      "type": "FLOAT",
+      "default": 12,
+      "min": 0,
+      "max": 20000,
+      "step": 0.01
+    },
+    {
+      "name": "spacing",
+      "label": "Spacing",
+      "target": {
+        "node": "n",
+        "input": "spacing"
+      },
+      "type": "ENUM",
+      "default": "linear",
+      "options": [
+        "linear",
+        "cosine",
+        "sine"
+      ],
+      "optionsFrom": {
+        "class_type": "ExtendIntermediateSigmas",
+        "input": "spacing"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ExtendIntermediateSigmas",
+      "inputs": {
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "steps": 2,
+        "start_at_sigma": -1,
+        "end_at_sigma": 12,
+        "spacing": "linear"
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "sigmas": "sigmas"
+  },
+  "summary": [
+    "steps",
+    "start_at_sigma",
+    "end_at_sigma"
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "id": "gen.KlingDualCharacterVideoEffectNode",
+  "name": "Kling Dual Character Video Effects",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingDualCharacterVideoEffectNode — Achieve different special effects when generating a video based on the effect_scene. First image will be positioned on left side, second on right side of the composite.",
+  "inPorts": [
+    {
+      "name": "image_left",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image_right",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "effect_scene",
+      "label": "Effect scene",
+      "target": {
+        "node": "n",
+        "input": "effect_scene"
+      },
+      "type": "ENUM",
+      "default": "hug",
+      "options": [
+        "hug",
+        "kiss",
+        "heart_gesture"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingDualCharacterVideoEffectNode",
+        "input": "effect_scene"
+      }
+    },
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v1",
+      "options": [
+        "kling-v1",
+        "kling-v1-5",
+        "kling-v1-6"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingDualCharacterVideoEffectNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "std",
+      "options": [
+        "std",
+        "pro"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingDualCharacterVideoEffectNode",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5",
+      "options": [
+        "5",
+        "10"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingDualCharacterVideoEffectNode",
+        "input": "duration"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingDualCharacterVideoEffectNode",
+      "inputs": {
+        "image_left": {
+          "$port": "image_left"
+        },
+        "image_right": {
+          "$port": "image_right"
+        },
+        "effect_scene": "hug",
+        "model_name": "kling-v1",
+        "mode": "std",
+        "duration": "5"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "duration": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "effect_scene",
+    "model_name",
+    "mode"
+  ]
+}

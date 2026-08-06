@@ -1,0 +1,46 @@
+{
+  "id": "gen.StyleModelLoader",
+  "name": "Load Style Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "StyleModelLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "style_model",
+      "type": "STYLE_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "style_model_name",
+      "label": "Style model name",
+      "target": {
+        "node": "n",
+        "input": "style_model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "StyleModelLoader",
+        "input": "style_model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StyleModelLoader",
+      "inputs": {
+        "style_model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "style_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "style_model_name"
+  ]
+}

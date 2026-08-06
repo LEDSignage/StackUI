@@ -1,0 +1,77 @@
+{
+  "id": "gen.MinimaxTextToVideoNode",
+  "name": "MiniMax Text to Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxTextToVideoNode — Generates videos synchronously based on a prompt, and optional parameters.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt_text",
+      "label": "Prompt text",
+      "target": {
+        "node": "n",
+        "input": "prompt_text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "T2V-01",
+      "options": [
+        "T2V-01",
+        "T2V-01-Director"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxTextToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxTextToVideoNode",
+      "inputs": {
+        "prompt_text": "",
+        "model": "T2V-01",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt_text",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "gen.InvertMask",
+  "name": "Invert Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "InvertMask",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "InvertMask",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "mask": "mask"
+  }
+}

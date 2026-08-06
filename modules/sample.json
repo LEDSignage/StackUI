@@ -1,0 +1,88 @@
+{
+  "id": "sample",
+  "name": "Sample",
+  "category": "sampling",
+  "description": "KSampler — the denoising run itself.",
+  "inPorts": [
+    { "name": "model", "type": "MODEL" },
+    { "name": "positive", "type": "CONDITIONING" },
+    { "name": "negative", "type": "CONDITIONING" },
+    { "name": "latent", "type": "LATENT" }
+  ],
+  "outPorts": [{ "name": "latent", "type": "LATENT" }],
+  "outputs": { "latent": { "node": "ks" } },
+  "passThrough": { "latent": "latent" },
+  "summary": ["steps", "cfg", "sampler_name"],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "target": { "node": "ks", "input": "seed" }
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 200,
+      "target": { "node": "ks", "input": "steps" }
+    },
+    {
+      "name": "cfg",
+      "label": "CFG",
+      "type": "FLOAT",
+      "default": 7.0,
+      "min": 0,
+      "max": 30,
+      "step": 0.1,
+      "target": { "node": "ks", "input": "cfg" }
+    },
+    {
+      "name": "sampler_name",
+      "label": "Sampler",
+      "type": "ENUM",
+      "default": "euler",
+      "optionsFrom": { "class_type": "KSampler", "input": "sampler_name" },
+      "target": { "node": "ks", "input": "sampler_name" }
+    },
+    {
+      "name": "scheduler",
+      "label": "Scheduler",
+      "type": "ENUM",
+      "default": "normal",
+      "optionsFrom": { "class_type": "KSampler", "input": "scheduler" },
+      "target": { "node": "ks", "input": "scheduler" }
+    },
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "type": "FLOAT",
+      "default": 1.0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01,
+      "target": { "node": "ks", "input": "denoise" }
+    }
+  ],
+  "nodes": {
+    "ks": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": { "$port": "model" },
+        "positive": { "$port": "positive" },
+        "negative": { "$port": "negative" },
+        "latent_image": { "$port": "latent" },
+        "seed": 0,
+        "steps": 20,
+        "cfg": 7.0,
+        "sampler_name": "euler",
+        "scheduler": "normal",
+        "denoise": 1.0
+      }
+    }
+  }
+}

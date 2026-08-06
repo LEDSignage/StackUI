@@ -1,0 +1,119 @@
+{
+  "id": "gen.TripoSplatSamplingPreview",
+  "name": "TripoSplat Sampling Preview",
+  "category": "ComfyUI / model/latent/triposplat",
+  "description": "TripoSplatSamplingPreview — Patch the TripoSplat model for the standard Ksampler node to show a live decoded gaussian splat preview at each step.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "octree_level",
+      "label": "Octree level",
+      "target": {
+        "node": "n",
+        "input": "octree_level"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 2,
+      "max": 8
+    },
+    {
+      "name": "num_gaussians",
+      "label": "Num gaussians",
+      "target": {
+        "node": "n",
+        "input": "num_gaussians"
+      },
+      "type": "INT",
+      "default": 16384,
+      "min": 1024,
+      "max": 262144,
+      "step": 32
+    },
+    {
+      "name": "yaw",
+      "label": "Yaw",
+      "target": {
+        "node": "n",
+        "input": "yaw"
+      },
+      "type": "FLOAT",
+      "default": 90,
+      "min": -360,
+      "max": 360,
+      "step": 1
+    },
+    {
+      "name": "pitch",
+      "label": "Pitch",
+      "target": {
+        "node": "n",
+        "input": "pitch"
+      },
+      "type": "FLOAT",
+      "default": 15,
+      "min": -89,
+      "max": 89,
+      "step": 1
+    },
+    {
+      "name": "point_size",
+      "label": "Point size",
+      "target": {
+        "node": "n",
+        "input": "point_size"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 1,
+      "max": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoSplatSamplingPreview",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "octree_level": 5,
+        "num_gaussians": 16384,
+        "yaw": 90,
+        "pitch": 15,
+        "point_size": 3
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "octree_level",
+    "num_gaussians",
+    "yaw"
+  ]
+}

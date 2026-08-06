@@ -1,0 +1,88 @@
+{
+  "id": "gen.GrokVideoEditNode",
+  "name": "Grok Video Edit",
+  "category": "ComfyUI / partner/video/Grok",
+  "description": "GrokVideoEditNode — Edit an existing video based on a text prompt.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "grok-imagine-video",
+      "options": [
+        "grok-imagine-video"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokVideoEditNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrokVideoEditNode",
+      "inputs": {
+        "model": "grok-imagine-video",
+        "prompt": "",
+        "video": {
+          "$port": "video"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "seed"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "gen.ImageMergeTileList",
+  "name": "Merge List of Tiles to Image",
+  "category": "ComfyUI / image/batch",
+  "description": "ImageMergeTileList",
+  "inPorts": [
+    {
+      "name": "image_list",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "final_width",
+      "label": "Final width",
+      "target": {
+        "node": "n",
+        "input": "final_width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 32768
+    },
+    {
+      "name": "final_height",
+      "label": "Final height",
+      "target": {
+        "node": "n",
+        "input": "final_height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 32768
+    },
+    {
+      "name": "overlap",
+      "label": "Overlap",
+      "target": {
+        "node": "n",
+        "input": "overlap"
+      },
+      "type": "INT",
+      "default": 128,
+      "min": 0,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageMergeTileList",
+      "inputs": {
+        "image_list": {
+          "$port": "image_list"
+        },
+        "final_width": 1024,
+        "final_height": 1024,
+        "overlap": 128
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image_list": "image"
+  },
+  "summary": [
+    "final_width",
+    "final_height",
+    "overlap"
+  ]
+}

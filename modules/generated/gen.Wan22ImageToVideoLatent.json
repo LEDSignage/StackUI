@@ -1,0 +1,104 @@
+{
+  "id": "gen.Wan22ImageToVideoLatent",
+  "name": "Wan22ImageToVideoLatent",
+  "category": "ComfyUI / model/conditioning/wan",
+  "description": "Wan22ImageToVideoLatent",
+  "inPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1280,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 704,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 49,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Wan22ImageToVideoLatent",
+      "inputs": {
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 1280,
+        "height": 704,
+        "length": 49,
+        "batch_size": 1,
+        "start_image": {
+          "$port": "start_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

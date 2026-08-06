@@ -1,0 +1,235 @@
+{
+  "id": "gen.GenerateTracks",
+  "name": "Generate Video Tracks",
+  "category": "ComfyUI / model/conditioning/wan/move",
+  "description": "GenerateTracks",
+  "inPorts": [
+    {
+      "name": "track_mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "tracks",
+      "type": "TRACKS"
+    },
+    {
+      "name": "track_length",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 4096,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 4096,
+      "step": 16
+    },
+    {
+      "name": "start_x",
+      "label": "Start x",
+      "target": {
+        "node": "n",
+        "input": "start_x"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "start_y",
+      "label": "Start y",
+      "target": {
+        "node": "n",
+        "input": "start_y"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "end_x",
+      "label": "End x",
+      "target": {
+        "node": "n",
+        "input": "end_x"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "end_y",
+      "label": "End y",
+      "target": {
+        "node": "n",
+        "input": "end_y"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "num_frames",
+      "label": "Num frames",
+      "target": {
+        "node": "n",
+        "input": "num_frames"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 1024
+    },
+    {
+      "name": "num_tracks",
+      "label": "Num tracks",
+      "target": {
+        "node": "n",
+        "input": "num_tracks"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 100
+    },
+    {
+      "name": "track_spread",
+      "label": "Track spread",
+      "target": {
+        "node": "n",
+        "input": "track_spread"
+      },
+      "type": "FLOAT",
+      "default": 0.025,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "bezier",
+      "label": "Bezier",
+      "target": {
+        "node": "n",
+        "input": "bezier"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "mid_x",
+      "label": "Mid x",
+      "target": {
+        "node": "n",
+        "input": "mid_x"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "mid_y",
+      "label": "Mid y",
+      "target": {
+        "node": "n",
+        "input": "mid_y"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "interpolation",
+      "label": "Interpolation",
+      "target": {
+        "node": "n",
+        "input": "interpolation"
+      },
+      "type": "ENUM",
+      "default": "linear",
+      "options": [
+        "linear",
+        "ease_in",
+        "ease_out",
+        "ease_in_out",
+        "constant"
+      ],
+      "optionsFrom": {
+        "class_type": "GenerateTracks",
+        "input": "interpolation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GenerateTracks",
+      "inputs": {
+        "width": 832,
+        "height": 480,
+        "start_x": 0,
+        "start_y": 0,
+        "end_x": 1,
+        "end_y": 1,
+        "num_frames": 81,
+        "num_tracks": 5,
+        "track_spread": 0.025,
+        "bezier": false,
+        "mid_x": 0.5,
+        "mid_y": 0.5,
+        "interpolation": "linear",
+        "track_mask": {
+          "$port": "track_mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "tracks": {
+      "node": "n",
+      "out": 0
+    },
+    "track_length": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "start_x"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "gen.SaveAudio",
+  "name": "Save Audio (FLAC) (DEPRECATED)",
+  "category": "ComfyUI / audio",
+  "description": "SaveAudio",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "audio/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAudio",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "filename_prefix": "audio/ComfyUI"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "filename_prefix"
+  ]
+}

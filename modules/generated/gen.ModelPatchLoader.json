@@ -1,0 +1,46 @@
+{
+  "id": "gen.ModelPatchLoader",
+  "name": "Load Model Patch",
+  "category": "ComfyUI / model/loaders",
+  "description": "ModelPatchLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    }
+  ],
+  "params": [
+    {
+      "name": "name",
+      "label": "Name",
+      "target": {
+        "node": "n",
+        "input": "name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "ModelPatchLoader",
+        "input": "name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelPatchLoader",
+      "inputs": {
+        "name": ""
+      }
+    }
+  },
+  "outputs": {
+    "model_patch": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "name"
+  ]
+}

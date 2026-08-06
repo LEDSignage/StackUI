@@ -1,0 +1,75 @@
+{
+  "id": "gen.SaveAudioMP3",
+  "name": "Save Audio (MP3) (DEPRECATED)",
+  "category": "ComfyUI / audio",
+  "description": "SaveAudioMP3",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "audio/ComfyUI"
+    },
+    {
+      "name": "quality",
+      "label": "Quality",
+      "target": {
+        "node": "n",
+        "input": "quality"
+      },
+      "type": "ENUM",
+      "default": "V0",
+      "options": [
+        "V0",
+        "128k",
+        "320k"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveAudioMP3",
+        "input": "quality"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAudioMP3",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "filename_prefix": "audio/ComfyUI",
+        "quality": "V0"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "filename_prefix",
+    "quality"
+  ]
+}

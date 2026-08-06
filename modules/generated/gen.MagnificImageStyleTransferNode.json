@@ -1,0 +1,169 @@
+{
+  "id": "gen.MagnificImageStyleTransferNode",
+  "name": "Magnific Image Style Transfer",
+  "category": "ComfyUI / partner/image/Magnific",
+  "description": "MagnificImageStyleTransferNode — Transfer the style from a reference image to your input image.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "reference_image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "style_strength",
+      "label": "Style strength",
+      "target": {
+        "node": "n",
+        "input": "style_strength"
+      },
+      "type": "INT",
+      "default": 100,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "structure_strength",
+      "label": "Structure strength",
+      "target": {
+        "node": "n",
+        "input": "structure_strength"
+      },
+      "type": "INT",
+      "default": 50,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "flavor",
+      "label": "Flavor",
+      "target": {
+        "node": "n",
+        "input": "flavor"
+      },
+      "type": "ENUM",
+      "default": "faithful",
+      "options": [
+        "faithful",
+        "gen_z",
+        "psychedelia",
+        "detaily",
+        "clear",
+        "donotstyle",
+        "donotstyle_sharp"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageStyleTransferNode",
+        "input": "flavor"
+      }
+    },
+    {
+      "name": "engine",
+      "label": "Engine",
+      "target": {
+        "node": "n",
+        "input": "engine"
+      },
+      "type": "ENUM",
+      "default": "balanced",
+      "options": [
+        "balanced",
+        "definio",
+        "illusio",
+        "3d_cartoon",
+        "colorful_anime",
+        "caricature",
+        "real",
+        "super_real",
+        "softy"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageStyleTransferNode",
+        "input": "engine"
+      }
+    },
+    {
+      "name": "portrait_mode",
+      "label": "Portrait mode",
+      "target": {
+        "node": "n",
+        "input": "portrait_mode"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "enabled"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageStyleTransferNode",
+        "input": "portrait_mode"
+      }
+    },
+    {
+      "name": "fixed_generation",
+      "label": "Fixed generation",
+      "target": {
+        "node": "n",
+        "input": "fixed_generation"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MagnificImageStyleTransferNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "reference_image": {
+          "$port": "reference_image"
+        },
+        "prompt": "",
+        "style_strength": 100,
+        "structure_strength": 50,
+        "flavor": "faithful",
+        "engine": "balanced",
+        "portrait_mode": "disabled",
+        "fixed_generation": true
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "prompt",
+    "style_strength",
+    "structure_strength"
+  ]
+}

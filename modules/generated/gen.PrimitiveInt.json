@@ -1,0 +1,43 @@
+{
+  "id": "gen.PrimitiveInt",
+  "name": "Int",
+  "category": "ComfyUI / utilities/primitive",
+  "description": "PrimitiveInt",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "int",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "value",
+      "label": "Value",
+      "target": {
+        "node": "n",
+        "input": "value"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -9223372036854776000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PrimitiveInt",
+      "inputs": {
+        "value": 0
+      }
+    }
+  },
+  "outputs": {
+    "int": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "value"
+  ]
+}

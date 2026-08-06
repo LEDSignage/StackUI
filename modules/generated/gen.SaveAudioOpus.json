@@ -1,0 +1,77 @@
+{
+  "id": "gen.SaveAudioOpus",
+  "name": "Save Audio (Opus) (DEPRECATED)",
+  "category": "ComfyUI / audio",
+  "description": "SaveAudioOpus",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "audio/ComfyUI"
+    },
+    {
+      "name": "quality",
+      "label": "Quality",
+      "target": {
+        "node": "n",
+        "input": "quality"
+      },
+      "type": "ENUM",
+      "default": "128k",
+      "options": [
+        "64k",
+        "96k",
+        "128k",
+        "192k",
+        "320k"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveAudioOpus",
+        "input": "quality"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAudioOpus",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "filename_prefix": "audio/ComfyUI",
+        "quality": "128k"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "filename_prefix",
+    "quality"
+  ]
+}

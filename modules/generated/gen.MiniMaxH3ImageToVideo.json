@@ -1,0 +1,126 @@
+{
+  "id": "gen.MiniMaxH3ImageToVideo",
+  "name": "MiniMax H3 Image to Video",
+  "category": "ComfyUI / model/conditioning/minimax",
+  "description": "MiniMaxH3ImageToVideo",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "first_frame",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "last_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1344,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 768,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 124,
+      "min": 5,
+      "max": 3600,
+      "step": 17
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MiniMaxH3ImageToVideo",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "last_frame": {
+          "$port": "last_frame"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "latent": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "width",
+    "height"
+  ]
+}

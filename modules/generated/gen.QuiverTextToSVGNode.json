@@ -1,0 +1,99 @@
+{
+  "id": "gen.QuiverTextToSVGNode",
+  "name": "Quiver Text to SVG",
+  "category": "ComfyUI / partner/image/Quiver",
+  "description": "QuiverTextToSVGNode — Generate an SVG from a text prompt using Quiver AI.",
+  "inPorts": [
+    {
+      "name": "reference_images",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "arrow-1.1",
+      "options": [
+        "arrow-1.1",
+        "arrow-1.1-max",
+        "arrow-preview"
+      ],
+      "optionsFrom": {
+        "class_type": "QuiverTextToSVGNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "instructions",
+      "label": "Instructions",
+      "target": {
+        "node": "n",
+        "input": "instructions"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "QuiverTextToSVGNode",
+      "inputs": {
+        "prompt": "",
+        "model": "arrow-1.1",
+        "seed": 0,
+        "instructions": "",
+        "reference_images": {
+          "$port": "reference_images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

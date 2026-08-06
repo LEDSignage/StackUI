@@ -1,0 +1,25 @@
+{
+  "id": "save-image",
+  "name": "Save",
+  "category": "output",
+  "description": "SaveImage — writes to ComfyUI's output folder.",
+  "terminal": true,
+  "inPorts": [{ "name": "image", "type": "IMAGE" }],
+  "outPorts": [],
+  "summary": ["filename_prefix"],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "type": "STRING",
+      "default": "StackUI",
+      "target": { "node": "s", "input": "filename_prefix" }
+    }
+  ],
+  "nodes": {
+    "s": {
+      "class_type": "SaveImage",
+      "inputs": { "images": { "$port": "image" }, "filename_prefix": "StackUI" }
+    }
+  }
+}

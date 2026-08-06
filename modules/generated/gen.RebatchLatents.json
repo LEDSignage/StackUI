@@ -1,0 +1,55 @@
+{
+  "id": "gen.RebatchLatents",
+  "name": "Rebatch Latents",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "RebatchLatents",
+  "inPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RebatchLatents",
+      "inputs": {
+        "latents": {
+          "$port": "latents"
+        },
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latents": "latent"
+  },
+  "summary": [
+    "batch_size"
+  ]
+}

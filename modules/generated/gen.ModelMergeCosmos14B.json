@@ -1,0 +1,639 @@
+{
+  "id": "gen.ModelMergeCosmos14B",
+  "name": "ModelMergeCosmos14B",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeCosmos14B",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "pos_embedder.",
+      "label": "Pos embedder.",
+      "target": {
+        "node": "n",
+        "input": "pos_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "extra_pos_embedder.",
+      "label": "Extra pos embedder.",
+      "target": {
+        "node": "n",
+        "input": "extra_pos_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "x_embedder.",
+      "label": "X embedder.",
+      "target": {
+        "node": "n",
+        "input": "x_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "t_embedder.",
+      "label": "T embedder.",
+      "target": {
+        "node": "n",
+        "input": "t_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "affline_norm.",
+      "label": "Affline norm.",
+      "target": {
+        "node": "n",
+        "input": "affline_norm."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block0.",
+      "label": "Blocks.block0.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block1.",
+      "label": "Blocks.block1.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block2.",
+      "label": "Blocks.block2.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block3.",
+      "label": "Blocks.block3.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block4.",
+      "label": "Blocks.block4.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block5.",
+      "label": "Blocks.block5.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block6.",
+      "label": "Blocks.block6.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block7.",
+      "label": "Blocks.block7.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block8.",
+      "label": "Blocks.block8.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block9.",
+      "label": "Blocks.block9.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block10.",
+      "label": "Blocks.block10.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block11.",
+      "label": "Blocks.block11.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block12.",
+      "label": "Blocks.block12.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block13.",
+      "label": "Blocks.block13.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block14.",
+      "label": "Blocks.block14.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block15.",
+      "label": "Blocks.block15.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block16.",
+      "label": "Blocks.block16.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block17.",
+      "label": "Blocks.block17.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block18.",
+      "label": "Blocks.block18.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block19.",
+      "label": "Blocks.block19.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block19."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block20.",
+      "label": "Blocks.block20.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block20."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block21.",
+      "label": "Blocks.block21.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block21."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block22.",
+      "label": "Blocks.block22.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block22."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block23.",
+      "label": "Blocks.block23.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block23."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block24.",
+      "label": "Blocks.block24.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block24."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block25.",
+      "label": "Blocks.block25.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block25."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block26.",
+      "label": "Blocks.block26.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block26."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block27.",
+      "label": "Blocks.block27.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block27."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block28.",
+      "label": "Blocks.block28.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block28."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block29.",
+      "label": "Blocks.block29.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block29."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block30.",
+      "label": "Blocks.block30.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block30."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block31.",
+      "label": "Blocks.block31.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block31."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block32.",
+      "label": "Blocks.block32.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block32."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block33.",
+      "label": "Blocks.block33.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block33."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block34.",
+      "label": "Blocks.block34.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block34."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blocks.block35.",
+      "label": "Blocks.block35.",
+      "target": {
+        "node": "n",
+        "input": "blocks.block35."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "final_layer.",
+      "label": "Final layer.",
+      "target": {
+        "node": "n",
+        "input": "final_layer."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeCosmos14B",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "pos_embedder.": 1,
+        "extra_pos_embedder.": 1,
+        "x_embedder.": 1,
+        "t_embedder.": 1,
+        "affline_norm.": 1,
+        "blocks.block0.": 1,
+        "blocks.block1.": 1,
+        "blocks.block2.": 1,
+        "blocks.block3.": 1,
+        "blocks.block4.": 1,
+        "blocks.block5.": 1,
+        "blocks.block6.": 1,
+        "blocks.block7.": 1,
+        "blocks.block8.": 1,
+        "blocks.block9.": 1,
+        "blocks.block10.": 1,
+        "blocks.block11.": 1,
+        "blocks.block12.": 1,
+        "blocks.block13.": 1,
+        "blocks.block14.": 1,
+        "blocks.block15.": 1,
+        "blocks.block16.": 1,
+        "blocks.block17.": 1,
+        "blocks.block18.": 1,
+        "blocks.block19.": 1,
+        "blocks.block20.": 1,
+        "blocks.block21.": 1,
+        "blocks.block22.": 1,
+        "blocks.block23.": 1,
+        "blocks.block24.": 1,
+        "blocks.block25.": 1,
+        "blocks.block26.": 1,
+        "blocks.block27.": 1,
+        "blocks.block28.": 1,
+        "blocks.block29.": 1,
+        "blocks.block30.": 1,
+        "blocks.block31.": 1,
+        "blocks.block32.": 1,
+        "blocks.block33.": 1,
+        "blocks.block34.": 1,
+        "blocks.block35.": 1,
+        "final_layer.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "pos_embedder.",
+    "extra_pos_embedder.",
+    "x_embedder."
+  ]
+}

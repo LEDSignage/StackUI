@@ -1,0 +1,105 @@
+{
+  "id": "gen.RunwayAleph2VideoToVideoNode",
+  "name": "Runway Aleph2 Video to Video",
+  "category": "ComfyUI / partner/video/Runway",
+  "description": "RunwayAleph2VideoToVideoNode — Edit a video with a text prompt using Runway's Aleph2 model. Aleph2 transforms your footage (restyle, relight, add or remove elements, change the viewpoint) while keeping the original motion and timing; the output resolution matches the input video, which must be 2-30 seconds at 30 fps or lower. Optionally steer the edit with either keyframes (anchored to the input video) or prompt images (anchored to the output video) - use one or the other, not both.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "keyframes",
+      "type": "RUNWAY_ALEPH2_KEYFRAME",
+      "optional": true
+    },
+    {
+      "name": "prompt_images",
+      "type": "RUNWAY_ALEPH2_PROMPT_IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "public_figure_threshold",
+      "label": "Public figure threshold",
+      "target": {
+        "node": "n",
+        "input": "public_figure_threshold"
+      },
+      "type": "ENUM",
+      "default": "low",
+      "options": [
+        "auto",
+        "low"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayAleph2VideoToVideoNode",
+        "input": "public_figure_threshold"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayAleph2VideoToVideoNode",
+      "inputs": {
+        "prompt": "",
+        "video": {
+          "$port": "video"
+        },
+        "seed": 0,
+        "public_figure_threshold": "low",
+        "keyframes": {
+          "$port": "keyframes"
+        },
+        "prompt_images": {
+          "$port": "prompt_images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "prompt",
+    "seed",
+    "public_figure_threshold"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "id": "gen.Vidu2ImageToVideoNode",
+  "name": "Vidu2 Image-to-Video Generation",
+  "category": "ComfyUI / partner/video/Vidu",
+  "description": "Vidu2ImageToVideoNode — Generate a video from an image and an optional prompt.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "viduq2-pro-fast",
+      "options": [
+        "viduq2-pro-fast",
+        "viduq2-pro",
+        "viduq2-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ImageToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ImageToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "movement_amplitude",
+      "label": "Movement amplitude",
+      "target": {
+        "node": "n",
+        "input": "movement_amplitude"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "small",
+        "medium",
+        "large"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2ImageToVideoNode",
+        "input": "movement_amplitude"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Vidu2ImageToVideoNode",
+      "inputs": {
+        "model": "viduq2-pro-fast",
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "duration": 5,
+        "seed": 1,
+        "resolution": "720p",
+        "movement_amplitude": "auto"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "duration"
+  ]
+}

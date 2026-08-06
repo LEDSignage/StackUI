@@ -1,0 +1,38 @@
+{
+  "id": "gen.ConditioningZeroOut",
+  "name": "Conditioning Zero Out",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningZeroOut",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  }
+}

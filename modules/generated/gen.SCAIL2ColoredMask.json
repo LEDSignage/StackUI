@@ -1,0 +1,99 @@
+{
+  "id": "gen.SCAIL2ColoredMask",
+  "name": "Create SCAIL-2 Colored Mask",
+  "category": "ComfyUI / model/conditioning/wan/scail",
+  "description": "SCAIL2ColoredMask",
+  "inPorts": [
+    {
+      "name": "driving_track_data",
+      "type": "SAM3_TRACK_DATA"
+    },
+    {
+      "name": "ref_track_data",
+      "type": "SAM3_TRACK_DATA,MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "pose_video_mask",
+      "type": "IMAGE"
+    },
+    {
+      "name": "reference_image_mask",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "object_indices",
+      "label": "Object indices",
+      "target": {
+        "node": "n",
+        "input": "object_indices"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "sort_by",
+      "label": "Sort by",
+      "target": {
+        "node": "n",
+        "input": "sort_by"
+      },
+      "type": "ENUM",
+      "default": "left_to_right",
+      "options": [
+        "none",
+        "left_to_right",
+        "area"
+      ],
+      "optionsFrom": {
+        "class_type": "SCAIL2ColoredMask",
+        "input": "sort_by"
+      }
+    },
+    {
+      "name": "replacement_mode",
+      "label": "Replacement mode",
+      "target": {
+        "node": "n",
+        "input": "replacement_mode"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SCAIL2ColoredMask",
+      "inputs": {
+        "driving_track_data": {
+          "$port": "driving_track_data"
+        },
+        "object_indices": "",
+        "sort_by": "left_to_right",
+        "replacement_mode": false,
+        "ref_track_data": {
+          "$port": "ref_track_data"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "pose_video_mask": {
+      "node": "n",
+      "out": 0
+    },
+    "reference_image_mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "object_indices",
+    "sort_by",
+    "replacement_mode"
+  ]
+}

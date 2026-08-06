@@ -1,0 +1,60 @@
+{
+  "id": "gen.SelectVAEDevice",
+  "name": "Select VAE Device",
+  "category": "ComfyUI / advanced/multigpu",
+  "description": "SelectVAEDevice — Place the VAE on a specific device (default / gpu:N).",
+  "inPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default"
+      ],
+      "optionsFrom": {
+        "class_type": "SelectVAEDevice",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SelectVAEDevice",
+      "inputs": {
+        "vae": {
+          "$port": "vae"
+        },
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "vae": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "vae": "vae"
+  },
+  "summary": [
+    "device"
+  ]
+}

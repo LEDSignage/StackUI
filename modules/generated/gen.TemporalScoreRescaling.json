@@ -1,0 +1,71 @@
+{
+  "id": "gen.TemporalScoreRescaling",
+  "name": "TSR - Temporal Score Rescaling",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "TemporalScoreRescaling — [Post-CFG Function]",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "patched_model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "tsr_k",
+      "label": "Tsr k",
+      "target": {
+        "node": "n",
+        "input": "tsr_k"
+      },
+      "type": "FLOAT",
+      "default": 0.95,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.001
+    },
+    {
+      "name": "tsr_sigma",
+      "label": "Tsr sigma",
+      "target": {
+        "node": "n",
+        "input": "tsr_sigma"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TemporalScoreRescaling",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "tsr_k": 0.95,
+        "tsr_sigma": 1
+      }
+    }
+  },
+  "outputs": {
+    "patched_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "patched_model"
+  },
+  "summary": [
+    "tsr_k",
+    "tsr_sigma"
+  ]
+}

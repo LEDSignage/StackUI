@@ -1,0 +1,40 @@
+{
+  "id": "gen.VAESave",
+  "name": "VAESave",
+  "category": "ComfyUI / model/merging",
+  "description": "VAESave",
+  "inPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "vae/ComfyUI_vae"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAESave",
+      "inputs": {
+        "vae": {
+          "$port": "vae"
+        },
+        "filename_prefix": "vae/ComfyUI_vae"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

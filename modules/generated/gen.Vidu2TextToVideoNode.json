@@ -1,0 +1,143 @@
+{
+  "id": "gen.Vidu2TextToVideoNode",
+  "name": "Vidu2 Text-to-Video Generation",
+  "category": "ComfyUI / partner/video/Vidu",
+  "description": "Vidu2TextToVideoNode — Generate video from a text prompt",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "viduq2",
+      "options": [
+        "viduq2"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2TextToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "3:4",
+        "4:3",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2TextToVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu2TextToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "background_music",
+      "label": "Background music",
+      "target": {
+        "node": "n",
+        "input": "background_music"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Vidu2TextToVideoNode",
+      "inputs": {
+        "model": "viduq2",
+        "prompt": "",
+        "duration": 5,
+        "seed": 1,
+        "aspect_ratio": "16:9",
+        "resolution": "720p",
+        "background_music": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "duration"
+  ]
+}

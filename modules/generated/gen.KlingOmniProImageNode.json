@@ -1,0 +1,157 @@
+{
+  "id": "gen.KlingOmniProImageNode",
+  "name": "Kling 3.0 Omni Image",
+  "category": "ComfyUI / partner/image/Kling",
+  "description": "KlingOmniProImageNode — Create or edit images with the latest model from Kling.",
+  "inPorts": [
+    {
+      "name": "reference_images",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v3-omni",
+      "options": [
+        "kling-v3-omni",
+        "kling-image-o1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1K",
+      "options": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4",
+        "3:2",
+        "2:3",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "series_amount",
+      "label": "Series amount",
+      "target": {
+        "node": "n",
+        "input": "series_amount"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageNode",
+        "input": "series_amount"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingOmniProImageNode",
+      "inputs": {
+        "model_name": "kling-v3-omni",
+        "prompt": "",
+        "resolution": "1K",
+        "aspect_ratio": "16:9",
+        "series_amount": "disabled",
+        "reference_images": {
+          "$port": "reference_images"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name",
+    "prompt",
+    "resolution"
+  ]
+}

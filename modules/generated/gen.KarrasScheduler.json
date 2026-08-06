@@ -1,0 +1,88 @@
+{
+  "id": "gen.KarrasScheduler",
+  "name": "KarrasScheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "KarrasScheduler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "sigma_max",
+      "label": "Sigma max",
+      "target": {
+        "node": "n",
+        "input": "sigma_max"
+      },
+      "type": "FLOAT",
+      "default": 14.614642,
+      "min": 0,
+      "max": 5000,
+      "step": 0.01
+    },
+    {
+      "name": "sigma_min",
+      "label": "Sigma min",
+      "target": {
+        "node": "n",
+        "input": "sigma_min"
+      },
+      "type": "FLOAT",
+      "default": 0.0291675,
+      "min": 0,
+      "max": 5000,
+      "step": 0.01
+    },
+    {
+      "name": "rho",
+      "label": "Rho",
+      "target": {
+        "node": "n",
+        "input": "rho"
+      },
+      "type": "FLOAT",
+      "default": 7,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KarrasScheduler",
+      "inputs": {
+        "steps": 20,
+        "sigma_max": 14.614642,
+        "sigma_min": 0.0291675,
+        "rho": 7
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "steps",
+    "sigma_max",
+    "sigma_min"
+  ]
+}

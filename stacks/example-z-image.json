@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 2,
+  "id": "example-z-image",
+  "name": "Make a picture",
+  "controls": [
+    {
+      "label": "What do you want?",
+      "tileId": "t-prompt",
+      "param": "prompt",
+      "hint": "Describe the picture. Be specific about light and material.",
+      "group": "What to make"
+    },
+    {
+      "label": "Width",
+      "tileId": "t-canvas",
+      "param": "width",
+      "group": "Size"
+    },
+    {
+      "label": "Height",
+      "tileId": "t-canvas",
+      "param": "height",
+      "group": "Size"
+    },
+    {
+      "label": "Seed",
+      "tileId": "t-sample",
+      "param": "seed",
+      "hint": "Change this for a different result from the same prompt.",
+      "group": "Quality"
+    }
+  ],
+  "lines": [
+    {
+      "id": "l1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-model",
+          "moduleId": "z-image-model",
+          "params": {
+            "unet_name": "z_image_turbo_bf16.safetensors",
+            "shift": 3
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-clip",
+          "moduleId": "clip-loader",
+          "params": {
+            "clip_name": "qwen_3_4b.safetensors",
+            "type": "lumina2"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-vae",
+          "moduleId": "vae-loader",
+          "params": {
+            "vae_name": "ae.safetensors"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-prompt",
+          "moduleId": "prompt-zeroed",
+          "params": {
+            "prompt": "a hand-painted enamel sign on a brick wall, late sun, peeling paint"
+          },
+          "collapsed": false
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-canvas",
+          "moduleId": "canvas-sd3",
+          "params": {
+            "width": 1360,
+            "height": 768
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-sample",
+          "moduleId": "sample",
+          "params": {
+            "seed": 4242,
+            "steps": 8,
+            "cfg": 1,
+            "sampler_name": "res_multistep",
+            "scheduler": "simple",
+            "denoise": 1
+          },
+          "collapsed": false
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-decode",
+          "moduleId": "decode",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-save",
+          "moduleId": "save-image",
+          "params": {
+            "filename_prefix": "StackUI/z-image"
+          },
+          "collapsed": true
+        }
+      ]
+    }
+  ],
+  "job": "Make a picture",
+  "model": "Z-Image Turbo"
+}

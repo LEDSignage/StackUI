@@ -1,0 +1,77 @@
+{
+  "id": "gen.LumaImageNode2",
+  "name": "Luma UNI-1 Image",
+  "category": "ComfyUI / partner/image/Luma",
+  "description": "LumaImageNode2 — Generate images from text using the Luma UNI-1 model.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "uni-1",
+      "options": [
+        "uni-1",
+        "uni-1-max"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaImageNode2",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaImageNode2",
+      "inputs": {
+        "prompt": "",
+        "model": "uni-1",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

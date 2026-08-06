@@ -1,0 +1,82 @@
+{
+  "id": "gen.WavespeedImageUpscaleNode",
+  "name": "WaveSpeed Image Upscale",
+  "category": "ComfyUI / partner/image/WaveSpeed",
+  "description": "WavespeedImageUpscaleNode — Boost image resolution and quality, upscaling photos to 4K or 8K for sharp, detailed results.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "SeedVR2",
+      "options": [
+        "SeedVR2",
+        "Ultimate"
+      ],
+      "optionsFrom": {
+        "class_type": "WavespeedImageUpscaleNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "target_resolution",
+      "label": "Target resolution",
+      "target": {
+        "node": "n",
+        "input": "target_resolution"
+      },
+      "type": "ENUM",
+      "default": "2K",
+      "options": [
+        "2K",
+        "4K",
+        "8K"
+      ],
+      "optionsFrom": {
+        "class_type": "WavespeedImageUpscaleNode",
+        "input": "target_resolution"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WavespeedImageUpscaleNode",
+      "inputs": {
+        "model": "SeedVR2",
+        "image": {
+          "$port": "image"
+        },
+        "target_resolution": "2K"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "model",
+    "target_resolution"
+  ]
+}

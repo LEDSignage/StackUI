@@ -1,0 +1,35 @@
+{
+  "id": "gen.MaskToImage",
+  "name": "Convert Mask to Image",
+  "category": "ComfyUI / image/mask",
+  "description": "MaskToImage",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "MaskToImage",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

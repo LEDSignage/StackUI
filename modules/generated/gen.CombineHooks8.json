@@ -1,0 +1,92 @@
+{
+  "id": "gen.CombineHooks8",
+  "name": "Combine Hooks [8]",
+  "category": "ComfyUI / advanced/hooks/combine",
+  "description": "CombineHooks8",
+  "inPorts": [
+    {
+      "name": "hooks_a",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_b",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_c",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_d",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_e",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_f",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_g",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_h",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CombineHooks8",
+      "inputs": {
+        "hooks_A": {
+          "$port": "hooks_a"
+        },
+        "hooks_B": {
+          "$port": "hooks_b"
+        },
+        "hooks_C": {
+          "$port": "hooks_c"
+        },
+        "hooks_D": {
+          "$port": "hooks_d"
+        },
+        "hooks_E": {
+          "$port": "hooks_e"
+        },
+        "hooks_F": {
+          "$port": "hooks_f"
+        },
+        "hooks_G": {
+          "$port": "hooks_g"
+        },
+        "hooks_H": {
+          "$port": "hooks_h"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hooks": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

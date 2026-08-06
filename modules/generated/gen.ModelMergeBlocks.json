@@ -1,0 +1,93 @@
+{
+  "id": "gen.ModelMergeBlocks",
+  "name": "ModelMergeBlocks",
+  "category": "ComfyUI / model/merging",
+  "description": "ModelMergeBlocks",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "input",
+      "label": "Input",
+      "target": {
+        "node": "n",
+        "input": "input"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "middle",
+      "label": "Middle",
+      "target": {
+        "node": "n",
+        "input": "middle"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "out",
+      "label": "Out",
+      "target": {
+        "node": "n",
+        "input": "out"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeBlocks",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "input": 1,
+        "middle": 1,
+        "out": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "input",
+    "middle",
+    "out"
+  ]
+}

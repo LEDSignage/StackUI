@@ -1,0 +1,65 @@
+{
+  "id": "gen.ImageOnlyCheckpointLoader",
+  "name": "Load Checkpoint Image Only (img2vid model)",
+  "category": "ComfyUI / model/loaders",
+  "description": "ImageOnlyCheckpointLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "ckpt_name",
+      "label": "Ckpt name",
+      "target": {
+        "node": "n",
+        "input": "ckpt_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-22b-dev-fp8.safetensors",
+      "options": [
+        "ltx-2.3-22b-dev-fp8.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageOnlyCheckpointLoader",
+        "input": "ckpt_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageOnlyCheckpointLoader",
+      "inputs": {
+        "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "clip_vision": {
+      "node": "n",
+      "out": 1
+    },
+    "vae": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "ckpt_name"
+  ]
+}

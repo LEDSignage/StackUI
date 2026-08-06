@@ -1,0 +1,112 @@
+{
+  "id": "gen.MinimaxHailuoVideoNode",
+  "name": "MiniMax Hailuo 02 Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxHailuoVideoNode — Generates videos from prompt, with optional start frame using the MiniMax Hailuo-02 model.",
+  "inPorts": [
+    {
+      "name": "first_frame_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt_text",
+      "label": "Prompt text",
+      "target": {
+        "node": "n",
+        "input": "prompt_text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "step": 1
+    },
+    {
+      "name": "prompt_optimizer",
+      "label": "Prompt optimizer",
+      "target": {
+        "node": "n",
+        "input": "prompt_optimizer"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": 6,
+      "optionsFrom": {
+        "class_type": "MinimaxHailuoVideoNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "768P",
+      "options": [
+        "768P",
+        "1080P"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxHailuoVideoNode",
+        "input": "resolution"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxHailuoVideoNode",
+      "inputs": {
+        "prompt_text": "",
+        "seed": 0,
+        "first_frame_image": {
+          "$port": "first_frame_image"
+        },
+        "prompt_optimizer": true,
+        "duration": 6,
+        "resolution": "768P"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt_text",
+    "seed",
+    "prompt_optimizer"
+  ]
+}

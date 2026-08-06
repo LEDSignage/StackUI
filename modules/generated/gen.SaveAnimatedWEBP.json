@@ -1,0 +1,114 @@
+{
+  "id": "gen.SaveAnimatedWEBP",
+  "name": "Save Animated WEBP",
+  "category": "ComfyUI / image",
+  "description": "SaveAnimatedWEBP",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    },
+    {
+      "name": "fps",
+      "label": "Fps",
+      "target": {
+        "node": "n",
+        "input": "fps"
+      },
+      "type": "FLOAT",
+      "default": 6,
+      "min": 0.01,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "lossless",
+      "label": "Lossless",
+      "target": {
+        "node": "n",
+        "input": "lossless"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "quality",
+      "label": "Quality",
+      "target": {
+        "node": "n",
+        "input": "quality"
+      },
+      "type": "INT",
+      "default": 80,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "method",
+      "label": "Method",
+      "target": {
+        "node": "n",
+        "input": "method"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "fastest",
+        "slowest"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveAnimatedWEBP",
+        "input": "method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAnimatedWEBP",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "filename_prefix": "ComfyUI",
+        "fps": 6,
+        "lossless": true,
+        "quality": 80,
+        "method": "default"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "filename_prefix",
+    "fps",
+    "lossless"
+  ]
+}

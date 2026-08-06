@@ -1,0 +1,23 @@
+{
+  "id": "vae-loader",
+  "name": "VAE",
+  "category": "load",
+  "description": "VAELoader — a standalone VAE.",
+  "inPorts": [],
+  "outPorts": [{ "name": "vae", "type": "VAE" }],
+  "outputs": { "vae": { "node": "vl" } },
+  "summary": ["vae_name"],
+  "params": [
+    {
+      "name": "vae_name",
+      "label": "VAE",
+      "type": "ENUM",
+      "default": "ae.safetensors",
+      "optionsFrom": { "class_type": "VAELoader", "input": "vae_name" },
+      "target": { "node": "vl", "input": "vae_name" }
+    }
+  ],
+  "nodes": {
+    "vl": { "class_type": "VAELoader", "inputs": { "vae_name": "ae.safetensors" } }
+  }
+}

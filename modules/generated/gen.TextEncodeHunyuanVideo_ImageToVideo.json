@@ -1,0 +1,72 @@
+{
+  "id": "gen.TextEncodeHunyuanVideo_ImageToVideo",
+  "name": "TextEncodeHunyuanVideo_ImageToVideo",
+  "category": "ComfyUI / model/conditioning/hunyuan video",
+  "description": "TextEncodeHunyuanVideo_ImageToVideo",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "image_interleave",
+      "label": "Image interleave",
+      "target": {
+        "node": "n",
+        "input": "image_interleave"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 1,
+      "max": 512
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeHunyuanVideo_ImageToVideo",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "prompt": "",
+        "image_interleave": 2
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "image_interleave"
+  ]
+}

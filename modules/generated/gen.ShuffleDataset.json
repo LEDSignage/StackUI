@@ -1,0 +1,54 @@
+{
+  "id": "gen.ShuffleDataset",
+  "name": "Shuffle Images List",
+  "category": "ComfyUI / image/batch",
+  "description": "ShuffleDataset — Randomly shuffle the order of images in a list.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ShuffleDataset",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "seed"
+  ]
+}

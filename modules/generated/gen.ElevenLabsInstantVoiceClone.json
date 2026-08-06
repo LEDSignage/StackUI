@@ -1,0 +1,50 @@
+{
+  "id": "gen.ElevenLabsInstantVoiceClone",
+  "name": "ElevenLabs Instant Voice Clone",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsInstantVoiceClone — Create a cloned voice from audio samples. Provide 1-8 audio recordings of the voice to clone.",
+  "inPorts": [
+    {
+      "name": "files",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "voice",
+      "type": "ELEVENLABS_VOICE"
+    }
+  ],
+  "params": [
+    {
+      "name": "remove_background_noise",
+      "label": "Remove background noise",
+      "target": {
+        "node": "n",
+        "input": "remove_background_noise"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsInstantVoiceClone",
+      "inputs": {
+        "files": {
+          "$port": "files"
+        },
+        "remove_background_noise": false
+      }
+    }
+  },
+  "outputs": {
+    "voice": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "remove_background_noise"
+  ]
+}

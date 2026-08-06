@@ -1,0 +1,45 @@
+{
+  "id": "gen.ImageUpscaleWithModel",
+  "name": "Upscale Image (using Model)",
+  "category": "ComfyUI / image/upscaling",
+  "description": "ImageUpscaleWithModel",
+  "inPorts": [
+    {
+      "name": "upscale_model",
+      "type": "UPSCALE_MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageUpscaleWithModel",
+      "inputs": {
+        "upscale_model": {
+          "$port": "upscale_model"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

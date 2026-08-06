@@ -1,0 +1,57 @@
+{
+  "id": "gen.LoadImageTextDataSetFromFolder",
+  "name": "Load Image-Text (from Folder)",
+  "category": "ComfyUI / image",
+  "description": "LoadImageTextDataSetFromFolder — Load a dataset of pairs of images and text captions from a specified folder and return them as a list. Supported formats: PNG, JPG, JPEG, WEBP.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "folder",
+      "label": "Folder",
+      "target": {
+        "node": "n",
+        "input": "folder"
+      },
+      "type": "ENUM",
+      "default": "3d",
+      "options": [
+        "3d"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadImageTextDataSetFromFolder",
+        "input": "folder"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadImageTextDataSetFromFolder",
+      "inputs": {
+        "folder": "3d"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    },
+    "texts": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "folder"
+  ]
+}

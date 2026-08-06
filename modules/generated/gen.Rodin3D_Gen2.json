@@ -1,0 +1,117 @@
+{
+  "id": "gen.Rodin3D_Gen2",
+  "name": "Rodin 3D Generate - Gen-2 Generate",
+  "category": "ComfyUI / partner/3d/Rodin",
+  "description": "Rodin3D_Gen2 — Generate 3D Assets using Rodin API",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "3d_model_path",
+      "type": "STRING"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [
+    {
+      "name": "TAPose",
+      "label": "TAPose",
+      "target": {
+        "node": "n",
+        "input": "TAPose"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "Seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "Seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 65535
+    },
+    {
+      "name": "Material_Type",
+      "label": "Material Type",
+      "target": {
+        "node": "n",
+        "input": "Material_Type"
+      },
+      "type": "ENUM",
+      "default": "PBR",
+      "options": [
+        "PBR",
+        "Shaded"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen2",
+        "input": "Material_Type"
+      }
+    },
+    {
+      "name": "Polygon_count",
+      "label": "Polygon count",
+      "target": {
+        "node": "n",
+        "input": "Polygon_count"
+      },
+      "type": "ENUM",
+      "default": "500K-Triangle",
+      "options": [
+        "4K-Quad",
+        "8K-Quad",
+        "18K-Quad",
+        "50K-Quad",
+        "2K-Triangle",
+        "20K-Triangle",
+        "150K-Triangle",
+        "500K-Triangle"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen2",
+        "input": "Polygon_count"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Rodin3D_Gen2",
+      "inputs": {
+        "Images": {
+          "$port": "images"
+        },
+        "TAPose": false,
+        "Seed": 0,
+        "Material_Type": "PBR",
+        "Polygon_count": "500K-Triangle"
+      }
+    }
+  },
+  "outputs": {
+    "3d_model_path": {
+      "node": "n",
+      "out": 0
+    },
+    "glb": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "TAPose",
+    "Seed",
+    "Material_Type"
+  ]
+}

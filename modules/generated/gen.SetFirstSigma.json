@@ -1,0 +1,56 @@
+{
+  "id": "gen.SetFirstSigma",
+  "name": "SetFirstSigma",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "SetFirstSigma",
+  "inPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "sigma",
+      "label": "Sigma",
+      "target": {
+        "node": "n",
+        "input": "sigma"
+      },
+      "type": "FLOAT",
+      "default": 136,
+      "min": 0,
+      "max": 20000,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SetFirstSigma",
+      "inputs": {
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "sigma": 136
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "sigmas": "sigmas"
+  },
+  "summary": [
+    "sigma"
+  ]
+}

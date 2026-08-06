@@ -1,0 +1,55 @@
+{
+  "id": "gen.MultiGPU_WorkUnits",
+  "name": "MultiGPU CFG Split",
+  "category": "ComfyUI / advanced/multigpu",
+  "description": "MultiGPU_WorkUnits — Prepares model to have sampling accelerated via splitting work units.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "max_gpus",
+      "label": "Max gpus",
+      "target": {
+        "node": "n",
+        "input": "max_gpus"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 1,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MultiGPU_WorkUnits",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "max_gpus": 2
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "max_gpus"
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "id": "gen.ByteDanceImageReferenceNode",
+  "name": "ByteDance Reference Images to Video",
+  "category": "ComfyUI / partner/video/ByteDance",
+  "description": "ByteDanceImageReferenceNode — Generate video using prompt and reference images.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "seedance-1-0-lite-i2v-250428",
+      "options": [
+        "seedance-1-0-pro-250528",
+        "seedance-1-0-lite-i2v-250428"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceImageReferenceNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "480p",
+      "options": [
+        "480p",
+        "720p"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceImageReferenceNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "adaptive",
+      "options": [
+        "adaptive",
+        "16:9",
+        "4:3",
+        "1:1",
+        "3:4",
+        "9:16",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceImageReferenceNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 3,
+      "max": 12,
+      "step": 1
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDanceImageReferenceNode",
+      "inputs": {
+        "model": "seedance-1-0-lite-i2v-250428",
+        "prompt": "",
+        "images": {
+          "$port": "images"
+        },
+        "resolution": "480p",
+        "aspect_ratio": "adaptive",
+        "duration": 5,
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "resolution"
+  ]
+}

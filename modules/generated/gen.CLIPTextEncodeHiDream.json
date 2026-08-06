@@ -1,0 +1,89 @@
+{
+  "id": "gen.CLIPTextEncodeHiDream",
+  "name": "CLIP Text Encode (HiDream)",
+  "category": "ComfyUI / model/conditioning/hidream",
+  "description": "CLIPTextEncodeHiDream",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_l",
+      "label": "Clip l",
+      "target": {
+        "node": "n",
+        "input": "clip_l"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "clip_g",
+      "label": "Clip g",
+      "target": {
+        "node": "n",
+        "input": "clip_g"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "t5xxl",
+      "label": "T5xxl",
+      "target": {
+        "node": "n",
+        "input": "t5xxl"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "llama",
+      "label": "Llama",
+      "target": {
+        "node": "n",
+        "input": "llama"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeHiDream",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "clip_l": "",
+        "clip_g": "",
+        "t5xxl": "",
+        "llama": ""
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_l",
+    "clip_g",
+    "t5xxl"
+  ]
+}

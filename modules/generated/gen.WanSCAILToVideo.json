@@ -1,0 +1,267 @@
+{
+  "id": "gen.WanSCAILToVideo",
+  "name": "WanSCAILToVideo",
+  "category": "ComfyUI / model/conditioning/wan/scail",
+  "description": "WanSCAILToVideo",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "pose_video",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "pose_video_mask",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "reference_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "reference_image_mask",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "previous_frames",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "video_frame_offset",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 896,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "pose_strength",
+      "label": "Pose strength",
+      "target": {
+        "node": "n",
+        "input": "pose_strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "pose_start",
+      "label": "Pose start",
+      "target": {
+        "node": "n",
+        "input": "pose_start"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "pose_end",
+      "label": "Pose end",
+      "target": {
+        "node": "n",
+        "input": "pose_end"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "video_frame_offset",
+      "label": "Video frame offset",
+      "target": {
+        "node": "n",
+        "input": "video_frame_offset"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "previous_frame_count",
+      "label": "Previous frame count",
+      "target": {
+        "node": "n",
+        "input": "previous_frame_count"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "replacement_mode",
+      "label": "Replacement mode",
+      "target": {
+        "node": "n",
+        "input": "replacement_mode"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanSCAILToVideo",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 512,
+        "height": 896,
+        "length": 81,
+        "batch_size": 1,
+        "pose_strength": 1,
+        "pose_start": 0,
+        "pose_end": 1,
+        "video_frame_offset": 0,
+        "previous_frame_count": 5,
+        "pose_video": {
+          "$port": "pose_video"
+        },
+        "pose_video_mask": {
+          "$port": "pose_video_mask"
+        },
+        "replacement_mode": false,
+        "reference_image": {
+          "$port": "reference_image"
+        },
+        "reference_image_mask": {
+          "$port": "reference_image_mask"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "previous_frames": {
+          "$port": "previous_frames"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    },
+    "video_frame_offset": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

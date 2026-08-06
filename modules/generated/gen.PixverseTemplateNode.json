@@ -1,0 +1,53 @@
+{
+  "id": "gen.PixverseTemplateNode",
+  "name": "PixVerse Template",
+  "category": "ComfyUI / partner/video/PixVerse",
+  "description": "PixverseTemplateNode",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "pixverse_template",
+      "type": "PIXVERSE_TEMPLATE"
+    }
+  ],
+  "params": [
+    {
+      "name": "template",
+      "label": "Template",
+      "target": {
+        "node": "n",
+        "input": "template"
+      },
+      "type": "ENUM",
+      "default": "Microwave",
+      "options": [
+        "Microwave",
+        "Suit Swagger",
+        "Anything, Robot",
+        "Subject 3 Fever",
+        "kiss kiss"
+      ],
+      "optionsFrom": {
+        "class_type": "PixverseTemplateNode",
+        "input": "template"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PixverseTemplateNode",
+      "inputs": {
+        "template": "Microwave"
+      }
+    }
+  },
+  "outputs": {
+    "pixverse_template": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "template"
+  ]
+}

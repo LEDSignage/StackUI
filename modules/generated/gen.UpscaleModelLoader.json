@@ -1,0 +1,46 @@
+{
+  "id": "gen.UpscaleModelLoader",
+  "name": "Load Upscale Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "UpscaleModelLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "upscale_model",
+      "type": "UPSCALE_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "UpscaleModelLoader",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "UpscaleModelLoader",
+      "inputs": {
+        "model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "upscale_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

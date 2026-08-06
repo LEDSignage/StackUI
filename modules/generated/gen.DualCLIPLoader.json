@@ -1,0 +1,127 @@
+{
+  "id": "gen.DualCLIPLoader",
+  "name": "Load CLIP (Dual)",
+  "category": "ComfyUI / model/loaders",
+  "description": "DualCLIPLoader — Recipes:",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_name1",
+      "label": "Clip name1",
+      "target": {
+        "node": "n",
+        "input": "clip_name1"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "DualCLIPLoader",
+        "input": "clip_name1"
+      }
+    },
+    {
+      "name": "clip_name2",
+      "label": "Clip name2",
+      "target": {
+        "node": "n",
+        "input": "clip_name2"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "DualCLIPLoader",
+        "input": "clip_name2"
+      }
+    },
+    {
+      "name": "type",
+      "label": "Type",
+      "target": {
+        "node": "n",
+        "input": "type"
+      },
+      "type": "ENUM",
+      "default": "sdxl",
+      "options": [
+        "sdxl",
+        "sd3",
+        "flux",
+        "hunyuan_video",
+        "hidream",
+        "hunyuan_image",
+        "hunyuan_video_15",
+        "kandinsky5",
+        "kandinsky5_image",
+        "ltxv",
+        "newbie",
+        "ace"
+      ],
+      "optionsFrom": {
+        "class_type": "DualCLIPLoader",
+        "input": "type"
+      }
+    },
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "DualCLIPLoader",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DualCLIPLoader",
+      "inputs": {
+        "clip_name1": "clip_l.safetensors",
+        "clip_name2": "clip_l.safetensors",
+        "type": "sdxl",
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_name1",
+    "clip_name2",
+    "type"
+  ]
+}

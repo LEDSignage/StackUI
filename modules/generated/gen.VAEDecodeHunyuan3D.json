@@ -1,0 +1,73 @@
+{
+  "id": "gen.VAEDecodeHunyuan3D",
+  "name": "VAEDecodeHunyuan3D",
+  "category": "ComfyUI / model/latent/hunyuan 3d",
+  "description": "VAEDecodeHunyuan3D",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "voxel",
+      "type": "VOXEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "num_chunks",
+      "label": "Num chunks",
+      "target": {
+        "node": "n",
+        "input": "num_chunks"
+      },
+      "type": "INT",
+      "default": 8000,
+      "min": 1000,
+      "max": 500000
+    },
+    {
+      "name": "octree_resolution",
+      "label": "Octree resolution",
+      "target": {
+        "node": "n",
+        "input": "octree_resolution"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 16,
+      "max": 512
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAEDecodeHunyuan3D",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "num_chunks": 8000,
+        "octree_resolution": 256
+      }
+    }
+  },
+  "outputs": {
+    "voxel": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "num_chunks",
+    "octree_resolution"
+  ]
+}

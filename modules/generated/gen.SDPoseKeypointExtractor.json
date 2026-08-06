@@ -1,0 +1,75 @@
+{
+  "id": "gen.SDPoseKeypointExtractor",
+  "name": "SDPose Keypoint Extractor",
+  "category": "ComfyUI / image/detection",
+  "description": "SDPoseKeypointExtractor — Extract pose keypoints from images using the SDPose model: https://huggingface.co/Comfy-Org/SDPose/tree/main/checkpoints",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "keypoints",
+      "type": "POSE_KEYPOINT"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 10000,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SDPoseKeypointExtractor",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "batch_size": 16,
+        "bboxes": {
+          "$port": "bboxes"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "keypoints": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "batch_size"
+  ]
+}

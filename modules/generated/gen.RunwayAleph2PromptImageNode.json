@@ -1,0 +1,66 @@
+{
+  "id": "gen.RunwayAleph2PromptImageNode",
+  "name": "Runway Aleph2 Prompt Image",
+  "category": "ComfyUI / partner/video/Runway",
+  "description": "RunwayAleph2PromptImageNode — Anchor a guidance image to a moment of the output (result) video, to guide what the edited video looks like at that point. Connect this to the 'prompt_images' input of the Runway Aleph2 Video to Video node; chain several together (up to 5) via the optional 'prompt_images' input below.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "prompt_images",
+      "type": "RUNWAY_ALEPH2_PROMPT_IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "prompt_images",
+      "type": "RUNWAY_ALEPH2_PROMPT_IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "position",
+      "label": "Position",
+      "target": {
+        "node": "n",
+        "input": "position"
+      },
+      "type": "ENUM",
+      "default": "Absolute time (seconds)",
+      "options": [
+        "Absolute time (seconds)",
+        "Fraction of duration (0.0-1.0)"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayAleph2PromptImageNode",
+        "input": "position"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayAleph2PromptImageNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "position": "Absolute time (seconds)",
+        "prompt_images": {
+          "$port": "prompt_images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "prompt_images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "position"
+  ]
+}

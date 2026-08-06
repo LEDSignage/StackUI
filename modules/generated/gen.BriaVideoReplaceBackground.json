@@ -1,0 +1,71 @@
+{
+  "id": "gen.BriaVideoReplaceBackground",
+  "name": "Bria Video Replace Background",
+  "category": "ComfyUI / partner/video/Bria",
+  "description": "BriaVideoReplaceBackground — Replace a video's background with a supplied image or video using Bria. The output keeps the foreground's resolution and frame rate; a background with a different aspect ratio is stretched to fit, so match it for undistorted results.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "background_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "background_video",
+      "type": "VIDEO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaVideoReplaceBackground",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "seed": 0,
+        "background_image": {
+          "$port": "background_image"
+        },
+        "background_video": {
+          "$port": "background_video"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "seed"
+  ]
+}

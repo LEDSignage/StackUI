@@ -1,0 +1,100 @@
+{
+  "id": "gen.CropMask",
+  "name": "Crop Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "CropMask",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CropMask",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        },
+        "x": 0,
+        "y": 0,
+        "width": 512,
+        "height": 512
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "mask": "mask"
+  },
+  "summary": [
+    "x",
+    "y",
+    "width"
+  ]
+}

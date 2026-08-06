@@ -1,0 +1,38 @@
+{
+  "id": "gen.SeedVR2Preprocess",
+  "name": "Pre-Process SeedVR2 Input",
+  "category": "ComfyUI / image/pre-processors",
+  "description": "SeedVR2Preprocess — Pad a resized image for SeedVR2 model. Alpha channel is dropped. The node Post-Process SeedVR2 Output re-applies it from the original resized image.",
+  "inPorts": [
+    {
+      "name": "resized_images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SeedVR2Preprocess",
+      "inputs": {
+        "resized_images": {
+          "$port": "resized_images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "resized_images": "images"
+  }
+}

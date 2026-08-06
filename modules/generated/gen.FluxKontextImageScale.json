@@ -1,0 +1,38 @@
+{
+  "id": "gen.FluxKontextImageScale",
+  "name": "FluxKontextImageScale",
+  "category": "ComfyUI / model/conditioning/flux",
+  "description": "FluxKontextImageScale — This node resizes the image to one that is more optimal for flux kontext.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "FluxKontextImageScale",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

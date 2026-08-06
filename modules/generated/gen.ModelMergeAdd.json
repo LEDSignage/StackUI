@@ -1,0 +1,45 @@
+{
+  "id": "gen.ModelMergeAdd",
+  "name": "ModelMergeAdd",
+  "category": "ComfyUI / model/merging",
+  "description": "ModelMergeAdd",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeAdd",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  }
+}

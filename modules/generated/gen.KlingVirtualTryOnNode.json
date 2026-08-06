@@ -1,0 +1,68 @@
+{
+  "id": "gen.KlingVirtualTryOnNode",
+  "name": "Kling Virtual Try On",
+  "category": "ComfyUI / partner/image/Kling",
+  "description": "KlingVirtualTryOnNode — Kling Virtual Try On Node. Input a human image and a cloth image to try on the cloth on the human. You can merge multiple clothing item pictures into one image with a white background.",
+  "inPorts": [
+    {
+      "name": "human_image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "cloth_image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kolors-virtual-try-on-v1",
+      "options": [
+        "kolors-virtual-try-on-v1",
+        "kolors-virtual-try-on-v1-5"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingVirtualTryOnNode",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingVirtualTryOnNode",
+      "inputs": {
+        "human_image": {
+          "$port": "human_image"
+        },
+        "cloth_image": {
+          "$port": "cloth_image"
+        },
+        "model_name": "kolors-virtual-try-on-v1"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "human_image": "image"
+  },
+  "summary": [
+    "model_name"
+  ]
+}

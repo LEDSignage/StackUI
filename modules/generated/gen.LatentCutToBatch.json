@@ -1,0 +1,77 @@
+{
+  "id": "gen.LatentCutToBatch",
+  "name": "LatentCutToBatch",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentCutToBatch",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "dim",
+      "label": "Dim",
+      "target": {
+        "node": "n",
+        "input": "dim"
+      },
+      "type": "ENUM",
+      "default": "t",
+      "options": [
+        "t",
+        "x",
+        "y"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentCutToBatch",
+        "input": "dim"
+      }
+    },
+    {
+      "name": "slice_size",
+      "label": "Slice size",
+      "target": {
+        "node": "n",
+        "input": "slice_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentCutToBatch",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "dim": "t",
+        "slice_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "dim",
+    "slice_size"
+  ]
+}

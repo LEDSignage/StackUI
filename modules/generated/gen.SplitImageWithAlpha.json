@@ -1,0 +1,46 @@
+{
+  "id": "gen.SplitImageWithAlpha",
+  "name": "Split Image with Alpha",
+  "category": "ComfyUI / image/compositing",
+  "description": "SplitImageWithAlpha",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SplitImageWithAlpha",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

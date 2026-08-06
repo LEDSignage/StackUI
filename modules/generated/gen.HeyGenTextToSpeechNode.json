@@ -1,0 +1,178 @@
+{
+  "id": "gen.HeyGenTextToSpeechNode",
+  "name": "HeyGen Text to Speech",
+  "category": "ComfyUI / partner/audio/HeyGen",
+  "description": "HeyGenTextToSpeechNode — Generate speech audio from text using HeyGen's Starfish TTS engine. Includes HeyGen's most popular voices across 17 languages.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "voice",
+      "label": "Voice",
+      "target": {
+        "node": "n",
+        "input": "voice"
+      },
+      "type": "ENUM",
+      "default": "Chill Brian (English, male)",
+      "options": [
+        "Chill Brian (English, male)",
+        "Zain (English, female)",
+        "Narrator Mateo - Excited 🤩 (Spanish, male)",
+        "Aria (English, female)",
+        "Caryns (English, female)",
+        "Klara (English, female)",
+        "Bold Kasia - Excited 🤩 (Polish, female)",
+        "Shaun (English, male)",
+        "Senthil (English, male)",
+        "Cody (English, male)",
+        "Saffron (English, female)",
+        "Blanka - Lifelike (English, female)",
+        "Rami (English, male)",
+        "Rhodes (English, female)",
+        "Michelle - Voice 1 (English, female)",
+        "Autumn - UGC 3 (English, female)",
+        "Reassuring Rupert (English, male)",
+        "Rose - UGC -2  (English, female)",
+        "Derya - Lifelike - Broadcaster 🎙️ (English, female)",
+        "Dynamic Derek (English, male)",
+        "Lotte (English, female)",
+        "Thanos - Broadcaster 🎙️ (English, male)",
+        "Marcia (English, female)",
+        "Camden (English, male)",
+        "Rumi (English, female)",
+        "Pippa (English, female)",
+        "William Prescott - Broadcaster 🎙️ (English, male)",
+        "Sammy (English, female)",
+        "Breezy Bagus (Indonesian, male)",
+        "Ben (English, male)",
+        "Smooth Dev (English, male)",
+        "Daran inside booth (English, male)",
+        "Peppy Stella (English, female)",
+        "Silas (English, male)",
+        "Aditya (English, male)",
+        "Christy (English, female)",
+        "Elio (English, male)",
+        "Luminous Laksh (Hindi, male)",
+        "Jeff (English, male)",
+        "Tahlia Brooks - Excited 🤩 (English, female)",
+        "Riya Mehta (Hindi, female)",
+        "Ben Hart (English, male)",
+        "Skylar (English, female)",
+        "Relaxed Reece (English, male)",
+        "Daniel (English, male)",
+        "Melani (English, female)",
+        "Clover (English, female)",
+        "Pedro Lima - Serious 😐 (Portuguese, male)",
+        "Ana Carvalho (Portuguese, female)",
+        "Confident Connor - Excited 🤩 (English, male)",
+        "Vibrant Victor (Spanish, male)",
+        "Young Olivier (French, male)",
+        "Émile Noir (French, male)",
+        "Steadfast Stefan (German, male)",
+        "Deep Dieter (German, male)",
+        "Serene Marco (Italian, male)",
+        "Murmuring Matteo (Italian, male)",
+        "Gail in car (Multilingual, female)",
+        "Daran outside walking (Multilingual, male)",
+        "BOB - Voice 1 (Chinese, unknown)",
+        "Hakeem Hassan (Arabic, male)",
+        "Rami Idris (Arabic, male)",
+        "Bold Kasia - Friendly 😊 (Polish, female)",
+        "Tranquil Tulin (Turkish, female)",
+        "Dynamic Derya (Turkish, female)",
+        "Quiet Dewa (Indonesian, male)",
+        "Cuong (Vietnamese, male)"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenTextToSpeechNode",
+        "input": "voice"
+      }
+    },
+    {
+      "name": "custom_voice_id",
+      "label": "Custom voice id",
+      "target": {
+        "node": "n",
+        "input": "custom_voice_id"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "speed",
+      "label": "Speed",
+      "target": {
+        "node": "n",
+        "input": "speed"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.5,
+      "max": 2,
+      "step": 0.05
+    },
+    {
+      "name": "ssml",
+      "label": "Ssml",
+      "target": {
+        "node": "n",
+        "input": "ssml"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HeyGenTextToSpeechNode",
+      "inputs": {
+        "text": "",
+        "voice": "Chill Brian (English, male)",
+        "custom_voice_id": "",
+        "speed": 1,
+        "ssml": false,
+        "seed": 42
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text",
+    "voice",
+    "custom_voice_id"
+  ]
+}

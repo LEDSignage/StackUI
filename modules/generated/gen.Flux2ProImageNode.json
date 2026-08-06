@@ -1,0 +1,105 @@
+{
+  "id": "gen.Flux2ProImageNode",
+  "name": "Flux.2 [pro] Image",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "Flux2ProImageNode — Generates images synchronously based on prompt and resolution.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 2048,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 768,
+      "min": 256,
+      "max": 2048,
+      "step": 32
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "prompt_upsampling",
+      "label": "Prompt upsampling",
+      "target": {
+        "node": "n",
+        "input": "prompt_upsampling"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Flux2ProImageNode",
+      "inputs": {
+        "prompt": "",
+        "width": 1024,
+        "height": 768,
+        "seed": 0,
+        "prompt_upsampling": true,
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "width",
+    "height"
+  ]
+}

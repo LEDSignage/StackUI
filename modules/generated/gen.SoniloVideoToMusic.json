@@ -1,0 +1,64 @@
+{
+  "id": "gen.SoniloVideoToMusic",
+  "name": "Sonilo Video to Music",
+  "category": "ComfyUI / partner/audio/Sonilo",
+  "description": "SoniloVideoToMusic — Generate music from video content using Sonilo's AI model. Analyzes the video and creates matching music.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SoniloVideoToMusic",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "prompt": "",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "seed"
+  ]
+}

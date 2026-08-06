@@ -1,0 +1,112 @@
+{
+  "id": "gen.CropByBBoxes",
+  "name": "Crop By Bounding Boxes",
+  "category": "ComfyUI / image/transform",
+  "description": "CropByBBoxes — Crop and resize regions from the input image batch based on provided bounding boxes.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "output_width",
+      "label": "Output width",
+      "target": {
+        "node": "n",
+        "input": "output_width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 8
+    },
+    {
+      "name": "output_height",
+      "label": "Output height",
+      "target": {
+        "node": "n",
+        "input": "output_height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 8
+    },
+    {
+      "name": "padding",
+      "label": "Padding",
+      "target": {
+        "node": "n",
+        "input": "padding"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 1024,
+      "step": 1
+    },
+    {
+      "name": "keep_aspect",
+      "label": "Keep aspect",
+      "target": {
+        "node": "n",
+        "input": "keep_aspect"
+      },
+      "type": "ENUM",
+      "default": "stretch",
+      "options": [
+        "stretch",
+        "pad"
+      ],
+      "optionsFrom": {
+        "class_type": "CropByBBoxes",
+        "input": "keep_aspect"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CropByBBoxes",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "bboxes": {
+          "$port": "bboxes"
+        },
+        "output_width": 512,
+        "output_height": 512,
+        "padding": 0,
+        "keep_aspect": "stretch"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "output_width",
+    "output_height",
+    "padding"
+  ]
+}

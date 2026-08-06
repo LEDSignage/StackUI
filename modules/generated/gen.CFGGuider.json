@@ -1,0 +1,67 @@
+{
+  "id": "gen.CFGGuider",
+  "name": "CFG Guider",
+  "category": "ComfyUI / model/sampling/guiders",
+  "description": "CFGGuider",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "guider",
+      "type": "GUIDER"
+    }
+  ],
+  "params": [
+    {
+      "name": "cfg",
+      "label": "Cfg",
+      "target": {
+        "node": "n",
+        "input": "cfg"
+      },
+      "type": "FLOAT",
+      "default": 8,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CFGGuider",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "cfg": 8
+      }
+    }
+  },
+  "outputs": {
+    "guider": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "cfg"
+  ]
+}

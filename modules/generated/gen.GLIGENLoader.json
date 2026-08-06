@@ -1,0 +1,46 @@
+{
+  "id": "gen.GLIGENLoader",
+  "name": "Load GLIGEN Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "GLIGENLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "gligen",
+      "type": "GLIGEN"
+    }
+  ],
+  "params": [
+    {
+      "name": "gligen_name",
+      "label": "Gligen name",
+      "target": {
+        "node": "n",
+        "input": "gligen_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "GLIGENLoader",
+        "input": "gligen_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GLIGENLoader",
+      "inputs": {
+        "gligen_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "gligen": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "gligen_name"
+  ]
+}

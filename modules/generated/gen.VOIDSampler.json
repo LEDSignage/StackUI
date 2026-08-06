@@ -1,0 +1,26 @@
+{
+  "id": "gen.VOIDSampler",
+  "name": "VOIDSampler",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "VOIDSampler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VOIDSampler",
+      "inputs": {}
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "id": "gen.HypernetworkLoader",
+  "name": "Load Hypernetwork",
+  "category": "ComfyUI / model/loaders",
+  "description": "HypernetworkLoader",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "hypernetwork_name",
+      "label": "Hypernetwork name",
+      "target": {
+        "node": "n",
+        "input": "hypernetwork_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "HypernetworkLoader",
+        "input": "hypernetwork_name"
+      }
+    },
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HypernetworkLoader",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "hypernetwork_name": "",
+        "strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "hypernetwork_name",
+    "strength"
+  ]
+}

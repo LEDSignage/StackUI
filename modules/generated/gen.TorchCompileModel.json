@@ -1,0 +1,61 @@
+{
+  "id": "gen.TorchCompileModel",
+  "name": "TorchCompileModel",
+  "category": "ComfyUI / experimental",
+  "description": "TorchCompileModel",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "backend",
+      "label": "Backend",
+      "target": {
+        "node": "n",
+        "input": "backend"
+      },
+      "type": "ENUM",
+      "default": "inductor",
+      "options": [
+        "inductor",
+        "cudagraphs"
+      ],
+      "optionsFrom": {
+        "class_type": "TorchCompileModel",
+        "input": "backend"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TorchCompileModel",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "backend": "inductor"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "backend"
+  ]
+}

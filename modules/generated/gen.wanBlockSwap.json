@@ -1,0 +1,38 @@
+{
+  "id": "gen.wanBlockSwap",
+  "name": "wanBlockSwap",
+  "category": "ComfyUI / uncategorised",
+  "description": "wanBlockSwap — Intercept wanBlockSwap custom node that causes major instability and make it no-op.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "wanBlockSwap",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  }
+}

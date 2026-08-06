@@ -1,0 +1,90 @@
+{
+  "id": "gen.StyleModelApply",
+  "name": "Apply Style Model",
+  "category": "ComfyUI / model/conditioning",
+  "description": "StyleModelApply",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "style_model",
+      "type": "STYLE_MODEL"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.001
+    },
+    {
+      "name": "strength_type",
+      "label": "Strength type",
+      "target": {
+        "node": "n",
+        "input": "strength_type"
+      },
+      "type": "ENUM",
+      "default": "multiply",
+      "options": [
+        "multiply",
+        "attn_bias"
+      ],
+      "optionsFrom": {
+        "class_type": "StyleModelApply",
+        "input": "strength_type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StyleModelApply",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "style_model": {
+          "$port": "style_model"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "strength": 1,
+        "strength_type": "multiply"
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "strength",
+    "strength_type"
+  ]
+}

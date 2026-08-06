@@ -1,0 +1,61 @@
+{
+  "id": "gen.LatentFlip",
+  "name": "Flip Latent",
+  "category": "ComfyUI / model/latent/transform",
+  "description": "LatentFlip",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "flip_method",
+      "label": "Flip method",
+      "target": {
+        "node": "n",
+        "input": "flip_method"
+      },
+      "type": "ENUM",
+      "default": "x-axis: vertically",
+      "options": [
+        "x-axis: vertically",
+        "y-axis: horizontally"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentFlip",
+        "input": "flip_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentFlip",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "flip_method": "x-axis: vertically"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "flip_method"
+  ]
+}

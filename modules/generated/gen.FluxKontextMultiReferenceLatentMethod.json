@@ -1,0 +1,63 @@
+{
+  "id": "gen.FluxKontextMultiReferenceLatentMethod",
+  "name": "Edit Model Reference Method",
+  "category": "ComfyUI / model/conditioning/flux",
+  "description": "FluxKontextMultiReferenceLatentMethod",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "reference_latents_method",
+      "label": "Reference latents method",
+      "target": {
+        "node": "n",
+        "input": "reference_latents_method"
+      },
+      "type": "ENUM",
+      "default": "offset",
+      "options": [
+        "offset",
+        "index",
+        "uxo/uno",
+        "index_timestep_zero"
+      ],
+      "optionsFrom": {
+        "class_type": "FluxKontextMultiReferenceLatentMethod",
+        "input": "reference_latents_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxKontextMultiReferenceLatentMethod",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "reference_latents_method": "offset"
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "reference_latents_method"
+  ]
+}

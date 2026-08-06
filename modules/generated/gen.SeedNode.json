@@ -1,0 +1,43 @@
+{
+  "id": "gen.SeedNode",
+  "name": "Seed",
+  "category": "ComfyUI / utilities",
+  "description": "SeedNode",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "seed",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SeedNode",
+      "inputs": {
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "seed": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "seed"
+  ]
+}

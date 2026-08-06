@@ -1,0 +1,83 @@
+{
+  "id": "gen.SeedVR2TemporalChunk",
+  "name": "Split SeedVR2 Latent",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "SeedVR2TemporalChunk — Split a SeedVR2 video latent into overlapping temporal chunks small enough to sample one at a time within VRAM, wiring latents outputs to both Apply SeedVR2 Conditioning and the sampler latent input before recombining with Merge SeedVR2 Latents.",
+  "inPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "temporal_overlap",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "temporal_overlap",
+      "label": "Temporal overlap",
+      "target": {
+        "node": "n",
+        "input": "temporal_overlap"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "chunking_mode",
+      "label": "Chunking mode",
+      "target": {
+        "node": "n",
+        "input": "chunking_mode"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "manual"
+      ],
+      "optionsFrom": {
+        "class_type": "SeedVR2TemporalChunk",
+        "input": "chunking_mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SeedVR2TemporalChunk",
+      "inputs": {
+        "latent": {
+          "$port": "latent"
+        },
+        "temporal_overlap": 0,
+        "chunking_mode": "auto"
+      }
+    }
+  },
+  "outputs": {
+    "latents": {
+      "node": "n",
+      "out": 0
+    },
+    "temporal_overlap": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "latent": "latents"
+  },
+  "summary": [
+    "temporal_overlap",
+    "chunking_mode"
+  ]
+}

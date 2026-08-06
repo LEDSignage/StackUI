@@ -1,0 +1,100 @@
+{
+  "id": "gen.FreeU",
+  "name": "FreeU",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "FreeU",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "b1",
+      "label": "B1",
+      "target": {
+        "node": "n",
+        "input": "b1"
+      },
+      "type": "FLOAT",
+      "default": 1.1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "b2",
+      "label": "B2",
+      "target": {
+        "node": "n",
+        "input": "b2"
+      },
+      "type": "FLOAT",
+      "default": 1.2,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "s1",
+      "label": "S1",
+      "target": {
+        "node": "n",
+        "input": "s1"
+      },
+      "type": "FLOAT",
+      "default": 0.9,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "s2",
+      "label": "S2",
+      "target": {
+        "node": "n",
+        "input": "s2"
+      },
+      "type": "FLOAT",
+      "default": 0.2,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FreeU",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "b1": 1.1,
+        "b2": 1.2,
+        "s1": 0.9,
+        "s2": 0.2
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "b1",
+    "b2",
+    "s1"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "gen.LumaRay32ExtendVideoNode",
+  "name": "Luma Ray 3.2 Extend Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32ExtendVideoNode — Extend a previous Ray 3.2 generation forward (continue after it) or backward (lead-in before it). Connect the generation_id output of a prior Luma Ray 3.2 node. Extensions are always 5 seconds.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "source_generation_id",
+      "label": "Source generation id",
+      "target": {
+        "node": "n",
+        "input": "source_generation_id"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "direction",
+      "label": "Direction",
+      "target": {
+        "node": "n",
+        "input": "direction"
+      },
+      "type": "ENUM",
+      "default": "Forward (continue after)",
+      "options": [
+        "Forward (continue after)",
+        "Backward (lead-in before)"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32ExtendVideoNode",
+        "input": "direction"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32ExtendVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32ExtendVideoNode",
+      "inputs": {
+        "source_generation_id": "",
+        "direction": "Forward (continue after)",
+        "prompt": "",
+        "resolution": "720p",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "source_generation_id",
+    "direction",
+    "prompt"
+  ]
+}

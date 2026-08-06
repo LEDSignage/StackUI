@@ -1,0 +1,117 @@
+{
+  "id": "gen.ByteDance2FirstLastFrameNode",
+  "name": "ByteDance Seedance 2.0 First-Last-Frame to Video",
+  "category": "ComfyUI / partner/video/ByteDance",
+  "description": "ByteDance2FirstLastFrameNode — Generate video using Seedance 2.0 from a first frame image and optional last frame image.",
+  "inPorts": [
+    {
+      "name": "first_frame",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "last_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Seedance 2.0",
+      "options": [
+        "Seedance 2.0",
+        "Seedance 2.0 Fast",
+        "Seedance 2.0 Mini"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDance2FirstLastFrameNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "first_frame_asset_id",
+      "label": "First frame asset id",
+      "target": {
+        "node": "n",
+        "input": "first_frame_asset_id"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "last_frame_asset_id",
+      "label": "Last frame asset id",
+      "target": {
+        "node": "n",
+        "input": "last_frame_asset_id"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDance2FirstLastFrameNode",
+      "inputs": {
+        "model": "Seedance 2.0",
+        "seed": 0,
+        "watermark": false,
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "last_frame": {
+          "$port": "last_frame"
+        },
+        "first_frame_asset_id": "",
+        "last_frame_asset_id": ""
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "gen.Video_Slice",
+  "name": "Trim Video",
+  "category": "ComfyUI / video",
+  "description": "Video Slice",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_time",
+      "label": "Start time",
+      "target": {
+        "node": "n",
+        "input": "start_time"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -100000,
+      "max": 100000,
+      "step": 0.001
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "step": 0.001
+    },
+    {
+      "name": "strict_duration",
+      "label": "Strict duration",
+      "target": {
+        "node": "n",
+        "input": "strict_duration"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Video Slice",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "start_time": 0,
+        "duration": 0,
+        "strict_duration": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "start_time",
+    "duration",
+    "strict_duration"
+  ]
+}

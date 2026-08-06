@@ -1,0 +1,45 @@
+{
+  "id": "gen.ImageCropV2",
+  "name": "Crop Image",
+  "category": "ComfyUI / image/transform",
+  "description": "ImageCropV2 — Crop an image to the specified dimensions.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "crop_region",
+      "type": "BOUNDING_BOX"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageCropV2",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "crop_region": {
+          "$port": "crop_region"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

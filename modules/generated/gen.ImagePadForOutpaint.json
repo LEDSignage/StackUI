@@ -1,0 +1,122 @@
+{
+  "id": "gen.ImagePadForOutpaint",
+  "name": "Pad Image for Outpainting",
+  "category": "ComfyUI / image/transform",
+  "description": "ImagePadForOutpaint",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "left",
+      "label": "Left",
+      "target": {
+        "node": "n",
+        "input": "left"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "top",
+      "label": "Top",
+      "target": {
+        "node": "n",
+        "input": "top"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "right",
+      "label": "Right",
+      "target": {
+        "node": "n",
+        "input": "right"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "bottom",
+      "label": "Bottom",
+      "target": {
+        "node": "n",
+        "input": "bottom"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "feathering",
+      "label": "Feathering",
+      "target": {
+        "node": "n",
+        "input": "feathering"
+      },
+      "type": "INT",
+      "default": 40,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImagePadForOutpaint",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "feathering": 40
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "left",
+    "top",
+    "right"
+  ]
+}

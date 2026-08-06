@@ -1,0 +1,46 @@
+{
+  "id": "gen.OpticalFlowLoader",
+  "name": "Load Optical Flow Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "OpticalFlowLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "optical_flow",
+      "type": "OPTICAL_FLOW"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "OpticalFlowLoader",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpticalFlowLoader",
+      "inputs": {
+        "model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "optical_flow": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

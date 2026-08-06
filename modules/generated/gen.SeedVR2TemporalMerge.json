@@ -1,0 +1,55 @@
+{
+  "id": "gen.SeedVR2TemporalMerge",
+  "name": "Merge SeedVR2 Latents",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "SeedVR2TemporalMerge — Recombine sampled SeedVR2 latent temporal chunks into one latent, crossfading each overlap with a Hann window sized by the temporal_overlap wired from Split SeedVR2 Latent.",
+  "inPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "temporal_overlap",
+      "label": "Temporal overlap",
+      "target": {
+        "node": "n",
+        "input": "temporal_overlap"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SeedVR2TemporalMerge",
+      "inputs": {
+        "latents": {
+          "$port": "latents"
+        },
+        "temporal_overlap": 0
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latents": "latent"
+  },
+  "summary": [
+    "temporal_overlap"
+  ]
+}

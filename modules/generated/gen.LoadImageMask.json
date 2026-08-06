@@ -1,0 +1,100 @@
+{
+  "id": "gen.LoadImageMask",
+  "name": "Load Image (as Mask)",
+  "category": "ComfyUI / image",
+  "description": "LoadImageMask",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "image",
+      "label": "Image",
+      "target": {
+        "node": "n",
+        "input": "image"
+      },
+      "type": "ENUM",
+      "default": "ChatGPT Image Jul 2, 2026, 03_09_38 PM.png",
+      "options": [
+        "ChatGPT Image Jul 2, 2026, 03_09_38 PM.png",
+        "ChatGPT Image Jul 3, 2026, 02_41_47 PM.png",
+        "Frame 4426.png",
+        "Frame 44261.png",
+        "Mountains.jpg",
+        "img_0c45df8c.png",
+        "img_1e61d65a.png",
+        "img_23025d6c.png",
+        "img_24e8e515.png",
+        "img_2c37380d.png",
+        "img_2e342d79.png",
+        "img_4aecf753.png",
+        "img_5b24a9e2.png",
+        "img_5cf734fe.png",
+        "img_692b0527.png",
+        "img_6a2f0ab3.png",
+        "img_6b91b892.png",
+        "img_6c536764.png",
+        "img_71ad24c8.png",
+        "img_736b1d26.png",
+        "img_7e934b6d.png",
+        "img_8d9a0032.png",
+        "img_9e33e582.png",
+        "img_9eb90f45.png",
+        "img_a021d2a8.png",
+        "img_a80040b7.png",
+        "img_ce082efb.png",
+        "img_e4ffb2a6.png",
+        "img_f55d05cc.png",
+        "volcano_frame1.png"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadImageMask",
+        "input": "image"
+      }
+    },
+    {
+      "name": "channel",
+      "label": "Channel",
+      "target": {
+        "node": "n",
+        "input": "channel"
+      },
+      "type": "ENUM",
+      "default": "alpha",
+      "options": [
+        "alpha",
+        "red",
+        "green",
+        "blue"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadImageMask",
+        "input": "channel"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadImageMask",
+      "inputs": {
+        "image": "ChatGPT Image Jul 2, 2026, 03_09_38 PM.png",
+        "channel": "alpha"
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "image",
+    "channel"
+  ]
+}

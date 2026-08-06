@@ -1,0 +1,46 @@
+{
+  "id": "gen.LoadLatent",
+  "name": "Load Latent",
+  "category": "ComfyUI / model/latent",
+  "description": "LoadLatent",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "latent",
+      "label": "Latent",
+      "target": {
+        "node": "n",
+        "input": "latent"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadLatent",
+        "input": "latent"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadLatent",
+      "inputs": {
+        "latent": ""
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "latent"
+  ]
+}

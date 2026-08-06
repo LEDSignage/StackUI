@@ -1,0 +1,132 @@
+{
+  "id": "gen.SAM3_Detect",
+  "name": "SAM3 Detect",
+  "category": "ComfyUI / image/detection",
+  "description": "SAM3_Detect",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING",
+      "optional": true
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "masks",
+      "type": "MASK"
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    }
+  ],
+  "params": [
+    {
+      "name": "threshold",
+      "label": "Threshold",
+      "target": {
+        "node": "n",
+        "input": "threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "refine_iterations",
+      "label": "Refine iterations",
+      "target": {
+        "node": "n",
+        "input": "refine_iterations"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 0,
+      "max": 5
+    },
+    {
+      "name": "individual_masks",
+      "label": "Individual masks",
+      "target": {
+        "node": "n",
+        "input": "individual_masks"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "positive_coords",
+      "label": "Positive coords",
+      "target": {
+        "node": "n",
+        "input": "positive_coords"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "negative_coords",
+      "label": "Negative coords",
+      "target": {
+        "node": "n",
+        "input": "negative_coords"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SAM3_Detect",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "threshold": 0.5,
+        "refine_iterations": 2,
+        "individual_masks": false,
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "bboxes": {
+          "$port": "bboxes"
+        },
+        "positive_coords": "",
+        "negative_coords": ""
+      }
+    }
+  },
+  "outputs": {
+    "masks": {
+      "node": "n",
+      "out": 0
+    },
+    "bboxes": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "threshold",
+    "refine_iterations",
+    "individual_masks"
+  ]
+}

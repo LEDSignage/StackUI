@@ -1,0 +1,60 @@
+{
+  "id": "gen.ComfySwitchNode",
+  "name": "If/Else Switch",
+  "category": "ComfyUI / utilities/logic",
+  "description": "ComfySwitchNode",
+  "inPorts": [
+    {
+      "name": "on_false",
+      "type": "COMFY_MATCHTYPE_V3"
+    },
+    {
+      "name": "on_true",
+      "type": "COMFY_MATCHTYPE_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "output",
+      "type": "COMFY_MATCHTYPE_V3"
+    }
+  ],
+  "params": [
+    {
+      "name": "switch",
+      "label": "Switch",
+      "target": {
+        "node": "n",
+        "input": "switch"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ComfySwitchNode",
+      "inputs": {
+        "switch": false,
+        "on_false": {
+          "$port": "on_false"
+        },
+        "on_true": {
+          "$port": "on_true"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "output": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "on_false": "output"
+  },
+  "summary": [
+    "switch"
+  ]
+}

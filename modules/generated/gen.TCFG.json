@@ -1,0 +1,38 @@
+{
+  "id": "gen.TCFG",
+  "name": "Tangential Damping CFG",
+  "category": "ComfyUI / advanced/guidance",
+  "description": "TCFG — TCFG – Tangential Damping CFG (2503.18137)",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "patched_model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "TCFG",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "patched_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "patched_model"
+  }
+}

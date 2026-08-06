@@ -1,0 +1,46 @@
+{
+  "id": "gen.FrameInterpolationModelLoader",
+  "name": "Load Frame Interpolation Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "FrameInterpolationModelLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "interp_model",
+      "type": "INTERP_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "FrameInterpolationModelLoader",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FrameInterpolationModelLoader",
+      "inputs": {
+        "model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "interp_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

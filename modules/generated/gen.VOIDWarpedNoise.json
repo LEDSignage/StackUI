@@ -1,0 +1,103 @@
+{
+  "id": "gen.VOIDWarpedNoise",
+  "name": "VOIDWarpedNoise",
+  "category": "ComfyUI / model/latent/void",
+  "description": "VOIDWarpedNoise",
+  "inPorts": [
+    {
+      "name": "optical_flow",
+      "type": "OPTICAL_FLOW"
+    },
+    {
+      "name": "video",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "warped_noise",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 672,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 384,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 45,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VOIDWarpedNoise",
+      "inputs": {
+        "optical_flow": {
+          "$port": "optical_flow"
+        },
+        "video": {
+          "$port": "video"
+        },
+        "width": 672,
+        "height": 384,
+        "length": 45,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "warped_noise": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

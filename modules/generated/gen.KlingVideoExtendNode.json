@@ -1,0 +1,97 @@
+{
+  "id": "gen.KlingVideoExtendNode",
+  "name": "Kling Video Extend",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingVideoExtendNode — Kling Video Extend Node. Extend videos made by other Kling nodes. The video_id is created by using other Kling Nodes.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "video_id",
+      "type": "STRING"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "cfg_scale",
+      "label": "Cfg scale",
+      "target": {
+        "node": "n",
+        "input": "cfg_scale"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "video_id",
+      "label": "Video id",
+      "target": {
+        "node": "n",
+        "input": "video_id"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingVideoExtendNode",
+      "inputs": {
+        "prompt": "",
+        "negative_prompt": "",
+        "cfg_scale": 0.5,
+        "video_id": ""
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "video_id": {
+      "node": "n",
+      "out": 1
+    },
+    "duration": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "cfg_scale"
+  ]
+}

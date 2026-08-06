@@ -1,0 +1,93 @@
+{
+  "id": "gen.LatentComposite",
+  "name": "Latent Composite",
+  "category": "ComfyUI / model/latent",
+  "description": "LatentComposite",
+  "inPorts": [
+    {
+      "name": "samples_to",
+      "type": "LATENT"
+    },
+    {
+      "name": "samples_from",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "feather",
+      "label": "Feather",
+      "target": {
+        "node": "n",
+        "input": "feather"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentComposite",
+      "inputs": {
+        "samples_to": {
+          "$port": "samples_to"
+        },
+        "samples_from": {
+          "$port": "samples_from"
+        },
+        "x": 0,
+        "y": 0,
+        "feather": 0
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples_to": "latent"
+  },
+  "summary": [
+    "x",
+    "y",
+    "feather"
+  ]
+}

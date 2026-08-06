@@ -1,0 +1,142 @@
+{
+  "id": "gen.HunyuanImageToVideo",
+  "name": "HunyuanImageToVideo",
+  "category": "ComfyUI / model/conditioning/hunyuan video",
+  "description": "HunyuanImageToVideo",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 848,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 53,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "guidance_type",
+      "label": "Guidance type",
+      "target": {
+        "node": "n",
+        "input": "guidance_type"
+      },
+      "type": "ENUM",
+      "default": "v1 (concat)",
+      "options": [
+        "v1 (concat)",
+        "v2 (replace)",
+        "custom"
+      ],
+      "optionsFrom": {
+        "class_type": "HunyuanImageToVideo",
+        "input": "guidance_type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HunyuanImageToVideo",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 848,
+        "height": 480,
+        "length": 53,
+        "batch_size": 1,
+        "guidance_type": "v1 (concat)",
+        "start_image": {
+          "$port": "start_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "latent": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "positive": "positive"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

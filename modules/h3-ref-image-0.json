@@ -1,0 +1,42 @@
+{
+  "id": "h3-ref-image-0",
+  "name": "Reference image 1",
+  "category": "load",
+  "description": "LoadImage published as ref_image_0, for MiniMax H3's reference slot 1.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "ref_image_0",
+      "type": "IMAGE"
+    }
+  ],
+  "outputs": {
+    "ref_image_0": {
+      "node": "li",
+      "out": 0
+    }
+  },
+  "summary": [
+    "image"
+  ],
+  "params": [
+    {
+      "name": "image",
+      "label": "Reference 1",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": {
+        "node": "li",
+        "input": "image"
+      }
+    }
+  ],
+  "nodes": {
+    "li": {
+      "class_type": "LoadImage",
+      "inputs": {
+        "image": ""
+      }
+    }
+  }
+}

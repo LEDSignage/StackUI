@@ -1,0 +1,69 @@
+{
+  "id": "gen.StringReplace",
+  "name": "Replace Text",
+  "category": "ComfyUI / text",
+  "description": "StringReplace",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "find",
+      "label": "Find",
+      "target": {
+        "node": "n",
+        "input": "find"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "replace",
+      "label": "Replace",
+      "target": {
+        "node": "n",
+        "input": "replace"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringReplace",
+      "inputs": {
+        "string": "",
+        "find": "",
+        "replace": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "find",
+    "replace"
+  ]
+}

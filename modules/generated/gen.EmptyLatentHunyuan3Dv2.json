@@ -1,0 +1,58 @@
+{
+  "id": "gen.EmptyLatentHunyuan3Dv2",
+  "name": "EmptyLatentHunyuan3Dv2",
+  "category": "ComfyUI / model/latent/hunyuan 3d",
+  "description": "EmptyLatentHunyuan3Dv2",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "INT",
+      "default": 3072,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyLatentHunyuan3Dv2",
+      "inputs": {
+        "resolution": 3072,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "resolution",
+    "batch_size"
+  ]
+}

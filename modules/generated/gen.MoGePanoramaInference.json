@@ -1,0 +1,100 @@
+{
+  "id": "gen.MoGePanoramaInference",
+  "name": "Run MoGe Panorama Inference",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "MoGePanoramaInference — Run MoGe on an equirectangular panorama by splitting it into 12 perspective views, running inference on each, and merging the results into a single depth map.",
+  "inPorts": [
+    {
+      "name": "moge_model",
+      "type": "MOGE_MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "moge_geometry",
+      "type": "MOGE_GEOMETRY"
+    }
+  ],
+  "params": [
+    {
+      "name": "resolution_level",
+      "label": "Resolution level",
+      "target": {
+        "node": "n",
+        "input": "resolution_level"
+      },
+      "type": "INT",
+      "default": 9,
+      "min": 0,
+      "max": 9
+    },
+    {
+      "name": "split_resolution",
+      "label": "Split resolution",
+      "target": {
+        "node": "n",
+        "input": "split_resolution"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 256,
+      "max": 1024
+    },
+    {
+      "name": "merge_resolution",
+      "label": "Merge resolution",
+      "target": {
+        "node": "n",
+        "input": "merge_resolution"
+      },
+      "type": "INT",
+      "default": 1920,
+      "min": 256,
+      "max": 8192
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 12
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MoGePanoramaInference",
+      "inputs": {
+        "moge_model": {
+          "$port": "moge_model"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "resolution_level": 9,
+        "split_resolution": 512,
+        "merge_resolution": 1920,
+        "batch_size": 4
+      }
+    }
+  },
+  "outputs": {
+    "moge_geometry": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "resolution_level",
+    "split_resolution",
+    "merge_resolution"
+  ]
+}

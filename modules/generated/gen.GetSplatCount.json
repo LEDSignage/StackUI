@@ -1,0 +1,46 @@
+{
+  "id": "gen.GetSplatCount",
+  "name": "Get Splat Count",
+  "category": "ComfyUI / 3d/splat",
+  "description": "GetSplatCount — Returns the number of splats summed across the batch.",
+  "inPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    },
+    {
+      "name": "count",
+      "type": "INT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "GetSplatCount",
+      "inputs": {
+        "splat": {
+          "$port": "splat"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "splat": {
+      "node": "n",
+      "out": 0
+    },
+    "count": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "splat": "splat"
+  }
+}

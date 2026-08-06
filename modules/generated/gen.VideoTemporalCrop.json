@@ -1,0 +1,69 @@
+{
+  "id": "gen.VideoTemporalCrop",
+  "name": "Crop Video (Temporal)",
+  "category": "ComfyUI / video/transform",
+  "description": "VideoTemporalCrop — Crop a continuous range of frames from a video.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_frame",
+      "label": "Start frame",
+      "target": {
+        "node": "n",
+        "input": "start_frame"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 99999
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 99999
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VideoTemporalCrop",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "start_frame": 0,
+        "length": 16
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "start_frame",
+    "length"
+  ]
+}

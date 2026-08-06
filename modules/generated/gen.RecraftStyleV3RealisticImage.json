@@ -1,0 +1,68 @@
+{
+  "id": "gen.RecraftStyleV3RealisticImage",
+  "name": "Recraft Style - Realistic Image",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftStyleV3RealisticImage — Select realistic_image style and optional substyle.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "recraft_style",
+      "type": "RECRAFT_V3_STYLE"
+    }
+  ],
+  "params": [
+    {
+      "name": "substyle",
+      "label": "Substyle",
+      "target": {
+        "node": "n",
+        "input": "substyle"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "b_and_w",
+        "enterprise",
+        "evening_light",
+        "faded_nostalgia",
+        "forest_life",
+        "hard_flash",
+        "hdr",
+        "motion_blur",
+        "mystic_naturalism",
+        "natural_light",
+        "natural_tones",
+        "organic_calm",
+        "real_life_glow",
+        "retro_realism",
+        "retro_snapshot",
+        "studio_portrait",
+        "urban_drama",
+        "village_realism",
+        "warm_folk"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftStyleV3RealisticImage",
+        "input": "substyle"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftStyleV3RealisticImage",
+      "inputs": {
+        "substyle": "None"
+      }
+    }
+  },
+  "outputs": {
+    "recraft_style": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "substyle"
+  ]
+}

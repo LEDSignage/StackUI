@@ -1,0 +1,69 @@
+{
+  "id": "gen.NormalizeImages",
+  "name": "Normalize Image Colors",
+  "category": "ComfyUI / image/color",
+  "description": "NormalizeImages — Normalize images using mean and standard deviation.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "mean",
+      "label": "Mean",
+      "target": {
+        "node": "n",
+        "input": "mean"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "std",
+      "label": "Std",
+      "target": {
+        "node": "n",
+        "input": "std"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0.001,
+      "max": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "NormalizeImages",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "mean": 0.5,
+        "std": 0.5
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "mean",
+    "std"
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "id": "gen.ByteDanceSeedAudio",
+  "name": "ByteDance Seed Audio 1.0",
+  "category": "ComfyUI / partner/audio/ByteDance",
+  "description": "ByteDanceSeedAudio — Generate speech, music, sound effects and multi-speaker dialogue from a single prompt with ByteDance Seed Audio 1.0. Describe the voice(s), emotion, ambience, background music and sound effects in the prompt, and include the lines to speak. Optionally pick a built-in preset voice, clone voices from up to 3 reference clips (tagged @Audio1-3 in the prompt), or derive a voice from a character image. Up to 2 minutes of audio per run. The multilingual model supports 20 languages and timestamp-based timing control.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "text_prompt",
+      "label": "Text prompt",
+      "target": {
+        "node": "n",
+        "input": "text_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "reference_mode",
+      "label": "Reference mode",
+      "target": {
+        "node": "n",
+        "input": "reference_mode"
+      },
+      "type": "ENUM",
+      "default": "text only",
+      "options": [
+        "text only",
+        "audio reference",
+        "image reference",
+        "preset voice"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceSeedAudio",
+        "input": "reference_mode"
+      }
+    },
+    {
+      "name": "sample_rate",
+      "label": "Sample rate",
+      "target": {
+        "node": "n",
+        "input": "sample_rate"
+      },
+      "type": "ENUM",
+      "default": "24000",
+      "options": [
+        "8000",
+        "16000",
+        "24000",
+        "32000",
+        "44100",
+        "48000"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceSeedAudio",
+        "input": "sample_rate"
+      }
+    },
+    {
+      "name": "speech_rate",
+      "label": "Speech rate",
+      "target": {
+        "node": "n",
+        "input": "speech_rate"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -50,
+      "max": 100
+    },
+    {
+      "name": "loudness_rate",
+      "label": "Loudness rate",
+      "target": {
+        "node": "n",
+        "input": "loudness_rate"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -50,
+      "max": 100
+    },
+    {
+      "name": "pitch_rate",
+      "label": "Pitch rate",
+      "target": {
+        "node": "n",
+        "input": "pitch_rate"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -12,
+      "max": 12
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "seed-audio-1.0-multilingual",
+      "options": [
+        "seed-audio-1.0-multilingual",
+        "seed-audio-1.0"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceSeedAudio",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDanceSeedAudio",
+      "inputs": {
+        "text_prompt": "",
+        "reference_mode": "text only",
+        "sample_rate": "24000",
+        "speech_rate": 0,
+        "loudness_rate": 0,
+        "pitch_rate": 0,
+        "seed": 42,
+        "model": "seed-audio-1.0-multilingual"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text_prompt",
+    "reference_mode",
+    "sample_rate"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "gen.CLIPTextEncodeSD3",
+  "name": "CLIP Text Encode (SD3)",
+  "category": "ComfyUI / model/conditioning/stable diffusion",
+  "description": "CLIPTextEncodeSD3",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_l",
+      "label": "Clip l",
+      "target": {
+        "node": "n",
+        "input": "clip_l"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "clip_g",
+      "label": "Clip g",
+      "target": {
+        "node": "n",
+        "input": "clip_g"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "t5xxl",
+      "label": "T5xxl",
+      "target": {
+        "node": "n",
+        "input": "t5xxl"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "empty_padding",
+      "label": "Empty padding",
+      "target": {
+        "node": "n",
+        "input": "empty_padding"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none",
+        "empty_prompt"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPTextEncodeSD3",
+        "input": "empty_padding"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeSD3",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "clip_l": "",
+        "clip_g": "",
+        "t5xxl": "",
+        "empty_padding": "none"
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_l",
+    "clip_g",
+    "t5xxl"
+  ]
+}

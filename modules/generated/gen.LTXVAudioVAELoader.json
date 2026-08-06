@@ -1,0 +1,49 @@
+{
+  "id": "gen.LTXVAudioVAELoader",
+  "name": "Load LTXV Audio VAE",
+  "category": "ComfyUI / model/loaders",
+  "description": "LTXVAudioVAELoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "ckpt_name",
+      "label": "Ckpt name",
+      "target": {
+        "node": "n",
+        "input": "ckpt_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-22b-dev-fp8.safetensors",
+      "options": [
+        "ltx-2.3-22b-dev-fp8.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "LTXVAudioVAELoader",
+        "input": "ckpt_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVAudioVAELoader",
+      "inputs": {
+        "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "audio_vae": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "ckpt_name"
+  ]
+}

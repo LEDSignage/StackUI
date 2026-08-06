@@ -1,0 +1,144 @@
+{
+  "id": "gen.TripoP1ImageToModelNode",
+  "name": "Tripo P1: Image to Model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoP1ImageToModelNode — Tripo P1 image-to-3D. Optimized for low-poly, game-ready meshes.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [
+    {
+      "name": "output_mode",
+      "label": "Output mode",
+      "target": {
+        "node": "n",
+        "input": "output_mode"
+      },
+      "type": "ENUM",
+      "default": "Geometry only",
+      "options": [
+        "Geometry only",
+        "Textured"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoP1ImageToModelNode",
+        "input": "output_mode"
+      }
+    },
+    {
+      "name": "enable_image_autofix",
+      "label": "Enable image autofix",
+      "target": {
+        "node": "n",
+        "input": "enable_image_autofix"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "face_limit",
+      "label": "Face limit",
+      "target": {
+        "node": "n",
+        "input": "face_limit"
+      },
+      "type": "INT",
+      "default": -1,
+      "min": -1,
+      "max": 20000
+    },
+    {
+      "name": "model_seed",
+      "label": "Model seed",
+      "target": {
+        "node": "n",
+        "input": "model_seed"
+      },
+      "type": "INT",
+      "default": 42
+    },
+    {
+      "name": "auto_size",
+      "label": "Auto size",
+      "target": {
+        "node": "n",
+        "input": "auto_size"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "export_uv",
+      "label": "Export uv",
+      "target": {
+        "node": "n",
+        "input": "export_uv"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "compress_geometry",
+      "label": "Compress geometry",
+      "target": {
+        "node": "n",
+        "input": "compress_geometry"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoP1ImageToModelNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "output_mode": "Geometry only",
+        "enable_image_autofix": false,
+        "face_limit": -1,
+        "model_seed": 42,
+        "auto_size": false,
+        "export_uv": true,
+        "compress_geometry": false
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "model_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "output_mode",
+    "enable_image_autofix",
+    "face_limit"
+  ]
+}

@@ -1,0 +1,146 @@
+{
+  "id": "gen.HiDreamO1PatchSeamSmoothing",
+  "name": "HiDream-O1 Patch Seam Smoothing",
+  "category": "ComfyUI / model/patch/hidream",
+  "description": "HiDreamO1PatchSeamSmoothing — Average the model output across multiple shifted patch-grid positions during the late portion of sampling. Cancels seams.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.8,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "pattern",
+      "label": "Pattern",
+      "target": {
+        "node": "n",
+        "input": "pattern"
+      },
+      "type": "ENUM",
+      "default": "single_shift",
+      "options": [
+        "single_shift",
+        "symmetric"
+      ],
+      "optionsFrom": {
+        "class_type": "HiDreamO1PatchSeamSmoothing",
+        "input": "pattern"
+      }
+    },
+    {
+      "name": "passes",
+      "label": "Passes",
+      "target": {
+        "node": "n",
+        "input": "passes"
+      },
+      "type": "ENUM",
+      "default": "2",
+      "options": [
+        "2",
+        "4",
+        "ramp_2_4",
+        "ramp_2_4_8"
+      ],
+      "optionsFrom": {
+        "class_type": "HiDreamO1PatchSeamSmoothing",
+        "input": "passes"
+      }
+    },
+    {
+      "name": "blend",
+      "label": "Blend",
+      "target": {
+        "node": "n",
+        "input": "blend"
+      },
+      "type": "ENUM",
+      "default": "average",
+      "options": [
+        "average",
+        "window",
+        "median"
+      ],
+      "optionsFrom": {
+        "class_type": "HiDreamO1PatchSeamSmoothing",
+        "input": "blend"
+      }
+    },
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HiDreamO1PatchSeamSmoothing",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "start_percent": 0.8,
+        "end_percent": 1,
+        "pattern": "single_shift",
+        "passes": "2",
+        "blend": "average",
+        "strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "start_percent",
+    "end_percent",
+    "pattern"
+  ]
+}

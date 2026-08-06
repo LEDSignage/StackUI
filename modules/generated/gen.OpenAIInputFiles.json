@@ -1,0 +1,55 @@
+{
+  "id": "gen.OpenAIInputFiles",
+  "name": "OpenAI ChatGPT Input Files",
+  "category": "ComfyUI / partner/text/OpenAI",
+  "description": "OpenAIInputFiles — Loads and prepares input files (text, pdf, etc.) to include as inputs for the OpenAI Chat Node. The files will be read by the OpenAI model when generating a response. 🛈 TIP: Can be chained together with other OpenAI Input File nodes.",
+  "inPorts": [
+    {
+      "name": "openai_input_files",
+      "type": "OPENAI_INPUT_FILES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "openai_input_files",
+      "type": "OPENAI_INPUT_FILES"
+    }
+  ],
+  "params": [
+    {
+      "name": "file",
+      "label": "File",
+      "target": {
+        "node": "n",
+        "input": "file"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "OpenAIInputFiles",
+        "input": "file"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenAIInputFiles",
+      "inputs": {
+        "file": "",
+        "OPENAI_INPUT_FILES": {
+          "$port": "openai_input_files"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "openai_input_files": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "file"
+  ]
+}

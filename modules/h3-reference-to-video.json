@@ -1,0 +1,249 @@
+{
+  "id": "h3-reference-to-video",
+  "name": "H3 Omni Reference",
+  "category": "conditioning",
+  "description": "MiniMaxH3ReferenceToVideo — MiniMax call this Omni Reference. References describe what things look and sound like; they are not placed at any point in the clip. Up to 9 images, 3 video clips and 3 audio clips, but no more than 12 files in total.",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    },
+    {
+      "name": "ref_image_0",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_1",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_2",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_3",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_4",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_5",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_6",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_7",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_image_8",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_video_0",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_video_1",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_video_2",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "ref_audio_0",
+      "type": "AUDIO",
+      "optional": true
+    },
+    {
+      "name": "ref_audio_1",
+      "type": "AUDIO",
+      "optional": true
+    },
+    {
+      "name": "ref_audio_2",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outputs": {
+    "positive": {
+      "node": "r",
+      "out": 0
+    },
+    "latent": {
+      "node": "r",
+      "out": 1
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "type": "STRING",
+      "multiline": true,
+      "default": "",
+      "target": {
+        "node": "r",
+        "input": "prompt"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "type": "INT",
+      "default": 1344,
+      "min": 64,
+      "step": 16,
+      "target": {
+        "node": "r",
+        "input": "width"
+      }
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "type": "INT",
+      "default": 768,
+      "min": 64,
+      "step": 16,
+      "target": {
+        "node": "r",
+        "input": "height"
+      }
+    },
+    {
+      "name": "length",
+      "label": "Frames",
+      "type": "INT",
+      "default": 124,
+      "min": 5,
+      "step": 17,
+      "target": {
+        "node": "r",
+        "input": "length"
+      }
+    },
+    {
+      "name": "ref_image_size",
+      "label": "Reference size",
+      "type": "ENUM",
+      "default": "match",
+      "optionsFrom": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "input": "ref_image_size"
+      },
+      "target": {
+        "node": "r",
+        "input": "ref_image_size"
+      }
+    }
+  ],
+  "nodes": {
+    "r": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "audio_vae": {
+          "$port": "audio_vae"
+        },
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "ref_image_size": "match",
+        "ref_images.ref_image_0": {
+          "$port": "ref_image_0"
+        },
+        "ref_images.ref_image_1": {
+          "$port": "ref_image_1"
+        },
+        "ref_images.ref_image_2": {
+          "$port": "ref_image_2"
+        },
+        "ref_images.ref_image_3": {
+          "$port": "ref_image_3"
+        },
+        "ref_images.ref_image_4": {
+          "$port": "ref_image_4"
+        },
+        "ref_images.ref_image_5": {
+          "$port": "ref_image_5"
+        },
+        "ref_images.ref_image_6": {
+          "$port": "ref_image_6"
+        },
+        "ref_images.ref_image_7": {
+          "$port": "ref_image_7"
+        },
+        "ref_images.ref_image_8": {
+          "$port": "ref_image_8"
+        },
+        "ref_videos.ref_video_0": {
+          "$port": "ref_video_0"
+        },
+        "ref_videos.ref_video_1": {
+          "$port": "ref_video_1"
+        },
+        "ref_videos.ref_video_2": {
+          "$port": "ref_video_2"
+        },
+        "ref_audios.ref_audio_0": {
+          "$port": "ref_audio_0"
+        },
+        "ref_audios.ref_audio_1": {
+          "$port": "ref_audio_1"
+        },
+        "ref_audios.ref_audio_2": {
+          "$port": "ref_audio_2"
+        }
+      }
+    }
+  }
+}

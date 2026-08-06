@@ -1,0 +1,43 @@
+{
+  "id": "gen.PrimitiveStringMultiline",
+  "name": "Text (Multiline)",
+  "category": "ComfyUI / utilities/primitive",
+  "description": "PrimitiveStringMultiline",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "value",
+      "label": "Value",
+      "target": {
+        "node": "n",
+        "input": "value"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PrimitiveStringMultiline",
+      "inputs": {
+        "value": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "value"
+  ]
+}

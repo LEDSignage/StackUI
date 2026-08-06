@@ -1,0 +1,100 @@
+{
+  "id": "gen.FeatherMask",
+  "name": "Feather Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "FeatherMask",
+  "inPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "left",
+      "label": "Left",
+      "target": {
+        "node": "n",
+        "input": "left"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "top",
+      "label": "Top",
+      "target": {
+        "node": "n",
+        "input": "top"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "right",
+      "label": "Right",
+      "target": {
+        "node": "n",
+        "input": "right"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "bottom",
+      "label": "Bottom",
+      "target": {
+        "node": "n",
+        "input": "bottom"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FeatherMask",
+      "inputs": {
+        "mask": {
+          "$port": "mask"
+        },
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "mask": "mask"
+  },
+  "summary": [
+    "left",
+    "top",
+    "right"
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": "gen.ARVideoI2V",
+  "name": "ARVideoI2V",
+  "category": "ComfyUI / model/conditioning/autoregressive",
+  "description": "ARVideoI2V",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 1024,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ARVideoI2V",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "start_image": {
+          "$port": "start_image"
+        },
+        "width": 832,
+        "height": 480,
+        "length": 81,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "latent": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

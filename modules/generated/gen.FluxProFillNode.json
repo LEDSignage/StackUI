@@ -1,0 +1,112 @@
+{
+  "id": "gen.FluxProFillNode",
+  "name": "Flux.1 Fill Image",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "FluxProFillNode — Inpaints image based on mask and prompt.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "prompt_upsampling",
+      "label": "Prompt upsampling",
+      "target": {
+        "node": "n",
+        "input": "prompt_upsampling"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "guidance",
+      "label": "Guidance",
+      "target": {
+        "node": "n",
+        "input": "guidance"
+      },
+      "type": "FLOAT",
+      "default": 60,
+      "min": 1.5,
+      "max": 100
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 50,
+      "min": 15,
+      "max": 50
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxProFillNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "prompt": "",
+        "prompt_upsampling": false,
+        "guidance": 60,
+        "steps": 50,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "prompt",
+    "prompt_upsampling",
+    "guidance"
+  ]
+}

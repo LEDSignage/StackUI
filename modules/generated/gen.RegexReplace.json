@@ -1,0 +1,115 @@
+{
+  "id": "gen.RegexReplace",
+  "name": "Replace Text (Regex)",
+  "category": "ComfyUI / text",
+  "description": "RegexReplace — Find and replace text using regex patterns.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "regex_pattern",
+      "label": "Regex pattern",
+      "target": {
+        "node": "n",
+        "input": "regex_pattern"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "replace",
+      "label": "Replace",
+      "target": {
+        "node": "n",
+        "input": "replace"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "case_insensitive",
+      "label": "Case insensitive",
+      "target": {
+        "node": "n",
+        "input": "case_insensitive"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "multiline",
+      "label": "Multiline",
+      "target": {
+        "node": "n",
+        "input": "multiline"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "dotall",
+      "label": "Dotall",
+      "target": {
+        "node": "n",
+        "input": "dotall"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "count",
+      "label": "Count",
+      "target": {
+        "node": "n",
+        "input": "count"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RegexReplace",
+      "inputs": {
+        "string": "",
+        "regex_pattern": "",
+        "replace": "",
+        "case_insensitive": true,
+        "multiline": false,
+        "dotall": false,
+        "count": 0
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "regex_pattern",
+    "replace"
+  ]
+}

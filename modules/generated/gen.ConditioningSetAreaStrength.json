@@ -1,0 +1,56 @@
+{
+  "id": "gen.ConditioningSetAreaStrength",
+  "name": "Conditioning (Set Area Strength)",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningSetAreaStrength",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningSetAreaStrength",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "strength"
+  ]
+}

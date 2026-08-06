@@ -1,0 +1,69 @@
+{
+  "id": "gen.MeshyAnimateModelNode",
+  "name": "Meshy: Animate Model",
+  "category": "ComfyUI / partner/3d/Meshy",
+  "description": "MeshyAnimateModelNode — Apply a specific animation action to a previously rigged character.",
+  "inPorts": [
+    {
+      "name": "rig_task_id",
+      "type": "MESHY_RIGGED_TASK_ID"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    },
+    {
+      "name": "fbx",
+      "type": "FILE_3D_FBX"
+    }
+  ],
+  "params": [
+    {
+      "name": "action_id",
+      "label": "Action id",
+      "target": {
+        "node": "n",
+        "input": "action_id"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 696
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MeshyAnimateModelNode",
+      "inputs": {
+        "rig_task_id": {
+          "$port": "rig_task_id"
+        },
+        "action_id": 0
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "glb": {
+      "node": "n",
+      "out": 1
+    },
+    "fbx": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "action_id"
+  ]
+}

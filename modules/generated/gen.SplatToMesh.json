@@ -1,0 +1,137 @@
+{
+  "id": "gen.SplatToMesh",
+  "name": "Extract Mesh from Splat",
+  "category": "ComfyUI / 3d/splat",
+  "description": "SplatToMesh — Extract a coloured mesh from a gaussian splat.",
+  "inPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mesh",
+      "type": "MESH"
+    }
+  ],
+  "params": [
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "INT",
+      "default": 384,
+      "min": 64,
+      "max": 768,
+      "step": 16
+    },
+    {
+      "name": "kernel",
+      "label": "Kernel",
+      "target": {
+        "node": "n",
+        "input": "kernel"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 8
+    },
+    {
+      "name": "smooth",
+      "label": "Smooth",
+      "target": {
+        "node": "n",
+        "input": "smooth"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 60
+    },
+    {
+      "name": "level",
+      "label": "Level",
+      "target": {
+        "node": "n",
+        "input": "level"
+      },
+      "type": "FLOAT",
+      "default": 0.4,
+      "min": 0,
+      "max": 2,
+      "step": 0.01
+    },
+    {
+      "name": "min_component",
+      "label": "Min component",
+      "target": {
+        "node": "n",
+        "input": "min_component"
+      },
+      "type": "INT",
+      "default": 500,
+      "min": 0,
+      "max": 100000,
+      "step": 50
+    },
+    {
+      "name": "min_opacity",
+      "label": "Min opacity",
+      "target": {
+        "node": "n",
+        "input": "min_opacity"
+      },
+      "type": "FLOAT",
+      "default": 0.02,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "color_sharpen",
+      "label": "Color sharpen",
+      "target": {
+        "node": "n",
+        "input": "color_sharpen"
+      },
+      "type": "FLOAT",
+      "default": 2,
+      "min": 1,
+      "max": 8,
+      "step": 0.5
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SplatToMesh",
+      "inputs": {
+        "splat": {
+          "$port": "splat"
+        },
+        "resolution": 384,
+        "kernel": 5,
+        "smooth": 0,
+        "level": 0.4,
+        "min_component": 500,
+        "min_opacity": 0.02,
+        "color_sharpen": 2
+      }
+    }
+  },
+  "outputs": {
+    "mesh": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "resolution",
+    "kernel",
+    "smooth"
+  ]
+}

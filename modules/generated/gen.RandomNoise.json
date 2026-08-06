@@ -1,0 +1,43 @@
+{
+  "id": "gen.RandomNoise",
+  "name": "RandomNoise",
+  "category": "ComfyUI / model/sampling/noise",
+  "description": "RandomNoise",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "noise",
+      "type": "NOISE"
+    }
+  ],
+  "params": [
+    {
+      "name": "noise_seed",
+      "label": "Noise seed",
+      "target": {
+        "node": "n",
+        "input": "noise_seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RandomNoise",
+      "inputs": {
+        "noise_seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "noise": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "noise_seed"
+  ]
+}

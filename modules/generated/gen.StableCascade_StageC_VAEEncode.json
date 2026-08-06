@@ -1,0 +1,68 @@
+{
+  "id": "gen.StableCascade_StageC_VAEEncode",
+  "name": "StableCascade_StageC_VAEEncode",
+  "category": "ComfyUI / model/latent/stable cascade",
+  "description": "StableCascade_StageC_VAEEncode",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "stage_c",
+      "type": "LATENT"
+    },
+    {
+      "name": "stage_b",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "compression",
+      "label": "Compression",
+      "target": {
+        "node": "n",
+        "input": "compression"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 4,
+      "max": 128,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StableCascade_StageC_VAEEncode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "compression": 42
+      }
+    }
+  },
+  "outputs": {
+    "stage_c": {
+      "node": "n",
+      "out": 0
+    },
+    "stage_b": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "compression"
+  ]
+}

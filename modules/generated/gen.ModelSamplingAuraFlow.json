@@ -1,0 +1,56 @@
+{
+  "id": "gen.ModelSamplingAuraFlow",
+  "name": "ModelSamplingAuraFlow",
+  "category": "ComfyUI / model/patch",
+  "description": "ModelSamplingAuraFlow",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "shift",
+      "label": "Shift",
+      "target": {
+        "node": "n",
+        "input": "shift"
+      },
+      "type": "FLOAT",
+      "default": 1.73,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingAuraFlow",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "shift": 1.73
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "shift"
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "id": "canvas-sd3",
+  "name": "Canvas (SD3)",
+  "category": "latent",
+  "description": "EmptySD3LatentImage — the 16-channel latent that Z-Image, SD3 and Flux want.",
+  "inPorts": [],
+  "outPorts": [{ "name": "latent", "type": "LATENT" }],
+  "outputs": { "latent": { "node": "empty" } },
+  "summary": ["width", "height", "batch_size"],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "type": "INT",
+      "default": 1360,
+      "min": 16,
+      "max": 8192,
+      "step": 8,
+      "target": { "node": "empty", "input": "width" }
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "type": "INT",
+      "default": 768,
+      "min": 16,
+      "max": 8192,
+      "step": 8,
+      "target": { "node": "empty", "input": "height" }
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch",
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64,
+      "target": { "node": "empty", "input": "batch_size" }
+    }
+  ],
+  "nodes": {
+    "empty": {
+      "class_type": "EmptySD3LatentImage",
+      "inputs": { "width": 1360, "height": 768, "batch_size": 1 }
+    }
+  }
+}

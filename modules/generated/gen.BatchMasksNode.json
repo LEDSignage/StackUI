@@ -1,0 +1,35 @@
+{
+  "id": "gen.BatchMasksNode",
+  "name": "Batch Masks",
+  "category": "ComfyUI / image/mask",
+  "description": "BatchMasksNode",
+  "inPorts": [
+    {
+      "name": "masks",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "BatchMasksNode",
+      "inputs": {
+        "masks": {
+          "$port": "masks"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

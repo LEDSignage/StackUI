@@ -1,0 +1,123 @@
+{
+  "id": "gen.OpenAIVideoSora2",
+  "name": "OpenAI Sora - Video (DEPRECATED)",
+  "category": "ComfyUI / partner/video/Sora",
+  "description": "OpenAIVideoSora2 — OpenAI video and audio generation.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "sora-2",
+      "options": [
+        "sora-2",
+        "sora-2-pro"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIVideoSora2",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "target": {
+        "node": "n",
+        "input": "size"
+      },
+      "type": "ENUM",
+      "default": "1280x720",
+      "options": [
+        "720x1280",
+        "1280x720",
+        "1024x1792",
+        "1792x1024"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIVideoSora2",
+        "input": "size"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": 8,
+      "optionsFrom": {
+        "class_type": "OpenAIVideoSora2",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenAIVideoSora2",
+      "inputs": {
+        "model": "sora-2",
+        "prompt": "",
+        "size": "1280x720",
+        "duration": 8,
+        "image": {
+          "$port": "image"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "size"
+  ]
+}

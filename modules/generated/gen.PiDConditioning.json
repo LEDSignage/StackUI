@@ -1,0 +1,85 @@
+{
+  "id": "gen.PiDConditioning",
+  "name": "PiD Conditioning",
+  "category": "ComfyUI / model/conditioning",
+  "description": "PiDConditioning — Attaches a latent and a degrade_sigma scalar to a CONDITIONING for PiD decoding/upscaling",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "latent_format",
+      "label": "Latent format",
+      "target": {
+        "node": "n",
+        "input": "latent_format"
+      },
+      "type": "ENUM",
+      "default": "flux",
+      "options": [
+        "flux",
+        "sd3",
+        "sdxl",
+        "qwenimage"
+      ],
+      "optionsFrom": {
+        "class_type": "PiDConditioning",
+        "input": "latent_format"
+      }
+    },
+    {
+      "name": "degrade_sigma",
+      "label": "Degrade sigma",
+      "target": {
+        "node": "n",
+        "input": "degrade_sigma"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PiDConditioning",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "latent": {
+          "$port": "latent"
+        },
+        "latent_format": "flux",
+        "degrade_sigma": 0
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "positive": "conditioning"
+  },
+  "summary": [
+    "latent_format",
+    "degrade_sigma"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "gen.ImageGrid",
+  "name": "Make Image Grid",
+  "category": "ComfyUI / image/batch",
+  "description": "ImageGrid — Arrange multiple images into a grid layout.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "columns",
+      "label": "Columns",
+      "target": {
+        "node": "n",
+        "input": "columns"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 20
+    },
+    {
+      "name": "cell_width",
+      "label": "Cell width",
+      "target": {
+        "node": "n",
+        "input": "cell_width"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 32,
+      "max": 2048
+    },
+    {
+      "name": "cell_height",
+      "label": "Cell height",
+      "target": {
+        "node": "n",
+        "input": "cell_height"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 32,
+      "max": 2048
+    },
+    {
+      "name": "padding",
+      "label": "Padding",
+      "target": {
+        "node": "n",
+        "input": "padding"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 0,
+      "max": 50
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageGrid",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "columns": 4,
+        "cell_width": 256,
+        "cell_height": 256,
+        "padding": 4
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "columns",
+    "cell_width",
+    "cell_height"
+  ]
+}

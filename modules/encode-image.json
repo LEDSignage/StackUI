@@ -1,0 +1,19 @@
+{
+  "id": "encode-image",
+  "name": "Encode image",
+  "category": "latent",
+  "description": "VAEEncode — pixels to latent, for img2img. Pair with a Sample denoise below 1.",
+  "inPorts": [
+    { "name": "image", "type": "IMAGE" },
+    { "name": "vae", "type": "VAE" }
+  ],
+  "outPorts": [{ "name": "latent", "type": "LATENT" }],
+  "outputs": { "latent": { "node": "ve" } },
+  "params": [],
+  "nodes": {
+    "ve": {
+      "class_type": "VAEEncode",
+      "inputs": { "pixels": { "$port": "image" }, "vae": { "$port": "vae" } }
+    }
+  }
+}

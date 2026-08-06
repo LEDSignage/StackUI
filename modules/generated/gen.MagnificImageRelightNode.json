@@ -1,0 +1,153 @@
+{
+  "id": "gen.MagnificImageRelightNode",
+  "name": "Magnific Image Relight",
+  "category": "ComfyUI / partner/image/Magnific",
+  "description": "MagnificImageRelightNode — Relight an image with lighting adjustments and optional reference-based light transfer.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "reference_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "light_transfer_strength",
+      "label": "Light transfer strength",
+      "target": {
+        "node": "n",
+        "input": "light_transfer_strength"
+      },
+      "type": "INT",
+      "default": 100,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "style",
+      "label": "Style",
+      "target": {
+        "node": "n",
+        "input": "style"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "darker_but_realistic",
+        "clean",
+        "smooth",
+        "brighter",
+        "contrasted_n_hdr",
+        "just_composition"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageRelightNode",
+        "input": "style"
+      }
+    },
+    {
+      "name": "interpolate_from_original",
+      "label": "Interpolate from original",
+      "target": {
+        "node": "n",
+        "input": "interpolate_from_original"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "change_background",
+      "label": "Change background",
+      "target": {
+        "node": "n",
+        "input": "change_background"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "preserve_details",
+      "label": "Preserve details",
+      "target": {
+        "node": "n",
+        "input": "preserve_details"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "advanced_settings",
+      "label": "Advanced settings",
+      "target": {
+        "node": "n",
+        "input": "advanced_settings"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "enabled"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageRelightNode",
+        "input": "advanced_settings"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MagnificImageRelightNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "light_transfer_strength": 100,
+        "style": "standard",
+        "interpolate_from_original": false,
+        "change_background": true,
+        "preserve_details": true,
+        "advanced_settings": "disabled",
+        "reference_image": {
+          "$port": "reference_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "prompt",
+    "light_transfer_strength",
+    "style"
+  ]
+}

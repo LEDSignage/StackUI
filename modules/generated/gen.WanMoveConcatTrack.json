@@ -1,0 +1,46 @@
+{
+  "id": "gen.WanMoveConcatTrack",
+  "name": "WanMoveConcatTrack",
+  "category": "ComfyUI / model/conditioning/wan/move",
+  "description": "WanMoveConcatTrack",
+  "inPorts": [
+    {
+      "name": "tracks_1",
+      "type": "TRACKS"
+    },
+    {
+      "name": "tracks_2",
+      "type": "TRACKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "tracks",
+      "type": "TRACKS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "WanMoveConcatTrack",
+      "inputs": {
+        "tracks_1": {
+          "$port": "tracks_1"
+        },
+        "tracks_2": {
+          "$port": "tracks_2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "tracks": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "tracks_1": "tracks"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "id": "gen.BriaImageEditNode",
+  "name": "Bria FIBO Image Edit",
+  "category": "ComfyUI / partner/image/Bria",
+  "description": "BriaImageEditNode — Edit images using Bria latest model",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "structured_prompt",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "FIBO",
+      "options": [
+        "FIBO"
+      ],
+      "optionsFrom": {
+        "class_type": "BriaImageEditNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "structured_prompt",
+      "label": "Structured prompt",
+      "target": {
+        "node": "n",
+        "input": "structured_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "guidance_scale",
+      "label": "Guidance scale",
+      "target": {
+        "node": "n",
+        "input": "guidance_scale"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 3,
+      "max": 5,
+      "step": 0.01
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 50,
+      "min": 20,
+      "max": 50,
+      "step": 1
+    },
+    {
+      "name": "moderation",
+      "label": "Moderation",
+      "target": {
+        "node": "n",
+        "input": "moderation"
+      },
+      "type": "ENUM",
+      "default": "false",
+      "options": [
+        "false",
+        "true"
+      ],
+      "optionsFrom": {
+        "class_type": "BriaImageEditNode",
+        "input": "moderation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaImageEditNode",
+      "inputs": {
+        "model": "FIBO",
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "negative_prompt": "",
+        "structured_prompt": "",
+        "seed": 1,
+        "guidance_scale": 3,
+        "steps": 50,
+        "moderation": "false",
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "structured_prompt": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "negative_prompt"
+  ]
+}

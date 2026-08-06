@@ -1,0 +1,56 @@
+{
+  "id": "gen.LatentMultiply",
+  "name": "LatentMultiply",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentMultiply",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "multiplier",
+      "label": "Multiplier",
+      "target": {
+        "node": "n",
+        "input": "multiplier"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentMultiply",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "multiplier": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "multiplier"
+  ]
+}

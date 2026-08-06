@@ -1,0 +1,144 @@
+{
+  "id": "gen.VOIDInpaintConditioning",
+  "name": "VOIDInpaintConditioning",
+  "category": "ComfyUI / model/conditioning/void",
+  "description": "VOIDInpaintConditioning",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "video",
+      "type": "IMAGE"
+    },
+    {
+      "name": "quadmask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 672,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 384,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 45,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VOIDInpaintConditioning",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "video": {
+          "$port": "video"
+        },
+        "quadmask": {
+          "$port": "quadmask"
+        },
+        "width": 672,
+        "height": 384,
+        "length": 45,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

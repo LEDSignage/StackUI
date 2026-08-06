@@ -1,0 +1,146 @@
+{
+  "id": "gen.KlingStartEndFrameNode",
+  "name": "Kling Start-End Frame to Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingStartEndFrameNode — Generate a video sequence that transitions between your provided start and end images. The node creates all frames in between, producing a smooth transformation from the first frame to the last.",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE"
+    },
+    {
+      "name": "end_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "video_id",
+      "type": "STRING"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "cfg_scale",
+      "label": "Cfg scale",
+      "target": {
+        "node": "n",
+        "input": "cfg_scale"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingStartEndFrameNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "pro mode / 5s duration / kling-v2-5-turbo",
+      "options": [
+        "pro mode / 5s duration / kling-v1-5",
+        "pro mode / 10s duration / kling-v1-5",
+        "pro mode / 5s duration / kling-v1-6",
+        "pro mode / 10s duration / kling-v1-6",
+        "pro mode / 5s duration / kling-v2-1",
+        "pro mode / 10s duration / kling-v2-1",
+        "pro mode / 5s duration / kling-v2-5-turbo",
+        "pro mode / 10s duration / kling-v2-5-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingStartEndFrameNode",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingStartEndFrameNode",
+      "inputs": {
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "end_frame": {
+          "$port": "end_frame"
+        },
+        "prompt": "",
+        "negative_prompt": "",
+        "cfg_scale": 0.5,
+        "aspect_ratio": "16:9",
+        "mode": "pro mode / 5s duration / kling-v2-5-turbo"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "video_id": {
+      "node": "n",
+      "out": 1
+    },
+    "duration": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "cfg_scale"
+  ]
+}

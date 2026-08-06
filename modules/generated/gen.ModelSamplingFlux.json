@@ -1,0 +1,100 @@
+{
+  "id": "gen.ModelSamplingFlux",
+  "name": "ModelSamplingFlux",
+  "category": "ComfyUI / model/patch/flux",
+  "description": "ModelSamplingFlux",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "max_shift",
+      "label": "Max shift",
+      "target": {
+        "node": "n",
+        "input": "max_shift"
+      },
+      "type": "FLOAT",
+      "default": 1.15,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "base_shift",
+      "label": "Base shift",
+      "target": {
+        "node": "n",
+        "input": "base_shift"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingFlux",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "max_shift": 1.15,
+        "base_shift": 0.5,
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "max_shift",
+    "base_shift",
+    "width"
+  ]
+}

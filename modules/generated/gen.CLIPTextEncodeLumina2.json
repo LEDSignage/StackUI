@@ -1,0 +1,71 @@
+{
+  "id": "gen.CLIPTextEncodeLumina2",
+  "name": "CLIP Text Encode (Lumina 2)",
+  "category": "ComfyUI / model/conditioning/lumina",
+  "description": "CLIPTextEncodeLumina2 — Encodes a system prompt and a user prompt using a CLIP model into an embedding that can be used to guide the diffusion model towards generating specific images.",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "ENUM",
+      "default": "superior",
+      "options": [
+        "superior",
+        "alignment"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPTextEncodeLumina2",
+        "input": "system_prompt"
+      }
+    },
+    {
+      "name": "user_prompt",
+      "label": "User prompt",
+      "target": {
+        "node": "n",
+        "input": "user_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeLumina2",
+      "inputs": {
+        "system_prompt": "superior",
+        "user_prompt": "",
+        "clip": {
+          "$port": "clip"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "system_prompt",
+    "user_prompt"
+  ]
+}

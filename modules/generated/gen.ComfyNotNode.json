@@ -1,0 +1,35 @@
+{
+  "id": "gen.ComfyNotNode",
+  "name": "Not",
+  "category": "ComfyUI / utilities/logic",
+  "description": "ComfyNotNode — Logical NOT operation. Returns true if the value is falsy. Uses Python's rules for truthiness.",
+  "inPorts": [
+    {
+      "name": "value",
+      "type": "*"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "boolean",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ComfyNotNode",
+      "inputs": {
+        "value": {
+          "$port": "value"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "boolean": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

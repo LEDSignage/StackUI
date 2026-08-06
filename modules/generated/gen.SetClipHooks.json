@@ -1,0 +1,73 @@
+{
+  "id": "gen.SetClipHooks",
+  "name": "Set CLIP Hooks",
+  "category": "ComfyUI / advanced/hooks/clip",
+  "description": "SetClipHooks",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "hooks",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "apply_to_conds",
+      "label": "Apply to conds",
+      "target": {
+        "node": "n",
+        "input": "apply_to_conds"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "schedule_clip",
+      "label": "Schedule clip",
+      "target": {
+        "node": "n",
+        "input": "schedule_clip"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SetClipHooks",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "apply_to_conds": true,
+        "schedule_clip": false,
+        "hooks": {
+          "$port": "hooks"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip": "clip"
+  },
+  "summary": [
+    "apply_to_conds",
+    "schedule_clip"
+  ]
+}

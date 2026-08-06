@@ -1,0 +1,76 @@
+{
+  "id": "gen.FluxEraseNode",
+  "name": "Flux Erase Image",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "FluxEraseNode — Removes the masked object from an image and reconstructs the background. Paint the mask over what you want to erase.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "dilate_pixels",
+      "label": "Dilate pixels",
+      "target": {
+        "node": "n",
+        "input": "dilate_pixels"
+      },
+      "type": "INT",
+      "default": 10,
+      "min": 0,
+      "max": 25
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxEraseNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "dilate_pixels": 10,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "dilate_pixels",
+    "seed"
+  ]
+}

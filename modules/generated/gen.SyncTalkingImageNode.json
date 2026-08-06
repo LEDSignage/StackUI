@@ -1,0 +1,91 @@
+{
+  "id": "gen.SyncTalkingImageNode",
+  "name": "sync.so Talking Image",
+  "category": "ComfyUI / partner/video/sync.so",
+  "description": "SyncTalkingImageNode — Animate a still portrait into a talking video driven by speech audio, using sync.so's sync-3 model. The output duration matches the audio. Cost scales with output duration.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "sync-3",
+      "options": [
+        "sync-3"
+      ],
+      "optionsFrom": {
+        "class_type": "SyncTalkingImageNode",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SyncTalkingImageNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "audio": {
+          "$port": "audio"
+        },
+        "prompt": "",
+        "seed": 0,
+        "model": "sync-3"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "seed",
+    "model"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "id": "gen.StableCascade_EmptyLatentImage",
+  "name": "StableCascade_EmptyLatentImage",
+  "category": "ComfyUI / model/latent/stable cascade",
+  "description": "StableCascade_EmptyLatentImage",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "stage_c",
+      "type": "LATENT"
+    },
+    {
+      "name": "stage_b",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "compression",
+      "label": "Compression",
+      "target": {
+        "node": "n",
+        "input": "compression"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 4,
+      "max": 128,
+      "step": 1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StableCascade_EmptyLatentImage",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "compression": 42,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "stage_c": {
+      "node": "n",
+      "out": 0
+    },
+    "stage_b": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "compression"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "gen.LTXVImgToVideoInplace",
+  "name": "LTXVImgToVideoInplace",
+  "category": "ComfyUI / model/conditioning/ltxv",
+  "description": "LTXVImgToVideoInplace",
+  "inPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "bypass",
+      "label": "Bypass",
+      "target": {
+        "node": "n",
+        "input": "bypass"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVImgToVideoInplace",
+      "inputs": {
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "latent": {
+          "$port": "latent"
+        },
+        "strength": 1,
+        "bypass": false
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latent": "latent"
+  },
+  "summary": [
+    "strength",
+    "bypass"
+  ]
+}

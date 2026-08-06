@@ -1,0 +1,74 @@
+{
+  "id": "gen.EmptyHiDreamO1LatentImage",
+  "name": "Empty HiDream-O1 Latent Image",
+  "category": "ComfyUI / model/latent/hidream",
+  "description": "EmptyHiDreamO1LatentImage — Empty pixel-space latent for HiDream-O1-Image. The model was trained at ~4 megapixels; lower resolutions go off-distribution and quality regresses noticeably. Trained resolutions: 2048x2048, 2304x1728, 1728x2304, 2560x1440, 1440x2560, 2496x1664, 1664x2496, 3104x1312, 1312x3104, 2304x1792, 1792x2304.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 2048,
+      "min": 64,
+      "max": 4096,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 2048,
+      "min": 64,
+      "max": 4096,
+      "step": 32
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyHiDreamO1LatentImage",
+      "inputs": {
+        "width": 2048,
+        "height": 2048,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "batch_size"
+  ]
+}

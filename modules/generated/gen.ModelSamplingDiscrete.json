@@ -1,0 +1,77 @@
+{
+  "id": "gen.ModelSamplingDiscrete",
+  "name": "ModelSamplingDiscrete",
+  "category": "ComfyUI / model/patch",
+  "description": "ModelSamplingDiscrete",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "sampling",
+      "label": "Sampling",
+      "target": {
+        "node": "n",
+        "input": "sampling"
+      },
+      "type": "ENUM",
+      "default": "eps",
+      "options": [
+        "eps",
+        "v_prediction",
+        "lcm",
+        "x0",
+        "img_to_img",
+        "img_to_img_flow"
+      ],
+      "optionsFrom": {
+        "class_type": "ModelSamplingDiscrete",
+        "input": "sampling"
+      }
+    },
+    {
+      "name": "zsnr",
+      "label": "Zsnr",
+      "target": {
+        "node": "n",
+        "input": "zsnr"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingDiscrete",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "sampling": "eps",
+        "zsnr": false
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "sampling",
+    "zsnr"
+  ]
+}

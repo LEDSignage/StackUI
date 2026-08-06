@@ -1,0 +1,78 @@
+{
+  "id": "gen.Krea2ImageNode",
+  "name": "Krea 2 Image",
+  "category": "ComfyUI / partner/image/Krea",
+  "description": "Krea2ImageNode — Generate images via Krea 2 — pick Medium (expressive illustrations) or Large (expressive photorealism). Supports an optional moodboard and up to 10 chained image style references.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Krea 2 Medium",
+      "options": [
+        "Krea 2 Medium",
+        "Krea 2 Medium Turbo",
+        "Krea 2 Large"
+      ],
+      "optionsFrom": {
+        "class_type": "Krea2ImageNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Krea2ImageNode",
+      "inputs": {
+        "prompt": "",
+        "model": "Krea 2 Medium",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

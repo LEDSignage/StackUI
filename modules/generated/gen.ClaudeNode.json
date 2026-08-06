@@ -1,0 +1,104 @@
+{
+  "id": "gen.ClaudeNode",
+  "name": "Anthropic Claude",
+  "category": "ComfyUI / partner/text/Anthropic",
+  "description": "ClaudeNode — Generate text responses with Anthropic's Claude models. Provide a text prompt and optionally one or more images for multimodal context.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Opus 5",
+      "options": [
+        "Opus 5",
+        "Opus 4.8",
+        "Fable 5",
+        "Sonnet 5",
+        "Opus 4.7",
+        "Opus 4.6",
+        "Sonnet 4.6",
+        "Sonnet 4.5",
+        "Haiku 4.5"
+      ],
+      "optionsFrom": {
+        "class_type": "ClaudeNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ClaudeNode",
+      "inputs": {
+        "prompt": "",
+        "model": "Opus 5",
+        "seed": 0,
+        "images": {
+          "$port": "images"
+        },
+        "system_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

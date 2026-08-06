@@ -1,0 +1,139 @@
+{
+  "id": "gen.AudioEqualizer3Band",
+  "name": "Audio Equalizer (3-Band)",
+  "category": "ComfyUI / audio",
+  "description": "AudioEqualizer3Band",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "low_gain_dB",
+      "label": "Low gain dB",
+      "target": {
+        "node": "n",
+        "input": "low_gain_dB"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -24,
+      "max": 24,
+      "step": 0.1
+    },
+    {
+      "name": "low_freq",
+      "label": "Low freq",
+      "target": {
+        "node": "n",
+        "input": "low_freq"
+      },
+      "type": "INT",
+      "default": 100,
+      "min": 20,
+      "max": 500
+    },
+    {
+      "name": "mid_gain_dB",
+      "label": "Mid gain dB",
+      "target": {
+        "node": "n",
+        "input": "mid_gain_dB"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -24,
+      "max": 24,
+      "step": 0.1
+    },
+    {
+      "name": "mid_freq",
+      "label": "Mid freq",
+      "target": {
+        "node": "n",
+        "input": "mid_freq"
+      },
+      "type": "INT",
+      "default": 1000,
+      "min": 200,
+      "max": 4000
+    },
+    {
+      "name": "mid_q",
+      "label": "Mid q",
+      "target": {
+        "node": "n",
+        "input": "mid_q"
+      },
+      "type": "FLOAT",
+      "default": 0.707,
+      "min": 0.1,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "name": "high_gain_dB",
+      "label": "High gain dB",
+      "target": {
+        "node": "n",
+        "input": "high_gain_dB"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -24,
+      "max": 24,
+      "step": 0.1
+    },
+    {
+      "name": "high_freq",
+      "label": "High freq",
+      "target": {
+        "node": "n",
+        "input": "high_freq"
+      },
+      "type": "INT",
+      "default": 5000,
+      "min": 1000,
+      "max": 15000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AudioEqualizer3Band",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "low_gain_dB": 0,
+        "low_freq": 100,
+        "mid_gain_dB": 0,
+        "mid_freq": 1000,
+        "mid_q": 0.707,
+        "high_gain_dB": 0,
+        "high_freq": 5000
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "low_gain_dB",
+    "low_freq",
+    "mid_gain_dB"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "id": "gen.HappyHorseImageToVideoApi",
+  "name": "HappyHorse Image to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "HappyHorseImageToVideoApi — Generate a video from a first-frame image using the HappyHorse model.",
+  "inPorts": [
+    {
+      "name": "first_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "happyhorse-1.1-i2v",
+      "options": [
+        "happyhorse-1.1-i2v",
+        "happyhorse-1.0-i2v"
+      ],
+      "optionsFrom": {
+        "class_type": "HappyHorseImageToVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HappyHorseImageToVideoApi",
+      "inputs": {
+        "model": "happyhorse-1.1-i2v",
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

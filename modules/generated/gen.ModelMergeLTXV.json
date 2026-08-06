@@ -1,0 +1,513 @@
+{
+  "id": "gen.ModelMergeLTXV",
+  "name": "ModelMergeLTXV",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeLTXV",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "patchify_proj.",
+      "label": "Patchify proj.",
+      "target": {
+        "node": "n",
+        "input": "patchify_proj."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "adaln_single.",
+      "label": "Adaln single.",
+      "target": {
+        "node": "n",
+        "input": "adaln_single."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "caption_projection.",
+      "label": "Caption projection.",
+      "target": {
+        "node": "n",
+        "input": "caption_projection."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.0.",
+      "label": "Transformer blocks.0.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.1.",
+      "label": "Transformer blocks.1.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.2.",
+      "label": "Transformer blocks.2.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.3.",
+      "label": "Transformer blocks.3.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.4.",
+      "label": "Transformer blocks.4.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.5.",
+      "label": "Transformer blocks.5.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.6.",
+      "label": "Transformer blocks.6.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.7.",
+      "label": "Transformer blocks.7.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.8.",
+      "label": "Transformer blocks.8.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.9.",
+      "label": "Transformer blocks.9.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.10.",
+      "label": "Transformer blocks.10.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.11.",
+      "label": "Transformer blocks.11.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.12.",
+      "label": "Transformer blocks.12.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.13.",
+      "label": "Transformer blocks.13.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.14.",
+      "label": "Transformer blocks.14.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.15.",
+      "label": "Transformer blocks.15.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.16.",
+      "label": "Transformer blocks.16.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.17.",
+      "label": "Transformer blocks.17.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.18.",
+      "label": "Transformer blocks.18.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.19.",
+      "label": "Transformer blocks.19.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.19."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.20.",
+      "label": "Transformer blocks.20.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.20."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.21.",
+      "label": "Transformer blocks.21.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.21."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.22.",
+      "label": "Transformer blocks.22.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.22."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.23.",
+      "label": "Transformer blocks.23.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.23."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.24.",
+      "label": "Transformer blocks.24.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.24."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.25.",
+      "label": "Transformer blocks.25.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.25."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.26.",
+      "label": "Transformer blocks.26.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.26."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "transformer_blocks.27.",
+      "label": "Transformer blocks.27.",
+      "target": {
+        "node": "n",
+        "input": "transformer_blocks.27."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "scale_shift_table",
+      "label": "Scale shift table",
+      "target": {
+        "node": "n",
+        "input": "scale_shift_table"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "proj_out.",
+      "label": "Proj out.",
+      "target": {
+        "node": "n",
+        "input": "proj_out."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeLTXV",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "patchify_proj.": 1,
+        "adaln_single.": 1,
+        "caption_projection.": 1,
+        "transformer_blocks.0.": 1,
+        "transformer_blocks.1.": 1,
+        "transformer_blocks.2.": 1,
+        "transformer_blocks.3.": 1,
+        "transformer_blocks.4.": 1,
+        "transformer_blocks.5.": 1,
+        "transformer_blocks.6.": 1,
+        "transformer_blocks.7.": 1,
+        "transformer_blocks.8.": 1,
+        "transformer_blocks.9.": 1,
+        "transformer_blocks.10.": 1,
+        "transformer_blocks.11.": 1,
+        "transformer_blocks.12.": 1,
+        "transformer_blocks.13.": 1,
+        "transformer_blocks.14.": 1,
+        "transformer_blocks.15.": 1,
+        "transformer_blocks.16.": 1,
+        "transformer_blocks.17.": 1,
+        "transformer_blocks.18.": 1,
+        "transformer_blocks.19.": 1,
+        "transformer_blocks.20.": 1,
+        "transformer_blocks.21.": 1,
+        "transformer_blocks.22.": 1,
+        "transformer_blocks.23.": 1,
+        "transformer_blocks.24.": 1,
+        "transformer_blocks.25.": 1,
+        "transformer_blocks.26.": 1,
+        "transformer_blocks.27.": 1,
+        "scale_shift_table": 1,
+        "proj_out.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "patchify_proj.",
+    "adaln_single.",
+    "caption_projection."
+  ]
+}

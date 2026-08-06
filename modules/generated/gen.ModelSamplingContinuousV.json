@@ -1,0 +1,90 @@
+{
+  "id": "gen.ModelSamplingContinuousV",
+  "name": "ModelSamplingContinuousV",
+  "category": "ComfyUI / model/patch",
+  "description": "ModelSamplingContinuousV",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "sampling",
+      "label": "Sampling",
+      "target": {
+        "node": "n",
+        "input": "sampling"
+      },
+      "type": "ENUM",
+      "default": "v_prediction",
+      "options": [
+        "v_prediction"
+      ],
+      "optionsFrom": {
+        "class_type": "ModelSamplingContinuousV",
+        "input": "sampling"
+      }
+    },
+    {
+      "name": "sigma_max",
+      "label": "Sigma max",
+      "target": {
+        "node": "n",
+        "input": "sigma_max"
+      },
+      "type": "FLOAT",
+      "default": 500,
+      "min": 0,
+      "max": 1000,
+      "step": 0.001
+    },
+    {
+      "name": "sigma_min",
+      "label": "Sigma min",
+      "target": {
+        "node": "n",
+        "input": "sigma_min"
+      },
+      "type": "FLOAT",
+      "default": 0.03,
+      "min": 0,
+      "max": 1000,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingContinuousV",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "sampling": "v_prediction",
+        "sigma_max": 500,
+        "sigma_min": 0.03
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "sampling",
+    "sigma_max",
+    "sigma_min"
+  ]
+}

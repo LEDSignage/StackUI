@@ -1,0 +1,250 @@
+{
+  "id": "gen.LumaConceptsNode",
+  "name": "Luma Concepts",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaConceptsNode — Camera Concepts for use with Luma Text to Video and Luma Image to Video nodes.",
+  "inPorts": [
+    {
+      "name": "luma_concepts",
+      "type": "LUMA_CONCEPTS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "luma_concepts",
+      "type": "LUMA_CONCEPTS"
+    }
+  ],
+  "params": [
+    {
+      "name": "concept1",
+      "label": "Concept1",
+      "target": {
+        "node": "n",
+        "input": "concept1"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "truck_left",
+        "pan_right",
+        "pedestal_down",
+        "low_angle",
+        "pedestal_up",
+        "selfie",
+        "pan_left",
+        "roll_right",
+        "zoom_in",
+        "over_the_shoulder",
+        "orbit_right",
+        "orbit_left",
+        "static",
+        "tiny_planet",
+        "high_angle",
+        "bolt_cam",
+        "dolly_zoom",
+        "overhead",
+        "zoom_out",
+        "handheld",
+        "roll_left",
+        "pov",
+        "aerial_drone",
+        "push_in",
+        "crane_down",
+        "truck_right",
+        "tilt_down",
+        "elevator_doors",
+        "tilt_up",
+        "ground_level",
+        "pull_out",
+        "aerial",
+        "crane_up",
+        "eye_level"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaConceptsNode",
+        "input": "concept1"
+      }
+    },
+    {
+      "name": "concept2",
+      "label": "Concept2",
+      "target": {
+        "node": "n",
+        "input": "concept2"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "truck_left",
+        "pan_right",
+        "pedestal_down",
+        "low_angle",
+        "pedestal_up",
+        "selfie",
+        "pan_left",
+        "roll_right",
+        "zoom_in",
+        "over_the_shoulder",
+        "orbit_right",
+        "orbit_left",
+        "static",
+        "tiny_planet",
+        "high_angle",
+        "bolt_cam",
+        "dolly_zoom",
+        "overhead",
+        "zoom_out",
+        "handheld",
+        "roll_left",
+        "pov",
+        "aerial_drone",
+        "push_in",
+        "crane_down",
+        "truck_right",
+        "tilt_down",
+        "elevator_doors",
+        "tilt_up",
+        "ground_level",
+        "pull_out",
+        "aerial",
+        "crane_up",
+        "eye_level"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaConceptsNode",
+        "input": "concept2"
+      }
+    },
+    {
+      "name": "concept3",
+      "label": "Concept3",
+      "target": {
+        "node": "n",
+        "input": "concept3"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "truck_left",
+        "pan_right",
+        "pedestal_down",
+        "low_angle",
+        "pedestal_up",
+        "selfie",
+        "pan_left",
+        "roll_right",
+        "zoom_in",
+        "over_the_shoulder",
+        "orbit_right",
+        "orbit_left",
+        "static",
+        "tiny_planet",
+        "high_angle",
+        "bolt_cam",
+        "dolly_zoom",
+        "overhead",
+        "zoom_out",
+        "handheld",
+        "roll_left",
+        "pov",
+        "aerial_drone",
+        "push_in",
+        "crane_down",
+        "truck_right",
+        "tilt_down",
+        "elevator_doors",
+        "tilt_up",
+        "ground_level",
+        "pull_out",
+        "aerial",
+        "crane_up",
+        "eye_level"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaConceptsNode",
+        "input": "concept3"
+      }
+    },
+    {
+      "name": "concept4",
+      "label": "Concept4",
+      "target": {
+        "node": "n",
+        "input": "concept4"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "truck_left",
+        "pan_right",
+        "pedestal_down",
+        "low_angle",
+        "pedestal_up",
+        "selfie",
+        "pan_left",
+        "roll_right",
+        "zoom_in",
+        "over_the_shoulder",
+        "orbit_right",
+        "orbit_left",
+        "static",
+        "tiny_planet",
+        "high_angle",
+        "bolt_cam",
+        "dolly_zoom",
+        "overhead",
+        "zoom_out",
+        "handheld",
+        "roll_left",
+        "pov",
+        "aerial_drone",
+        "push_in",
+        "crane_down",
+        "truck_right",
+        "tilt_down",
+        "elevator_doors",
+        "tilt_up",
+        "ground_level",
+        "pull_out",
+        "aerial",
+        "crane_up",
+        "eye_level"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaConceptsNode",
+        "input": "concept4"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaConceptsNode",
+      "inputs": {
+        "concept1": "None",
+        "concept2": "None",
+        "concept3": "None",
+        "concept4": "None",
+        "luma_concepts": {
+          "$port": "luma_concepts"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "luma_concepts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "concept1",
+    "concept2",
+    "concept3"
+  ]
+}

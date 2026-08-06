@@ -1,0 +1,81 @@
+{
+  "id": "gen.RecraftColorRGB",
+  "name": "Recraft Color RGB",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftColorRGB — Create Recraft Color by choosing specific RGB values.",
+  "inPorts": [
+    {
+      "name": "recraft_color",
+      "type": "RECRAFT_COLOR",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "recraft_color",
+      "type": "RECRAFT_COLOR"
+    }
+  ],
+  "params": [
+    {
+      "name": "r",
+      "label": "R",
+      "target": {
+        "node": "n",
+        "input": "r"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 255
+    },
+    {
+      "name": "g",
+      "label": "G",
+      "target": {
+        "node": "n",
+        "input": "g"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 255
+    },
+    {
+      "name": "b",
+      "label": "B",
+      "target": {
+        "node": "n",
+        "input": "b"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 255
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftColorRGB",
+      "inputs": {
+        "r": 0,
+        "g": 0,
+        "b": 0,
+        "recraft_color": {
+          "$port": "recraft_color"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "recraft_color": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "r",
+    "g",
+    "b"
+  ]
+}

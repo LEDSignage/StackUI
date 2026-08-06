@@ -1,0 +1,115 @@
+{
+  "id": "gen.FluxKontextMaxImageNode",
+  "name": "Flux.1 Kontext [max] Image",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "FluxKontextMaxImageNode — Edits images using Flux.1 Kontext [pro] via api based on prompt and aspect ratio.",
+  "inPorts": [
+    {
+      "name": "input_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "STRING",
+      "default": "16:9"
+    },
+    {
+      "name": "guidance",
+      "label": "Guidance",
+      "target": {
+        "node": "n",
+        "input": "guidance"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0.1,
+      "max": 99,
+      "step": 0.1
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 50,
+      "min": 1,
+      "max": 150
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1234,
+      "min": 0
+    },
+    {
+      "name": "prompt_upsampling",
+      "label": "Prompt upsampling",
+      "target": {
+        "node": "n",
+        "input": "prompt_upsampling"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxKontextMaxImageNode",
+      "inputs": {
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "guidance": 3,
+        "steps": 50,
+        "seed": 1234,
+        "prompt_upsampling": false,
+        "input_image": {
+          "$port": "input_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "aspect_ratio",
+    "guidance"
+  ]
+}

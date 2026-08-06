@@ -1,0 +1,55 @@
+{
+  "id": "gen.ImageDeduplication",
+  "name": "Deduplicate Images",
+  "category": "ComfyUI / image/batch",
+  "description": "ImageDeduplication — Remove duplicate or very similar images from a list.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "similarity_threshold",
+      "label": "Similarity threshold",
+      "target": {
+        "node": "n",
+        "input": "similarity_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.95,
+      "min": 0,
+      "max": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageDeduplication",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "similarity_threshold": 0.95
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "similarity_threshold"
+  ]
+}

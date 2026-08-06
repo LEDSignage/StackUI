@@ -1,0 +1,74 @@
+{
+  "id": "gen.FluxVTONode",
+  "name": "Flux Virtual Try-On",
+  "category": "ComfyUI / partner/image/BFL",
+  "description": "FluxVTONode — Virtual try-on: dresses the person in the provided garment.",
+  "inPorts": [
+    {
+      "name": "person",
+      "type": "IMAGE"
+    },
+    {
+      "name": "garment",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxVTONode",
+      "inputs": {
+        "person": {
+          "$port": "person"
+        },
+        "garment": {
+          "$port": "garment"
+        },
+        "prompt": "",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "person": "image"
+  },
+  "summary": [
+    "prompt",
+    "seed"
+  ]
+}

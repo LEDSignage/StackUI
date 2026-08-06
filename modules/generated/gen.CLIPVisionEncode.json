@@ -1,0 +1,65 @@
+{
+  "id": "gen.CLIPVisionEncode",
+  "name": "CLIP Vision Encode",
+  "category": "ComfyUI / model/conditioning",
+  "description": "CLIPVisionEncode",
+  "inPorts": [
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT"
+    }
+  ],
+  "params": [
+    {
+      "name": "crop",
+      "label": "Crop",
+      "target": {
+        "node": "n",
+        "input": "crop"
+      },
+      "type": "ENUM",
+      "default": "center",
+      "options": [
+        "center",
+        "none"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPVisionEncode",
+        "input": "crop"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPVisionEncode",
+      "inputs": {
+        "clip_vision": {
+          "$port": "clip_vision"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "crop": "center"
+      }
+    }
+  },
+  "outputs": {
+    "clip_vision_output": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "crop"
+  ]
+}

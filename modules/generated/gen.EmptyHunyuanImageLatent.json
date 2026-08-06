@@ -1,0 +1,74 @@
+{
+  "id": "gen.EmptyHunyuanImageLatent",
+  "name": "EmptyHunyuanImageLatent",
+  "category": "ComfyUI / model/latent/hunyuan image",
+  "description": "EmptyHunyuanImageLatent",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 2048,
+      "min": 64,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 2048,
+      "min": 64,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyHunyuanImageLatent",
+      "inputs": {
+        "width": 2048,
+        "height": 2048,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "batch_size"
+  ]
+}

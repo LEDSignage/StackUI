@@ -1,0 +1,89 @@
+{
+  "id": "gen.HitPawGeneralImageEnhance",
+  "name": "HitPaw General Image Enhance",
+  "category": "ComfyUI / partner/image/HitPaw",
+  "description": "HitPawGeneralImageEnhance — Upscale low-resolution images to super-resolution, eliminate artifacts and noise. Maximum output: 32 megapixels.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "generative_portrait",
+      "options": [
+        "generative_portrait",
+        "generative"
+      ],
+      "optionsFrom": {
+        "class_type": "HitPawGeneralImageEnhance",
+        "input": "model"
+      }
+    },
+    {
+      "name": "upscale_factor",
+      "label": "Upscale factor",
+      "target": {
+        "node": "n",
+        "input": "upscale_factor"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "HitPawGeneralImageEnhance",
+        "input": "upscale_factor"
+      }
+    },
+    {
+      "name": "auto_downscale",
+      "label": "Auto downscale",
+      "target": {
+        "node": "n",
+        "input": "auto_downscale"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HitPawGeneralImageEnhance",
+      "inputs": {
+        "model": "generative_portrait",
+        "image": {
+          "$port": "image"
+        },
+        "upscale_factor": "",
+        "auto_downscale": false
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "model",
+    "upscale_factor",
+    "auto_downscale"
+  ]
+}

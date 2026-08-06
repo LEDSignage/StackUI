@@ -1,0 +1,53 @@
+{
+  "id": "gen.VAELoader",
+  "name": "Load VAE",
+  "category": "ComfyUI / model/loaders",
+  "description": "VAELoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "vae_name",
+      "label": "Vae name",
+      "target": {
+        "node": "n",
+        "input": "vae_name"
+      },
+      "type": "ENUM",
+      "default": "ae.safetensors",
+      "options": [
+        "ae.safetensors",
+        "minimax_h3_audio_vae_fp32.safetensors",
+        "minimax_h3_video_vae_fp16.safetensors",
+        "qwen_image_vae.safetensors",
+        "pixel_space"
+      ],
+      "optionsFrom": {
+        "class_type": "VAELoader",
+        "input": "vae_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAELoader",
+      "inputs": {
+        "vae_name": "ae.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "vae": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "vae_name"
+  ]
+}

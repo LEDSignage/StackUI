@@ -1,0 +1,205 @@
+{
+  "id": "gen.OpenAIGPTImage1",
+  "name": "OpenAI GPT Image 2",
+  "category": "ComfyUI / partner/image/OpenAI",
+  "description": "OpenAIGPTImage1 — Generates images synchronously via OpenAI's GPT Image endpoint.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "quality",
+      "label": "Quality",
+      "target": {
+        "node": "n",
+        "input": "quality"
+      },
+      "type": "ENUM",
+      "default": "low",
+      "options": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIGPTImage1",
+        "input": "quality"
+      }
+    },
+    {
+      "name": "background",
+      "label": "Background",
+      "target": {
+        "node": "n",
+        "input": "background"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "opaque",
+        "transparent"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIGPTImage1",
+        "input": "background"
+      }
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "target": {
+        "node": "n",
+        "input": "size"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "1024x1024",
+        "1024x1536",
+        "1536x1024",
+        "2048x2048",
+        "2048x1152",
+        "1152x2048",
+        "3840x2160",
+        "2160x3840",
+        "Custom"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIGPTImage1",
+        "input": "size"
+      }
+    },
+    {
+      "name": "n",
+      "label": "N",
+      "target": {
+        "node": "n",
+        "input": "n"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "gpt-image-2",
+      "options": [
+        "gpt-image-1",
+        "gpt-image-1.5",
+        "gpt-image-2"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIGPTImage1",
+        "input": "model"
+      }
+    },
+    {
+      "name": "custom_width",
+      "label": "Custom width",
+      "target": {
+        "node": "n",
+        "input": "custom_width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1024,
+      "max": 3840,
+      "step": 16
+    },
+    {
+      "name": "custom_height",
+      "label": "Custom height",
+      "target": {
+        "node": "n",
+        "input": "custom_height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1024,
+      "max": 3840,
+      "step": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenAIGPTImage1",
+      "inputs": {
+        "prompt": "",
+        "seed": 0,
+        "quality": "low",
+        "background": "auto",
+        "size": "auto",
+        "n": 1,
+        "image": {
+          "$port": "image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "model": "gpt-image-2",
+        "custom_width": 1024,
+        "custom_height": 1024
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "seed",
+    "quality"
+  ]
+}

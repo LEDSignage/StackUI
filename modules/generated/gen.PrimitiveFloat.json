@@ -1,0 +1,45 @@
+{
+  "id": "gen.PrimitiveFloat",
+  "name": "Float",
+  "category": "ComfyUI / utilities/primitive",
+  "description": "PrimitiveFloat",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "float",
+      "type": "FLOAT"
+    }
+  ],
+  "params": [
+    {
+      "name": "value",
+      "label": "Value",
+      "target": {
+        "node": "n",
+        "input": "value"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -9223372036854776000,
+      "max": 9223372036854776000,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PrimitiveFloat",
+      "inputs": {
+        "value": 0
+      }
+    }
+  },
+  "outputs": {
+    "float": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "value"
+  ]
+}

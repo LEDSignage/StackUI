@@ -1,0 +1,61 @@
+{
+  "id": "gen.MoGeRender",
+  "name": "Render MoGe Geometry",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "MoGeRender — Render a depth map or normal map from geometry data",
+  "inPorts": [
+    {
+      "name": "moge_geometry",
+      "type": "MOGE_GEOMETRY"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "output",
+      "label": "Output",
+      "target": {
+        "node": "n",
+        "input": "output"
+      },
+      "type": "ENUM",
+      "default": "depth",
+      "options": [
+        "depth",
+        "depth_colored",
+        "normal_opengl",
+        "normal_directx",
+        "mask"
+      ],
+      "optionsFrom": {
+        "class_type": "MoGeRender",
+        "input": "output"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MoGeRender",
+      "inputs": {
+        "moge_geometry": {
+          "$port": "moge_geometry"
+        },
+        "output": "depth"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "output"
+  ]
+}

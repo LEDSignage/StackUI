@@ -1,0 +1,38 @@
+{
+  "id": "gen.FlipSigmas",
+  "name": "FlipSigmas",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "FlipSigmas",
+  "inPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "FlipSigmas",
+      "inputs": {
+        "sigmas": {
+          "$port": "sigmas"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "sigmas": "sigmas"
+  }
+}

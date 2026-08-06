@@ -1,0 +1,126 @@
+{
+  "id": "gen.GLIGENTextBoxApply",
+  "name": "Apply GLIGEN Text Box",
+  "category": "ComfyUI / model/conditioning/gligen",
+  "description": "GLIGENTextBoxApply",
+  "inPorts": [
+    {
+      "name": "conditioning_to",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "gligen_textbox_model",
+      "type": "GLIGEN"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 64,
+      "min": 8,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 64,
+      "min": 8,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GLIGENTextBoxApply",
+      "inputs": {
+        "conditioning_to": {
+          "$port": "conditioning_to"
+        },
+        "clip": {
+          "$port": "clip"
+        },
+        "gligen_textbox_model": {
+          "$port": "gligen_textbox_model"
+        },
+        "text": "",
+        "width": 64,
+        "height": 64,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning_to": "conditioning"
+  },
+  "summary": [
+    "text",
+    "width",
+    "height"
+  ]
+}

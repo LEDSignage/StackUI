@@ -1,0 +1,70 @@
+{
+  "id": "gen.TrimAudioDuration",
+  "name": "Trim Audio Duration",
+  "category": "ComfyUI / audio",
+  "description": "TrimAudioDuration — Trim audio tensor into chosen time range.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_index",
+      "label": "Start index",
+      "target": {
+        "node": "n",
+        "input": "start_index"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -18446744073709552000,
+      "max": 18446744073709552000,
+      "step": 0.01
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "FLOAT",
+      "default": 60,
+      "min": 0,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TrimAudioDuration",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "start_index": 0,
+        "duration": 60
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "start_index",
+    "duration"
+  ]
+}

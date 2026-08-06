@@ -1,0 +1,96 @@
+{
+  "id": "gen.Painter",
+  "name": "Painter",
+  "category": "ComfyUI / image",
+  "description": "Painter",
+  "inPorts": [
+    {
+      "name": "bg_color",
+      "type": "COLOR"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "mask",
+      "label": "Mask",
+      "target": {
+        "node": "n",
+        "input": "mask"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 64
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Painter",
+      "inputs": {
+        "mask": "",
+        "width": 512,
+        "height": 512,
+        "bg_color": {
+          "$port": "bg_color"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "mask",
+    "width",
+    "height"
+  ]
+}

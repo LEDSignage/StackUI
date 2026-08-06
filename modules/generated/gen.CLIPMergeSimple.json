@@ -1,0 +1,63 @@
+{
+  "id": "gen.CLIPMergeSimple",
+  "name": "CLIPMergeSimple",
+  "category": "ComfyUI / model/merging",
+  "description": "CLIPMergeSimple",
+  "inPorts": [
+    {
+      "name": "clip1",
+      "type": "CLIP"
+    },
+    {
+      "name": "clip2",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPMergeSimple",
+      "inputs": {
+        "clip1": {
+          "$port": "clip1"
+        },
+        "clip2": {
+          "$port": "clip2"
+        },
+        "ratio": 1
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip1": "clip"
+  },
+  "summary": [
+    "ratio"
+  ]
+}

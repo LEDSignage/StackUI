@@ -1,0 +1,187 @@
+{
+  "id": "gen.MagnificImageUpscalerCreativeNode",
+  "name": "Magnific Image Upscale (Creative)",
+  "category": "ComfyUI / partner/image/Magnific",
+  "description": "MagnificImageUpscalerCreativeNode — Prompt‑guided enhancement, stylization, and 2x/4x/8x/16x upscaling. Maximum output: 25.3 megapixels.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "scale_factor",
+      "label": "Scale factor",
+      "target": {
+        "node": "n",
+        "input": "scale_factor"
+      },
+      "type": "ENUM",
+      "default": "2x",
+      "options": [
+        "2x",
+        "4x",
+        "8x",
+        "16x"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageUpscalerCreativeNode",
+        "input": "scale_factor"
+      }
+    },
+    {
+      "name": "optimized_for",
+      "label": "Optimized for",
+      "target": {
+        "node": "n",
+        "input": "optimized_for"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "soft_portraits",
+        "hard_portraits",
+        "art_n_illustration",
+        "videogame_assets",
+        "nature_n_landscapes",
+        "films_n_photography",
+        "3d_renders",
+        "science_fiction_n_horror"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageUpscalerCreativeNode",
+        "input": "optimized_for"
+      }
+    },
+    {
+      "name": "creativity",
+      "label": "Creativity",
+      "target": {
+        "node": "n",
+        "input": "creativity"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -10,
+      "max": 10
+    },
+    {
+      "name": "hdr",
+      "label": "Hdr",
+      "target": {
+        "node": "n",
+        "input": "hdr"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -10,
+      "max": 10
+    },
+    {
+      "name": "resemblance",
+      "label": "Resemblance",
+      "target": {
+        "node": "n",
+        "input": "resemblance"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -10,
+      "max": 10
+    },
+    {
+      "name": "fractality",
+      "label": "Fractality",
+      "target": {
+        "node": "n",
+        "input": "fractality"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -10,
+      "max": 10
+    },
+    {
+      "name": "engine",
+      "label": "Engine",
+      "target": {
+        "node": "n",
+        "input": "engine"
+      },
+      "type": "ENUM",
+      "default": "automatic",
+      "options": [
+        "automatic",
+        "magnific_illusio",
+        "magnific_sharpy",
+        "magnific_sparkle"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageUpscalerCreativeNode",
+        "input": "engine"
+      }
+    },
+    {
+      "name": "auto_downscale",
+      "label": "Auto downscale",
+      "target": {
+        "node": "n",
+        "input": "auto_downscale"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MagnificImageUpscalerCreativeNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "scale_factor": "2x",
+        "optimized_for": "standard",
+        "creativity": 0,
+        "hdr": 0,
+        "resemblance": 0,
+        "fractality": 0,
+        "engine": "automatic",
+        "auto_downscale": false
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "prompt",
+    "scale_factor",
+    "optimized_for"
+  ]
+}

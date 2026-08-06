@@ -1,0 +1,80 @@
+{
+  "id": "gen.WebcamCapture",
+  "name": "Webcam Capture",
+  "category": "ComfyUI / image",
+  "description": "WebcamCapture",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "WEBCAM"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "capture_on_queue",
+      "label": "Capture on queue",
+      "target": {
+        "node": "n",
+        "input": "capture_on_queue"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WebcamCapture",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "width": 0,
+        "height": 0,
+        "capture_on_queue": true
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "capture_on_queue"
+  ]
+}

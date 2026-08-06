@@ -1,0 +1,52 @@
+{
+  "id": "gen.LoadVideo",
+  "name": "Load Video",
+  "category": "ComfyUI / video",
+  "description": "LoadVideo",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "file",
+      "label": "File",
+      "target": {
+        "node": "n",
+        "input": "file"
+      },
+      "type": "ENUM",
+      "default": "video_00001_.mp4",
+      "options": [
+        "video_00001_.mp4",
+        "volcano_1080p_5s_inpaint.mp4",
+        "volcano_1080p_5s_inpaint_audio.mp4",
+        "volcano_mask.mp4"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadVideo",
+        "input": "file"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadVideo",
+      "inputs": {
+        "file": "video_00001_.mp4"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "file"
+  ]
+}

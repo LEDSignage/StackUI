@@ -1,0 +1,29 @@
+{
+  "id": "load-video-frames",
+  "name": "Video",
+  "category": "load",
+  "description": "LoadVideo + GetVideoComponents — a video file as a batch of frames, which is what every image input actually takes.",
+  "inPorts": [],
+  "outPorts": [
+    { "name": "image", "type": "IMAGE" },
+    { "name": "audio", "type": "AUDIO" }
+  ],
+  "outputs": {
+    "image": { "node": "gc", "out": 0 },
+    "audio": { "node": "gc", "out": 1 }
+  },
+  "summary": ["file"],
+  "params": [
+    {
+      "name": "file",
+      "label": "Video",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": { "node": "lv", "input": "file" }
+    }
+  ],
+  "nodes": {
+    "lv": { "class_type": "LoadVideo", "inputs": { "file": "" } },
+    "gc": { "class_type": "GetVideoComponents", "inputs": { "video": { "$node": "lv", "out": 0 } } }
+  }
+}

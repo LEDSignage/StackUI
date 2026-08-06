@@ -1,0 +1,66 @@
+{
+  "id": "gen.RunwayAleph2KeyframeNode",
+  "name": "Runway Aleph2 Keyframe",
+  "category": "ComfyUI / partner/video/Runway",
+  "description": "RunwayAleph2KeyframeNode — Anchor a guidance image to a moment of the input (source) video, so Aleph2 steers the edit at that point of your footage. Connect this to the 'keyframes' input of the Runway Aleph2 Video to Video node; chain several together (up to 5) via the optional 'keyframes' input below.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "keyframes",
+      "type": "RUNWAY_ALEPH2_KEYFRAME",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "keyframes",
+      "type": "RUNWAY_ALEPH2_KEYFRAME"
+    }
+  ],
+  "params": [
+    {
+      "name": "timing",
+      "label": "Timing",
+      "target": {
+        "node": "n",
+        "input": "timing"
+      },
+      "type": "ENUM",
+      "default": "Absolute time (seconds)",
+      "options": [
+        "Absolute time (seconds)",
+        "Fraction of duration (0.0-1.0)"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayAleph2KeyframeNode",
+        "input": "timing"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayAleph2KeyframeNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "timing": "Absolute time (seconds)",
+        "keyframes": {
+          "$port": "keyframes"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "keyframes": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "timing"
+  ]
+}

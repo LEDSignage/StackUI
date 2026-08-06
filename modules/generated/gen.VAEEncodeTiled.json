@@ -1,0 +1,104 @@
+{
+  "id": "gen.VAEEncodeTiled",
+  "name": "VAE Encode (Tiled)",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEEncodeTiled",
+  "inPorts": [
+    {
+      "name": "pixels",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "tile_size",
+      "label": "Tile size",
+      "target": {
+        "node": "n",
+        "input": "tile_size"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 4096,
+      "step": 64
+    },
+    {
+      "name": "overlap",
+      "label": "Overlap",
+      "target": {
+        "node": "n",
+        "input": "overlap"
+      },
+      "type": "INT",
+      "default": 64,
+      "min": 0,
+      "max": 4096,
+      "step": 32
+    },
+    {
+      "name": "temporal_size",
+      "label": "Temporal size",
+      "target": {
+        "node": "n",
+        "input": "temporal_size"
+      },
+      "type": "INT",
+      "default": 64,
+      "min": 8,
+      "max": 4096,
+      "step": 4
+    },
+    {
+      "name": "temporal_overlap",
+      "label": "Temporal overlap",
+      "target": {
+        "node": "n",
+        "input": "temporal_overlap"
+      },
+      "type": "INT",
+      "default": 8,
+      "min": 4,
+      "max": 4096,
+      "step": 4
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAEEncodeTiled",
+      "inputs": {
+        "pixels": {
+          "$port": "pixels"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "tile_size": 512,
+        "overlap": 64,
+        "temporal_size": 64,
+        "temporal_overlap": 8
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "tile_size",
+    "overlap",
+    "temporal_size"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "gen.JsonExtractString",
+  "name": "Extract Text from JSON",
+  "category": "ComfyUI / text",
+  "description": "JsonExtractString",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "json_string",
+      "label": "Json string",
+      "target": {
+        "node": "n",
+        "input": "json_string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "key",
+      "label": "Key",
+      "target": {
+        "node": "n",
+        "input": "key"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "JsonExtractString",
+      "inputs": {
+        "json_string": "",
+        "key": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "json_string",
+    "key"
+  ]
+}

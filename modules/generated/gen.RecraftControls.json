@@ -1,0 +1,44 @@
+{
+  "id": "gen.RecraftControls",
+  "name": "Recraft Controls",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftControls — Create Recraft Controls for customizing Recraft generation.",
+  "inPorts": [
+    {
+      "name": "colors",
+      "type": "RECRAFT_COLOR",
+      "optional": true
+    },
+    {
+      "name": "background_color",
+      "type": "RECRAFT_COLOR",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "recraft_controls",
+      "type": "RECRAFT_CONTROLS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftControls",
+      "inputs": {
+        "colors": {
+          "$port": "colors"
+        },
+        "background_color": {
+          "$port": "background_color"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "recraft_controls": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

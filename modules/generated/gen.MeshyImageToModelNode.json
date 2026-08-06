@@ -1,0 +1,175 @@
+{
+  "id": "gen.MeshyImageToModelNode",
+  "name": "Meshy: Image to Model",
+  "category": "ComfyUI / partner/3d/Meshy",
+  "description": "MeshyImageToModelNode",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "meshy_task_id",
+      "type": "MESHY_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    },
+    {
+      "name": "fbx",
+      "type": "FILE_3D_FBX"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "latest",
+      "options": [
+        "latest"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyImageToModelNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "should_remesh",
+      "label": "Should remesh",
+      "target": {
+        "node": "n",
+        "input": "should_remesh"
+      },
+      "type": "ENUM",
+      "default": "true",
+      "options": [
+        "true",
+        "false"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyImageToModelNode",
+        "input": "should_remesh"
+      }
+    },
+    {
+      "name": "symmetry_mode",
+      "label": "Symmetry mode",
+      "target": {
+        "node": "n",
+        "input": "symmetry_mode"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "on",
+        "off"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyImageToModelNode",
+        "input": "symmetry_mode"
+      }
+    },
+    {
+      "name": "should_texture",
+      "label": "Should texture",
+      "target": {
+        "node": "n",
+        "input": "should_texture"
+      },
+      "type": "ENUM",
+      "default": "true",
+      "options": [
+        "true",
+        "false"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyImageToModelNode",
+        "input": "should_texture"
+      }
+    },
+    {
+      "name": "pose_mode",
+      "label": "Pose mode",
+      "target": {
+        "node": "n",
+        "input": "pose_mode"
+      },
+      "type": "ENUM",
+      "default": "",
+      "options": [
+        "",
+        "A-pose",
+        "T-pose"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyImageToModelNode",
+        "input": "pose_mode"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MeshyImageToModelNode",
+      "inputs": {
+        "model": "latest",
+        "image": {
+          "$port": "image"
+        },
+        "should_remesh": "true",
+        "symmetry_mode": "auto",
+        "should_texture": "true",
+        "pose_mode": "",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "meshy_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    },
+    "fbx": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "model",
+    "should_remesh",
+    "symmetry_mode"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "id": "gen.WanUni3CControlnetApply",
+  "name": "Apply Wan Uni3C ControlNet",
+  "category": "ComfyUI / model/patch/wan",
+  "description": "WanUni3CControlnetApply",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "render_video",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanUni3CControlnetApply",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "model_patch": {
+          "$port": "model_patch"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "render_video": {
+          "$port": "render_video"
+        },
+        "strength": 1,
+        "start_percent": 0,
+        "end_percent": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "strength",
+    "start_percent",
+    "end_percent"
+  ]
+}

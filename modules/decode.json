@@ -1,0 +1,19 @@
+{
+  "id": "decode",
+  "name": "Decode",
+  "category": "latent",
+  "description": "VAEDecode — latent to pixels.",
+  "inPorts": [
+    { "name": "latent", "type": "LATENT" },
+    { "name": "vae", "type": "VAE" }
+  ],
+  "outPorts": [{ "name": "image", "type": "IMAGE" }],
+  "outputs": { "image": { "node": "vd" } },
+  "params": [],
+  "nodes": {
+    "vd": {
+      "class_type": "VAEDecode",
+      "inputs": { "samples": { "$port": "latent" }, "vae": { "$port": "vae" } }
+    }
+  }
+}

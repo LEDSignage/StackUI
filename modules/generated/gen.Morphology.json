@@ -1,0 +1,81 @@
+{
+  "id": "gen.Morphology",
+  "name": "Apply Morphology",
+  "category": "ComfyUI / image/filters",
+  "description": "Morphology",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "operation",
+      "label": "Operation",
+      "target": {
+        "node": "n",
+        "input": "operation"
+      },
+      "type": "ENUM",
+      "default": "erode",
+      "options": [
+        "erode",
+        "dilate",
+        "open",
+        "close",
+        "gradient",
+        "bottom_hat",
+        "top_hat"
+      ],
+      "optionsFrom": {
+        "class_type": "Morphology",
+        "input": "operation"
+      }
+    },
+    {
+      "name": "kernel_size",
+      "label": "Kernel size",
+      "target": {
+        "node": "n",
+        "input": "kernel_size"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 3,
+      "max": 999,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Morphology",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "operation": "erode",
+        "kernel_size": 3
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "operation",
+    "kernel_size"
+  ]
+}

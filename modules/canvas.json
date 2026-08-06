@@ -1,0 +1,47 @@
+{
+  "id": "canvas",
+  "name": "Canvas",
+  "category": "latent",
+  "description": "EmptyLatentImage — the size and batch of what gets generated.",
+  "inPorts": [],
+  "outPorts": [{ "name": "latent", "type": "LATENT" }],
+  "outputs": { "latent": { "node": "empty" } },
+  "summary": ["width", "height", "batch_size"],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 8192,
+      "step": 8,
+      "target": { "node": "empty", "input": "width" }
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "type": "INT",
+      "default": 1024,
+      "min": 16,
+      "max": 8192,
+      "step": 8,
+      "target": { "node": "empty", "input": "height" }
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch",
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64,
+      "target": { "node": "empty", "input": "batch_size" }
+    }
+  ],
+  "nodes": {
+    "empty": {
+      "class_type": "EmptyLatentImage",
+      "inputs": { "width": 1024, "height": 1024, "batch_size": 1 }
+    }
+  }
+}

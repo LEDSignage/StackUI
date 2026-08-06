@@ -1,0 +1,25 @@
+{
+  "id": "load-image",
+  "name": "Load image",
+  "category": "load",
+  "description": "LoadImage — drop a file on the tile; it uploads and the widget takes the returned name.",
+  "inPorts": [],
+  "outPorts": [
+    { "name": "image", "type": "IMAGE" },
+    { "name": "mask", "type": "MASK" }
+  ],
+  "outputs": { "image": { "node": "li", "out": 0 }, "mask": { "node": "li", "out": 1 } },
+  "summary": ["image"],
+  "params": [
+    {
+      "name": "image",
+      "label": "Image",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": { "node": "li", "input": "image" }
+    }
+  ],
+  "nodes": {
+    "li": { "class_type": "LoadImage", "inputs": { "image": "" } }
+  }
+}

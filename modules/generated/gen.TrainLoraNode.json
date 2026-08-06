@@ -1,0 +1,341 @@
+{
+  "id": "gen.TrainLoraNode",
+  "name": "Train LoRA",
+  "category": "ComfyUI / model/training",
+  "description": "TrainLoraNode",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "lora",
+      "type": "LORA_MODEL"
+    },
+    {
+      "name": "loss_map",
+      "type": "LOSS_MAP"
+    },
+    {
+      "name": "steps",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "grad_accumulation_steps",
+      "label": "Grad accumulation steps",
+      "target": {
+        "node": "n",
+        "input": "grad_accumulation_steps"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 1024
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 100000
+    },
+    {
+      "name": "learning_rate",
+      "label": "Learning rate",
+      "target": {
+        "node": "n",
+        "input": "learning_rate"
+      },
+      "type": "FLOAT",
+      "default": 0.0005,
+      "min": 1e-7,
+      "max": 1,
+      "step": 1e-7
+    },
+    {
+      "name": "rank",
+      "label": "Rank",
+      "target": {
+        "node": "n",
+        "input": "rank"
+      },
+      "type": "INT",
+      "default": 8,
+      "min": 1,
+      "max": 128
+    },
+    {
+      "name": "optimizer",
+      "label": "Optimizer",
+      "target": {
+        "node": "n",
+        "input": "optimizer"
+      },
+      "type": "ENUM",
+      "default": "AdamW",
+      "options": [
+        "AdamW",
+        "Adam",
+        "SGD",
+        "RMSprop"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "optimizer"
+      }
+    },
+    {
+      "name": "loss_function",
+      "label": "Loss function",
+      "target": {
+        "node": "n",
+        "input": "loss_function"
+      },
+      "type": "ENUM",
+      "default": "MSE",
+      "options": [
+        "MSE",
+        "L1",
+        "Huber",
+        "SmoothL1"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "loss_function"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "training_dtype",
+      "label": "Training dtype",
+      "target": {
+        "node": "n",
+        "input": "training_dtype"
+      },
+      "type": "ENUM",
+      "default": "bf16",
+      "options": [
+        "bf16",
+        "fp32",
+        "none"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "training_dtype"
+      }
+    },
+    {
+      "name": "lora_dtype",
+      "label": "Lora dtype",
+      "target": {
+        "node": "n",
+        "input": "lora_dtype"
+      },
+      "type": "ENUM",
+      "default": "bf16",
+      "options": [
+        "bf16",
+        "fp32"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "lora_dtype"
+      }
+    },
+    {
+      "name": "quantized_backward",
+      "label": "Quantized backward",
+      "target": {
+        "node": "n",
+        "input": "quantized_backward"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "algorithm",
+      "label": "Algorithm",
+      "target": {
+        "node": "n",
+        "input": "algorithm"
+      },
+      "type": "ENUM",
+      "default": "LoRA",
+      "options": [
+        "LoRA",
+        "LoHa",
+        "LoKr",
+        "OFT"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "algorithm"
+      }
+    },
+    {
+      "name": "gradient_checkpointing",
+      "label": "Gradient checkpointing",
+      "target": {
+        "node": "n",
+        "input": "gradient_checkpointing"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "checkpoint_depth",
+      "label": "Checkpoint depth",
+      "target": {
+        "node": "n",
+        "input": "checkpoint_depth"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 5
+    },
+    {
+      "name": "offloading",
+      "label": "Offloading",
+      "target": {
+        "node": "n",
+        "input": "offloading"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "existing_lora",
+      "label": "Existing lora",
+      "target": {
+        "node": "n",
+        "input": "existing_lora"
+      },
+      "type": "ENUM",
+      "default": "[None]",
+      "options": [
+        "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
+        "gemma-3-12b-it-abliterated_lora_rank64_bf16.safetensors",
+        "ltx-2.3-22b-ic-lora-in-outpainting-0.9.safetensors",
+        "ltx_2.3_22b_distilled_1.1_lora_dynamic_fro09_avg_rank_111_bf16.safetensors",
+        "[None]"
+      ],
+      "optionsFrom": {
+        "class_type": "TrainLoraNode",
+        "input": "existing_lora"
+      }
+    },
+    {
+      "name": "bucket_mode",
+      "label": "Bucket mode",
+      "target": {
+        "node": "n",
+        "input": "bucket_mode"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "bypass_mode",
+      "label": "Bypass mode",
+      "target": {
+        "node": "n",
+        "input": "bypass_mode"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TrainLoraNode",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "latents": {
+          "$port": "latents"
+        },
+        "positive": {
+          "$port": "positive"
+        },
+        "batch_size": 1,
+        "grad_accumulation_steps": 1,
+        "steps": 16,
+        "learning_rate": 0.0005,
+        "rank": 8,
+        "optimizer": "AdamW",
+        "loss_function": "MSE",
+        "seed": 0,
+        "training_dtype": "bf16",
+        "lora_dtype": "bf16",
+        "quantized_backward": false,
+        "algorithm": "LoRA",
+        "gradient_checkpointing": true,
+        "checkpoint_depth": 1,
+        "offloading": false,
+        "existing_lora": "[None]",
+        "bucket_mode": false,
+        "bypass_mode": false
+      }
+    }
+  },
+  "outputs": {
+    "lora": {
+      "node": "n",
+      "out": 0
+    },
+    "loss_map": {
+      "node": "n",
+      "out": 1
+    },
+    "steps": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "batch_size",
+    "grad_accumulation_steps",
+    "steps"
+  ]
+}

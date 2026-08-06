@@ -1,0 +1,79 @@
+{
+  "id": "gen.GrokImageEditNodeV2",
+  "name": "Grok Image Edit",
+  "category": "ComfyUI / partner/image/Grok",
+  "description": "GrokImageEditNodeV2 — Modify an existing image based on a text prompt",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "grok-imagine-image-quality",
+      "options": [
+        "grok-imagine-image-quality",
+        "grok-imagine-image-pro",
+        "grok-imagine-image"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokImageEditNodeV2",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrokImageEditNodeV2",
+      "inputs": {
+        "prompt": "",
+        "model": "grok-imagine-image-quality",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "gen.ImageHistogram",
+  "name": "Image Histogram",
+  "category": "ComfyUI / utilities",
+  "description": "ImageHistogram",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "rgb",
+      "type": "HISTOGRAM"
+    },
+    {
+      "name": "luminance",
+      "type": "HISTOGRAM"
+    },
+    {
+      "name": "red",
+      "type": "HISTOGRAM"
+    },
+    {
+      "name": "green",
+      "type": "HISTOGRAM"
+    },
+    {
+      "name": "blue",
+      "type": "HISTOGRAM"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageHistogram",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "rgb": {
+      "node": "n",
+      "out": 0
+    },
+    "luminance": {
+      "node": "n",
+      "out": 1
+    },
+    "red": {
+      "node": "n",
+      "out": 2
+    },
+    "green": {
+      "node": "n",
+      "out": 3
+    },
+    "blue": {
+      "node": "n",
+      "out": 4
+    }
+  }
+}

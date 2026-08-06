@@ -1,0 +1,105 @@
+{
+  "id": "gen.TopazVideoEnhanceV2",
+  "name": "Topaz Video Enhance",
+  "category": "ComfyUI / partner/video/Topaz",
+  "description": "TopazVideoEnhanceV2 — Breathe new life into video with powerful upscaling and recovery technology.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "upscaler_model",
+      "label": "Upscaler model",
+      "target": {
+        "node": "n",
+        "input": "upscaler_model"
+      },
+      "type": "ENUM",
+      "default": "Astra 2",
+      "options": [
+        "Astra 2",
+        "Starlight (Astra) Fast",
+        "Starlight (Astra) Creative",
+        "Starlight Precise 2.5",
+        "Disabled"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhanceV2",
+        "input": "upscaler_model"
+      }
+    },
+    {
+      "name": "interpolation_model",
+      "label": "Interpolation model",
+      "target": {
+        "node": "n",
+        "input": "interpolation_model"
+      },
+      "type": "ENUM",
+      "default": "Disabled",
+      "options": [
+        "Disabled",
+        "apo-8"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhanceV2",
+        "input": "interpolation_model"
+      }
+    },
+    {
+      "name": "dynamic_compression_level",
+      "label": "Dynamic compression level",
+      "target": {
+        "node": "n",
+        "input": "dynamic_compression_level"
+      },
+      "type": "ENUM",
+      "default": "Low",
+      "options": [
+        "Low",
+        "Mid",
+        "High"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhanceV2",
+        "input": "dynamic_compression_level"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TopazVideoEnhanceV2",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "upscaler_model": "Astra 2",
+        "interpolation_model": "Disabled",
+        "dynamic_compression_level": "Low"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "upscaler_model",
+    "interpolation_model",
+    "dynamic_compression_level"
+  ]
+}

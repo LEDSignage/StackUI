@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 2,
+  "id": "video-h3-ref",
+  "name": "Make a video",
+  "job": "Make a video",
+  "model": "MiniMax H3 (Omni Reference)",
+  "output": {
+    "convertFps": 0
+  },
+  "controls": [
+    {
+      "label": "What happens",
+      "tileId": "t-h3",
+      "param": "prompt",
+      "group": "What to make",
+      "hint": "H3 takes a rich prompt — you can describe a timeline, and it generates sound too."
+    },
+    {
+      "label": "Width",
+      "tileId": "t-h3",
+      "param": "width",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Height",
+      "tileId": "t-h3",
+      "param": "height",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Seconds",
+      "tileId": "t-h3",
+      "param": "length",
+      "group": "Size and timing",
+      "seconds": {
+        "fps": 24,
+        "step": 17,
+        "offset": 5
+      }
+    },
+    {
+      "label": "Seed",
+      "tileId": "t-noise",
+      "param": "noise_seed",
+      "group": "Quality"
+    },
+    {
+      "label": "Steps",
+      "tileId": "t-sched",
+      "param": "steps",
+      "group": "Quality"
+    }
+  ],
+  "inputs": {
+    "label": "References",
+    "maxTotal": 12,
+    "note": "Up to 9 images, 3 video clips and 3 audio clips — but no more than 12 files in total. References describe what things look like; they are not placed anywhere in the clip.",
+    "kinds": [
+      {
+        "id": "ref",
+        "label": "Image",
+        "max": 9,
+        "beforeTile": "t-h3",
+        "template": [
+          {
+            "moduleId": "h3-ref-image-0"
+          }
+        ],
+        "loaderByIndex": [
+          "h3-ref-image-0",
+          "h3-ref-image-1",
+          "h3-ref-image-2",
+          "h3-ref-image-3",
+          "h3-ref-image-4",
+          "h3-ref-image-5",
+          "h3-ref-image-6",
+          "h3-ref-image-7",
+          "h3-ref-image-8"
+        ],
+        "file": {
+          "index": 0,
+          "param": "image"
+        }
+      },
+      {
+        "id": "refvid",
+        "label": "Video",
+        "max": 3,
+        "beforeTile": "t-h3",
+        "template": [
+          {
+            "moduleId": "h3-ref-video-0"
+          }
+        ],
+        "loaderByIndex": [
+          "h3-ref-video-0",
+          "h3-ref-video-1",
+          "h3-ref-video-2"
+        ],
+        "file": {
+          "index": 0,
+          "param": "file"
+        }
+      }
+    ]
+  },
+  "lines": [
+    {
+      "id": "l1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-unet",
+          "moduleId": "gen.UNETLoader",
+          "params": {
+            "unet_name": "minimax_h3_ref2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-clip",
+          "moduleId": "gen.CLIPLoader",
+          "params": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-vae",
+          "moduleId": "gen.VAELoader",
+          "params": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-avae",
+          "moduleId": "h3-audio-vae",
+          "params": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "ed82bf7b",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.ref.702332dd.0",
+          "moduleId": "h3-ref-image-0",
+          "params": {
+            "image": "image_b2a11ffe.png"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "e40562c5",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.ref.d1eeb094.0",
+          "moduleId": "h3-ref-image-1",
+          "params": {
+            "image": "Untitled-1.jpg"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "f01867d2",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.ref.70fd39eb.0",
+          "moduleId": "h3-ref-image-2",
+          "params": {
+            "image": "Pulse Logo-concepts-blueOnWhite.png"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-h3",
+          "moduleId": "h3-reference-to-video",
+          "params": {
+            "prompt": "Warm evening light, shallow depth of field, unhurried.\n\nTimeline:\n[0s-2s] The sign fills the frame, light catching its edge.\n[2s-5s] Slow drift back, the street coming into view behind it.\n\nNo cuts, no camera shake, no text overlays.\n\nAudio: Low room tone, distant traffic, no music.",
+            "width": 1344,
+            "height": 768,
+            "length": 243,
+            "ref_image_size": "match"
+          },
+          "collapsed": false
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-guider",
+          "moduleId": "gen.BasicGuider",
+          "params": {},
+          "collapsed": true
+        },
+        {
+          "id": "t-sampler",
+          "moduleId": "gen.KSamplerSelect",
+          "params": {
+            "sampler_name": "res_multistep"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-sched",
+          "moduleId": "gen.BasicScheduler",
+          "params": {
+            "scheduler": "simple",
+            "steps": 20,
+            "denoise": 1
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-noise",
+          "moduleId": "gen.RandomNoise",
+          "params": {
+            "noise_seed": 1234
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-sample",
+          "moduleId": "sample-advanced",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-decode",
+          "moduleId": "gen.VAEDecode",
+          "params": {},
+          "collapsed": true
+        },
+        {
+          "id": "t-decode-audio",
+          "moduleId": "decode-audio",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l7",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-video",
+          "moduleId": "create-video",
+          "params": {
+            "fps": 24,
+            "bit_depth": 8
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l8",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-save",
+          "moduleId": "gen.SaveVideo",
+          "params": {
+            "filename_prefix": "StackUI/h3",
+            "format": "auto",
+            "codec": "auto"
+          },
+          "collapsed": true
+        }
+      ]
+    }
+  ],
+  "script": {
+    "target": {
+      "tileId": "t-h3",
+      "param": "prompt"
+    },
+    "vision": "Warm evening light, shallow depth of field, unhurried.",
+    "shots": [
+      {
+        "from": 0,
+        "to": 2,
+        "text": "The sign fills the frame, light catching its edge."
+      },
+      {
+        "from": 2,
+        "to": 5,
+        "text": "Slow drift back, the street coming into view behind it."
+      }
+    ],
+    "audio": "Low room tone, distant traffic, no music.",
+    "rules": "No cuts, no camera shake, no text overlays."
+  }
+}

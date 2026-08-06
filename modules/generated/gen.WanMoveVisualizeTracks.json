@@ -1,0 +1,105 @@
+{
+  "id": "gen.WanMoveVisualizeTracks",
+  "name": "WanMoveVisualizeTracks",
+  "category": "ComfyUI / model/conditioning/wan/move",
+  "description": "WanMoveVisualizeTracks",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "tracks",
+      "type": "TRACKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "line_resolution",
+      "label": "Line resolution",
+      "target": {
+        "node": "n",
+        "input": "line_resolution"
+      },
+      "type": "INT",
+      "default": 24,
+      "min": 1,
+      "max": 1024
+    },
+    {
+      "name": "circle_size",
+      "label": "Circle size",
+      "target": {
+        "node": "n",
+        "input": "circle_size"
+      },
+      "type": "INT",
+      "default": 12,
+      "min": 1,
+      "max": 128
+    },
+    {
+      "name": "opacity",
+      "label": "Opacity",
+      "target": {
+        "node": "n",
+        "input": "opacity"
+      },
+      "type": "FLOAT",
+      "default": 0.75,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "line_width",
+      "label": "Line width",
+      "target": {
+        "node": "n",
+        "input": "line_width"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 128
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanMoveVisualizeTracks",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "line_resolution": 24,
+        "circle_size": 12,
+        "opacity": 0.75,
+        "line_width": 16,
+        "tracks": {
+          "$port": "tracks"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "image"
+  },
+  "summary": [
+    "line_resolution",
+    "circle_size",
+    "opacity"
+  ]
+}

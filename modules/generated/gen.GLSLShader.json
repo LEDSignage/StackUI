@@ -1,0 +1,123 @@
+{
+  "id": "gen.GLSLShader",
+  "name": "GLSL Shader",
+  "category": "ComfyUI / image/shader",
+  "description": "GLSLShader — Apply GLSL ES fragment shaders to images. u_resolution (vec2) is always available.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3"
+    },
+    {
+      "name": "floats",
+      "type": "COMFY_AUTOGROW_V3"
+    },
+    {
+      "name": "ints",
+      "type": "COMFY_AUTOGROW_V3"
+    },
+    {
+      "name": "bools",
+      "type": "COMFY_AUTOGROW_V3"
+    },
+    {
+      "name": "curves",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image0",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image1",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image2",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image3",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "fragment_shader",
+      "label": "Fragment shader",
+      "target": {
+        "node": "n",
+        "input": "fragment_shader"
+      },
+      "type": "STRING",
+      "default": "#version 300 es\nprecision highp float;\n\nuniform sampler2D u_image0;\nuniform vec2 u_resolution;\n\nin vec2 v_texCoord;\nlayout(location = 0) out vec4 fragColor0;\n\nvoid main() {\n    fragColor0 = texture(u_image0, v_texCoord);\n}\n",
+      "multiline": true
+    },
+    {
+      "name": "size_mode",
+      "label": "Size mode",
+      "target": {
+        "node": "n",
+        "input": "size_mode"
+      },
+      "type": "ENUM",
+      "default": "from_input",
+      "options": [
+        "from_input",
+        "custom"
+      ],
+      "optionsFrom": {
+        "class_type": "GLSLShader",
+        "input": "size_mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GLSLShader",
+      "inputs": {
+        "fragment_shader": "#version 300 es\nprecision highp float;\n\nuniform sampler2D u_image0;\nuniform vec2 u_resolution;\n\nin vec2 v_texCoord;\nlayout(location = 0) out vec4 fragColor0;\n\nvoid main() {\n    fragColor0 = texture(u_image0, v_texCoord);\n}\n",
+        "size_mode": "from_input",
+        "images": {
+          "$port": "images"
+        },
+        "floats": {
+          "$port": "floats"
+        },
+        "ints": {
+          "$port": "ints"
+        },
+        "bools": {
+          "$port": "bools"
+        },
+        "curves": {
+          "$port": "curves"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image0": {
+      "node": "n",
+      "out": 0
+    },
+    "image1": {
+      "node": "n",
+      "out": 1
+    },
+    "image2": {
+      "node": "n",
+      "out": 2
+    },
+    "image3": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "summary": [
+    "fragment_shader",
+    "size_mode"
+  ]
+}

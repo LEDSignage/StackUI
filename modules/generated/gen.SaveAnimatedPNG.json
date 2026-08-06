@@ -1,0 +1,83 @@
+{
+  "id": "gen.SaveAnimatedPNG",
+  "name": "Save Animated PNG",
+  "category": "ComfyUI / image",
+  "description": "SaveAnimatedPNG",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    },
+    {
+      "name": "fps",
+      "label": "Fps",
+      "target": {
+        "node": "n",
+        "input": "fps"
+      },
+      "type": "FLOAT",
+      "default": 6,
+      "min": 0.01,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "compress_level",
+      "label": "Compress level",
+      "target": {
+        "node": "n",
+        "input": "compress_level"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 0,
+      "max": 9
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAnimatedPNG",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "filename_prefix": "ComfyUI",
+        "fps": 6,
+        "compress_level": 4
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "filename_prefix",
+    "fps",
+    "compress_level"
+  ]
+}

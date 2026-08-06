@@ -1,0 +1,90 @@
+{
+  "id": "gen.VideoFrameSample",
+  "name": "Sample Video Frame",
+  "category": "ComfyUI / video",
+  "description": "VideoFrameSample — Sample a fixed number of frames from a video using various strategies.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "num_frames",
+      "label": "Num frames",
+      "target": {
+        "node": "n",
+        "input": "num_frames"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 9999
+    },
+    {
+      "name": "strategy",
+      "label": "Strategy",
+      "target": {
+        "node": "n",
+        "input": "strategy"
+      },
+      "type": "ENUM",
+      "default": "uniform",
+      "options": [
+        "uniform",
+        "head",
+        "tail",
+        "random"
+      ],
+      "optionsFrom": {
+        "class_type": "VideoFrameSample",
+        "input": "strategy"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VideoFrameSample",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "num_frames": 16,
+        "strategy": "uniform",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "num_frames",
+    "strategy",
+    "seed"
+  ]
+}

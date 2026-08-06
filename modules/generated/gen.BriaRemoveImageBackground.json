@@ -1,0 +1,75 @@
+{
+  "id": "gen.BriaRemoveImageBackground",
+  "name": "Bria Remove Image Background",
+  "category": "ComfyUI / partner/image/Bria",
+  "description": "BriaRemoveImageBackground — Remove the background from an image using Bria RMBG 2.0.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "moderation",
+      "label": "Moderation",
+      "target": {
+        "node": "n",
+        "input": "moderation"
+      },
+      "type": "ENUM",
+      "default": "false",
+      "options": [
+        "false",
+        "true"
+      ],
+      "optionsFrom": {
+        "class_type": "BriaRemoveImageBackground",
+        "input": "moderation"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaRemoveImageBackground",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "moderation": "false",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "moderation",
+    "seed"
+  ]
+}

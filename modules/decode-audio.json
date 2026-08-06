@@ -1,0 +1,19 @@
+{
+  "id": "decode-audio",
+  "name": "Decode audio",
+  "category": "latent",
+  "description": "VAEDecodeAudio, taking the audio VAE by name. The generated version calls its input \"vae\", which would silently pick up the video VAE instead.",
+  "inPorts": [
+    { "name": "latent", "type": "LATENT" },
+    { "name": "audio_vae", "type": "VAE" }
+  ],
+  "outPorts": [{ "name": "audio", "type": "AUDIO" }],
+  "outputs": { "audio": { "node": "d", "out": 0 } },
+  "params": [],
+  "nodes": {
+    "d": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": { "samples": { "$port": "latent" }, "vae": { "$port": "audio_vae" } }
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "id": "gen.LatentUpscale",
+  "name": "Upscale Latent",
+  "category": "ComfyUI / model/latent",
+  "description": "LatentUpscale",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "upscale_method",
+      "label": "Upscale method",
+      "target": {
+        "node": "n",
+        "input": "upscale_method"
+      },
+      "type": "ENUM",
+      "default": "nearest-exact",
+      "options": [
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bicubic",
+        "bislerp"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentUpscale",
+        "input": "upscale_method"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "crop",
+      "label": "Crop",
+      "target": {
+        "node": "n",
+        "input": "crop"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "center"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentUpscale",
+        "input": "crop"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentUpscale",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "upscale_method": "nearest-exact",
+        "width": 512,
+        "height": 512,
+        "crop": "disabled"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "upscale_method",
+    "width",
+    "height"
+  ]
+}

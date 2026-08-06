@@ -1,0 +1,63 @@
+{
+  "id": "gen.LatentRotate",
+  "name": "Rotate Latent",
+  "category": "ComfyUI / model/latent/transform",
+  "description": "LatentRotate",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "rotation",
+      "label": "Rotation",
+      "target": {
+        "node": "n",
+        "input": "rotation"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none",
+        "90 degrees",
+        "180 degrees",
+        "270 degrees"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentRotate",
+        "input": "rotation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentRotate",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "rotation": "none"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "rotation"
+  ]
+}

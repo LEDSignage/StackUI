@@ -1,0 +1,54 @@
+{
+  "id": "gen.AddTextPrefix",
+  "name": "Add Text Prefix (DEPRECATED)",
+  "category": "ComfyUI / text",
+  "description": "AddTextPrefix",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "prefix",
+      "label": "Prefix",
+      "target": {
+        "node": "n",
+        "input": "prefix"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AddTextPrefix",
+      "inputs": {
+        "texts": "",
+        "prefix": ""
+      }
+    }
+  },
+  "outputs": {
+    "texts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "texts",
+    "prefix"
+  ]
+}

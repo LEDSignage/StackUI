@@ -1,0 +1,68 @@
+{
+  "id": "gen.CFGNorm",
+  "name": "CFGNorm",
+  "category": "ComfyUI / advanced/guidance",
+  "description": "CFGNorm",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "patched_model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "pre_cfg",
+      "label": "Pre cfg",
+      "target": {
+        "node": "n",
+        "input": "pre_cfg"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CFGNorm",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "strength": 1,
+        "pre_cfg": false
+      }
+    }
+  },
+  "outputs": {
+    "patched_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "patched_model"
+  },
+  "summary": [
+    "strength",
+    "pre_cfg"
+  ]
+}

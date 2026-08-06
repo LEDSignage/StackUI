@@ -1,0 +1,45 @@
+{
+  "id": "gen.ConditioningCombine",
+  "name": "Conditioning (Combine)",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningCombine",
+  "inPorts": [
+    {
+      "name": "conditioning_1",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "conditioning_2",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningCombine",
+      "inputs": {
+        "conditioning_1": {
+          "$port": "conditioning_1"
+        },
+        "conditioning_2": {
+          "$port": "conditioning_2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning_1": "conditioning"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "gen.Preview3D",
+  "name": "Preview 3D & Animation",
+  "category": "ComfyUI / 3d",
+  "description": "Preview3D — Preview a 3D model file without saving it to the ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING,FILE_3D_GLB,FILE_3D_GLTF,FILE_3D_FBX,FILE_3D_OBJ,FILE_3D_STL,FILE_3D_USDZ,FILE_3D"
+    },
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA",
+      "optional": true
+    },
+    {
+      "name": "bg_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "Preview3D",
+      "inputs": {
+        "model_file": {
+          "$port": "model_file"
+        },
+        "camera_info": {
+          "$port": "camera_info"
+        },
+        "bg_image": {
+          "$port": "bg_image"
+        }
+      }
+    }
+  },
+  "terminal": true
+}

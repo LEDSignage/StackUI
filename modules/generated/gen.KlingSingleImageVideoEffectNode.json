@@ -1,0 +1,116 @@
+{
+  "id": "gen.KlingSingleImageVideoEffectNode",
+  "name": "Kling Video Effects",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingSingleImageVideoEffectNode — Achieve different special effects when generating a video based on the effect_scene.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "video_id",
+      "type": "STRING"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "effect_scene",
+      "label": "Effect scene",
+      "target": {
+        "node": "n",
+        "input": "effect_scene"
+      },
+      "type": "ENUM",
+      "default": "bloombloom",
+      "options": [
+        "bloombloom",
+        "dizzydizzy",
+        "fuzzyfuzzy",
+        "squish",
+        "expansion"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingSingleImageVideoEffectNode",
+        "input": "effect_scene"
+      }
+    },
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v1-6",
+      "options": [
+        "kling-v1-6"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingSingleImageVideoEffectNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5",
+      "options": [
+        "5",
+        "10"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingSingleImageVideoEffectNode",
+        "input": "duration"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingSingleImageVideoEffectNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "effect_scene": "bloombloom",
+        "model_name": "kling-v1-6",
+        "duration": "5"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "video_id": {
+      "node": "n",
+      "out": 1
+    },
+    "duration": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "effect_scene",
+    "model_name",
+    "duration"
+  ]
+}

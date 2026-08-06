@@ -1,0 +1,40 @@
+{
+  "id": "gen.LossGraphNode",
+  "name": "Plot Loss Graph",
+  "category": "ComfyUI / model/training",
+  "description": "LossGraphNode",
+  "inPorts": [
+    {
+      "name": "loss",
+      "type": "LOSS_MAP"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "loss_graph"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LossGraphNode",
+      "inputs": {
+        "loss": {
+          "$port": "loss"
+        },
+        "filename_prefix": "loss_graph"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

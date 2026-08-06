@@ -1,0 +1,68 @@
+{
+  "id": "gen.LoadDA3Model",
+  "name": "Load Depth Anything 3",
+  "category": "ComfyUI / model/loaders",
+  "description": "LoadDA3Model",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "da3_model",
+      "type": "DA3_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadDA3Model",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "weight_dtype",
+      "label": "Weight dtype",
+      "target": {
+        "node": "n",
+        "input": "weight_dtype"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "fp16",
+        "bf16",
+        "fp32"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadDA3Model",
+        "input": "weight_dtype"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadDA3Model",
+      "inputs": {
+        "model_name": "",
+        "weight_dtype": "default"
+      }
+    }
+  },
+  "outputs": {
+    "da3_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name",
+    "weight_dtype"
+  ]
+}

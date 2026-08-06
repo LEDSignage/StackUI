@@ -1,0 +1,81 @@
+{
+  "id": "gen.SyncLipSyncNode",
+  "name": "sync.so Lip Sync",
+  "category": "ComfyUI / partner/video/sync.so",
+  "description": "SyncLipSyncNode — Re-sync mouth movement in a video to new speech audio using sync.so. Handles close-ups, profiles and obstructions automatically while preserving the speaker's expression. Cost scales with output duration.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "sync-3",
+      "options": [
+        "sync-3"
+      ],
+      "optionsFrom": {
+        "class_type": "SyncLipSyncNode",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SyncLipSyncNode",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "audio": {
+          "$port": "audio"
+        },
+        "seed": 42,
+        "model": "sync-3"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "seed",
+    "model"
+  ]
+}

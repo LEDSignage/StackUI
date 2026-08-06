@@ -1,0 +1,63 @@
+{
+  "id": "gen.LatentInterpolate",
+  "name": "LatentInterpolate",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentInterpolate",
+  "inPorts": [
+    {
+      "name": "samples1",
+      "type": "LATENT"
+    },
+    {
+      "name": "samples2",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentInterpolate",
+      "inputs": {
+        "samples1": {
+          "$port": "samples1"
+        },
+        "samples2": {
+          "$port": "samples2"
+        },
+        "ratio": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples1": "latent"
+  },
+  "summary": [
+    "ratio"
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "gen.StringLength",
+  "name": "Text Length",
+  "category": "ComfyUI / text",
+  "description": "StringLength",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "length",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringLength",
+      "inputs": {
+        "string": ""
+      }
+    }
+  },
+  "outputs": {
+    "length": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string"
+  ]
+}

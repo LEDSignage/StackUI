@@ -1,0 +1,67 @@
+{
+  "id": "gen.TextEncodeQwenImageEdit",
+  "name": "TextEncodeQwenImageEdit",
+  "category": "ComfyUI / model/conditioning/qwen image",
+  "description": "TextEncodeQwenImageEdit",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE",
+      "optional": true
+    },
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeQwenImageEdit",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "prompt": "",
+        "vae": {
+          "$port": "vae"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt"
+  ]
+}

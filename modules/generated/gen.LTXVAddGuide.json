@@ -1,0 +1,132 @@
+{
+  "id": "gen.LTXVAddGuide",
+  "name": "LTXVAddGuide",
+  "category": "ComfyUI / model/conditioning/ltxv",
+  "description": "LTXVAddGuide",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "attention_mask",
+      "type": "MASK",
+      "optional": true
+    },
+    {
+      "name": "iclora_parameters",
+      "type": "IC_LORA_PARAMETERS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "frame_idx",
+      "label": "Frame idx",
+      "target": {
+        "node": "n",
+        "input": "frame_idx"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -9999,
+      "max": 9999
+    },
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVAddGuide",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "latent": {
+          "$port": "latent"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "frame_idx": 0,
+        "strength": 1,
+        "attention_mask": {
+          "$port": "attention_mask"
+        },
+        "iclora_parameters": {
+          "$port": "iclora_parameters"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative",
+    "latent": "latent"
+  },
+  "summary": [
+    "frame_idx",
+    "strength"
+  ]
+}

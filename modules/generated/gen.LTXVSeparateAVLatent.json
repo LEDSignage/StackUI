@@ -1,0 +1,46 @@
+{
+  "id": "gen.LTXVSeparateAVLatent",
+  "name": "Separate AV Latent",
+  "category": "ComfyUI / model/latent/ltxv",
+  "description": "LTXVSeparateAVLatent — Split a joint AV latent into its video and audio latents (any AV model, e.g. LTXV or MiniMax H3).",
+  "inPorts": [
+    {
+      "name": "av_latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video_latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "audio_latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVSeparateAVLatent",
+      "inputs": {
+        "av_latent": {
+          "$port": "av_latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video_latent": {
+      "node": "n",
+      "out": 0
+    },
+    "audio_latent": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "av_latent": "video_latent"
+  }
+}

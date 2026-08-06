@@ -1,0 +1,23 @@
+{
+  "id": "h3-audio-vae",
+  "name": "Audio VAE",
+  "category": "load",
+  "description": "VAELoader published as audio_vae. MiniMax H3 wants a video VAE and an audio VAE at the same time, and two plain VAE loaders would both publish \"vae\".",
+  "inPorts": [],
+  "outPorts": [{ "name": "audio_vae", "type": "VAE" }],
+  "outputs": { "audio_vae": { "node": "vl", "out": 0 } },
+  "summary": ["vae_name"],
+  "params": [
+    {
+      "name": "vae_name",
+      "label": "Audio VAE",
+      "type": "ENUM",
+      "default": "minimax_h3_audio_vae_fp32.safetensors",
+      "optionsFrom": { "class_type": "VAELoader", "input": "vae_name" },
+      "target": { "node": "vl", "input": "vae_name" }
+    }
+  ],
+  "nodes": {
+    "vl": { "class_type": "VAELoader", "inputs": { "vae_name": "" } }
+  }
+}

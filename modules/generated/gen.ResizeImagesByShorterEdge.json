@@ -1,0 +1,55 @@
+{
+  "id": "gen.ResizeImagesByShorterEdge",
+  "name": "Resize Images by Shorter Edge (DEPRECATED)",
+  "category": "ComfyUI / image/transform",
+  "description": "ResizeImagesByShorterEdge — Resize images so that the shorter edge matches the specified dimension while preserving aspect ratio.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "shorter_edge",
+      "label": "Shorter edge",
+      "target": {
+        "node": "n",
+        "input": "shorter_edge"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 8192
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ResizeImagesByShorterEdge",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "shorter_edge": 512
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "shorter_edge"
+  ]
+}

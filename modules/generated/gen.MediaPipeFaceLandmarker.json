@@ -1,0 +1,124 @@
+{
+  "id": "gen.MediaPipeFaceLandmarker",
+  "name": "Detect Face Landmarks (MediaPipe)",
+  "category": "ComfyUI / image/detection",
+  "description": "MediaPipeFaceLandmarker — Detects facial landmarks using MediaPipe model.",
+  "inPorts": [
+    {
+      "name": "face_detection_model",
+      "type": "FACE_DETECTION_MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "face_landmarks",
+      "type": "FACE_LANDMARKS"
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    }
+  ],
+  "params": [
+    {
+      "name": "detector_variant",
+      "label": "Detector variant",
+      "target": {
+        "node": "n",
+        "input": "detector_variant"
+      },
+      "type": "ENUM",
+      "default": "short",
+      "options": [
+        "short",
+        "full",
+        "both"
+      ],
+      "optionsFrom": {
+        "class_type": "MediaPipeFaceLandmarker",
+        "input": "detector_variant"
+      }
+    },
+    {
+      "name": "num_faces",
+      "label": "Num faces",
+      "target": {
+        "node": "n",
+        "input": "num_faces"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 16,
+      "step": 1
+    },
+    {
+      "name": "min_confidence",
+      "label": "Min confidence",
+      "target": {
+        "node": "n",
+        "input": "min_confidence"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "missing_frame_fallback",
+      "label": "Missing frame fallback",
+      "target": {
+        "node": "n",
+        "input": "missing_frame_fallback"
+      },
+      "type": "ENUM",
+      "default": "empty",
+      "options": [
+        "empty",
+        "previous",
+        "interpolate"
+      ],
+      "optionsFrom": {
+        "class_type": "MediaPipeFaceLandmarker",
+        "input": "missing_frame_fallback"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MediaPipeFaceLandmarker",
+      "inputs": {
+        "face_detection_model": {
+          "$port": "face_detection_model"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "detector_variant": "short",
+        "num_faces": 1,
+        "min_confidence": 0.5,
+        "missing_frame_fallback": "empty"
+      }
+    }
+  },
+  "outputs": {
+    "face_landmarks": {
+      "node": "n",
+      "out": 0
+    },
+    "bboxes": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "detector_variant",
+    "num_faces",
+    "min_confidence"
+  ]
+}

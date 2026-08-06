@@ -1,0 +1,112 @@
+{
+  "id": "gen.HunyuanVideo15SuperResolution",
+  "name": "Hunyuan Video 1.5 Super Resolution",
+  "category": "ComfyUI / model/conditioning/hunyuan video",
+  "description": "HunyuanVideo15SuperResolution",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE",
+      "optional": true
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "noise_augmentation",
+      "label": "Noise augmentation",
+      "target": {
+        "node": "n",
+        "input": "noise_augmentation"
+      },
+      "type": "FLOAT",
+      "default": 0.7,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HunyuanVideo15SuperResolution",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "latent": {
+          "$port": "latent"
+        },
+        "noise_augmentation": 0.7,
+        "vae": {
+          "$port": "vae"
+        },
+        "start_image": {
+          "$port": "start_image"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative",
+    "latent": "latent"
+  },
+  "summary": [
+    "noise_augmentation"
+  ]
+}

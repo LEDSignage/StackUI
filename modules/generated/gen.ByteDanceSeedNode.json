@@ -1,0 +1,90 @@
+{
+  "id": "gen.ByteDanceSeedNode",
+  "name": "ByteDance Seed",
+  "category": "ComfyUI / partner/text/ByteDance",
+  "description": "ByteDanceSeedNode — Generate text responses with ByteDance's Seed 2.0 models. Provide a text prompt and optionally one or more images or videos for multimodal context.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Seed 2.0 Pro",
+      "options": [
+        "Seed 2.0 Pro",
+        "Seed 2.0 Lite",
+        "Seed 2.0 Mini"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceSeedNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDanceSeedNode",
+      "inputs": {
+        "prompt": "",
+        "model": "Seed 2.0 Pro",
+        "seed": 0,
+        "system_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

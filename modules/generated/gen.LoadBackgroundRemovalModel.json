@@ -1,0 +1,46 @@
+{
+  "id": "gen.LoadBackgroundRemovalModel",
+  "name": "Load Background Removal Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "LoadBackgroundRemovalModel",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "bg_model",
+      "type": "BACKGROUND_REMOVAL"
+    }
+  ],
+  "params": [
+    {
+      "name": "bg_removal_name",
+      "label": "Bg removal name",
+      "target": {
+        "node": "n",
+        "input": "bg_removal_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadBackgroundRemovalModel",
+        "input": "bg_removal_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadBackgroundRemovalModel",
+      "inputs": {
+        "bg_removal_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "bg_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "bg_removal_name"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "gen.LumaReferenceNode",
+  "name": "Luma Reference",
+  "category": "ComfyUI / partner/image/Luma",
+  "description": "LumaReferenceNode — Holds an image and weight for use with Luma Generate Image node.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "luma_ref",
+      "type": "LUMA_REF",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "luma_ref",
+      "type": "LUMA_REF"
+    }
+  ],
+  "params": [
+    {
+      "name": "weight",
+      "label": "Weight",
+      "target": {
+        "node": "n",
+        "input": "weight"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaReferenceNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "weight": 1,
+        "luma_ref": {
+          "$port": "luma_ref"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "luma_ref": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "weight"
+  ]
+}

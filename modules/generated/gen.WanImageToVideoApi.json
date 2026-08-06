@@ -1,0 +1,192 @@
+{
+  "id": "gen.WanImageToVideoApi",
+  "name": "Wan Image to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "WanImageToVideoApi — Generates a video from the first frame and a text prompt.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "wan2.6-i2v",
+      "options": [
+        "wan2.5-i2v-preview",
+        "wan2.6-i2v"
+      ],
+      "optionsFrom": {
+        "class_type": "WanImageToVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720P",
+      "options": [
+        "480P",
+        "720P",
+        "1080P"
+      ],
+      "optionsFrom": {
+        "class_type": "WanImageToVideoApi",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 5,
+      "max": 15,
+      "step": 5
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "prompt_extend",
+      "label": "Prompt extend",
+      "target": {
+        "node": "n",
+        "input": "prompt_extend"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "shot_type",
+      "label": "Shot type",
+      "target": {
+        "node": "n",
+        "input": "shot_type"
+      },
+      "type": "ENUM",
+      "default": "single",
+      "options": [
+        "single",
+        "multi"
+      ],
+      "optionsFrom": {
+        "class_type": "WanImageToVideoApi",
+        "input": "shot_type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanImageToVideoApi",
+      "inputs": {
+        "model": "wan2.6-i2v",
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "negative_prompt": "",
+        "resolution": "720P",
+        "duration": 5,
+        "audio": {
+          "$port": "audio"
+        },
+        "seed": 0,
+        "generate_audio": false,
+        "prompt_extend": true,
+        "watermark": false,
+        "shot_type": "single"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "negative_prompt"
+  ]
+}

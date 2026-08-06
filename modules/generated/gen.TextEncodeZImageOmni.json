@@ -1,0 +1,103 @@
+{
+  "id": "gen.TextEncodeZImageOmni",
+  "name": "TextEncodeZImageOmni",
+  "category": "ComfyUI / model/conditioning/z-image",
+  "description": "TextEncodeZImageOmni",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "image_encoder",
+      "type": "CLIP_VISION",
+      "optional": true
+    },
+    {
+      "name": "vae",
+      "type": "VAE",
+      "optional": true
+    },
+    {
+      "name": "image1",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image2",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image3",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "auto_resize_images",
+      "label": "Auto resize images",
+      "target": {
+        "node": "n",
+        "input": "auto_resize_images"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeZImageOmni",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "prompt": "",
+        "auto_resize_images": true,
+        "image_encoder": {
+          "$port": "image_encoder"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "image1": {
+          "$port": "image1"
+        },
+        "image2": {
+          "$port": "image2"
+        },
+        "image3": {
+          "$port": "image3"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "auto_resize_images"
+  ]
+}

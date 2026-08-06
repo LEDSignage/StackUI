@@ -1,0 +1,54 @@
+{
+  "id": "gen.CheckpointSave",
+  "name": "Save Checkpoint",
+  "category": "ComfyUI / model/merging",
+  "description": "CheckpointSave",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "checkpoints/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CheckpointSave",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "clip": {
+          "$port": "clip"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "filename_prefix": "checkpoints/ComfyUI"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

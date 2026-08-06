@@ -1,0 +1,45 @@
+{
+  "id": "gen.JoinAudioChannels",
+  "name": "Join Audio Channels",
+  "category": "ComfyUI / audio",
+  "description": "JoinAudioChannels — Joins left and right mono audio channels into a stereo audio.",
+  "inPorts": [
+    {
+      "name": "audio_left",
+      "type": "AUDIO"
+    },
+    {
+      "name": "audio_right",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "JoinAudioChannels",
+      "inputs": {
+        "audio_left": {
+          "$port": "audio_left"
+        },
+        "audio_right": {
+          "$port": "audio_right"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio_left": "audio"
+  }
+}

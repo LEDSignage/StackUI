@@ -1,0 +1,75 @@
+{
+  "id": "gen.EmptyMiniMaxH3LatentAV",
+  "name": "Empty MiniMax H3 AV Latent",
+  "category": "ComfyUI / model/latent/minimax",
+  "description": "EmptyMiniMaxH3LatentAV — Joint video+audio latent for MiniMax H3. Duration snaps to the model's 17k+5 frame grid at 24 fps.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1344,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 768,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 124,
+      "min": 5,
+      "max": 3600,
+      "step": 17
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyMiniMaxH3LatentAV",
+      "inputs": {
+        "width": 1344,
+        "height": 768,
+        "length": 124
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

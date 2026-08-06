@@ -1,0 +1,125 @@
+{
+  "id": "gen.QuadrupleCLIPLoader",
+  "name": "Load CLIP (Quadruple)",
+  "category": "ComfyUI / model/loaders",
+  "description": "QuadrupleCLIPLoader — Recipes:",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_name1",
+      "label": "Clip name1",
+      "target": {
+        "node": "n",
+        "input": "clip_name1"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "QuadrupleCLIPLoader",
+        "input": "clip_name1"
+      }
+    },
+    {
+      "name": "clip_name2",
+      "label": "Clip name2",
+      "target": {
+        "node": "n",
+        "input": "clip_name2"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "QuadrupleCLIPLoader",
+        "input": "clip_name2"
+      }
+    },
+    {
+      "name": "clip_name3",
+      "label": "Clip name3",
+      "target": {
+        "node": "n",
+        "input": "clip_name3"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "QuadrupleCLIPLoader",
+        "input": "clip_name3"
+      }
+    },
+    {
+      "name": "clip_name4",
+      "label": "Clip name4",
+      "target": {
+        "node": "n",
+        "input": "clip_name4"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "QuadrupleCLIPLoader",
+        "input": "clip_name4"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "QuadrupleCLIPLoader",
+      "inputs": {
+        "clip_name1": "clip_l.safetensors",
+        "clip_name2": "clip_l.safetensors",
+        "clip_name3": "clip_l.safetensors",
+        "clip_name4": "clip_l.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_name1",
+    "clip_name2",
+    "clip_name3"
+  ]
+}

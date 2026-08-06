@@ -1,0 +1,164 @@
+{
+  "id": "gen.RecraftTextToVectorNode",
+  "name": "Recraft V3 Text to Vector",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftTextToVectorNode — Generates SVG synchronously based on prompt and resolution.",
+  "inPorts": [
+    {
+      "name": "recraft_controls",
+      "type": "RECRAFT_CONTROLS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "substyle",
+      "label": "Substyle",
+      "target": {
+        "node": "n",
+        "input": "substyle"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "bold_stroke",
+        "chemistry",
+        "colored_stencil",
+        "contour_pop_art",
+        "cosmics",
+        "cutout",
+        "depressive",
+        "editorial",
+        "emotional_flat",
+        "engraving",
+        "infographical",
+        "line_art",
+        "line_circuit",
+        "linocut",
+        "marker_outline",
+        "mosaic",
+        "naivector",
+        "roundish_flat",
+        "seamless",
+        "segmented_colors",
+        "sharp_contrast",
+        "thin",
+        "vector_photo",
+        "vivid_shapes"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftTextToVectorNode",
+        "input": "substyle"
+      }
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "target": {
+        "node": "n",
+        "input": "size"
+      },
+      "type": "ENUM",
+      "default": "1024x1024",
+      "options": [
+        "1024x1024",
+        "1365x1024",
+        "1024x1365",
+        "1536x1024",
+        "1024x1536",
+        "1820x1024",
+        "1024x1820",
+        "1024x2048",
+        "2048x1024",
+        "1434x1024",
+        "1024x1434",
+        "1024x1280",
+        "1280x1024",
+        "1024x1707",
+        "1707x1024"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftTextToVectorNode",
+        "input": "size"
+      }
+    },
+    {
+      "name": "n",
+      "label": "N",
+      "target": {
+        "node": "n",
+        "input": "n"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 6
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftTextToVectorNode",
+      "inputs": {
+        "prompt": "",
+        "substyle": "None",
+        "size": "1024x1024",
+        "n": 1,
+        "seed": 0,
+        "negative_prompt": "",
+        "recraft_controls": {
+          "$port": "recraft_controls"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "substyle",
+    "size"
+  ]
+}

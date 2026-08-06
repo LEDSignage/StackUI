@@ -1,0 +1,142 @@
+{
+  "id": "gen.GrokImageNode",
+  "name": "Grok Image",
+  "category": "ComfyUI / partner/image/Grok",
+  "description": "GrokImageNode — Generate images using Grok based on a text prompt",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "grok-imagine-image-quality",
+      "options": [
+        "grok-imagine-image-quality",
+        "grok-imagine-image-pro",
+        "grok-imagine-image"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokImageNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "1:1",
+      "options": [
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "9:16",
+        "16:9",
+        "9:19.5",
+        "19.5:9",
+        "9:20",
+        "20:9",
+        "1:2",
+        "2:1"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokImageNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "number_of_images",
+      "label": "Number of images",
+      "target": {
+        "node": "n",
+        "input": "number_of_images"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1K",
+      "options": [
+        "1K",
+        "2K"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokImageNode",
+        "input": "resolution"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrokImageNode",
+      "inputs": {
+        "model": "grok-imagine-image-quality",
+        "prompt": "",
+        "aspect_ratio": "1:1",
+        "number_of_images": 1,
+        "seed": 0,
+        "resolution": "1K"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "aspect_ratio"
+  ]
+}

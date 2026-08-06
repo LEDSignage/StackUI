@@ -1,0 +1,74 @@
+{
+  "id": "gen.ShuffleVideoTextDataset",
+  "name": "Shuffle Pairs of Video-Text",
+  "category": "ComfyUI / dataset/video",
+  "description": "ShuffleVideoTextDataset — Randomly shuffle the order of pairs of video-text in a list.",
+  "inPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    },
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ShuffleVideoTextDataset",
+      "inputs": {
+        "videos": {
+          "$port": "videos"
+        },
+        "texts": "",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "videos": {
+      "node": "n",
+      "out": 0
+    },
+    "texts": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "videos": "videos"
+  },
+  "summary": [
+    "texts",
+    "seed"
+  ]
+}

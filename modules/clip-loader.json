@@ -1,0 +1,42 @@
+{
+  "id": "clip-loader",
+  "name": "Text encoder",
+  "category": "load",
+  "description": "CLIPLoader — a standalone text encoder, for models that do not ship one in a checkpoint.",
+  "inPorts": [],
+  "outPorts": [{ "name": "clip", "type": "CLIP" }],
+  "outputs": { "clip": { "node": "cl" } },
+  "summary": ["clip_name", "type"],
+  "params": [
+    {
+      "name": "clip_name",
+      "label": "Encoder",
+      "type": "ENUM",
+      "default": "qwen_3_4b.safetensors",
+      "optionsFrom": { "class_type": "CLIPLoader", "input": "clip_name" },
+      "target": { "node": "cl", "input": "clip_name" }
+    },
+    {
+      "name": "type",
+      "label": "Type",
+      "type": "ENUM",
+      "default": "lumina2",
+      "optionsFrom": { "class_type": "CLIPLoader", "input": "type" },
+      "target": { "node": "cl", "input": "type" }
+    },
+    {
+      "name": "device",
+      "label": "Device",
+      "type": "ENUM",
+      "default": "default",
+      "optionsFrom": { "class_type": "CLIPLoader", "input": "device" },
+      "target": { "node": "cl", "input": "device" }
+    }
+  ],
+  "nodes": {
+    "cl": {
+      "class_type": "CLIPLoader",
+      "inputs": { "clip_name": "qwen_3_4b.safetensors", "type": "lumina2", "device": "default" }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "gen.LTXVPreprocess",
+  "name": "LTXV Preprocess",
+  "category": "ComfyUI / video/preprocessors",
+  "description": "LTXVPreprocess",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "output_image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "img_compression",
+      "label": "Img compression",
+      "target": {
+        "node": "n",
+        "input": "img_compression"
+      },
+      "type": "INT",
+      "default": 35,
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVPreprocess",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "img_compression": 35
+      }
+    }
+  },
+  "outputs": {
+    "output_image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "output_image"
+  },
+  "summary": [
+    "img_compression"
+  ]
+}

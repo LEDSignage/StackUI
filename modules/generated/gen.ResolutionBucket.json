@@ -1,0 +1,54 @@
+{
+  "id": "gen.ResolutionBucket",
+  "name": "Resolution Bucket",
+  "category": "ComfyUI / model/training",
+  "description": "ResolutionBucket — Group latents and conditionings into buckets",
+  "inPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ResolutionBucket",
+      "inputs": {
+        "latents": {
+          "$port": "latents"
+        },
+        "conditioning": {
+          "$port": "conditioning"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latents": {
+      "node": "n",
+      "out": 0
+    },
+    "conditioning": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "latents": "latents",
+    "conditioning": "conditioning"
+  }
+}

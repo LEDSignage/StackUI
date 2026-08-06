@@ -1,0 +1,42 @@
+{
+  "id": "gen.LTXVAudioVAEDecode",
+  "name": "LTXV Audio VAE Decode",
+  "category": "ComfyUI / model/latent/ltxv",
+  "description": "LTXVAudioVAEDecode",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVAudioVAEDecode",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "audio_vae": {
+          "$port": "audio_vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

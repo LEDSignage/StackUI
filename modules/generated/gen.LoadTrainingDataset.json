@@ -1,0 +1,54 @@
+{
+  "id": "gen.LoadTrainingDataset",
+  "name": "Load Training Dataset",
+  "category": "ComfyUI / model/training",
+  "description": "LoadTrainingDataset — Load encoded training dataset (latents + conditioning) from disk for use in training.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "folder_name",
+      "label": "Folder name",
+      "target": {
+        "node": "n",
+        "input": "folder_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadTrainingDataset",
+        "input": "folder_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadTrainingDataset",
+      "inputs": {
+        "folder_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "latents": {
+      "node": "n",
+      "out": 0
+    },
+    "conditioning": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "folder_name"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "gen.SplitImageToTileList",
+  "name": "Split Image into List of Tiles",
+  "category": "ComfyUI / image/batch",
+  "description": "SplitImageToTileList — Splits an image into a batched list of tiles with a specified overlap.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "tile_width",
+      "label": "Tile width",
+      "target": {
+        "node": "n",
+        "input": "tile_width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 16384
+    },
+    {
+      "name": "tile_height",
+      "label": "Tile height",
+      "target": {
+        "node": "n",
+        "input": "tile_height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 16384
+    },
+    {
+      "name": "overlap",
+      "label": "Overlap",
+      "target": {
+        "node": "n",
+        "input": "overlap"
+      },
+      "type": "INT",
+      "default": 128,
+      "min": 0,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SplitImageToTileList",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "tile_width": 1024,
+        "tile_height": 1024,
+        "overlap": 128
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "tile_width",
+    "tile_height",
+    "overlap"
+  ]
+}

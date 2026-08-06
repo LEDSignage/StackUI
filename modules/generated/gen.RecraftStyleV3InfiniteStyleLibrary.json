@@ -1,0 +1,42 @@
+{
+  "id": "gen.RecraftStyleV3InfiniteStyleLibrary",
+  "name": "Recraft Style - Infinite Style Library",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftStyleV3InfiniteStyleLibrary — Choose style based on preexisting UUID from Recraft's Infinite Style Library.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "recraft_style",
+      "type": "RECRAFT_V3_STYLE"
+    }
+  ],
+  "params": [
+    {
+      "name": "style_id",
+      "label": "Style id",
+      "target": {
+        "node": "n",
+        "input": "style_id"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftStyleV3InfiniteStyleLibrary",
+      "inputs": {
+        "style_id": ""
+      }
+    }
+  },
+  "outputs": {
+    "recraft_style": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "style_id"
+  ]
+}

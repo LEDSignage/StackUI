@@ -1,0 +1,239 @@
+{
+  "id": "gen.Rodin3D_Gen25_Text",
+  "name": "Rodin 3D Gen-2.5 - Text to 3D",
+  "category": "ComfyUI / partner/3d/Rodin",
+  "description": "Rodin3D_Gen25_Text — Generate a 3D model from a text prompt via Rodin Gen-2.5. Pick a mode (Fast / Regular / Extreme-High) to tune quality vs. cost.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "FILE_3D"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "Regular",
+      "options": [
+        "Regular",
+        "Fast",
+        "Extreme-High"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen25_Text",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "material",
+      "label": "Material",
+      "target": {
+        "node": "n",
+        "input": "material"
+      },
+      "type": "ENUM",
+      "default": "Shaded",
+      "options": [
+        "PBR",
+        "Shaded",
+        "All",
+        "None"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen25_Text",
+        "input": "material"
+      }
+    },
+    {
+      "name": "geometry_file_format",
+      "label": "Geometry file format",
+      "target": {
+        "node": "n",
+        "input": "geometry_file_format"
+      },
+      "type": "ENUM",
+      "default": "glb",
+      "options": [
+        "glb",
+        "fbx",
+        "obj",
+        "stl"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen25_Text",
+        "input": "geometry_file_format"
+      }
+    },
+    {
+      "name": "texture_mode",
+      "label": "Texture mode",
+      "target": {
+        "node": "n",
+        "input": "texture_mode"
+      },
+      "type": "ENUM",
+      "default": "Default",
+      "options": [
+        "Default",
+        "legacy",
+        "extreme-low",
+        "low",
+        "medium",
+        "high"
+      ],
+      "optionsFrom": {
+        "class_type": "Rodin3D_Gen25_Text",
+        "input": "texture_mode"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 65535
+    },
+    {
+      "name": "TAPose",
+      "label": "TAPose",
+      "target": {
+        "node": "n",
+        "input": "TAPose"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "hd_texture",
+      "label": "Hd texture",
+      "target": {
+        "node": "n",
+        "input": "hd_texture"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "texture_delight",
+      "label": "Texture delight",
+      "target": {
+        "node": "n",
+        "input": "texture_delight"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "addon_highpack",
+      "label": "Addon highpack",
+      "target": {
+        "node": "n",
+        "input": "addon_highpack"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "bbox_width",
+      "label": "Bbox width",
+      "target": {
+        "node": "n",
+        "input": "bbox_width"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 300
+    },
+    {
+      "name": "bbox_height",
+      "label": "Bbox height",
+      "target": {
+        "node": "n",
+        "input": "bbox_height"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 300
+    },
+    {
+      "name": "bbox_length",
+      "label": "Bbox length",
+      "target": {
+        "node": "n",
+        "input": "bbox_length"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 300
+    },
+    {
+      "name": "height_cm",
+      "label": "Height cm",
+      "target": {
+        "node": "n",
+        "input": "height_cm"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 10000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Rodin3D_Gen25_Text",
+      "inputs": {
+        "prompt": "",
+        "mode": "Regular",
+        "material": "Shaded",
+        "geometry_file_format": "glb",
+        "texture_mode": "Default",
+        "seed": 0,
+        "TAPose": false,
+        "hd_texture": false,
+        "texture_delight": false,
+        "addon_highpack": false,
+        "bbox_width": 0,
+        "bbox_height": 0,
+        "bbox_length": 0,
+        "height_cm": 0
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "mode",
+    "material"
+  ]
+}

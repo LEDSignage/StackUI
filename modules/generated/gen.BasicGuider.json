@@ -1,0 +1,42 @@
+{
+  "id": "gen.BasicGuider",
+  "name": "Basic Guider",
+  "category": "ComfyUI / model/sampling/guiders",
+  "description": "BasicGuider",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "guider",
+      "type": "GUIDER"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "BasicGuider",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "conditioning": {
+          "$port": "conditioning"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "guider": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "gen.ComfyAndNode",
+  "name": "And",
+  "category": "ComfyUI / utilities/logic",
+  "description": "ComfyAndNode — Logical AND operation. Returns true if all of the values are truthy. Uses Python's rules for truthiness.",
+  "inPorts": [
+    {
+      "name": "values",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "boolean",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ComfyAndNode",
+      "inputs": {
+        "values": {
+          "$port": "values"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "boolean": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

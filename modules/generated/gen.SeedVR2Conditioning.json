@@ -1,0 +1,50 @@
+{
+  "id": "gen.SeedVR2Conditioning",
+  "name": "Apply SeedVR2 Conditioning",
+  "category": "ComfyUI / model/conditioning",
+  "description": "SeedVR2Conditioning — Build SeedVR2 positive/negative conditioning from a VAE latent.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "vae_conditioning",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SeedVR2Conditioning",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "vae_conditioning": {
+          "$port": "vae_conditioning"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  }
+}

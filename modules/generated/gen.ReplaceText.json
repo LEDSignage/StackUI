@@ -1,0 +1,66 @@
+{
+  "id": "gen.ReplaceText",
+  "name": "Replace Text (DEPRECATED)",
+  "category": "ComfyUI / text",
+  "description": "ReplaceText",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "find",
+      "label": "Find",
+      "target": {
+        "node": "n",
+        "input": "find"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "replace",
+      "label": "Replace",
+      "target": {
+        "node": "n",
+        "input": "replace"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ReplaceText",
+      "inputs": {
+        "texts": "",
+        "find": "",
+        "replace": ""
+      }
+    }
+  },
+  "outputs": {
+    "texts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "texts",
+    "find",
+    "replace"
+  ]
+}

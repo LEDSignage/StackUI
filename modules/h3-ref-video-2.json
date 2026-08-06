@@ -1,0 +1,51 @@
+{
+  "id": "h3-ref-video-2",
+  "name": "Reference video 3",
+  "category": "load",
+  "description": "LoadVideo + GetVideoComponents published as ref_video_2. MiniMax allows 2–15 second clips.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "ref_video_2",
+      "type": "IMAGE"
+    }
+  ],
+  "outputs": {
+    "ref_video_2": {
+      "node": "gc",
+      "out": 0
+    }
+  },
+  "summary": [
+    "file"
+  ],
+  "params": [
+    {
+      "name": "file",
+      "label": "Reference video 3",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": {
+        "node": "lv",
+        "input": "file"
+      }
+    }
+  ],
+  "nodes": {
+    "lv": {
+      "class_type": "LoadVideo",
+      "inputs": {
+        "file": ""
+      }
+    },
+    "gc": {
+      "class_type": "GetVideoComponents",
+      "inputs": {
+        "video": {
+          "$node": "lv",
+          "out": 0
+        }
+      }
+    }
+  }
+}

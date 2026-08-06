@@ -1,0 +1,79 @@
+{
+  "id": "gen.TextEncodeAceStepAudio",
+  "name": "TextEncodeAceStepAudio",
+  "category": "ComfyUI / model/conditioning/ace",
+  "description": "TextEncodeAceStepAudio",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "tags",
+      "label": "Tags",
+      "target": {
+        "node": "n",
+        "input": "tags"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "lyrics",
+      "label": "Lyrics",
+      "target": {
+        "node": "n",
+        "input": "lyrics"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "lyrics_strength",
+      "label": "Lyrics strength",
+      "target": {
+        "node": "n",
+        "input": "lyrics_strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeAceStepAudio",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "tags": "",
+        "lyrics": "",
+        "lyrics_strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "tags",
+    "lyrics",
+    "lyrics_strength"
+  ]
+}

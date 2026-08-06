@@ -1,0 +1,55 @@
+{
+  "id": "gen.TrimVideoLatent",
+  "name": "Trim Video Latent",
+  "category": "ComfyUI / model/latent",
+  "description": "TrimVideoLatent",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "trim_amount",
+      "label": "Trim amount",
+      "target": {
+        "node": "n",
+        "input": "trim_amount"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 99999
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TrimVideoLatent",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "trim_amount": 0
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "trim_amount"
+  ]
+}

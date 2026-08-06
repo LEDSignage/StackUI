@@ -1,0 +1,46 @@
+{
+  "id": "gen.SetHookKeyframes",
+  "name": "Set Hook Keyframes",
+  "category": "ComfyUI / advanced/hooks/scheduling",
+  "description": "SetHookKeyframes",
+  "inPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    },
+    {
+      "name": "hook_kf",
+      "type": "HOOK_KEYFRAMES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SetHookKeyframes",
+      "inputs": {
+        "hooks": {
+          "$port": "hooks"
+        },
+        "hook_kf": {
+          "$port": "hook_kf"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hooks": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "hooks": "hooks"
+  }
+}

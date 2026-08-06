@@ -1,0 +1,92 @@
+{
+  "id": "gen.MinimaxHailuo03FirstLastFrameNode",
+  "name": "MiniMax H3 First-Last-Frame to Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxHailuo03FirstLastFrameNode — Generate video from a first frame image and an optional last frame image using the MiniMax H3 model. The aspect ratio of the video follows the supplied images.",
+  "inPorts": [
+    {
+      "name": "first_frame",
+      "type": "IMAGE"
+    },
+    {
+      "name": "last_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "MiniMax H3",
+      "options": [
+        "MiniMax H3"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxHailuo03FirstLastFrameNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxHailuo03FirstLastFrameNode",
+      "inputs": {
+        "model": "MiniMax H3",
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "seed": 42,
+        "watermark": false,
+        "last_frame": {
+          "$port": "last_frame"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

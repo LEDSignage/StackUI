@@ -1,0 +1,136 @@
+{
+  "id": "gen.SaveGaussianSplat",
+  "name": "Save Splat",
+  "category": "ComfyUI / 3d",
+  "description": "SaveGaussianSplat",
+  "inPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_SPLAT_ANY,FILE_3D_PLY,FILE_3D_SPLAT,FILE_3D_SPZ,FILE_3D_KSPLAT"
+    },
+    {
+      "name": "viewport_state",
+      "type": "LOAD_3D"
+    },
+    {
+      "name": "model_3d_info",
+      "type": "LOAD3D_MODEL_INFO",
+      "optional": true
+    },
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_SPLAT_ANY"
+    },
+    {
+      "name": "model_3d_info",
+      "type": "LOAD3D_MODEL_INFO"
+    },
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA"
+    },
+    {
+      "name": "width",
+      "type": "INT"
+    },
+    {
+      "name": "height",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "3d/ComfyUI"
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveGaussianSplat",
+      "inputs": {
+        "model_3d": {
+          "$port": "model_3d"
+        },
+        "filename_prefix": "3d/ComfyUI",
+        "viewport_state": {
+          "$port": "viewport_state"
+        },
+        "width": 1024,
+        "height": 1024,
+        "model_3d_info": {
+          "$port": "model_3d_info"
+        },
+        "camera_info": {
+          "$port": "camera_info"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_3d": {
+      "node": "n",
+      "out": 0
+    },
+    "model_3d_info": {
+      "node": "n",
+      "out": 1
+    },
+    "camera_info": {
+      "node": "n",
+      "out": 2
+    },
+    "width": {
+      "node": "n",
+      "out": 3
+    },
+    "height": {
+      "node": "n",
+      "out": 4
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix",
+    "width",
+    "height"
+  ]
+}

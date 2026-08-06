@@ -1,0 +1,78 @@
+{
+  "id": "gen.unCLIPConditioning",
+  "name": "unCLIPConditioning",
+  "category": "ComfyUI / model/conditioning",
+  "description": "unCLIPConditioning",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "noise_augmentation",
+      "label": "Noise augmentation",
+      "target": {
+        "node": "n",
+        "input": "noise_augmentation"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "unCLIPConditioning",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "strength": 1,
+        "noise_augmentation": 0
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "strength",
+    "noise_augmentation"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "id": "gen.LoadImageOutput",
+  "name": "Load Image (from Outputs)",
+  "category": "ComfyUI / image",
+  "description": "LoadImageOutput — Load an image from the output folder. When the refresh button is clicked, the node will update the image list and automatically select the first image, allowing for easy iteration.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "image",
+      "label": "Image",
+      "target": {
+        "node": "n",
+        "input": "image"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadImageOutput",
+        "input": "image"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadImageOutput",
+      "inputs": {
+        "image": ""
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "image"
+  ]
+}

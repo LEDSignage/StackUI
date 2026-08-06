@@ -1,0 +1,59 @@
+{
+  "id": "gen.WanMoveTracksFromCoords",
+  "name": "WanMoveTracksFromCoords",
+  "category": "ComfyUI / model/conditioning/wan/move",
+  "description": "WanMoveTracksFromCoords",
+  "inPorts": [
+    {
+      "name": "track_mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "tracks",
+      "type": "TRACKS"
+    },
+    {
+      "name": "track_length",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "track_coords",
+      "label": "Track coords",
+      "target": {
+        "node": "n",
+        "input": "track_coords"
+      },
+      "type": "STRING",
+      "default": "[]"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanMoveTracksFromCoords",
+      "inputs": {
+        "track_coords": "[]",
+        "track_mask": {
+          "$port": "track_mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "tracks": {
+      "node": "n",
+      "out": 0
+    },
+    "track_length": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "track_coords"
+  ]
+}

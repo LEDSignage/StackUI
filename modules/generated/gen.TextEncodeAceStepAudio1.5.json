@@ -1,0 +1,324 @@
+{
+  "id": "gen.TextEncodeAceStepAudio1.5",
+  "name": "TextEncodeAceStepAudio1.5",
+  "category": "ComfyUI / model/conditioning/ace",
+  "description": "TextEncodeAceStepAudio1.5",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "tags",
+      "label": "Tags",
+      "target": {
+        "node": "n",
+        "input": "tags"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "lyrics",
+      "label": "Lyrics",
+      "target": {
+        "node": "n",
+        "input": "lyrics"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "bpm",
+      "label": "Bpm",
+      "target": {
+        "node": "n",
+        "input": "bpm"
+      },
+      "type": "INT",
+      "default": 120,
+      "min": 10,
+      "max": 300
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "FLOAT",
+      "default": 120,
+      "min": 0,
+      "max": 2000,
+      "step": 0.1
+    },
+    {
+      "name": "timesignature",
+      "label": "Timesignature",
+      "target": {
+        "node": "n",
+        "input": "timesignature"
+      },
+      "type": "ENUM",
+      "default": "2",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "optionsFrom": {
+        "class_type": "TextEncodeAceStepAudio1.5",
+        "input": "timesignature"
+      }
+    },
+    {
+      "name": "language",
+      "label": "Language",
+      "target": {
+        "node": "n",
+        "input": "language"
+      },
+      "type": "ENUM",
+      "default": "en",
+      "options": [
+        "ar",
+        "az",
+        "bg",
+        "bn",
+        "ca",
+        "cs",
+        "da",
+        "de",
+        "el",
+        "en",
+        "es",
+        "fa",
+        "fi",
+        "fr",
+        "he",
+        "hi",
+        "hr",
+        "ht",
+        "hu",
+        "id",
+        "is",
+        "it",
+        "ja",
+        "ko",
+        "la",
+        "lt",
+        "ms",
+        "ne",
+        "nl",
+        "no",
+        "pa",
+        "pl",
+        "pt",
+        "ro",
+        "ru",
+        "sa",
+        "sk",
+        "sr",
+        "sv",
+        "sw",
+        "ta",
+        "te",
+        "th",
+        "tl",
+        "tr",
+        "uk",
+        "ur",
+        "vi",
+        "yue",
+        "zh",
+        "unknown"
+      ],
+      "optionsFrom": {
+        "class_type": "TextEncodeAceStepAudio1.5",
+        "input": "language"
+      }
+    },
+    {
+      "name": "keyscale",
+      "label": "Keyscale",
+      "target": {
+        "node": "n",
+        "input": "keyscale"
+      },
+      "type": "ENUM",
+      "default": "C major",
+      "options": [
+        "C major",
+        "C# major",
+        "Db major",
+        "D major",
+        "D# major",
+        "Eb major",
+        "E major",
+        "F major",
+        "F# major",
+        "Gb major",
+        "G major",
+        "G# major",
+        "Ab major",
+        "A major",
+        "A# major",
+        "Bb major",
+        "B major",
+        "C minor",
+        "C# minor",
+        "Db minor",
+        "D minor",
+        "D# minor",
+        "Eb minor",
+        "E minor",
+        "F minor",
+        "F# minor",
+        "Gb minor",
+        "G minor",
+        "G# minor",
+        "Ab minor",
+        "A minor",
+        "A# minor",
+        "Bb minor",
+        "B minor"
+      ],
+      "optionsFrom": {
+        "class_type": "TextEncodeAceStepAudio1.5",
+        "input": "keyscale"
+      }
+    },
+    {
+      "name": "generate_audio_codes",
+      "label": "Generate audio codes",
+      "target": {
+        "node": "n",
+        "input": "generate_audio_codes"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "cfg_scale",
+      "label": "Cfg scale",
+      "target": {
+        "node": "n",
+        "input": "cfg_scale"
+      },
+      "type": "FLOAT",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "temperature",
+      "label": "Temperature",
+      "target": {
+        "node": "n",
+        "input": "temperature"
+      },
+      "type": "FLOAT",
+      "default": 0.85,
+      "min": 0,
+      "max": 2,
+      "step": 0.01
+    },
+    {
+      "name": "top_p",
+      "label": "Top p",
+      "target": {
+        "node": "n",
+        "input": "top_p"
+      },
+      "type": "FLOAT",
+      "default": 0.9,
+      "min": 0,
+      "max": 2000,
+      "step": 0.01
+    },
+    {
+      "name": "top_k",
+      "label": "Top k",
+      "target": {
+        "node": "n",
+        "input": "top_k"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "min_p",
+      "label": "Min p",
+      "target": {
+        "node": "n",
+        "input": "min_p"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextEncodeAceStepAudio1.5",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "tags": "",
+        "lyrics": "",
+        "seed": 0,
+        "bpm": 120,
+        "duration": 120,
+        "timesignature": "2",
+        "language": "en",
+        "keyscale": "C major",
+        "generate_audio_codes": true,
+        "cfg_scale": 2,
+        "temperature": 0.85,
+        "top_p": 0.9,
+        "top_k": 0,
+        "min_p": 0
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "tags",
+    "lyrics",
+    "seed"
+  ]
+}

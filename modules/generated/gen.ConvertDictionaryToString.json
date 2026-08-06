@@ -1,0 +1,52 @@
+{
+  "id": "gen.ConvertDictionaryToString",
+  "name": "Convert Dictionary to String",
+  "category": "ComfyUI / text",
+  "description": "ConvertDictionaryToString",
+  "inPorts": [
+    {
+      "name": "dictionary",
+      "type": "DICT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "indent",
+      "label": "Indent",
+      "target": {
+        "node": "n",
+        "input": "indent"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 0,
+      "max": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConvertDictionaryToString",
+      "inputs": {
+        "dictionary": {
+          "$port": "dictionary"
+        },
+        "indent": 2
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "indent"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "gen.RenormCFG",
+  "name": "RenormCFG",
+  "category": "ComfyUI / model/patch",
+  "description": "RenormCFG",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "cfg_trunc",
+      "label": "Cfg trunc",
+      "target": {
+        "node": "n",
+        "input": "cfg_trunc"
+      },
+      "type": "FLOAT",
+      "default": 100,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "renorm_cfg",
+      "label": "Renorm cfg",
+      "target": {
+        "node": "n",
+        "input": "renorm_cfg"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RenormCFG",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "cfg_trunc": 100,
+        "renorm_cfg": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "cfg_trunc",
+    "renorm_cfg"
+  ]
+}

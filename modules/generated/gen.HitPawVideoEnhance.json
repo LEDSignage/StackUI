@@ -1,0 +1,66 @@
+{
+  "id": "gen.HitPawVideoEnhance",
+  "name": "HitPaw Video Enhance",
+  "category": "ComfyUI / partner/video/HitPaw",
+  "description": "HitPawVideoEnhance — Upscale low-resolution videos to high resolution, eliminate artifacts and noise. Prices shown are per second of video.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Portrait Restore Model (1x)",
+      "options": [
+        "Portrait Restore Model (1x)",
+        "Portrait Restore Model (2x)",
+        "General Restore Model (1x)",
+        "General Restore Model (2x)",
+        "General Restore Model (4x)",
+        "Ultra HD Model (2x)",
+        "Generative Model (1x)"
+      ],
+      "optionsFrom": {
+        "class_type": "HitPawVideoEnhance",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HitPawVideoEnhance",
+      "inputs": {
+        "model": "Portrait Restore Model (1x)",
+        "video": {
+          "$port": "video"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "model"
+  ]
+}

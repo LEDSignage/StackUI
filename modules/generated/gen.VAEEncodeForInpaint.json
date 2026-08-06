@@ -1,0 +1,67 @@
+{
+  "id": "gen.VAEEncodeForInpaint",
+  "name": "VAE Encode (for Inpainting)",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEEncodeForInpaint",
+  "inPorts": [
+    {
+      "name": "pixels",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "grow_mask_by",
+      "label": "Grow mask by",
+      "target": {
+        "node": "n",
+        "input": "grow_mask_by"
+      },
+      "type": "INT",
+      "default": 6,
+      "min": 0,
+      "max": 64,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAEEncodeForInpaint",
+      "inputs": {
+        "pixels": {
+          "$port": "pixels"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "grow_mask_by": 6
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "grow_mask_by"
+  ]
+}

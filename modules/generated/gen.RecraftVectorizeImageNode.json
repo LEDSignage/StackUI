@@ -1,0 +1,35 @@
+{
+  "id": "gen.RecraftVectorizeImageNode",
+  "name": "Recraft Vectorize Image",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftVectorizeImageNode — Generates SVG synchronously from an input image.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftVectorizeImageNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

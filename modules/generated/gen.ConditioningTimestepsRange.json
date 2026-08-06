@@ -1,0 +1,76 @@
+{
+  "id": "gen.ConditioningTimestepsRange",
+  "name": "Timesteps Range",
+  "category": "ComfyUI / advanced/hooks",
+  "description": "ConditioningTimestepsRange",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "timesteps_range",
+      "type": "TIMESTEPS_RANGE"
+    },
+    {
+      "name": "before_range",
+      "type": "TIMESTEPS_RANGE"
+    },
+    {
+      "name": "after_range",
+      "type": "TIMESTEPS_RANGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningTimestepsRange",
+      "inputs": {
+        "start_percent": 0,
+        "end_percent": 1
+      }
+    }
+  },
+  "outputs": {
+    "timesteps_range": {
+      "node": "n",
+      "out": 0
+    },
+    "before_range": {
+      "node": "n",
+      "out": 1
+    },
+    "after_range": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "start_percent",
+    "end_percent"
+  ]
+}

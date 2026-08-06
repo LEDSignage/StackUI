@@ -1,0 +1,60 @@
+{
+  "id": "gen.Rodin3D_Sketch",
+  "name": "Rodin 3D Generate - Sketch Generate",
+  "category": "ComfyUI / partner/3d/Rodin",
+  "description": "Rodin3D_Sketch — Generate 3D Assets using Rodin API",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "3d_model_path",
+      "type": "STRING"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [
+    {
+      "name": "Seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "Seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 65535
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Rodin3D_Sketch",
+      "inputs": {
+        "Images": {
+          "$port": "images"
+        },
+        "Seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "3d_model_path": {
+      "node": "n",
+      "out": 0
+    },
+    "glb": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "Seed"
+  ]
+}

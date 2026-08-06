@@ -1,0 +1,61 @@
+{
+  "id": "gen.SaveTrainingDataset",
+  "name": "Save Training Dataset",
+  "category": "ComfyUI / model/training",
+  "description": "SaveTrainingDataset — Save encoded training dataset (latents + conditioning) to disk for efficient loading during training.",
+  "inPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "folder_name",
+      "label": "Folder name",
+      "target": {
+        "node": "n",
+        "input": "folder_name"
+      },
+      "type": "STRING",
+      "default": "training_dataset"
+    },
+    {
+      "name": "shard_size",
+      "label": "Shard size",
+      "target": {
+        "node": "n",
+        "input": "shard_size"
+      },
+      "type": "INT",
+      "default": 1000,
+      "min": 1,
+      "max": 100000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveTrainingDataset",
+      "inputs": {
+        "latents": {
+          "$port": "latents"
+        },
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "folder_name": "training_dataset",
+        "shard_size": 1000
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "folder_name",
+    "shard_size"
+  ]
+}

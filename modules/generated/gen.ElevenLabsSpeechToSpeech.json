@@ -1,0 +1,127 @@
+{
+  "id": "gen.ElevenLabsSpeechToSpeech",
+  "name": "ElevenLabs Speech to Speech",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsSpeechToSpeech — Transform speech from one voice to another while preserving the original content and emotion.",
+  "inPorts": [
+    {
+      "name": "voice",
+      "type": "ELEVENLABS_VOICE"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "stability",
+      "label": "Stability",
+      "target": {
+        "node": "n",
+        "input": "stability"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "eleven_multilingual_sts_v2",
+      "options": [
+        "eleven_multilingual_sts_v2",
+        "eleven_english_sts_v2"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsSpeechToSpeech",
+        "input": "model"
+      }
+    },
+    {
+      "name": "output_format",
+      "label": "Output format",
+      "target": {
+        "node": "n",
+        "input": "output_format"
+      },
+      "type": "ENUM",
+      "default": "mp3_44100_192",
+      "options": [
+        "mp3_44100_192",
+        "opus_48000_192"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsSpeechToSpeech",
+        "input": "output_format"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295
+    },
+    {
+      "name": "remove_background_noise",
+      "label": "Remove background noise",
+      "target": {
+        "node": "n",
+        "input": "remove_background_noise"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsSpeechToSpeech",
+      "inputs": {
+        "voice": {
+          "$port": "voice"
+        },
+        "audio": {
+          "$port": "audio"
+        },
+        "stability": 0.5,
+        "model": "eleven_multilingual_sts_v2",
+        "output_format": "mp3_44100_192",
+        "seed": 0,
+        "remove_background_noise": false
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "stability",
+    "model",
+    "output_format"
+  ]
+}

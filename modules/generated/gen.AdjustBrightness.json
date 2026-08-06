@@ -1,0 +1,55 @@
+{
+  "id": "gen.AdjustBrightness",
+  "name": "Adjust Brightness",
+  "category": "ComfyUI / image/adjustments",
+  "description": "AdjustBrightness — Adjust the brightness of an image.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "factor",
+      "label": "Factor",
+      "target": {
+        "node": "n",
+        "input": "factor"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 2
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AdjustBrightness",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "factor": 1
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "factor"
+  ]
+}

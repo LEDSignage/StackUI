@@ -1,0 +1,35 @@
+{
+  "id": "gen.BatchLatentsNode",
+  "name": "Batch Latents",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "BatchLatentsNode",
+  "inPorts": [
+    {
+      "name": "latents",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "BatchLatentsNode",
+      "inputs": {
+        "latents": {
+          "$port": "latents"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

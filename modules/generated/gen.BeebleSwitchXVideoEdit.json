@@ -1,0 +1,125 @@
+{
+  "id": "gen.BeebleSwitchXVideoEdit",
+  "name": "Beeble SwitchX Video Edit",
+  "category": "ComfyUI / partner/video/Beeble",
+  "description": "BeebleSwitchXVideoEdit — Edit a video with Beeble SwitchX. Switches anything in the scene (background, lighting, costume) while preserving the original subject's pixels and motion. Provide a reference image and/or text prompt to describe the new look. Max 240 frames, max ~2.77MP per frame.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "reference_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "alpha",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "alpha_mode",
+      "label": "Alpha mode",
+      "target": {
+        "node": "n",
+        "input": "alpha_mode"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "fill",
+        "select",
+        "custom"
+      ],
+      "optionsFrom": {
+        "class_type": "BeebleSwitchXVideoEdit",
+        "input": "alpha_mode"
+      }
+    },
+    {
+      "name": "max_resolution",
+      "label": "Max resolution",
+      "target": {
+        "node": "n",
+        "input": "max_resolution"
+      },
+      "type": "ENUM",
+      "default": "1080p",
+      "options": [
+        "1080p",
+        "720p"
+      ],
+      "optionsFrom": {
+        "class_type": "BeebleSwitchXVideoEdit",
+        "input": "max_resolution"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BeebleSwitchXVideoEdit",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "prompt": "",
+        "alpha_mode": "auto",
+        "max_resolution": "1080p",
+        "seed": 0,
+        "reference_image": {
+          "$port": "reference_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "alpha": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "prompt",
+    "alpha_mode",
+    "max_resolution"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "gen.MediaPipeFaceMeshVisualize",
+  "name": "Visualize Face Landmarks (MediaPipe)",
+  "category": "ComfyUI / image/detection",
+  "description": "MediaPipeFaceMeshVisualize — Draws face landmarks mesh on the input image.",
+  "inPorts": [
+    {
+      "name": "face_landmarks",
+      "type": "FACE_LANDMARKS"
+    },
+    {
+      "name": "color",
+      "type": "COLOR"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "connections",
+      "label": "Connections",
+      "target": {
+        "node": "n",
+        "input": "connections"
+      },
+      "type": "ENUM",
+      "default": "all",
+      "options": [
+        "all",
+        "fill",
+        "custom"
+      ],
+      "optionsFrom": {
+        "class_type": "MediaPipeFaceMeshVisualize",
+        "input": "connections"
+      }
+    },
+    {
+      "name": "thickness",
+      "label": "Thickness",
+      "target": {
+        "node": "n",
+        "input": "thickness"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "name": "point_size",
+      "label": "Point size",
+      "target": {
+        "node": "n",
+        "input": "point_size"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 0,
+      "max": 16,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MediaPipeFaceMeshVisualize",
+      "inputs": {
+        "face_landmarks": {
+          "$port": "face_landmarks"
+        },
+        "connections": "all",
+        "color": {
+          "$port": "color"
+        },
+        "thickness": 1,
+        "point_size": 2,
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "connections",
+    "thickness",
+    "point_size"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "id": "gen.DualModelGuider",
+  "name": "Dual Model CFG Guider",
+  "category": "ComfyUI / model/sampling/guiders",
+  "description": "DualModelGuider",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "model_negative",
+      "type": "MODEL",
+      "optional": true
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "guider",
+      "type": "GUIDER"
+    }
+  ],
+  "params": [
+    {
+      "name": "cfg",
+      "label": "Cfg",
+      "target": {
+        "node": "n",
+        "input": "cfg"
+      },
+      "type": "FLOAT",
+      "default": 4,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DualModelGuider",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "positive": {
+          "$port": "positive"
+        },
+        "cfg": 4,
+        "model_negative": {
+          "$port": "model_negative"
+        },
+        "negative": {
+          "$port": "negative"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "guider": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "cfg"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "gen.PhotoMakerLoader",
+  "name": "Load PhotoMaker Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "PhotoMakerLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "photomaker",
+      "type": "PHOTOMAKER"
+    }
+  ],
+  "params": [
+    {
+      "name": "photomaker_model_name",
+      "label": "Photomaker model name",
+      "target": {
+        "node": "n",
+        "input": "photomaker_model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "PhotoMakerLoader",
+        "input": "photomaker_model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PhotoMakerLoader",
+      "inputs": {
+        "photomaker_model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "photomaker": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "photomaker_model_name"
+  ]
+}

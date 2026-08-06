@@ -1,0 +1,115 @@
+{
+  "id": "gen.KlingImageToVideoWithAudio",
+  "name": "Kling 2.6 Image(First Frame) to Video with Audio",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingImageToVideoWithAudio",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v2-6",
+      "options": [
+        "kling-v2-6"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImageToVideoWithAudio",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "pro",
+      "options": [
+        "pro"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImageToVideoWithAudio",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "KlingImageToVideoWithAudio",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingImageToVideoWithAudio",
+      "inputs": {
+        "model_name": "kling-v2-6",
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "prompt": "",
+        "mode": "pro",
+        "duration": "",
+        "generate_audio": true
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name",
+    "prompt",
+    "mode"
+  ]
+}

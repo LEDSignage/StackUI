@@ -1,0 +1,367 @@
+{
+  "schemaVersion": 2,
+  "id": "video-ltx",
+  "name": "Make a video",
+  "controls": [
+    {
+      "label": "What happens",
+      "tileId": "t-prompt",
+      "param": "positive",
+      "hint": "Describe the motion, not the picture.",
+      "group": "What to make"
+    },
+    {
+      "label": "Avoid",
+      "tileId": "t-prompt",
+      "param": "negative",
+      "group": "What to make"
+    },
+    {
+      "label": "Width",
+      "tileId": "t-latent",
+      "param": "width",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Height",
+      "tileId": "t-latent",
+      "param": "height",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Seconds",
+      "tileId": "t-latent",
+      "param": "length",
+      "group": "Size and timing",
+      "seconds": {
+        "fps": {
+          "tileId": "t-ltxcond",
+          "param": "frame_rate"
+        },
+        "step": 8,
+        "offset": 1
+      }
+    },
+    {
+      "label": "fps",
+      "tileId": "t-ltxcond",
+      "param": "frame_rate",
+      "group": "Size and timing",
+      "also": [
+        {
+          "tileId": "t-video",
+          "param": "fps"
+        }
+      ]
+    },
+    {
+      "label": "Seed",
+      "tileId": "t-sample",
+      "param": "seed",
+      "group": "Quality"
+    },
+    {
+      "label": "Steps",
+      "tileId": "t-sample",
+      "param": "steps",
+      "group": "Quality"
+    }
+  ],
+  "lines": [
+    {
+      "id": "l1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-ckpt",
+          "moduleId": "gen.CheckpointLoaderSimple",
+          "params": {
+            "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-text",
+          "moduleId": "gen.LTXAVTextEncoderLoader",
+          "params": {
+            "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+            "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+            "device": "default"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-latent",
+          "moduleId": "gen.EmptyLTXVLatentVideo",
+          "params": {
+            "width": 768,
+            "height": 512,
+            "length": 121,
+            "batch_size": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-prompt",
+          "moduleId": "prompts",
+          "params": {
+            "positive": "the camera drifts slowly forward, dust catching the light",
+            "negative": "static, still, jitter, warping"
+          },
+          "collapsed": false
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-ltxcond",
+          "moduleId": "gen.LTXVConditioning",
+          "params": {
+            "frame_rate": 30
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.frame.k1.0",
+          "moduleId": "load-image",
+          "params": {
+            "image": "Mountains.jpg"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.frame.k1.1",
+          "moduleId": "gen.LTXVAddGuide",
+          "params": {
+            "frame_idx": 0,
+            "strength": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.frame.k2.0",
+          "moduleId": "load-image",
+          "params": {
+            "image": "Frame 44261.png"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l7",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.frame.k2.1",
+          "moduleId": "gen.LTXVAddGuide",
+          "params": {
+            "frame_idx": -1,
+            "strength": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "lx1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.video.xx.0",
+          "moduleId": "load-video-frames",
+          "params": {
+            "file": ""
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "lx2",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.video.xx.1",
+          "moduleId": "gen.LTXVAddGuide",
+          "params": {
+            "frame_idx": 0,
+            "strength": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l8",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-sample",
+          "moduleId": "gen.KSampler",
+          "params": {
+            "seed": 1234,
+            "steps": 20,
+            "cfg": 3,
+            "sampler_name": "euler",
+            "scheduler": "simple",
+            "denoise": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l9",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-crop",
+          "moduleId": "gen.LTXVCropGuides",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l10",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-decode",
+          "moduleId": "gen.VAEDecode",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l11",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-video",
+          "moduleId": "create-video",
+          "params": {
+            "fps": 30
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l12",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-save",
+          "moduleId": "gen.SaveVideo",
+          "params": {
+            "filename_prefix": "StackUI/video"
+          },
+          "collapsed": true
+        }
+      ]
+    }
+  ],
+  "job": "Make a video",
+  "model": "LTX 2.3",
+  "inputs": {
+    "label": "Inputs",
+    "kinds": [
+      {
+        "id": "frame",
+        "label": "Frame",
+        "beforeTile": "t-sample",
+        "template": [
+          {
+            "moduleId": "load-image"
+          },
+          {
+            "moduleId": "gen.LTXVAddGuide",
+            "params": {
+              "frame_idx": 0,
+              "strength": 1
+            }
+          }
+        ],
+        "file": {
+          "index": 0,
+          "param": "image"
+        },
+        "position": {
+          "index": 1,
+          "param": "frame_idx",
+          "label": "at frame"
+        }
+      },
+      {
+        "id": "video",
+        "label": "Video",
+        "beforeTile": "t-sample",
+        "template": [
+          {
+            "moduleId": "load-video-frames"
+          },
+          {
+            "moduleId": "gen.LTXVAddGuide",
+            "params": {
+              "frame_idx": 0,
+              "strength": 1
+            }
+          }
+        ],
+        "file": {
+          "index": 0,
+          "param": "file"
+        },
+        "position": {
+          "index": 1,
+          "param": "frame_idx",
+          "label": "from frame"
+        }
+      }
+    ]
+  }
+}

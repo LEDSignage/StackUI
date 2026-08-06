@@ -1,0 +1,45 @@
+{
+  "id": "gen.SetLatentNoiseMask",
+  "name": "Set Latent Noise Mask",
+  "category": "ComfyUI / model/latent",
+  "description": "SetLatentNoiseMask",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SetLatentNoiseMask",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  }
+}

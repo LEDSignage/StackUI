@@ -1,0 +1,90 @@
+{
+  "id": "gen.MagnificImageSkinEnhancerNode",
+  "name": "Magnific Image Skin Enhancer",
+  "category": "ComfyUI / partner/image/Magnific",
+  "description": "MagnificImageSkinEnhancerNode — Skin enhancement for portraits with multiple processing modes.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "sharpen",
+      "label": "Sharpen",
+      "target": {
+        "node": "n",
+        "input": "sharpen"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "smart_grain",
+      "label": "Smart grain",
+      "target": {
+        "node": "n",
+        "input": "smart_grain"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 0,
+      "max": 100
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "creative",
+      "options": [
+        "creative",
+        "faithful",
+        "flexible"
+      ],
+      "optionsFrom": {
+        "class_type": "MagnificImageSkinEnhancerNode",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MagnificImageSkinEnhancerNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "sharpen": 0,
+        "smart_grain": 2,
+        "mode": "creative"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "sharpen",
+    "smart_grain",
+    "mode"
+  ]
+}

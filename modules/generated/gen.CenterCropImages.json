@@ -1,0 +1,69 @@
+{
+  "id": "gen.CenterCropImages",
+  "name": "Crop Image (Center)",
+  "category": "ComfyUI / image/transform",
+  "description": "CenterCropImages — Center crop an image to the specified dimensions.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 8192
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 8192
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CenterCropImages",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "width": 512,
+        "height": 512
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "width",
+    "height"
+  ]
+}

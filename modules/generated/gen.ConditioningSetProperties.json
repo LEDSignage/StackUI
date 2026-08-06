@@ -1,0 +1,100 @@
+{
+  "id": "gen.ConditioningSetProperties",
+  "name": "Cond Set Props",
+  "category": "ComfyUI / advanced/hooks/cond single",
+  "description": "ConditioningSetProperties",
+  "inPorts": [
+    {
+      "name": "cond_new",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    },
+    {
+      "name": "hooks",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "timesteps",
+      "type": "TIMESTEPS_RANGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "set_cond_area",
+      "label": "Set cond area",
+      "target": {
+        "node": "n",
+        "input": "set_cond_area"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "mask bounds"
+      ],
+      "optionsFrom": {
+        "class_type": "ConditioningSetProperties",
+        "input": "set_cond_area"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningSetProperties",
+      "inputs": {
+        "cond_NEW": {
+          "$port": "cond_new"
+        },
+        "strength": 1,
+        "set_cond_area": "default",
+        "mask": {
+          "$port": "mask"
+        },
+        "hooks": {
+          "$port": "hooks"
+        },
+        "timesteps": {
+          "$port": "timesteps"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "cond_new": "conditioning"
+  },
+  "summary": [
+    "strength",
+    "set_cond_area"
+  ]
+}

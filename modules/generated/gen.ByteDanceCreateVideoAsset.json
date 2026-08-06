@@ -1,0 +1,58 @@
+{
+  "id": "gen.ByteDanceCreateVideoAsset",
+  "name": "ByteDance Create Video Asset",
+  "category": "ComfyUI / partner/video/ByteDance",
+  "description": "ByteDanceCreateVideoAsset — Create a Seedance 2.0 personal video asset. Uploads the input video and registers it in the given asset group. If group_id is empty, runs a real-person H5 authentication flow to create a new group before adding the asset.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "asset_id",
+      "type": "STRING"
+    },
+    {
+      "name": "group_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "group_id",
+      "label": "Group id",
+      "target": {
+        "node": "n",
+        "input": "group_id"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDanceCreateVideoAsset",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "group_id": ""
+      }
+    }
+  },
+  "outputs": {
+    "asset_id": {
+      "node": "n",
+      "out": 0
+    },
+    "group_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "group_id"
+  ]
+}

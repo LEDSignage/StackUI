@@ -1,0 +1,45 @@
+{
+  "id": "gen.JoinImageWithAlpha",
+  "name": "Join Image with Alpha",
+  "category": "ComfyUI / image/compositing",
+  "description": "JoinImageWithAlpha",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "alpha",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "JoinImageWithAlpha",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "alpha": {
+          "$port": "alpha"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

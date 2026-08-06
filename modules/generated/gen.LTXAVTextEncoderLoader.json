@@ -1,0 +1,93 @@
+{
+  "id": "gen.LTXAVTextEncoderLoader",
+  "name": "Load LTXV Audio Text Encoder",
+  "category": "ComfyUI / model/loaders",
+  "description": "LTXAVTextEncoderLoader — Recipes:",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "text_encoder",
+      "label": "Text encoder",
+      "target": {
+        "node": "n",
+        "input": "text_encoder"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "LTXAVTextEncoderLoader",
+        "input": "text_encoder"
+      }
+    },
+    {
+      "name": "ckpt_name",
+      "label": "Ckpt name",
+      "target": {
+        "node": "n",
+        "input": "ckpt_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-22b-dev-fp8.safetensors",
+      "options": [
+        "ltx-2.3-22b-dev-fp8.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "LTXAVTextEncoderLoader",
+        "input": "ckpt_name"
+      }
+    },
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "LTXAVTextEncoderLoader",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXAVTextEncoderLoader",
+      "inputs": {
+        "text_encoder": "clip_l.safetensors",
+        "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text_encoder",
+    "ckpt_name",
+    "device"
+  ]
+}

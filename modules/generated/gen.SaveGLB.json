@@ -1,0 +1,40 @@
+{
+  "id": "gen.SaveGLB",
+  "name": "Save 3D Model",
+  "category": "ComfyUI / 3d",
+  "description": "SaveGLB",
+  "inPorts": [
+    {
+      "name": "mesh",
+      "type": "MESH,FILE_3D_GLB,FILE_3D_GLTF,FILE_3D_OBJ,FILE_3D_FBX,FILE_3D_STL,FILE_3D_USDZ,FILE_3D_PLY,FILE_3D_SPLAT,FILE_3D_SPZ,FILE_3D_KSPLAT,FILE_3D_SPLAT_ANY,FILE_3D_POINT_CLOUD_ANY,FILE_3D"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "3d/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveGLB",
+      "inputs": {
+        "mesh": {
+          "$port": "mesh"
+        },
+        "filename_prefix": "3d/ComfyUI"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix"
+  ]
+}

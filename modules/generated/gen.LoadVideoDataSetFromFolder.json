@@ -1,0 +1,49 @@
+{
+  "id": "gen.LoadVideoDataSetFromFolder",
+  "name": "Load Video (from Folder)",
+  "category": "ComfyUI / video",
+  "description": "LoadVideoDataSetFromFolder — Load a dataset of videos from a specified folder and return a list of videos. Supported formats: MP4, AVI, MOV, WEBM, MKV, FLV.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "folder",
+      "label": "Folder",
+      "target": {
+        "node": "n",
+        "input": "folder"
+      },
+      "type": "ENUM",
+      "default": "3d",
+      "options": [
+        "3d"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadVideoDataSetFromFolder",
+        "input": "folder"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadVideoDataSetFromFolder",
+      "inputs": {
+        "folder": "3d"
+      }
+    }
+  },
+  "outputs": {
+    "videos": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "folder"
+  ]
+}

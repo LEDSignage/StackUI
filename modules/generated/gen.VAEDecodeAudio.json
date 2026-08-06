@@ -1,0 +1,42 @@
+{
+  "id": "gen.VAEDecodeAudio",
+  "name": "VAE Decode Audio",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEDecodeAudio",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VAEDecodeAudio",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "gen.VOIDWarpedNoiseSource",
+  "name": "VOIDWarpedNoiseSource",
+  "category": "ComfyUI / model/latent/void",
+  "description": "VOIDWarpedNoiseSource",
+  "inPorts": [
+    {
+      "name": "warped_noise",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "noise",
+      "type": "NOISE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VOIDWarpedNoiseSource",
+      "inputs": {
+        "warped_noise": {
+          "$port": "warped_noise"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "noise": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

@@ -1,0 +1,95 @@
+{
+  "id": "gen.LoraSave",
+  "name": "Extract and Save Lora",
+  "category": "ComfyUI / experimental",
+  "description": "LoraSave",
+  "inPorts": [
+    {
+      "name": "model_diff",
+      "type": "MODEL",
+      "optional": true
+    },
+    {
+      "name": "text_encoder_diff",
+      "type": "CLIP",
+      "optional": true
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "loras/ComfyUI_extracted_lora"
+    },
+    {
+      "name": "rank",
+      "label": "Rank",
+      "target": {
+        "node": "n",
+        "input": "rank"
+      },
+      "type": "INT",
+      "default": 8,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    },
+    {
+      "name": "lora_type",
+      "label": "Lora type",
+      "target": {
+        "node": "n",
+        "input": "lora_type"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "full_diff"
+      ],
+      "optionsFrom": {
+        "class_type": "LoraSave",
+        "input": "lora_type"
+      }
+    },
+    {
+      "name": "bias_diff",
+      "label": "Bias diff",
+      "target": {
+        "node": "n",
+        "input": "bias_diff"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoraSave",
+      "inputs": {
+        "filename_prefix": "loras/ComfyUI_extracted_lora",
+        "rank": 8,
+        "lora_type": "standard",
+        "bias_diff": true,
+        "model_diff": {
+          "$port": "model_diff"
+        },
+        "text_encoder_diff": {
+          "$port": "text_encoder_diff"
+        }
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "filename_prefix",
+    "rank",
+    "lora_type"
+  ]
+}

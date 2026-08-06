@@ -1,0 +1,140 @@
+{
+  "id": "gen.StableZero123_Conditioning",
+  "name": "StableZero123_Conditioning",
+  "category": "ComfyUI / model/conditioning/stable zero123",
+  "description": "StableZero123_Conditioning",
+  "inPorts": [
+    {
+      "name": "clip_vision",
+      "type": "CLIP_VISION"
+    },
+    {
+      "name": "init_image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 16,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "elevation",
+      "label": "Elevation",
+      "target": {
+        "node": "n",
+        "input": "elevation"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -180,
+      "max": 180,
+      "step": 0.1
+    },
+    {
+      "name": "azimuth",
+      "label": "Azimuth",
+      "target": {
+        "node": "n",
+        "input": "azimuth"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -180,
+      "max": 180,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StableZero123_Conditioning",
+      "inputs": {
+        "clip_vision": {
+          "$port": "clip_vision"
+        },
+        "init_image": {
+          "$port": "init_image"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 256,
+        "height": 256,
+        "batch_size": 1,
+        "elevation": 0,
+        "azimuth": 0
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "batch_size"
+  ]
+}

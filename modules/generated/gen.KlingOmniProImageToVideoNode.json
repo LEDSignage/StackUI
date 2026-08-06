@@ -1,0 +1,173 @@
+{
+  "id": "gen.KlingOmniProImageToVideoNode",
+  "name": "Kling 3.0 Omni Image to Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingOmniProImageToVideoNode — Use up to 7 reference images to generate a video with the latest Kling model.",
+  "inPorts": [
+    {
+      "name": "reference_images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v3-omni",
+      "options": [
+        "kling-v3-omni",
+        "kling-video-o1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageToVideoNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageToVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 3,
+      "max": 15
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1080p",
+      "options": [
+        "4k",
+        "1080p",
+        "720p"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "storyboards",
+      "label": "Storyboards",
+      "target": {
+        "node": "n",
+        "input": "storyboards"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "1 storyboard",
+        "2 storyboards",
+        "3 storyboards",
+        "4 storyboards",
+        "5 storyboards",
+        "6 storyboards"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingOmniProImageToVideoNode",
+        "input": "storyboards"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingOmniProImageToVideoNode",
+      "inputs": {
+        "model_name": "kling-v3-omni",
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "duration": 5,
+        "reference_images": {
+          "$port": "reference_images"
+        },
+        "resolution": "1080p",
+        "storyboards": "disabled",
+        "generate_audio": false,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name",
+    "prompt",
+    "aspect_ratio"
+  ]
+}

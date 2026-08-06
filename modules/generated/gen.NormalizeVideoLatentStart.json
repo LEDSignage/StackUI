@@ -1,0 +1,71 @@
+{
+  "id": "gen.NormalizeVideoLatentStart",
+  "name": "NormalizeVideoLatentStart",
+  "category": "ComfyUI / model/conditioning",
+  "description": "NormalizeVideoLatentStart — Normalizes the initial frames of a video latent to match the mean and standard deviation of subsequent reference frames. Helps reduce differences between the starting frames and the rest of the video.",
+  "inPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "start_frame_count",
+      "label": "Start frame count",
+      "target": {
+        "node": "n",
+        "input": "start_frame_count"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "reference_frame_count",
+      "label": "Reference frame count",
+      "target": {
+        "node": "n",
+        "input": "reference_frame_count"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "NormalizeVideoLatentStart",
+      "inputs": {
+        "latent": {
+          "$port": "latent"
+        },
+        "start_frame_count": 4,
+        "reference_frame_count": 5
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latent": "latent"
+  },
+  "summary": [
+    "start_frame_count",
+    "reference_frame_count"
+  ]
+}

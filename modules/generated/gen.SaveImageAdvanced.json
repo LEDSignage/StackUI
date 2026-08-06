@@ -1,0 +1,74 @@
+{
+  "id": "gen.SaveImageAdvanced",
+  "name": "Save Image (Advanced)",
+  "category": "ComfyUI / image",
+  "description": "SaveImageAdvanced — Saves the input images to your ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    },
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "png",
+      "options": [
+        "png",
+        "exr"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveImageAdvanced",
+        "input": "format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveImageAdvanced",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "filename_prefix": "ComfyUI",
+        "format": "png"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "filename_prefix",
+    "format"
+  ]
+}

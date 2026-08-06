@@ -1,0 +1,150 @@
+{
+  "id": "gen.HeyGenAvatarVideoNode",
+  "name": "HeyGen Avatar Video",
+  "category": "ComfyUI / partner/video/HeyGen",
+  "description": "HeyGenAvatarVideoNode — Generate a talking-presenter video from a HeyGen avatar. Includes HeyGen's most popular public avatars; any look ID can be supplied as an override.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "engine",
+      "label": "Engine",
+      "target": {
+        "node": "n",
+        "input": "engine"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "avatar_iv",
+        "avatar_iii",
+        "avatar_v"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenAvatarVideoNode",
+        "input": "engine"
+      }
+    },
+    {
+      "name": "speech",
+      "label": "Speech",
+      "target": {
+        "node": "n",
+        "input": "speech"
+      },
+      "type": "ENUM",
+      "default": "script",
+      "options": [
+        "script",
+        "audio"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenAvatarVideoNode",
+        "input": "speech"
+      }
+    },
+    {
+      "name": "custom_avatar_id",
+      "label": "Custom avatar id",
+      "target": {
+        "node": "n",
+        "input": "custom_avatar_id"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1080p",
+      "options": [
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenAvatarVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:5",
+        "5:4"
+      ],
+      "optionsFrom": {
+        "class_type": "HeyGenAvatarVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "background_color",
+      "label": "Background color",
+      "target": {
+        "node": "n",
+        "input": "background_color"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HeyGenAvatarVideoNode",
+      "inputs": {
+        "engine": "auto",
+        "speech": "script",
+        "custom_avatar_id": "",
+        "resolution": "1080p",
+        "aspect_ratio": "auto",
+        "background_color": "",
+        "seed": 42
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "engine",
+    "speech",
+    "custom_avatar_id"
+  ]
+}

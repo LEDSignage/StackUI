@@ -1,0 +1,74 @@
+{
+  "id": "gen.LoraModelLoader",
+  "name": "Load LoRA Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "LoraModelLoader",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "lora",
+      "type": "LORA_MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength_model",
+      "label": "Strength model",
+      "target": {
+        "node": "n",
+        "input": "strength_model"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -100,
+      "max": 100
+    },
+    {
+      "name": "bypass",
+      "label": "Bypass",
+      "target": {
+        "node": "n",
+        "input": "bypass"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoraModelLoader",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "lora": {
+          "$port": "lora"
+        },
+        "strength_model": 1,
+        "bypass": false
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "strength_model",
+    "bypass"
+  ]
+}

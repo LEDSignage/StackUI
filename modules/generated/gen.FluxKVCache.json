@@ -1,0 +1,38 @@
+{
+  "id": "gen.FluxKVCache",
+  "name": "Flux KV Cache",
+  "category": "ComfyUI / experimental",
+  "description": "FluxKVCache — Enables KV Cache optimization for reference images on Flux family models.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "FluxKVCache",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  }
+}

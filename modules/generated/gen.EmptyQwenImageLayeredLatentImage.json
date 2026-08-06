@@ -1,0 +1,88 @@
+{
+  "id": "gen.EmptyQwenImageLayeredLatentImage",
+  "name": "Empty Qwen Image Layered Latent",
+  "category": "ComfyUI / model/latent/qwen",
+  "description": "EmptyQwenImageLayeredLatentImage",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 640,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 640,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "layers",
+      "label": "Layers",
+      "target": {
+        "node": "n",
+        "input": "layers"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "EmptyQwenImageLayeredLatentImage",
+      "inputs": {
+        "width": 640,
+        "height": 640,
+        "layers": 3,
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "layers"
+  ]
+}

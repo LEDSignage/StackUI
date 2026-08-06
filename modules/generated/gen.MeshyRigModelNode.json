@@ -1,0 +1,85 @@
+{
+  "id": "gen.MeshyRigModelNode",
+  "name": "Meshy: Rig Model",
+  "category": "ComfyUI / partner/3d/Meshy",
+  "description": "MeshyRigModelNode — Provides a rigged character in standard formats. Auto-rigging is currently not suitable for untextured meshes, non-humanoid assets, or humanoid assets with unclear limb and body structure.",
+  "inPorts": [
+    {
+      "name": "meshy_task_id",
+      "type": "MESHY_TASK_ID"
+    },
+    {
+      "name": "texture_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "rig_task_id",
+      "type": "MESHY_RIGGED_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    },
+    {
+      "name": "fbx",
+      "type": "FILE_3D_FBX"
+    }
+  ],
+  "params": [
+    {
+      "name": "height_meters",
+      "label": "Height meters",
+      "target": {
+        "node": "n",
+        "input": "height_meters"
+      },
+      "type": "FLOAT",
+      "default": 1.7,
+      "min": 0.1,
+      "max": 15
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MeshyRigModelNode",
+      "inputs": {
+        "meshy_task_id": {
+          "$port": "meshy_task_id"
+        },
+        "height_meters": 1.7,
+        "texture_image": {
+          "$port": "texture_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "rig_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    },
+    "fbx": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "height_meters"
+  ]
+}

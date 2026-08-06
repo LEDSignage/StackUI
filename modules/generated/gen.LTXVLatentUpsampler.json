@@ -1,0 +1,52 @@
+{
+  "id": "gen.LTXVLatentUpsampler",
+  "name": "LTXVLatentUpsampler",
+  "category": "ComfyUI / model/latent/ltxv",
+  "description": "LTXVLatentUpsampler",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "upscale_model",
+      "type": "LATENT_UPSCALE_MODEL"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVLatentUpsampler",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "upscale_model": {
+          "$port": "upscale_model"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  }
+}

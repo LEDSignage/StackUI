@@ -1,0 +1,93 @@
+{
+  "id": "gen.TencentSmartTopologyNode",
+  "name": "Hunyuan3D: Smart Topology",
+  "category": "ComfyUI / partner/3d/Tencent",
+  "description": "TencentSmartTopologyNode — Perform smart retopology on a 3D model. Supports GLB/OBJ formats; max 200MB; recommended for high-poly models.",
+  "inPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_GLB,FILE_3D_OBJ,FILE_3D"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "obj",
+      "type": "FILE_3D_OBJ"
+    }
+  ],
+  "params": [
+    {
+      "name": "polygon_type",
+      "label": "Polygon type",
+      "target": {
+        "node": "n",
+        "input": "polygon_type"
+      },
+      "type": "ENUM",
+      "default": "triangle",
+      "options": [
+        "triangle",
+        "quadrilateral"
+      ],
+      "optionsFrom": {
+        "class_type": "TencentSmartTopologyNode",
+        "input": "polygon_type"
+      }
+    },
+    {
+      "name": "face_level",
+      "label": "Face level",
+      "target": {
+        "node": "n",
+        "input": "face_level"
+      },
+      "type": "ENUM",
+      "default": "medium",
+      "options": [
+        "medium",
+        "high",
+        "low"
+      ],
+      "optionsFrom": {
+        "class_type": "TencentSmartTopologyNode",
+        "input": "face_level"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TencentSmartTopologyNode",
+      "inputs": {
+        "model_3d": {
+          "$port": "model_3d"
+        },
+        "polygon_type": "triangle",
+        "face_level": "medium",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "obj": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "polygon_type",
+    "face_level",
+    "seed"
+  ]
+}

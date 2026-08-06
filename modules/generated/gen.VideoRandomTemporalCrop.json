@@ -1,0 +1,68 @@
+{
+  "id": "gen.VideoRandomTemporalCrop",
+  "name": "Crop Video (Temporal Random)",
+  "category": "ComfyUI / video/transform",
+  "description": "VideoRandomTemporalCrop — Randomly crop a continuous range of frames from a video.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 16,
+      "min": 1,
+      "max": 99999
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VideoRandomTemporalCrop",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "length": 16,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "length",
+    "seed"
+  ]
+}

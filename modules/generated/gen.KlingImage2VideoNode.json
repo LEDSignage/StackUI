@@ -1,0 +1,176 @@
+{
+  "id": "gen.KlingImage2VideoNode",
+  "name": "Kling Image(First Frame) to Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingImage2VideoNode",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "video_id",
+      "type": "STRING"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v2-master",
+      "options": [
+        "kling-v1",
+        "kling-v1-5",
+        "kling-v1-6",
+        "kling-v2-master",
+        "kling-v2-1",
+        "kling-v2-1-master",
+        "kling-v2-5-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImage2VideoNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "cfg_scale",
+      "label": "Cfg scale",
+      "target": {
+        "node": "n",
+        "input": "cfg_scale"
+      },
+      "type": "FLOAT",
+      "default": 0.8,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "std",
+      "options": [
+        "std",
+        "pro"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImage2VideoNode",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImage2VideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5",
+      "options": [
+        "5",
+        "10"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImage2VideoNode",
+        "input": "duration"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingImage2VideoNode",
+      "inputs": {
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "prompt": "",
+        "negative_prompt": "",
+        "model_name": "kling-v2-master",
+        "cfg_scale": 0.8,
+        "mode": "std",
+        "aspect_ratio": "16:9",
+        "duration": "5"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "video_id": {
+      "node": "n",
+      "out": 1
+    },
+    "duration": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "model_name"
+  ]
+}

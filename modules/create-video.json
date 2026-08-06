@@ -1,0 +1,43 @@
+{
+  "id": "create-video",
+  "name": "Assemble video",
+  "category": "output",
+  "description": "CreateVideo, taking the decoded frames by name. The generated version asks for \"images\", which is ambiguous once a start frame is also in scope.",
+  "inPorts": [
+    { "name": "image", "type": "IMAGE" },
+    { "name": "audio", "type": "AUDIO", "optional": true }
+  ],
+  "outPorts": [{ "name": "video", "type": "VIDEO" }],
+  "outputs": { "video": { "node": "c", "out": 0 } },
+  "summary": ["fps"],
+  "params": [
+    {
+      "name": "fps",
+      "label": "fps",
+      "type": "FLOAT",
+      "default": 24,
+      "min": 1,
+      "max": 240,
+      "step": 1,
+      "target": { "node": "c", "input": "fps" }
+    },
+    {
+      "name": "bit_depth",
+      "label": "Bit depth",
+      "type": "INT",
+      "default": 8,
+      "target": { "node": "c", "input": "bit_depth" }
+    }
+  ],
+  "nodes": {
+    "c": {
+      "class_type": "CreateVideo",
+      "inputs": {
+        "images": { "$port": "image" },
+        "audio": { "$port": "audio" },
+        "fps": 24,
+        "bit_depth": 8
+      }
+    }
+  }
+}

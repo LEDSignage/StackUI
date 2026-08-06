@@ -1,0 +1,42 @@
+{
+  "id": "gen.ManualSigmas",
+  "name": "ManualSigmas",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "ManualSigmas",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "sigmas",
+      "label": "Sigmas",
+      "target": {
+        "node": "n",
+        "input": "sigmas"
+      },
+      "type": "STRING",
+      "default": "1, 0.5"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ManualSigmas",
+      "inputs": {
+        "sigmas": "1, 0.5"
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "sigmas"
+  ]
+}

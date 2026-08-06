@@ -1,0 +1,86 @@
+{
+  "id": "gen.MinimaxImageToVideoNode",
+  "name": "MiniMax Image to Video",
+  "category": "ComfyUI / partner/video/MiniMax",
+  "description": "MinimaxImageToVideoNode — Generates videos synchronously based on an image and prompt, and optional parameters.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt_text",
+      "label": "Prompt text",
+      "target": {
+        "node": "n",
+        "input": "prompt_text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "I2V-01",
+      "options": [
+        "I2V-01-Director",
+        "I2V-01",
+        "I2V-01-live"
+      ],
+      "optionsFrom": {
+        "class_type": "MinimaxImageToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MinimaxImageToVideoNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "prompt_text": "",
+        "model": "I2V-01",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt_text",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "id": "gen.BriaRemoveVideoBackground",
+  "name": "Bria Remove Video Background",
+  "category": "ComfyUI / partner/video/Bria",
+  "description": "BriaRemoveVideoBackground — Remove the background from a video using Bria. ",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "background_color",
+      "label": "Background color",
+      "target": {
+        "node": "n",
+        "input": "background_color"
+      },
+      "type": "ENUM",
+      "default": "Black",
+      "options": [
+        "Black",
+        "White",
+        "Gray",
+        "Red",
+        "Green",
+        "Blue",
+        "Yellow",
+        "Cyan",
+        "Magenta",
+        "Orange"
+      ],
+      "optionsFrom": {
+        "class_type": "BriaRemoveVideoBackground",
+        "input": "background_color"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BriaRemoveVideoBackground",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "background_color": "Black",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "background_color",
+    "seed"
+  ]
+}

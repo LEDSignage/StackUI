@@ -1,0 +1,45 @@
+{
+  "id": "gen.ConditioningConcat",
+  "name": "Conditioning (Concat)",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningConcat",
+  "inPorts": [
+    {
+      "name": "conditioning_to",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "conditioning_from",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningConcat",
+      "inputs": {
+        "conditioning_to": {
+          "$port": "conditioning_to"
+        },
+        "conditioning_from": {
+          "$port": "conditioning_from"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning_to": "conditioning"
+  }
+}

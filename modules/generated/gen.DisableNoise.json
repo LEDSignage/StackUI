@@ -1,0 +1,26 @@
+{
+  "id": "gen.DisableNoise",
+  "name": "DisableNoise",
+  "category": "ComfyUI / model/sampling/noise",
+  "description": "DisableNoise",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "noise",
+      "type": "NOISE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "DisableNoise",
+      "inputs": {}
+    }
+  },
+  "outputs": {
+    "noise": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

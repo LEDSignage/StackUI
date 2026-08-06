@@ -1,0 +1,70 @@
+{
+  "id": "gen.ControlNetApply",
+  "name": "Apply ControlNet (DEPRECATED)",
+  "category": "ComfyUI / model/conditioning/controlnet",
+  "description": "ControlNetApply",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "control_net",
+      "type": "CONTROL_NET"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ControlNetApply",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "control_net": {
+          "$port": "control_net"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "strength"
+  ]
+}

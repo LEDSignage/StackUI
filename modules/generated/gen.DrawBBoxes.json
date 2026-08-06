@@ -1,0 +1,43 @@
+{
+  "id": "gen.DrawBBoxes",
+  "name": "Draw BBoxes",
+  "category": "ComfyUI / image/detection",
+  "description": "DrawBBoxes",
+  "inPorts": [
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "out_image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "DrawBBoxes",
+      "inputs": {
+        "bboxes": {
+          "$port": "bboxes"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "out_image": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

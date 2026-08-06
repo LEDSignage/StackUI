@@ -1,0 +1,139 @@
+{
+  "id": "gen.LumaRay32TextToVideoNode",
+  "name": "Luma Ray 3.2 Text to Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32TextToVideoNode — Generate a video from a text prompt using Luma's Ray 3.2 model.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32TextToVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32TextToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5s",
+      "options": [
+        "5s",
+        "10s"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32TextToVideoNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "loop",
+      "label": "Loop",
+      "target": {
+        "node": "n",
+        "input": "loop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32TextToVideoNode",
+      "inputs": {
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "resolution": "720p",
+        "duration": "5s",
+        "loop": false,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "aspect_ratio",
+    "resolution"
+  ]
+}

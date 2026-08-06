@@ -1,0 +1,61 @@
+{
+  "id": "gen.HiDreamO1ReferenceImages",
+  "name": "HiDream-O1 Reference Images",
+  "category": "ComfyUI / model/conditioning/hidream",
+  "description": "HiDreamO1ReferenceImages — Attach 1-10 reference images to conditioning, one for edit instructionor multiple for subject-driven personalization.",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "HiDreamO1ReferenceImages",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  }
+}

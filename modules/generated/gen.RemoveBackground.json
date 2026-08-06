@@ -1,0 +1,42 @@
+{
+  "id": "gen.RemoveBackground",
+  "name": "Remove Background",
+  "category": "ComfyUI / image/background removal",
+  "description": "RemoveBackground — Generates a foreground mask to remove the background from an image using a background removal model.",
+  "inPorts": [
+    {
+      "name": "bg_removal_model",
+      "type": "BACKGROUND_REMOVAL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "RemoveBackground",
+      "inputs": {
+        "bg_removal_model": {
+          "$port": "bg_removal_model"
+        },
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

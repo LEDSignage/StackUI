@@ -1,0 +1,45 @@
+{
+  "id": "gen.LatentApplyOperationCFG",
+  "name": "LatentApplyOperationCFG",
+  "category": "ComfyUI / model/latent/advanced/operations",
+  "description": "LatentApplyOperationCFG",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "operation",
+      "type": "LATENT_OPERATION"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LatentApplyOperationCFG",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "operation": {
+          "$port": "operation"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "id": "gen.SplitSigmas",
+  "name": "SplitSigmas",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "SplitSigmas",
+  "inPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "high_sigmas",
+      "type": "SIGMAS"
+    },
+    {
+      "name": "low_sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "step",
+      "label": "Step",
+      "target": {
+        "node": "n",
+        "input": "step"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 10000
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SplitSigmas",
+      "inputs": {
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "step": 0
+      }
+    }
+  },
+  "outputs": {
+    "high_sigmas": {
+      "node": "n",
+      "out": 0
+    },
+    "low_sigmas": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "sigmas": "high_sigmas"
+  },
+  "summary": [
+    "step"
+  ]
+}

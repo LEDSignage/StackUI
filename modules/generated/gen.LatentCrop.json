@@ -1,0 +1,100 @@
+{
+  "id": "gen.LatentCrop",
+  "name": "Crop Latent",
+  "category": "ComfyUI / model/latent/transform",
+  "description": "LatentCrop",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 64,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentCrop",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "width": 512,
+        "height": 512,
+        "x": 0,
+        "y": 0
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "width",
+    "height",
+    "x"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "id": "gen.PreviewAudio",
+  "name": "Preview Audio",
+  "category": "ComfyUI / audio",
+  "description": "PreviewAudio — Preview the audio without saving it to the ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "PreviewAudio",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "audio": "audio"
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "id": "gen.SamplerCustom",
+  "name": "SamplerCustom",
+  "category": "ComfyUI / model/sampling/custom",
+  "description": "SamplerCustom",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    },
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    },
+    {
+      "name": "latent_image",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "output",
+      "type": "LATENT"
+    },
+    {
+      "name": "denoised_output",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "add_noise",
+      "label": "Add noise",
+      "target": {
+        "node": "n",
+        "input": "add_noise"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "noise_seed",
+      "label": "Noise seed",
+      "target": {
+        "node": "n",
+        "input": "noise_seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "cfg",
+      "label": "Cfg",
+      "target": {
+        "node": "n",
+        "input": "cfg"
+      },
+      "type": "FLOAT",
+      "default": 8,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerCustom",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "add_noise": true,
+        "noise_seed": 0,
+        "cfg": 8,
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "sampler": {
+          "$port": "sampler"
+        },
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "latent_image": {
+          "$port": "latent_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "output": {
+      "node": "n",
+      "out": 0
+    },
+    "denoised_output": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "latent_image": "output"
+  },
+  "summary": [
+    "add_noise",
+    "noise_seed",
+    "cfg"
+  ]
+}

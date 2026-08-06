@@ -1,0 +1,38 @@
+{
+  "id": "gen.RecraftCreativeUpscaleNode",
+  "name": "Recraft Creative Upscale Image",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftCreativeUpscaleNode — Upscale image synchronously.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftCreativeUpscaleNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  }
+}

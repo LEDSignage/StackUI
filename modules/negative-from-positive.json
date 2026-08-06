@@ -1,0 +1,16 @@
+{
+  "id": "negative-from-positive",
+  "name": "Negative (zeroed)",
+  "category": "conditioning",
+  "description": "ConditioningZeroOut, published as negative. For models that want an empty negative rather than a written one — most distilled and turbo models at low CFG.",
+  "inPorts": [{ "name": "positive", "type": "CONDITIONING" }],
+  "outPorts": [{ "name": "negative", "type": "CONDITIONING" }],
+  "outputs": { "negative": { "node": "z", "out": 0 } },
+  "params": [],
+  "nodes": {
+    "z": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": { "conditioning": { "$port": "positive" } }
+    }
+  }
+}

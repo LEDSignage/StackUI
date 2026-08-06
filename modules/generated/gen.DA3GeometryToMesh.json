@@ -1,0 +1,117 @@
+{
+  "id": "gen.DA3GeometryToMesh",
+  "name": "Convert DA3 Geometry to Mesh",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "DA3GeometryToMesh — Convert a depth map into a triangulated 3D mesh.",
+  "inPorts": [
+    {
+      "name": "da3_geometry",
+      "type": "DA3_GEOMETRY"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mesh",
+      "type": "MESH"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_index",
+      "label": "Batch index",
+      "target": {
+        "node": "n",
+        "input": "batch_index"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4096
+    },
+    {
+      "name": "decimation",
+      "label": "Decimation",
+      "target": {
+        "node": "n",
+        "input": "decimation"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 8
+    },
+    {
+      "name": "discontinuity_threshold",
+      "label": "Discontinuity threshold",
+      "target": {
+        "node": "n",
+        "input": "discontinuity_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.04,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "confidence_threshold",
+      "label": "Confidence threshold",
+      "target": {
+        "node": "n",
+        "input": "confidence_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "use_sky_mask",
+      "label": "Use sky mask",
+      "target": {
+        "node": "n",
+        "input": "use_sky_mask"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "texture",
+      "label": "Texture",
+      "target": {
+        "node": "n",
+        "input": "texture"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DA3GeometryToMesh",
+      "inputs": {
+        "da3_geometry": {
+          "$port": "da3_geometry"
+        },
+        "batch_index": 0,
+        "decimation": 1,
+        "discontinuity_threshold": 0.04,
+        "confidence_threshold": 0.1,
+        "use_sky_mask": true,
+        "texture": true
+      }
+    }
+  },
+  "outputs": {
+    "mesh": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "batch_index",
+    "decimation",
+    "discontinuity_threshold"
+  ]
+}

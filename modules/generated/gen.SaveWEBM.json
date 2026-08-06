@@ -1,0 +1,103 @@
+{
+  "id": "gen.SaveWEBM",
+  "name": "Save WEBM",
+  "category": "ComfyUI / video",
+  "description": "SaveWEBM",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "ComfyUI"
+    },
+    {
+      "name": "codec",
+      "label": "Codec",
+      "target": {
+        "node": "n",
+        "input": "codec"
+      },
+      "type": "ENUM",
+      "default": "vp9",
+      "options": [
+        "vp9",
+        "av1"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveWEBM",
+        "input": "codec"
+      }
+    },
+    {
+      "name": "fps",
+      "label": "Fps",
+      "target": {
+        "node": "n",
+        "input": "fps"
+      },
+      "type": "FLOAT",
+      "default": 24,
+      "min": 0.01,
+      "max": 1000,
+      "step": 0.01
+    },
+    {
+      "name": "crf",
+      "label": "Crf",
+      "target": {
+        "node": "n",
+        "input": "crf"
+      },
+      "type": "FLOAT",
+      "default": 32,
+      "min": 0,
+      "max": 63,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveWEBM",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "filename_prefix": "ComfyUI",
+        "codec": "vp9",
+        "fps": 24,
+        "crf": 32
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "filename_prefix",
+    "codec",
+    "fps"
+  ]
+}

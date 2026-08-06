@@ -1,0 +1,118 @@
+{
+  "id": "gen.ReveImageEditNode",
+  "name": "Reve Image Edit",
+  "category": "ComfyUI / partner/image/Reve",
+  "description": "ReveImageEditNode — Edit images using natural language instructions with Reve.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "edit_instruction",
+      "label": "Edit instruction",
+      "target": {
+        "node": "n",
+        "input": "edit_instruction"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "reve-edit@20250915",
+      "options": [
+        "reve-edit@20250915",
+        "reve-edit-fast@20251030"
+      ],
+      "optionsFrom": {
+        "class_type": "ReveImageEditNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "upscale",
+      "label": "Upscale",
+      "target": {
+        "node": "n",
+        "input": "upscale"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "enabled"
+      ],
+      "optionsFrom": {
+        "class_type": "ReveImageEditNode",
+        "input": "upscale"
+      }
+    },
+    {
+      "name": "remove_background",
+      "label": "Remove background",
+      "target": {
+        "node": "n",
+        "input": "remove_background"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ReveImageEditNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "edit_instruction": "",
+        "model": "reve-edit@20250915",
+        "upscale": "disabled",
+        "remove_background": false,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "edit_instruction",
+    "model",
+    "upscale"
+  ]
+}

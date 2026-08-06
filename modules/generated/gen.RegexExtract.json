@@ -1,0 +1,124 @@
+{
+  "id": "gen.RegexExtract",
+  "name": "Extract Text",
+  "category": "ComfyUI / text",
+  "description": "RegexExtract",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "regex_pattern",
+      "label": "Regex pattern",
+      "target": {
+        "node": "n",
+        "input": "regex_pattern"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "First Match",
+      "options": [
+        "First Match",
+        "All Matches",
+        "First Group",
+        "All Groups"
+      ],
+      "optionsFrom": {
+        "class_type": "RegexExtract",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "case_insensitive",
+      "label": "Case insensitive",
+      "target": {
+        "node": "n",
+        "input": "case_insensitive"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "multiline",
+      "label": "Multiline",
+      "target": {
+        "node": "n",
+        "input": "multiline"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "dotall",
+      "label": "Dotall",
+      "target": {
+        "node": "n",
+        "input": "dotall"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "group_index",
+      "label": "Group index",
+      "target": {
+        "node": "n",
+        "input": "group_index"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RegexExtract",
+      "inputs": {
+        "string": "",
+        "regex_pattern": "",
+        "mode": "First Match",
+        "case_insensitive": true,
+        "multiline": false,
+        "dotall": false,
+        "group_index": 1
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "regex_pattern",
+    "mode"
+  ]
+}

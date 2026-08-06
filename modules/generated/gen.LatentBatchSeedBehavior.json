@@ -1,0 +1,61 @@
+{
+  "id": "gen.LatentBatchSeedBehavior",
+  "name": "LatentBatchSeedBehavior",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentBatchSeedBehavior",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed_behavior",
+      "label": "Seed behavior",
+      "target": {
+        "node": "n",
+        "input": "seed_behavior"
+      },
+      "type": "ENUM",
+      "default": "fixed",
+      "options": [
+        "random",
+        "fixed"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentBatchSeedBehavior",
+        "input": "seed_behavior"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentBatchSeedBehavior",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "seed_behavior": "fixed"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "seed_behavior"
+  ]
+}

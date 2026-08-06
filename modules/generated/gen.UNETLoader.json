@@ -1,0 +1,74 @@
+{
+  "id": "gen.UNETLoader",
+  "name": "Load Diffusion Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "UNETLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "unet_name",
+      "label": "Unet name",
+      "target": {
+        "node": "n",
+        "input": "unet_name"
+      },
+      "type": "ENUM",
+      "default": "flux1-fill-dev.safetensors",
+      "options": [
+        "flux1-fill-dev.safetensors",
+        "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+        "qwen_image_edit_2509_fp8_e4m3fn.safetensors",
+        "z_image_turbo_bf16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "UNETLoader",
+        "input": "unet_name"
+      }
+    },
+    {
+      "name": "weight_dtype",
+      "label": "Weight dtype",
+      "target": {
+        "node": "n",
+        "input": "weight_dtype"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "fp8_e4m3fn",
+        "fp8_e4m3fn_fast",
+        "fp8_e5m2"
+      ],
+      "optionsFrom": {
+        "class_type": "UNETLoader",
+        "input": "weight_dtype"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "UNETLoader",
+      "inputs": {
+        "unet_name": "flux1-fill-dev.safetensors",
+        "weight_dtype": "default"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "unet_name",
+    "weight_dtype"
+  ]
+}

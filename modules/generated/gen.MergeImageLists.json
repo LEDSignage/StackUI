@@ -1,0 +1,38 @@
+{
+  "id": "gen.MergeImageLists",
+  "name": "Merge Image Lists (DEPRECATED)",
+  "category": "ComfyUI / image/batch",
+  "description": "MergeImageLists — Concatenate multiple image lists into one.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "MergeImageLists",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  }
+}

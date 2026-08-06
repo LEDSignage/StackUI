@@ -1,0 +1,56 @@
+{
+  "id": "gen.PerturbedAttentionGuidance",
+  "name": "PerturbedAttentionGuidance",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "PerturbedAttentionGuidance",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "scale",
+      "label": "Scale",
+      "target": {
+        "node": "n",
+        "input": "scale"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PerturbedAttentionGuidance",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "scale": 3
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "scale"
+  ]
+}

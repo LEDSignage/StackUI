@@ -1,0 +1,76 @@
+{
+  "id": "gen.CreateVideo",
+  "name": "Create Video",
+  "category": "ComfyUI / video",
+  "description": "CreateVideo — Create a video from images.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "fps",
+      "label": "Fps",
+      "target": {
+        "node": "n",
+        "input": "fps"
+      },
+      "type": "FLOAT",
+      "default": 30,
+      "min": 1,
+      "max": 120,
+      "step": 1
+    },
+    {
+      "name": "bit_depth",
+      "label": "Bit depth",
+      "target": {
+        "node": "n",
+        "input": "bit_depth"
+      },
+      "type": "INT",
+      "default": 8,
+      "min": 8,
+      "max": 10,
+      "step": 2
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CreateVideo",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "fps": 30,
+        "audio": {
+          "$port": "audio"
+        },
+        "bit_depth": 8
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "fps",
+    "bit_depth"
+  ]
+}

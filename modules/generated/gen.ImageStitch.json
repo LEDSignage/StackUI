@@ -1,0 +1,120 @@
+{
+  "id": "gen.ImageStitch",
+  "name": "Stitch Images",
+  "category": "ComfyUI / image/transform",
+  "description": "ImageStitch — Stitches image2 to image1 in the specified direction.",
+  "inPorts": [
+    {
+      "name": "image1",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image2",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "direction",
+      "label": "Direction",
+      "target": {
+        "node": "n",
+        "input": "direction"
+      },
+      "type": "ENUM",
+      "default": "right",
+      "options": [
+        "right",
+        "down",
+        "left",
+        "up"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageStitch",
+        "input": "direction"
+      }
+    },
+    {
+      "name": "match_image_size",
+      "label": "Match image size",
+      "target": {
+        "node": "n",
+        "input": "match_image_size"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "spacing_width",
+      "label": "Spacing width",
+      "target": {
+        "node": "n",
+        "input": "spacing_width"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 1024,
+      "step": 2
+    },
+    {
+      "name": "spacing_color",
+      "label": "Spacing color",
+      "target": {
+        "node": "n",
+        "input": "spacing_color"
+      },
+      "type": "ENUM",
+      "default": "white",
+      "options": [
+        "white",
+        "black",
+        "red",
+        "green",
+        "blue"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageStitch",
+        "input": "spacing_color"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageStitch",
+      "inputs": {
+        "image1": {
+          "$port": "image1"
+        },
+        "direction": "right",
+        "match_image_size": true,
+        "spacing_width": 0,
+        "spacing_color": "white",
+        "image2": {
+          "$port": "image2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image1": "image"
+  },
+  "summary": [
+    "direction",
+    "match_image_size",
+    "spacing_width"
+  ]
+}

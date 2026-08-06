@@ -1,0 +1,71 @@
+{
+  "id": "gen.T5TokenizerOptions",
+  "name": "T5 Tokenizer Options",
+  "category": "ComfyUI / model/conditioning",
+  "description": "T5TokenizerOptions",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "min_padding",
+      "label": "Min padding",
+      "target": {
+        "node": "n",
+        "input": "min_padding"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 10000,
+      "step": 1
+    },
+    {
+      "name": "min_length",
+      "label": "Min length",
+      "target": {
+        "node": "n",
+        "input": "min_length"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 10000,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "T5TokenizerOptions",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "min_padding": 0,
+        "min_length": 0
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip": "clip"
+  },
+  "summary": [
+    "min_padding",
+    "min_length"
+  ]
+}

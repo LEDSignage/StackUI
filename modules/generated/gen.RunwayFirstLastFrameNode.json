@@ -1,0 +1,108 @@
+{
+  "id": "gen.RunwayFirstLastFrameNode",
+  "name": "Runway First-Last-Frame to Video",
+  "category": "ComfyUI / partner/video/Runway",
+  "description": "RunwayFirstLastFrameNode — Upload first and last keyframes, draft a prompt, and generate a video. More complex transitions, such as cases where the Last frame is completely different from the First frame, may benefit from the longer 10s duration. This would give the generation more time to smoothly transition between the two inputs. Before diving in, review these best practices to ensure that your input selections will set your generation up for success: https://help.runwayml.com/hc/en-us/articles/34170748696595-Creating-with-Keyframes-on-Gen-3.",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE"
+    },
+    {
+      "name": "end_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "RunwayFirstLastFrameNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "ENUM",
+      "default": "768:1280",
+      "options": [
+        "768:1280",
+        "1280:768"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayFirstLastFrameNode",
+        "input": "ratio"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayFirstLastFrameNode",
+      "inputs": {
+        "prompt": "",
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "end_frame": {
+          "$port": "end_frame"
+        },
+        "duration": "",
+        "ratio": "768:1280",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "duration",
+    "ratio"
+  ]
+}

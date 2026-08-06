@@ -1,0 +1,60 @@
+{
+  "id": "gen.SamplerDPMPP_2S_Ancestral",
+  "name": "SamplerDPMPP_2S_Ancestral",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerDPMPP_2S_Ancestral",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerDPMPP_2S_Ancestral",
+      "inputs": {
+        "eta": 1,
+        "s_noise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "eta",
+    "s_noise"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "gen.GetICLoRAParameters",
+  "name": "Get IC-LoRA Parameters",
+  "category": "ComfyUI / model/conditioning/ltxv",
+  "description": "GetICLoRAParameters — Extracts IC-LoRA parameters from the safetensors metadata of a LoRA-loaded model and outputs them for LTXVAddGuide (eg. reference_downscale_factor).",
+  "inPorts": [
+    {
+      "name": "iclora_model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "iclora_parameters",
+      "type": "IC_LORA_PARAMETERS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "GetICLoRAParameters",
+      "inputs": {
+        "iclora_model": {
+          "$port": "iclora_model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "iclora_parameters": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

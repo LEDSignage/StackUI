@@ -1,0 +1,35 @@
+{
+  "id": "gen.RecordAudio",
+  "name": "Record Audio",
+  "category": "ComfyUI / audio",
+  "description": "RecordAudio",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO_RECORD"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "RecordAudio",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

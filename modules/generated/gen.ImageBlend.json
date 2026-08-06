@@ -1,0 +1,87 @@
+{
+  "id": "gen.ImageBlend",
+  "name": "Blend Images",
+  "category": "ComfyUI / image/filters",
+  "description": "ImageBlend",
+  "inPorts": [
+    {
+      "name": "image1",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image2",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "blend_factor",
+      "label": "Blend factor",
+      "target": {
+        "node": "n",
+        "input": "blend_factor"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "blend_mode",
+      "label": "Blend mode",
+      "target": {
+        "node": "n",
+        "input": "blend_mode"
+      },
+      "type": "ENUM",
+      "default": "normal",
+      "options": [
+        "normal",
+        "multiply",
+        "screen",
+        "overlay",
+        "soft_light",
+        "difference"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageBlend",
+        "input": "blend_mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageBlend",
+      "inputs": {
+        "image1": {
+          "$port": "image1"
+        },
+        "image2": {
+          "$port": "image2"
+        },
+        "blend_factor": 0.5,
+        "blend_mode": "normal"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image1": "image"
+  },
+  "summary": [
+    "blend_factor",
+    "blend_mode"
+  ]
+}

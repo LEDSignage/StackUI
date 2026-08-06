@@ -1,0 +1,214 @@
+{
+  "id": "gen.TopazVideoEnhance",
+  "name": "Topaz Video Enhance (Legacy)",
+  "category": "ComfyUI / partner/video/Topaz",
+  "description": "TopazVideoEnhance — Breathe new life into video with powerful upscaling and recovery technology.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "upscaler_enabled",
+      "label": "Upscaler enabled",
+      "target": {
+        "node": "n",
+        "input": "upscaler_enabled"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "upscaler_model",
+      "label": "Upscaler model",
+      "target": {
+        "node": "n",
+        "input": "upscaler_model"
+      },
+      "type": "ENUM",
+      "default": "Starlight (Astra) Fast",
+      "options": [
+        "Starlight (Astra) Fast",
+        "Starlight (Astra) Creative",
+        "Starlight Precise 2.5"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhance",
+        "input": "upscaler_model"
+      }
+    },
+    {
+      "name": "upscaler_resolution",
+      "label": "Upscaler resolution",
+      "target": {
+        "node": "n",
+        "input": "upscaler_resolution"
+      },
+      "type": "ENUM",
+      "default": "FullHD (1080p)",
+      "options": [
+        "FullHD (1080p)",
+        "4K (2160p)"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhance",
+        "input": "upscaler_resolution"
+      }
+    },
+    {
+      "name": "upscaler_creativity",
+      "label": "Upscaler creativity",
+      "target": {
+        "node": "n",
+        "input": "upscaler_creativity"
+      },
+      "type": "ENUM",
+      "default": "low",
+      "options": [
+        "low",
+        "middle",
+        "high"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhance",
+        "input": "upscaler_creativity"
+      }
+    },
+    {
+      "name": "interpolation_enabled",
+      "label": "Interpolation enabled",
+      "target": {
+        "node": "n",
+        "input": "interpolation_enabled"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "interpolation_model",
+      "label": "Interpolation model",
+      "target": {
+        "node": "n",
+        "input": "interpolation_model"
+      },
+      "type": "ENUM",
+      "default": "apo-8",
+      "options": [
+        "apo-8"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhance",
+        "input": "interpolation_model"
+      }
+    },
+    {
+      "name": "interpolation_slowmo",
+      "label": "Interpolation slowmo",
+      "target": {
+        "node": "n",
+        "input": "interpolation_slowmo"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 16
+    },
+    {
+      "name": "interpolation_frame_rate",
+      "label": "Interpolation frame rate",
+      "target": {
+        "node": "n",
+        "input": "interpolation_frame_rate"
+      },
+      "type": "INT",
+      "default": 60,
+      "min": 15,
+      "max": 240
+    },
+    {
+      "name": "interpolation_duplicate",
+      "label": "Interpolation duplicate",
+      "target": {
+        "node": "n",
+        "input": "interpolation_duplicate"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "interpolation_duplicate_threshold",
+      "label": "Interpolation duplicate threshold",
+      "target": {
+        "node": "n",
+        "input": "interpolation_duplicate_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.01,
+      "min": 0.001,
+      "max": 0.1,
+      "step": 0.001
+    },
+    {
+      "name": "dynamic_compression_level",
+      "label": "Dynamic compression level",
+      "target": {
+        "node": "n",
+        "input": "dynamic_compression_level"
+      },
+      "type": "ENUM",
+      "default": "Low",
+      "options": [
+        "Low",
+        "Mid",
+        "High"
+      ],
+      "optionsFrom": {
+        "class_type": "TopazVideoEnhance",
+        "input": "dynamic_compression_level"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TopazVideoEnhance",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "upscaler_enabled": true,
+        "upscaler_model": "Starlight (Astra) Fast",
+        "upscaler_resolution": "FullHD (1080p)",
+        "upscaler_creativity": "low",
+        "interpolation_enabled": false,
+        "interpolation_model": "apo-8",
+        "interpolation_slowmo": 1,
+        "interpolation_frame_rate": 60,
+        "interpolation_duplicate": false,
+        "interpolation_duplicate_threshold": 0.01,
+        "dynamic_compression_level": "Low"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "upscaler_enabled",
+    "upscaler_model",
+    "upscaler_resolution"
+  ]
+}

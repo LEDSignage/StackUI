@@ -1,0 +1,52 @@
+{
+  "id": "gen.TripoRigNode",
+  "name": "Tripo: Rig model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoRigNode",
+  "inPorts": [
+    {
+      "name": "original_model_task_id",
+      "type": "MODEL_TASK_ID"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "rig_task_id",
+      "type": "RIG_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "TripoRigNode",
+      "inputs": {
+        "original_model_task_id": {
+          "$port": "original_model_task_id"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "rig_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true
+}

@@ -1,0 +1,109 @@
+{
+  "id": "gen.CreateBoundingBoxes",
+  "name": "Create Bounding Boxes",
+  "category": "ComfyUI / utilities",
+  "description": "CreateBoundingBoxes — Draw bounding boxes in a canvas. Outputs Ideogram prompt elements, pixel-space bounding boxes, and a preview image.",
+  "inPorts": [
+    {
+      "name": "editor_state",
+      "type": "BOUNDING_BOXES"
+    },
+    {
+      "name": "background",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX,ARRAY,STRING",
+      "optional": true
+    },
+    {
+      "name": "last_incoming",
+      "type": "BOUNDING_BOXES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "preview",
+      "type": "IMAGE"
+    },
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    },
+    {
+      "name": "elements",
+      "type": "ARRAY"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 64,
+      "max": 16384,
+      "step": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CreateBoundingBoxes",
+      "inputs": {
+        "width": 1024,
+        "height": 1024,
+        "editor_state": {
+          "$port": "editor_state"
+        },
+        "background": {
+          "$port": "background"
+        },
+        "bboxes": {
+          "$port": "bboxes"
+        },
+        "last_incoming": {
+          "$port": "last_incoming"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "preview": {
+      "node": "n",
+      "out": 0
+    },
+    "bboxes": {
+      "node": "n",
+      "out": 1
+    },
+    "elements": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "width",
+    "height"
+  ]
+}

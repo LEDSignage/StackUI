@@ -1,0 +1,72 @@
+{
+  "id": "gen.LatentConcat",
+  "name": "LatentConcat",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentConcat",
+  "inPorts": [
+    {
+      "name": "samples1",
+      "type": "LATENT"
+    },
+    {
+      "name": "samples2",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "dim",
+      "label": "Dim",
+      "target": {
+        "node": "n",
+        "input": "dim"
+      },
+      "type": "ENUM",
+      "default": "x",
+      "options": [
+        "x",
+        "-x",
+        "y",
+        "-y",
+        "t",
+        "-t"
+      ],
+      "optionsFrom": {
+        "class_type": "LatentConcat",
+        "input": "dim"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentConcat",
+      "inputs": {
+        "samples1": {
+          "$port": "samples1"
+        },
+        "samples2": {
+          "$port": "samples2"
+        },
+        "dim": "x"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples1": "latent"
+  },
+  "summary": [
+    "dim"
+  ]
+}

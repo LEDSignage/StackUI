@@ -1,0 +1,176 @@
+{
+  "id": "gen.WanVaceToVideo",
+  "name": "WanVaceToVideo",
+  "category": "ComfyUI / model/conditioning/wan/vace",
+  "description": "WanVaceToVideo",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "control_video",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "control_masks",
+      "type": "MASK",
+      "optional": true
+    },
+    {
+      "name": "reference_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "trim_latent",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1000,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanVaceToVideo",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 832,
+        "height": 480,
+        "length": 81,
+        "batch_size": 1,
+        "strength": 1,
+        "control_video": {
+          "$port": "control_video"
+        },
+        "control_masks": {
+          "$port": "control_masks"
+        },
+        "reference_image": {
+          "$port": "reference_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    },
+    "trim_latent": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

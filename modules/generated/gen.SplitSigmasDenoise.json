@@ -1,0 +1,64 @@
+{
+  "id": "gen.SplitSigmasDenoise",
+  "name": "SplitSigmasDenoise",
+  "category": "ComfyUI / model/sampling/sigmas",
+  "description": "SplitSigmasDenoise",
+  "inPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "high_sigmas",
+      "type": "SIGMAS"
+    },
+    {
+      "name": "low_sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "target": {
+        "node": "n",
+        "input": "denoise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SplitSigmasDenoise",
+      "inputs": {
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "denoise": 1
+      }
+    }
+  },
+  "outputs": {
+    "high_sigmas": {
+      "node": "n",
+      "out": 0
+    },
+    "low_sigmas": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "sigmas": "high_sigmas"
+  },
+  "summary": [
+    "denoise"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "gen.LumaRay32KeyframesToVideoNode",
+  "name": "Luma Ray 3.2 Keyframes to Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32KeyframesToVideoNode — Generate a video that interpolates through a sequence of guide images, each anchored to a position on the timeline, using Luma Ray 3.2. Build the sequence with Luma Ray 3.2 Keyframe nodes (at least 2).",
+  "inPorts": [
+    {
+      "name": "keyframes",
+      "type": "LUMA_RAY32_KEYFRAME"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32KeyframesToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5s",
+      "options": [
+        "5s",
+        "10s"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32KeyframesToVideoNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32KeyframesToVideoNode",
+      "inputs": {
+        "prompt": "",
+        "resolution": "720p",
+        "duration": "5s",
+        "seed": 0,
+        "keyframes": {
+          "$port": "keyframes"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "resolution",
+    "duration"
+  ]
+}

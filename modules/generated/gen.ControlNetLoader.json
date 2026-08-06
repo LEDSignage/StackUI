@@ -1,0 +1,46 @@
+{
+  "id": "gen.ControlNetLoader",
+  "name": "Load ControlNet Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "ControlNetLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "control_net",
+      "type": "CONTROL_NET"
+    }
+  ],
+  "params": [
+    {
+      "name": "control_net_name",
+      "label": "Control net name",
+      "target": {
+        "node": "n",
+        "input": "control_net_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "ControlNetLoader",
+        "input": "control_net_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ControlNetLoader",
+      "inputs": {
+        "control_net_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "control_net": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "control_net_name"
+  ]
+}

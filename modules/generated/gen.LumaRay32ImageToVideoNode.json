@@ -1,0 +1,114 @@
+{
+  "id": "gen.LumaRay32ImageToVideoNode",
+  "name": "Luma Ray 3.2 Image to Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32ImageToVideoNode — Generate a video from a start and/or end frame using Luma's Ray 3.2 model. Image-anchored generations are always 5 seconds.",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "end_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "generation_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32ImageToVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "loop",
+      "label": "Loop",
+      "target": {
+        "node": "n",
+        "input": "loop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32ImageToVideoNode",
+      "inputs": {
+        "prompt": "",
+        "resolution": "720p",
+        "loop": false,
+        "seed": 0,
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "end_frame": {
+          "$port": "end_frame"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "generation_id": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "resolution",
+    "loop"
+  ]
+}

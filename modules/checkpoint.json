@@ -1,0 +1,31 @@
+{
+  "id": "checkpoint",
+  "name": "Checkpoint",
+  "category": "load",
+  "description": "CheckpointLoaderSimple — model, CLIP and VAE from one file.",
+  "inPorts": [],
+  "outPorts": [
+    { "name": "model", "type": "MODEL" },
+    { "name": "clip", "type": "CLIP" },
+    { "name": "vae", "type": "VAE" }
+  ],
+  "outputs": {
+    "model": { "node": "ckpt", "out": 0 },
+    "clip": { "node": "ckpt", "out": 1 },
+    "vae": { "node": "ckpt", "out": 2 }
+  },
+  "summary": ["ckpt_name"],
+  "params": [
+    {
+      "name": "ckpt_name",
+      "label": "Checkpoint",
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": { "class_type": "CheckpointLoaderSimple", "input": "ckpt_name" },
+      "target": { "node": "ckpt", "input": "ckpt_name" }
+    }
+  ],
+  "nodes": {
+    "ckpt": { "class_type": "CheckpointLoaderSimple", "inputs": { "ckpt_name": "" } }
+  }
+}

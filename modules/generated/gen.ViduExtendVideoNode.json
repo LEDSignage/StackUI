@@ -1,0 +1,97 @@
+{
+  "id": "gen.ViduExtendVideoNode",
+  "name": "Vidu Video Extension",
+  "category": "ComfyUI / partner/video/Vidu",
+  "description": "ViduExtendVideoNode — Extend an existing video by generating additional frames.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "end_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "viduq2-pro",
+      "options": [
+        "viduq2-pro",
+        "viduq2-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "ViduExtendVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ViduExtendVideoNode",
+      "inputs": {
+        "model": "viduq2-pro",
+        "video": {
+          "$port": "video"
+        },
+        "prompt": "",
+        "seed": 1,
+        "end_frame": {
+          "$port": "end_frame"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "seed"
+  ]
+}

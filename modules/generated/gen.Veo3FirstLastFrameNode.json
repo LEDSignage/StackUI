@@ -1,0 +1,170 @@
+{
+  "id": "gen.Veo3FirstLastFrameNode",
+  "name": "Google Veo 3 First-Last-Frame to Video",
+  "category": "ComfyUI / partner/video/Veo",
+  "description": "Veo3FirstLastFrameNode — Generate video using prompt and first and last frames.",
+  "inPorts": [
+    {
+      "name": "first_frame",
+      "type": "IMAGE"
+    },
+    {
+      "name": "last_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "720p",
+        "1080p",
+        "4k"
+      ],
+      "optionsFrom": {
+        "class_type": "Veo3FirstLastFrameNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16"
+      ],
+      "optionsFrom": {
+        "class_type": "Veo3FirstLastFrameNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 8,
+      "min": 4,
+      "max": 8,
+      "step": 2
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "veo-3.1-generate",
+      "options": [
+        "veo-3.1-generate",
+        "veo-3.1-fast-generate",
+        "veo-3.1-lite"
+      ],
+      "optionsFrom": {
+        "class_type": "Veo3FirstLastFrameNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Veo3FirstLastFrameNode",
+      "inputs": {
+        "prompt": "",
+        "negative_prompt": "",
+        "resolution": "720p",
+        "aspect_ratio": "16:9",
+        "duration": 8,
+        "seed": 0,
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "last_frame": {
+          "$port": "last_frame"
+        },
+        "model": "veo-3.1-generate",
+        "generate_audio": true
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "resolution"
+  ]
+}

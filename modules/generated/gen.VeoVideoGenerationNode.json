@@ -1,0 +1,161 @@
+{
+  "id": "gen.VeoVideoGenerationNode",
+  "name": "Google Veo 2 Video Generation",
+  "category": "ComfyUI / partner/video/Veo",
+  "description": "VeoVideoGenerationNode — Generates videos from text prompts using Google's Veo 2 API",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16"
+      ],
+      "optionsFrom": {
+        "class_type": "VeoVideoGenerationNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration_seconds",
+      "label": "Duration seconds",
+      "target": {
+        "node": "n",
+        "input": "duration_seconds"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 5,
+      "max": 8,
+      "step": 1
+    },
+    {
+      "name": "enhance_prompt",
+      "label": "Enhance prompt",
+      "target": {
+        "node": "n",
+        "input": "enhance_prompt"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "person_generation",
+      "label": "Person generation",
+      "target": {
+        "node": "n",
+        "input": "person_generation"
+      },
+      "type": "ENUM",
+      "default": "ALLOW",
+      "options": [
+        "ALLOW",
+        "BLOCK"
+      ],
+      "optionsFrom": {
+        "class_type": "VeoVideoGenerationNode",
+        "input": "person_generation"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "veo-2.0-generate-001",
+      "options": [
+        "veo-2.0-generate-001"
+      ],
+      "optionsFrom": {
+        "class_type": "VeoVideoGenerationNode",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VeoVideoGenerationNode",
+      "inputs": {
+        "prompt": "",
+        "aspect_ratio": "16:9",
+        "negative_prompt": "",
+        "duration_seconds": 5,
+        "enhance_prompt": true,
+        "person_generation": "ALLOW",
+        "seed": 0,
+        "image": {
+          "$port": "image"
+        },
+        "model": "veo-2.0-generate-001"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "aspect_ratio",
+    "negative_prompt"
+  ]
+}

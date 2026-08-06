@@ -1,0 +1,122 @@
+{
+  "id": "gen.SkipLayerGuidanceDiT",
+  "name": "SkipLayerGuidanceDiT",
+  "category": "ComfyUI / advanced/guidance",
+  "description": "SkipLayerGuidanceDiT — Generic version of SkipLayerGuidance node that can be used on every DiT model.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "double_layers",
+      "label": "Double layers",
+      "target": {
+        "node": "n",
+        "input": "double_layers"
+      },
+      "type": "STRING",
+      "default": "7, 8, 9"
+    },
+    {
+      "name": "single_layers",
+      "label": "Single layers",
+      "target": {
+        "node": "n",
+        "input": "single_layers"
+      },
+      "type": "STRING",
+      "default": "7, 8, 9"
+    },
+    {
+      "name": "scale",
+      "label": "Scale",
+      "target": {
+        "node": "n",
+        "input": "scale"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "name": "start_percent",
+      "label": "Start percent",
+      "target": {
+        "node": "n",
+        "input": "start_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.01,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "end_percent",
+      "label": "End percent",
+      "target": {
+        "node": "n",
+        "input": "end_percent"
+      },
+      "type": "FLOAT",
+      "default": 0.15,
+      "min": 0,
+      "max": 1,
+      "step": 0.001
+    },
+    {
+      "name": "rescaling_scale",
+      "label": "Rescaling scale",
+      "target": {
+        "node": "n",
+        "input": "rescaling_scale"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SkipLayerGuidanceDiT",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "double_layers": "7, 8, 9",
+        "single_layers": "7, 8, 9",
+        "scale": 3,
+        "start_percent": 0.01,
+        "end_percent": 0.15,
+        "rescaling_scale": 0
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "double_layers",
+    "single_layers",
+    "scale"
+  ]
+}

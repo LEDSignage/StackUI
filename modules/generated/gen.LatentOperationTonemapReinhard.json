@@ -1,0 +1,45 @@
+{
+  "id": "gen.LatentOperationTonemapReinhard",
+  "name": "LatentOperationTonemapReinhard",
+  "category": "ComfyUI / model/latent/advanced/operations",
+  "description": "LatentOperationTonemapReinhard",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "latent_operation",
+      "type": "LATENT_OPERATION"
+    }
+  ],
+  "params": [
+    {
+      "name": "multiplier",
+      "label": "Multiplier",
+      "target": {
+        "node": "n",
+        "input": "multiplier"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentOperationTonemapReinhard",
+      "inputs": {
+        "multiplier": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent_operation": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "multiplier"
+  ]
+}

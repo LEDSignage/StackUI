@@ -1,0 +1,42 @@
+{
+  "id": "gen.VAEEncode",
+  "name": "VAE Encode",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEEncode",
+  "inPorts": [
+    {
+      "name": "pixels",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "VAEEncode",
+      "inputs": {
+        "pixels": {
+          "$port": "pixels"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

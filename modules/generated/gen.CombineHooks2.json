@@ -1,0 +1,44 @@
+{
+  "id": "gen.CombineHooks2",
+  "name": "Combine Hooks [2]",
+  "category": "ComfyUI / advanced/hooks/combine",
+  "description": "CombineHooks2",
+  "inPorts": [
+    {
+      "name": "hooks_a",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_b",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CombineHooks2",
+      "inputs": {
+        "hooks_A": {
+          "$port": "hooks_a"
+        },
+        "hooks_B": {
+          "$port": "hooks_b"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hooks": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

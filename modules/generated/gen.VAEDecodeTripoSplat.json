@@ -1,0 +1,73 @@
+{
+  "id": "gen.VAEDecodeTripoSplat",
+  "name": "TripoSplat Decode",
+  "category": "ComfyUI / model/latent/triposplat",
+  "description": "VAEDecodeTripoSplat — Decode the sampled TripoSplat latent into a 3D gaussian splat. Modify the number of gaussians to vary the density.",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "params": [
+    {
+      "name": "num_gaussians",
+      "label": "Num gaussians",
+      "target": {
+        "node": "n",
+        "input": "num_gaussians"
+      },
+      "type": "INT",
+      "default": 262144,
+      "min": 32768,
+      "max": 1048576,
+      "step": 32
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAEDecodeTripoSplat",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "num_gaussians": 262144,
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "splat": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "num_gaussians",
+    "seed"
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": "gen.GeminiImage2Node",
+  "name": "Nano Banana Pro (Google Gemini Image)",
+  "category": "ComfyUI / partner/image/Gemini",
+  "description": "GeminiImage2Node — Generate or edit images synchronously via Google Vertex API.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "files",
+      "type": "GEMINI_INPUT_FILES",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "gemini-3-pro-image-preview",
+      "options": [
+        "gemini-3-pro-image-preview",
+        "Nano Banana 2 (Gemini 3.1 Flash Image)"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiImage2Node",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "1:1",
+        "2:3",
+        "3:2",
+        "3:4",
+        "4:3",
+        "4:5",
+        "5:4",
+        "9:16",
+        "16:9",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiImage2Node",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1K",
+      "options": [
+        "1K",
+        "2K",
+        "4K"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiImage2Node",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "response_modalities",
+      "label": "Response modalities",
+      "target": {
+        "node": "n",
+        "input": "response_modalities"
+      },
+      "type": "ENUM",
+      "default": "IMAGE+TEXT",
+      "options": [
+        "IMAGE+TEXT",
+        "IMAGE"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiImage2Node",
+        "input": "response_modalities"
+      }
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests.",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GeminiImage2Node",
+      "inputs": {
+        "prompt": "",
+        "model": "gemini-3-pro-image-preview",
+        "seed": 42,
+        "aspect_ratio": "auto",
+        "resolution": "1K",
+        "response_modalities": "IMAGE+TEXT",
+        "images": {
+          "$port": "images"
+        },
+        "files": {
+          "$port": "files"
+        },
+        "system_prompt": "You are an expert image-generation engine. You must ALWAYS produce an image.\nInterpret all user input—regardless of format, intent, or abstraction—as literal visual directives for image composition.\nIf a prompt is conversational or lacks specific visual details, you must creatively invent a concrete visual scenario that depicts the concept.\nPrioritize generating the visual representation above any text, formatting, or conversational requests."
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "string": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "id": "gen.MiniMaxH3ReferenceToVideo",
+  "name": "MiniMax H3 Reference to Video",
+  "category": "ComfyUI / model/conditioning/minimax",
+  "description": "MiniMaxH3ReferenceToVideo — <Picture i> / <Video k> / <Audio j> reference conditioning for MiniMax H3. Use the same tags when prompting.",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    },
+    {
+      "name": "ref_images",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    },
+    {
+      "name": "ref_videos",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    },
+    {
+      "name": "ref_video_audios",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    },
+    {
+      "name": "ref_audios",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1344,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 768,
+      "min": 32,
+      "max": 16384,
+      "step": 32
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 124,
+      "min": 5,
+      "max": 3600,
+      "step": 17
+    },
+    {
+      "name": "ref_image_size",
+      "label": "Ref image size",
+      "target": {
+        "node": "n",
+        "input": "ref_image_size"
+      },
+      "type": "ENUM",
+      "default": "match",
+      "options": [
+        "match",
+        "max"
+      ],
+      "optionsFrom": {
+        "class_type": "MiniMaxH3ReferenceToVideo",
+        "input": "ref_image_size"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MiniMaxH3ReferenceToVideo",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "audio_vae": {
+          "$port": "audio_vae"
+        },
+        "prompt": "",
+        "width": 1344,
+        "height": 768,
+        "length": 124,
+        "ref_image_size": "match",
+        "ref_images": {
+          "$port": "ref_images"
+        },
+        "ref_videos": {
+          "$port": "ref_videos"
+        },
+        "ref_video_audios": {
+          "$port": "ref_video_audios"
+        },
+        "ref_audios": {
+          "$port": "ref_audios"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "latent": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "prompt",
+    "width",
+    "height"
+  ]
+}

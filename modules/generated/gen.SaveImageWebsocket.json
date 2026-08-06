@@ -1,0 +1,25 @@
+{
+  "id": "gen.SaveImageWebsocket",
+  "name": "Save Image (Websocket)",
+  "category": "ComfyUI / image",
+  "description": "SaveImageWebsocket",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SaveImageWebsocket",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "terminal": true
+}

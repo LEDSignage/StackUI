@@ -1,0 +1,88 @@
+{
+  "id": "gen.GrokVideoExtendNode",
+  "name": "Grok Video Extend",
+  "category": "ComfyUI / partner/video/Grok",
+  "description": "GrokVideoExtendNode — Extend an existing video with a seamless continuation based on a text prompt.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "grok-imagine-video",
+      "options": [
+        "grok-imagine-video"
+      ],
+      "optionsFrom": {
+        "class_type": "GrokVideoExtendNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GrokVideoExtendNode",
+      "inputs": {
+        "prompt": "",
+        "video": {
+          "$port": "video"
+        },
+        "model": "grok-imagine-video",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

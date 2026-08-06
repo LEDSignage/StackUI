@@ -1,0 +1,58 @@
+{
+  "id": "gen.MediaPipeFaceMask",
+  "name": "Draw Face Mask (MediaPipe)",
+  "category": "ComfyUI / image/detection",
+  "description": "MediaPipeFaceMask — Draws a mask from face landmarks.",
+  "inPorts": [
+    {
+      "name": "face_landmarks",
+      "type": "FACE_LANDMARKS"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "regions",
+      "label": "Regions",
+      "target": {
+        "node": "n",
+        "input": "regions"
+      },
+      "type": "ENUM",
+      "default": "all",
+      "options": [
+        "all",
+        "custom"
+      ],
+      "optionsFrom": {
+        "class_type": "MediaPipeFaceMask",
+        "input": "regions"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MediaPipeFaceMask",
+      "inputs": {
+        "face_landmarks": {
+          "$port": "face_landmarks"
+        },
+        "regions": "all"
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "regions"
+  ]
+}

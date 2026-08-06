@@ -1,0 +1,62 @@
+{
+  "id": "gen.DiffusersLoader",
+  "name": "Load Diffusers Model (DEPRECATED)",
+  "category": "ComfyUI / model/loaders",
+  "description": "DiffusersLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_path",
+      "label": "Model path",
+      "target": {
+        "node": "n",
+        "input": "model_path"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "DiffusersLoader",
+        "input": "model_path"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DiffusersLoader",
+      "inputs": {
+        "model_path": ""
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "clip": {
+      "node": "n",
+      "out": 1
+    },
+    "vae": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "model_path"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "gen.AudioAdjustVolume",
+  "name": "Adjust Audio Volume",
+  "category": "ComfyUI / audio",
+  "description": "AudioAdjustVolume — Adjust the volume of the audio by a specified amount in decibels (dB).",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "volume",
+      "label": "Volume",
+      "target": {
+        "node": "n",
+        "input": "volume"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": -100,
+      "max": 100
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AudioAdjustVolume",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "volume": 1
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "volume"
+  ]
+}

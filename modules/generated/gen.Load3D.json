@@ -1,0 +1,143 @@
+{
+  "id": "gen.Load3D",
+  "name": "Load 3D & Animation",
+  "category": "ComfyUI / 3d",
+  "description": "Load3D",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "LOAD_3D"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    },
+    {
+      "name": "mesh_path",
+      "type": "STRING"
+    },
+    {
+      "name": "normal",
+      "type": "IMAGE"
+    },
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA"
+    },
+    {
+      "name": "recording_video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "model_3d",
+      "type": "FILE_3D"
+    },
+    {
+      "name": "model_3d_info",
+      "type": "LOAD3D_MODEL_INFO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_file",
+      "label": "Model file",
+      "target": {
+        "node": "n",
+        "input": "model_file"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none"
+      ],
+      "optionsFrom": {
+        "class_type": "Load3D",
+        "input": "model_file"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Load3D",
+      "inputs": {
+        "model_file": "none",
+        "image": {
+          "$port": "image"
+        },
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    },
+    "mesh_path": {
+      "node": "n",
+      "out": 2
+    },
+    "normal": {
+      "node": "n",
+      "out": 3
+    },
+    "camera_info": {
+      "node": "n",
+      "out": 4
+    },
+    "recording_video": {
+      "node": "n",
+      "out": 5
+    },
+    "model_3d": {
+      "node": "n",
+      "out": 6
+    },
+    "model_3d_info": {
+      "node": "n",
+      "out": 7
+    }
+  },
+  "summary": [
+    "model_file",
+    "width",
+    "height"
+  ]
+}

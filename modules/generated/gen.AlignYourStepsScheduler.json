@@ -1,0 +1,80 @@
+{
+  "id": "gen.AlignYourStepsScheduler",
+  "name": "AlignYourStepsScheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "AlignYourStepsScheduler",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_type",
+      "label": "Model type",
+      "target": {
+        "node": "n",
+        "input": "model_type"
+      },
+      "type": "ENUM",
+      "default": "SD1",
+      "options": [
+        "SD1",
+        "SDXL",
+        "SVD"
+      ],
+      "optionsFrom": {
+        "class_type": "AlignYourStepsScheduler",
+        "input": "model_type"
+      }
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 10,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "target": {
+        "node": "n",
+        "input": "denoise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AlignYourStepsScheduler",
+      "inputs": {
+        "model_type": "SD1",
+        "steps": 10,
+        "denoise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_type",
+    "steps",
+    "denoise"
+  ]
+}

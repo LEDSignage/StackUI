@@ -1,0 +1,87 @@
+{
+  "id": "gen.ConditioningStableAudio",
+  "name": "ConditioningStableAudio",
+  "category": "ComfyUI / model/conditioning/stable audio",
+  "description": "ConditioningStableAudio",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "seconds_start",
+      "label": "Seconds start",
+      "target": {
+        "node": "n",
+        "input": "seconds_start"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1000,
+      "step": 0.1
+    },
+    {
+      "name": "seconds_total",
+      "label": "Seconds total",
+      "target": {
+        "node": "n",
+        "input": "seconds_total"
+      },
+      "type": "FLOAT",
+      "default": 47,
+      "min": 0,
+      "max": 1000,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningStableAudio",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "seconds_start": 0,
+        "seconds_total": 47
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "seconds_start",
+    "seconds_total"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "gen.ConditioningAverage",
+  "name": "Conditioning (Average)",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningAverage",
+  "inPorts": [
+    {
+      "name": "conditioning_to",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "conditioning_from",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "conditioning_to_strength",
+      "label": "Conditioning to strength",
+      "target": {
+        "node": "n",
+        "input": "conditioning_to_strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningAverage",
+      "inputs": {
+        "conditioning_to": {
+          "$port": "conditioning_to"
+        },
+        "conditioning_from": {
+          "$port": "conditioning_from"
+        },
+        "conditioning_to_strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning_to": "conditioning"
+  },
+  "summary": [
+    "conditioning_to_strength"
+  ]
+}

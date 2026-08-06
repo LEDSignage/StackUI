@@ -1,0 +1,109 @@
+{
+  "id": "gen.DualCFGGuider",
+  "name": "Dual CFG Guider",
+  "category": "ComfyUI / model/sampling/guiders",
+  "description": "DualCFGGuider",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "cond1",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "cond2",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "guider",
+      "type": "GUIDER"
+    }
+  ],
+  "params": [
+    {
+      "name": "cfg_conds",
+      "label": "Cfg conds",
+      "target": {
+        "node": "n",
+        "input": "cfg_conds"
+      },
+      "type": "FLOAT",
+      "default": 8,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "cfg_cond2_negative",
+      "label": "Cfg cond2 negative",
+      "target": {
+        "node": "n",
+        "input": "cfg_cond2_negative"
+      },
+      "type": "FLOAT",
+      "default": 8,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "style",
+      "label": "Style",
+      "target": {
+        "node": "n",
+        "input": "style"
+      },
+      "type": "ENUM",
+      "default": "regular",
+      "options": [
+        "regular",
+        "nested"
+      ],
+      "optionsFrom": {
+        "class_type": "DualCFGGuider",
+        "input": "style"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DualCFGGuider",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "cond1": {
+          "$port": "cond1"
+        },
+        "cond2": {
+          "$port": "cond2"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "cfg_conds": 8,
+        "cfg_cond2_negative": 8,
+        "style": "regular"
+      }
+    }
+  },
+  "outputs": {
+    "guider": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "cfg_conds",
+    "cfg_cond2_negative",
+    "style"
+  ]
+}

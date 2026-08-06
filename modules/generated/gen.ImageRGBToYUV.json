@@ -1,0 +1,54 @@
+{
+  "id": "gen.ImageRGBToYUV",
+  "name": "Image RGB to YUV",
+  "category": "ComfyUI / image/color",
+  "description": "ImageRGBToYUV",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "y",
+      "type": "IMAGE"
+    },
+    {
+      "name": "u",
+      "type": "IMAGE"
+    },
+    {
+      "name": "v",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageRGBToYUV",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "y": {
+      "node": "n",
+      "out": 0
+    },
+    "u": {
+      "node": "n",
+      "out": 1
+    },
+    "v": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "image": "y"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "id": "gen.LoadAudio",
+  "name": "Load Audio",
+  "category": "ComfyUI / audio",
+  "description": "LoadAudio",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "audio",
+      "label": "Audio",
+      "target": {
+        "node": "n",
+        "input": "audio"
+      },
+      "type": "ENUM",
+      "default": "video_00001_.mp4",
+      "options": [
+        "video_00001_.mp4",
+        "volcano_1080p_5s_inpaint.mp4",
+        "volcano_1080p_5s_inpaint_audio.mp4",
+        "volcano_mask.mp4"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadAudio",
+        "input": "audio"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadAudio",
+      "inputs": {
+        "audio": "video_00001_.mp4"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "audio"
+  ]
+}

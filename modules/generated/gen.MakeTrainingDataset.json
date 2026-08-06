@@ -1,0 +1,72 @@
+{
+  "id": "gen.MakeTrainingDataset",
+  "name": "Make Training Dataset",
+  "category": "ComfyUI / model/training",
+  "description": "MakeTrainingDataset — Encode images with VAE and texts with CLIP to create a training dataset of latents and conditionings.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latents",
+      "type": "LATENT"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MakeTrainingDataset",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "clip": {
+          "$port": "clip"
+        },
+        "texts": ""
+      }
+    }
+  },
+  "outputs": {
+    "latents": {
+      "node": "n",
+      "out": 0
+    },
+    "conditioning": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "texts"
+  ]
+}

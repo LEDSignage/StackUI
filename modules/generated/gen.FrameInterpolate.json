@@ -1,0 +1,62 @@
+{
+  "id": "gen.FrameInterpolate",
+  "name": "Run Frame Interpolation Model",
+  "category": "ComfyUI / video",
+  "description": "FrameInterpolate",
+  "inPorts": [
+    {
+      "name": "interp_model",
+      "type": "INTERP_MODEL"
+    },
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "multiplier",
+      "label": "Multiplier",
+      "target": {
+        "node": "n",
+        "input": "multiplier"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 2,
+      "max": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FrameInterpolate",
+      "inputs": {
+        "interp_model": {
+          "$port": "interp_model"
+        },
+        "images": {
+          "$port": "images"
+        },
+        "multiplier": 2
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "image"
+  },
+  "summary": [
+    "multiplier"
+  ]
+}

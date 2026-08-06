@@ -1,0 +1,72 @@
+{
+  "id": "gen.SaveImageDataSetToFolder",
+  "name": "Save Image (to Folder) (DEPRECATED)",
+  "category": "ComfyUI / image",
+  "description": "SaveImageDataSetToFolder — Save a dataset of images to a specified folder. Supported formats: PNG.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "folder_name",
+      "label": "Folder name",
+      "target": {
+        "node": "n",
+        "input": "folder_name"
+      },
+      "type": "STRING",
+      "default": "dataset"
+    },
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "image"
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "overwrite",
+      "options": [
+        "overwrite",
+        "increment"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveImageDataSetToFolder",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveImageDataSetToFolder",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "folder_name": "dataset",
+        "filename_prefix": "image",
+        "mode": "overwrite"
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "folder_name",
+    "filename_prefix",
+    "mode"
+  ]
+}

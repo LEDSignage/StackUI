@@ -1,0 +1,77 @@
+{
+  "id": "gen.TripoSplatPreprocessImage",
+  "name": "TripoSplat Preprocess Image",
+  "category": "ComfyUI / model/conditioning/triposplat",
+  "description": "TripoSplatPreprocessImage — Crop center each image to a square canvas on a black background and add padding.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "erode_radius",
+      "label": "Erode radius",
+      "target": {
+        "node": "n",
+        "input": "erode_radius"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 16
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "target": {
+        "node": "n",
+        "input": "size"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 256,
+      "max": 4096,
+      "step": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoSplatPreprocessImage",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "erode_radius": 1,
+        "size": 1024
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "erode_radius",
+    "size"
+  ]
+}

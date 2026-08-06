@@ -1,0 +1,38 @@
+{
+  "id": "gen.ElevenLabsAudioIsolation",
+  "name": "ElevenLabs Voice Isolation",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsAudioIsolation — Remove background noise from audio, isolating vocals or speech.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsAudioIsolation",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio": "audio"
+  }
+}

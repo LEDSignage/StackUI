@@ -1,0 +1,115 @@
+{
+  "id": "gen.KlingFirstLastFrameNode",
+  "name": "Kling 3.0 First-Last-Frame to Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingFirstLastFrameNode — Generate videos with Kling V3 using first and last frames.",
+  "inPorts": [
+    {
+      "name": "first_frame",
+      "type": "IMAGE"
+    },
+    {
+      "name": "end_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 3,
+      "max": 15
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "kling-v3",
+      "options": [
+        "kling-v3"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingFirstLastFrameNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingFirstLastFrameNode",
+      "inputs": {
+        "prompt": "",
+        "duration": 5,
+        "first_frame": {
+          "$port": "first_frame"
+        },
+        "end_frame": {
+          "$port": "end_frame"
+        },
+        "generate_audio": true,
+        "model": "kling-v3",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "duration",
+    "generate_audio"
+  ]
+}

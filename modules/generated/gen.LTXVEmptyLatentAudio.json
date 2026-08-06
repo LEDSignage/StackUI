@@ -1,0 +1,74 @@
+{
+  "id": "gen.LTXVEmptyLatentAudio",
+  "name": "LTXV Empty Latent Audio",
+  "category": "ComfyUI / model/latent/ltxv",
+  "description": "LTXVEmptyLatentAudio",
+  "inPorts": [
+    {
+      "name": "frame_rate",
+      "type": "FLOAT,INT"
+    },
+    {
+      "name": "audio_vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "frames_number",
+      "label": "Frames number",
+      "target": {
+        "node": "n",
+        "input": "frames_number"
+      },
+      "type": "INT",
+      "default": 97,
+      "min": 1,
+      "max": 1000,
+      "step": 1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVEmptyLatentAudio",
+      "inputs": {
+        "frames_number": 97,
+        "frame_rate": {
+          "$port": "frame_rate"
+        },
+        "batch_size": 1,
+        "audio_vae": {
+          "$port": "audio_vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "frames_number",
+    "batch_size"
+  ]
+}

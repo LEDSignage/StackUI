@@ -1,0 +1,90 @@
+{
+  "id": "gen.GeminiNodeV2",
+  "name": "Google Gemini",
+  "category": "ComfyUI / partner/text/Gemini",
+  "description": "GeminiNodeV2 — Generate text responses with Google's Gemini models. Provide a text prompt and, optionally, one or more images, audio clips, videos, or files as multimodal context.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Gemini 3.5 Flash",
+      "options": [
+        "Gemini 3.5 Flash",
+        "Gemini 3.1 Pro",
+        "Gemini 3.1 Flash-Lite"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiNodeV2",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GeminiNodeV2",
+      "inputs": {
+        "prompt": "",
+        "model": "Gemini 3.5 Flash",
+        "seed": 42,
+        "system_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

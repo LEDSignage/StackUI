@@ -1,0 +1,42 @@
+{
+  "id": "gen.AudioEncoderEncode",
+  "name": "AudioEncoderEncode",
+  "category": "ComfyUI / model/conditioning",
+  "description": "AudioEncoderEncode",
+  "inPorts": [
+    {
+      "name": "audio_encoder",
+      "type": "AUDIO_ENCODER"
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio_encoder_output",
+      "type": "AUDIO_ENCODER_OUTPUT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "AudioEncoderEncode",
+      "inputs": {
+        "audio_encoder": {
+          "$port": "audio_encoder"
+        },
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "audio_encoder_output": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

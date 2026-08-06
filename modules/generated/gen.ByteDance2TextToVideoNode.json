@@ -1,0 +1,78 @@
+{
+  "id": "gen.ByteDance2TextToVideoNode",
+  "name": "ByteDance Seedance 2.0 Text to Video",
+  "category": "ComfyUI / partner/video/ByteDance",
+  "description": "ByteDance2TextToVideoNode — Generate video using Seedance 2.0 models based on a text prompt.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Seedance 2.0",
+      "options": [
+        "Seedance 2.0",
+        "Seedance 2.0 Fast",
+        "Seedance 2.0 Mini"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDance2TextToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDance2TextToVideoNode",
+      "inputs": {
+        "model": "Seedance 2.0",
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

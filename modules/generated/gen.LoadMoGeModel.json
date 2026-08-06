@@ -1,0 +1,46 @@
+{
+  "id": "gen.LoadMoGeModel",
+  "name": "Load MoGe Model",
+  "category": "ComfyUI / model/loaders",
+  "description": "LoadMoGeModel",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "moge_model",
+      "type": "MOGE_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadMoGeModel",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadMoGeModel",
+      "inputs": {
+        "model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "moge_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

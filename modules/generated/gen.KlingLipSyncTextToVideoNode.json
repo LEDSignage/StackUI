@@ -1,0 +1,163 @@
+{
+  "id": "gen.KlingLipSyncTextToVideoNode",
+  "name": "Kling Lip Sync Video with Text",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingLipSyncTextToVideoNode — Kling Lip Sync Text to Video Node. Syncs mouth movements in a video file to a text prompt. The video file should not be larger than 100MB, should have height/width between 720px and 1920px, and should be between 2s and 10s in length.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "video_id",
+      "type": "STRING"
+    },
+    {
+      "name": "duration",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "voice",
+      "label": "Voice",
+      "target": {
+        "node": "n",
+        "input": "voice"
+      },
+      "type": "ENUM",
+      "default": "Melody",
+      "options": [
+        "Melody",
+        "Sunny",
+        "Sage",
+        "Ace",
+        "Blossom",
+        "Peppy",
+        "Dove",
+        "Shine",
+        "Anchor",
+        "Lyric",
+        "Tender",
+        "Siren",
+        "Zippy",
+        "Bud",
+        "Sprite",
+        "Candy",
+        "Beacon",
+        "Rock",
+        "Titan",
+        "Grace",
+        "Helen",
+        "Lore",
+        "Crag",
+        "Prattle",
+        "Hearth",
+        "The Reader",
+        "Commercial Lady",
+        "阳光少年",
+        "懂事小弟",
+        "运动少年",
+        "青春少女",
+        "温柔小妹",
+        "元气少女",
+        "阳光男生",
+        "幽默小哥",
+        "文艺小哥",
+        "甜美邻家",
+        "温柔姐姐",
+        "职场女青",
+        "活泼男童",
+        "俏皮女童",
+        "稳重老爸",
+        "温柔妈妈",
+        "严肃上司",
+        "优雅贵妇",
+        "慈祥爷爷",
+        "唠叨爷爷",
+        "唠叨奶奶",
+        "和蔼奶奶",
+        "东北老铁",
+        "重庆小伙",
+        "四川妹子",
+        "潮汕大叔",
+        "台湾男生",
+        "西安掌柜",
+        "天津姐姐",
+        "新闻播报男",
+        "译制片男",
+        "撒娇女友",
+        "刀片烟嗓",
+        "乖巧正太"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingLipSyncTextToVideoNode",
+        "input": "voice"
+      }
+    },
+    {
+      "name": "voice_speed",
+      "label": "Voice speed",
+      "target": {
+        "node": "n",
+        "input": "voice_speed"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.8,
+      "max": 2
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingLipSyncTextToVideoNode",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "text": "",
+        "voice": "Melody",
+        "voice_speed": 1
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "video_id": {
+      "node": "n",
+      "out": 1
+    },
+    "duration": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "text",
+    "voice",
+    "voice_speed"
+  ]
+}

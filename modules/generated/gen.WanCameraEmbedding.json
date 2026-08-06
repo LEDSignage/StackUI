@@ -1,0 +1,195 @@
+{
+  "id": "gen.WanCameraEmbedding",
+  "name": "WanCameraEmbedding",
+  "category": "ComfyUI / model/conditioning/wan/camera",
+  "description": "WanCameraEmbedding",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "camera_embedding",
+      "type": "WAN_CAMERA_EMBEDDING"
+    },
+    {
+      "name": "width",
+      "type": "INT"
+    },
+    {
+      "name": "height",
+      "type": "INT"
+    },
+    {
+      "name": "length",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "camera_pose",
+      "label": "Camera pose",
+      "target": {
+        "node": "n",
+        "input": "camera_pose"
+      },
+      "type": "ENUM",
+      "default": "Static",
+      "options": [
+        "Static",
+        "Pan Up",
+        "Pan Down",
+        "Pan Left",
+        "Pan Right",
+        "Zoom In",
+        "Zoom Out",
+        "Anti Clockwise (ACW)",
+        "ClockWise (CW)"
+      ],
+      "optionsFrom": {
+        "class_type": "WanCameraEmbedding",
+        "input": "camera_pose"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "speed",
+      "label": "Speed",
+      "target": {
+        "node": "n",
+        "input": "speed"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "name": "fx",
+      "label": "Fx",
+      "target": {
+        "node": "n",
+        "input": "fx"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 1e-9
+    },
+    {
+      "name": "fy",
+      "label": "Fy",
+      "target": {
+        "node": "n",
+        "input": "fy"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 1e-9
+    },
+    {
+      "name": "cx",
+      "label": "Cx",
+      "target": {
+        "node": "n",
+        "input": "cx"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "cy",
+      "label": "Cy",
+      "target": {
+        "node": "n",
+        "input": "cy"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanCameraEmbedding",
+      "inputs": {
+        "camera_pose": "Static",
+        "width": 832,
+        "height": 480,
+        "length": 81,
+        "speed": 1,
+        "fx": 0.5,
+        "fy": 0.5,
+        "cx": 0.5,
+        "cy": 0.5
+      }
+    }
+  },
+  "outputs": {
+    "camera_embedding": {
+      "node": "n",
+      "out": 0
+    },
+    "width": {
+      "node": "n",
+      "out": 1
+    },
+    "height": {
+      "node": "n",
+      "out": 2
+    },
+    "length": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "summary": [
+    "camera_pose",
+    "width",
+    "height"
+  ]
+}

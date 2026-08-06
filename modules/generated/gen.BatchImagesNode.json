@@ -1,0 +1,35 @@
+{
+  "id": "gen.BatchImagesNode",
+  "name": "Batch Images",
+  "category": "ComfyUI / image/batch",
+  "description": "BatchImagesNode",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "BatchImagesNode",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

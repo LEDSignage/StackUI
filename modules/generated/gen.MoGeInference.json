@@ -1,0 +1,110 @@
+{
+  "id": "gen.MoGeInference",
+  "name": "Run MoGe Inference",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "MoGeInference — Run MoGe on a single image to estimate depth and geometry.",
+  "inPorts": [
+    {
+      "name": "moge_model",
+      "type": "MOGE_MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "moge_geometry",
+      "type": "MOGE_GEOMETRY"
+    }
+  ],
+  "params": [
+    {
+      "name": "resolution_level",
+      "label": "Resolution level",
+      "target": {
+        "node": "n",
+        "input": "resolution_level"
+      },
+      "type": "INT",
+      "default": 9,
+      "min": 0,
+      "max": 9
+    },
+    {
+      "name": "fov_x_degrees",
+      "label": "Fov x degrees",
+      "target": {
+        "node": "n",
+        "input": "fov_x_degrees"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 170,
+      "step": 0.1
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 64
+    },
+    {
+      "name": "force_projection",
+      "label": "Force projection",
+      "target": {
+        "node": "n",
+        "input": "force_projection"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "apply_mask",
+      "label": "Apply mask",
+      "target": {
+        "node": "n",
+        "input": "apply_mask"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MoGeInference",
+      "inputs": {
+        "moge_model": {
+          "$port": "moge_model"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "resolution_level": 9,
+        "fov_x_degrees": 0,
+        "batch_size": 4,
+        "force_projection": true,
+        "apply_mask": true
+      }
+    }
+  },
+  "outputs": {
+    "moge_geometry": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "resolution_level",
+    "fov_x_degrees",
+    "batch_size"
+  ]
+}

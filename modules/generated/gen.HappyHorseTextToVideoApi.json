@@ -1,0 +1,77 @@
+{
+  "id": "gen.HappyHorseTextToVideoApi",
+  "name": "HappyHorse Text to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "HappyHorseTextToVideoApi — Generates a video based on a text prompt using the HappyHorse model.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "happyhorse-1.1-t2v",
+      "options": [
+        "happyhorse-1.1-t2v",
+        "happyhorse-1.0-t2v"
+      ],
+      "optionsFrom": {
+        "class_type": "HappyHorseTextToVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HappyHorseTextToVideoApi",
+      "inputs": {
+        "model": "happyhorse-1.1-t2v",
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "id": "gen.CombineHooks4",
+  "name": "Combine Hooks [4]",
+  "category": "ComfyUI / advanced/hooks/combine",
+  "description": "CombineHooks4",
+  "inPorts": [
+    {
+      "name": "hooks_a",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_b",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_c",
+      "type": "HOOKS",
+      "optional": true
+    },
+    {
+      "name": "hooks_d",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "hooks",
+      "type": "HOOKS"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CombineHooks4",
+      "inputs": {
+        "hooks_A": {
+          "$port": "hooks_a"
+        },
+        "hooks_B": {
+          "$port": "hooks_b"
+        },
+        "hooks_C": {
+          "$port": "hooks_c"
+        },
+        "hooks_D": {
+          "$port": "hooks_d"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "hooks": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

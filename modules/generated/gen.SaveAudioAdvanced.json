@@ -1,0 +1,75 @@
+{
+  "id": "gen.SaveAudioAdvanced",
+  "name": "Save Audio (Advanced)",
+  "category": "ComfyUI / audio",
+  "description": "SaveAudioAdvanced — Saves the input audio to your ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "audio/ComfyUI"
+    },
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "flac",
+      "options": [
+        "flac",
+        "mp3",
+        "opus"
+      ],
+      "optionsFrom": {
+        "class_type": "SaveAudioAdvanced",
+        "input": "format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveAudioAdvanced",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        },
+        "filename_prefix": "audio/ComfyUI",
+        "format": "flac"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "audio": "audio"
+  },
+  "summary": [
+    "filename_prefix",
+    "format"
+  ]
+}

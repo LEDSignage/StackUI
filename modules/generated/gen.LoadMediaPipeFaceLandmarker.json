@@ -1,0 +1,46 @@
+{
+  "id": "gen.LoadMediaPipeFaceLandmarker",
+  "name": "Load Face Detection Model (MediaPipe)",
+  "category": "ComfyUI / model/loaders",
+  "description": "LoadMediaPipeFaceLandmarker",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "face_detection_model",
+      "type": "FACE_DETECTION_MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "LoadMediaPipeFaceLandmarker",
+        "input": "model_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadMediaPipeFaceLandmarker",
+      "inputs": {
+        "model_name": ""
+      }
+    }
+  },
+  "outputs": {
+    "face_detection_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name"
+  ]
+}

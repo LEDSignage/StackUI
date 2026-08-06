@@ -1,0 +1,119 @@
+{
+  "id": "gen.WanSoundImageToVideoExtend",
+  "name": "WanSoundImageToVideoExtend",
+  "category": "ComfyUI / model/conditioning/wan/sound",
+  "description": "WanSoundImageToVideoExtend",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "video_latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "audio_encoder_output",
+      "type": "AUDIO_ENCODER_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "ref_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "control_video",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 77,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanSoundImageToVideoExtend",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "length": 77,
+        "video_latent": {
+          "$port": "video_latent"
+        },
+        "audio_encoder_output": {
+          "$port": "audio_encoder_output"
+        },
+        "ref_image": {
+          "$port": "ref_image"
+        },
+        "control_video": {
+          "$port": "control_video"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative",
+    "video_latent": "latent"
+  },
+  "summary": [
+    "length"
+  ]
+}

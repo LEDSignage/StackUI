@@ -1,0 +1,45 @@
+{
+  "id": "gen.StableCascade_StageB_Conditioning",
+  "name": "StableCascade_StageB_Conditioning",
+  "category": "ComfyUI / model/conditioning/stable cascade",
+  "description": "StableCascade_StageB_Conditioning",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "stage_c",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "StableCascade_StageB_Conditioning",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "stage_c": {
+          "$port": "stage_c"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  }
+}

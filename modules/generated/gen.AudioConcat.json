@@ -1,0 +1,68 @@
+{
+  "id": "gen.AudioConcat",
+  "name": "Concatenate Audio",
+  "category": "ComfyUI / audio",
+  "description": "AudioConcat — Concatenates the audio1 to audio2 in the specified direction.",
+  "inPorts": [
+    {
+      "name": "audio1",
+      "type": "AUDIO"
+    },
+    {
+      "name": "audio2",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "direction",
+      "label": "Direction",
+      "target": {
+        "node": "n",
+        "input": "direction"
+      },
+      "type": "ENUM",
+      "default": "after",
+      "options": [
+        "after",
+        "before"
+      ],
+      "optionsFrom": {
+        "class_type": "AudioConcat",
+        "input": "direction"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "AudioConcat",
+      "inputs": {
+        "audio1": {
+          "$port": "audio1"
+        },
+        "audio2": {
+          "$port": "audio2"
+        },
+        "direction": "after"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "audio1": "audio"
+  },
+  "summary": [
+    "direction"
+  ]
+}

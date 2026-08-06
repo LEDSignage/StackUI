@@ -1,0 +1,91 @@
+{
+  "id": "gen.ResizeImageMaskNode",
+  "name": "Resize Image/Mask",
+  "category": "ComfyUI / image/transform",
+  "description": "ResizeImageMaskNode — Resize an image or mask using various scaling methods.",
+  "inPorts": [
+    {
+      "name": "input",
+      "type": "COMFY_MATCHTYPE_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "resized",
+      "type": "COMFY_MATCHTYPE_V3"
+    }
+  ],
+  "params": [
+    {
+      "name": "resize_type",
+      "label": "Resize type",
+      "target": {
+        "node": "n",
+        "input": "resize_type"
+      },
+      "type": "ENUM",
+      "default": "scale dimensions",
+      "options": [
+        "scale dimensions",
+        "scale by multiplier",
+        "scale longer dimension",
+        "scale shorter dimension",
+        "scale width",
+        "scale height",
+        "scale total pixels",
+        "match size",
+        "scale to multiple"
+      ],
+      "optionsFrom": {
+        "class_type": "ResizeImageMaskNode",
+        "input": "resize_type"
+      }
+    },
+    {
+      "name": "scale_method",
+      "label": "Scale method",
+      "target": {
+        "node": "n",
+        "input": "scale_method"
+      },
+      "type": "ENUM",
+      "default": "area",
+      "options": [
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bicubic",
+        "lanczos"
+      ],
+      "optionsFrom": {
+        "class_type": "ResizeImageMaskNode",
+        "input": "scale_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ResizeImageMaskNode",
+      "inputs": {
+        "input": {
+          "$port": "input"
+        },
+        "resize_type": "scale dimensions",
+        "scale_method": "area"
+      }
+    }
+  },
+  "outputs": {
+    "resized": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "input": "resized"
+  },
+  "summary": [
+    "resize_type",
+    "scale_method"
+  ]
+}

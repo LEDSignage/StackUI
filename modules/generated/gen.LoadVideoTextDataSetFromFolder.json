@@ -1,0 +1,57 @@
+{
+  "id": "gen.LoadVideoTextDataSetFromFolder",
+  "name": "Load Video-Text (from Folder)",
+  "category": "ComfyUI / video",
+  "description": "LoadVideoTextDataSetFromFolder — Load a dataset of pairs of videos and text captions from a specified folder and return them as a list. Supported formats: MP4, AVI, MOV, WEBM, MKV, FLV.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    },
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "folder",
+      "label": "Folder",
+      "target": {
+        "node": "n",
+        "input": "folder"
+      },
+      "type": "ENUM",
+      "default": "3d",
+      "options": [
+        "3d"
+      ],
+      "optionsFrom": {
+        "class_type": "LoadVideoTextDataSetFromFolder",
+        "input": "folder"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LoadVideoTextDataSetFromFolder",
+      "inputs": {
+        "folder": "3d"
+      }
+    }
+  },
+  "outputs": {
+    "videos": {
+      "node": "n",
+      "out": 0
+    },
+    "texts": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "folder"
+  ]
+}

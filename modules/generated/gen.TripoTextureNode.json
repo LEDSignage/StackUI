@@ -1,0 +1,144 @@
+{
+  "id": "gen.TripoTextureNode",
+  "name": "Tripo: Texture model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoTextureNode",
+  "inPorts": [
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [
+    {
+      "name": "texture",
+      "label": "Texture",
+      "target": {
+        "node": "n",
+        "input": "texture"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "pbr",
+      "label": "Pbr",
+      "target": {
+        "node": "n",
+        "input": "pbr"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "texture_seed",
+      "label": "Texture seed",
+      "target": {
+        "node": "n",
+        "input": "texture_seed"
+      },
+      "type": "INT",
+      "default": 42
+    },
+    {
+      "name": "texture_quality",
+      "label": "Texture quality",
+      "target": {
+        "node": "n",
+        "input": "texture_quality"
+      },
+      "type": "ENUM",
+      "default": "standard",
+      "options": [
+        "standard",
+        "detailed"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoTextureNode",
+        "input": "texture_quality"
+      }
+    },
+    {
+      "name": "texture_alignment",
+      "label": "Texture alignment",
+      "target": {
+        "node": "n",
+        "input": "texture_alignment"
+      },
+      "type": "ENUM",
+      "default": "original_image",
+      "options": [
+        "original_image",
+        "geometry"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoTextureNode",
+        "input": "texture_alignment"
+      }
+    },
+    {
+      "name": "texture_prompt",
+      "label": "Texture prompt",
+      "target": {
+        "node": "n",
+        "input": "texture_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoTextureNode",
+      "inputs": {
+        "model_task_id": {
+          "$port": "model_task_id"
+        },
+        "texture": true,
+        "pbr": true,
+        "texture_seed": 42,
+        "texture_quality": "standard",
+        "texture_alignment": "original_image",
+        "texture_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "model_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "model_task_id": "model_task_id"
+  },
+  "summary": [
+    "texture",
+    "pbr",
+    "texture_seed"
+  ]
+}

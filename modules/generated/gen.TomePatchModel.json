@@ -1,0 +1,56 @@
+{
+  "id": "gen.TomePatchModel",
+  "name": "TomePatchModel",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "TomePatchModel",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "FLOAT",
+      "default": 0.3,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TomePatchModel",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "ratio": 0.3
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "ratio"
+  ]
+}

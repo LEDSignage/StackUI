@@ -1,0 +1,94 @@
+{
+  "id": "gen.SamplerER_SDE",
+  "name": "SamplerER_SDE",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerER_SDE",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "solver_type",
+      "label": "Solver type",
+      "target": {
+        "node": "n",
+        "input": "solver_type"
+      },
+      "type": "ENUM",
+      "default": "ER-SDE",
+      "options": [
+        "ER-SDE",
+        "Reverse-time SDE",
+        "ODE"
+      ],
+      "optionsFrom": {
+        "class_type": "SamplerER_SDE",
+        "input": "solver_type"
+      }
+    },
+    {
+      "name": "max_stage",
+      "label": "Max stage",
+      "target": {
+        "node": "n",
+        "input": "max_stage"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 1,
+      "max": 3
+    },
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerER_SDE",
+      "inputs": {
+        "solver_type": "ER-SDE",
+        "max_stage": 3,
+        "eta": 1,
+        "s_noise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "solver_type",
+    "max_stage",
+    "eta"
+  ]
+}

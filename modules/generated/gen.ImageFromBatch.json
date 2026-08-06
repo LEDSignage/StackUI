@@ -1,0 +1,69 @@
+{
+  "id": "gen.ImageFromBatch",
+  "name": "Get Image from Batch",
+  "category": "ComfyUI / image/batch",
+  "description": "ImageFromBatch",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_index",
+      "label": "Batch index",
+      "target": {
+        "node": "n",
+        "input": "batch_index"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": -16384,
+      "max": 16384
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageFromBatch",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "batch_index": 0,
+        "length": 1
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "batch_index",
+    "length"
+  ]
+}

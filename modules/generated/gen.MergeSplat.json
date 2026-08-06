@@ -1,0 +1,35 @@
+{
+  "id": "gen.MergeSplat",
+  "name": "Merge Splats",
+  "category": "ComfyUI / 3d/splat",
+  "description": "MergeSplat — Concatenate any number of gaussian splats into one. Unioning several decodes of the same latent at different seeds densifies the surface, this can improve surface quality when meshing.",
+  "inPorts": [
+    {
+      "name": "splats",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "MergeSplat",
+      "inputs": {
+        "splats": {
+          "$port": "splats"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "splat": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

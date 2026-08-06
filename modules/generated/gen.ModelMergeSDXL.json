@@ -1,0 +1,387 @@
+{
+  "id": "gen.ModelMergeSDXL",
+  "name": "ModelMergeSDXL",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeSDXL",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "time_embed.",
+      "label": "Time embed.",
+      "target": {
+        "node": "n",
+        "input": "time_embed."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "label_emb.",
+      "label": "Label emb.",
+      "target": {
+        "node": "n",
+        "input": "label_emb."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.0",
+      "label": "Input blocks.0",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.0"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.1",
+      "label": "Input blocks.1",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.1"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.2",
+      "label": "Input blocks.2",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.2"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.3",
+      "label": "Input blocks.3",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.3"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.4",
+      "label": "Input blocks.4",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.4"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.5",
+      "label": "Input blocks.5",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.5"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.6",
+      "label": "Input blocks.6",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.6"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.7",
+      "label": "Input blocks.7",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.7"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "input_blocks.8",
+      "label": "Input blocks.8",
+      "target": {
+        "node": "n",
+        "input": "input_blocks.8"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "middle_block.0",
+      "label": "Middle block.0",
+      "target": {
+        "node": "n",
+        "input": "middle_block.0"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "middle_block.1",
+      "label": "Middle block.1",
+      "target": {
+        "node": "n",
+        "input": "middle_block.1"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "middle_block.2",
+      "label": "Middle block.2",
+      "target": {
+        "node": "n",
+        "input": "middle_block.2"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.0",
+      "label": "Output blocks.0",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.0"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.1",
+      "label": "Output blocks.1",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.1"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.2",
+      "label": "Output blocks.2",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.2"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.3",
+      "label": "Output blocks.3",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.3"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.4",
+      "label": "Output blocks.4",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.4"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.5",
+      "label": "Output blocks.5",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.5"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.6",
+      "label": "Output blocks.6",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.6"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.7",
+      "label": "Output blocks.7",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.7"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "output_blocks.8",
+      "label": "Output blocks.8",
+      "target": {
+        "node": "n",
+        "input": "output_blocks.8"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "out.",
+      "label": "Out.",
+      "target": {
+        "node": "n",
+        "input": "out."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeSDXL",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "time_embed.": 1,
+        "label_emb.": 1,
+        "input_blocks.0": 1,
+        "input_blocks.1": 1,
+        "input_blocks.2": 1,
+        "input_blocks.3": 1,
+        "input_blocks.4": 1,
+        "input_blocks.5": 1,
+        "input_blocks.6": 1,
+        "input_blocks.7": 1,
+        "input_blocks.8": 1,
+        "middle_block.0": 1,
+        "middle_block.1": 1,
+        "middle_block.2": 1,
+        "output_blocks.0": 1,
+        "output_blocks.1": 1,
+        "output_blocks.2": 1,
+        "output_blocks.3": 1,
+        "output_blocks.4": 1,
+        "output_blocks.5": 1,
+        "output_blocks.6": 1,
+        "output_blocks.7": 1,
+        "output_blocks.8": 1,
+        "out.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "time_embed.",
+    "label_emb.",
+    "input_blocks.0"
+  ]
+}

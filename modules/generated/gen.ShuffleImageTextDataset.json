@@ -1,0 +1,74 @@
+{
+  "id": "gen.ShuffleImageTextDataset",
+  "name": "Shuffle Pairs of Image-Text",
+  "category": "ComfyUI / image/batch",
+  "description": "ShuffleImageTextDataset — Randomly shuffle the order of pairs of image-text in a list.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ShuffleImageTextDataset",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "texts": "",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    },
+    "texts": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "texts",
+    "seed"
+  ]
+}

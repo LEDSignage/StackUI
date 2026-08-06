@@ -1,0 +1,42 @@
+{
+  "id": "gen.MergeTextLists",
+  "name": "Merge Text Lists (DEPRECATED)",
+  "category": "ComfyUI / text",
+  "description": "MergeTextLists",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MergeTextLists",
+      "inputs": {
+        "texts": ""
+      }
+    }
+  },
+  "outputs": {
+    "texts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "texts"
+  ]
+}

@@ -1,0 +1,94 @@
+{
+  "id": "gen.HyperTile",
+  "name": "HyperTile",
+  "category": "ComfyUI / model/patch/unet",
+  "description": "HyperTile",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "tile_size",
+      "label": "Tile size",
+      "target": {
+        "node": "n",
+        "input": "tile_size"
+      },
+      "type": "INT",
+      "default": 256,
+      "min": 1,
+      "max": 2048
+    },
+    {
+      "name": "swap_size",
+      "label": "Swap size",
+      "target": {
+        "node": "n",
+        "input": "swap_size"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 1,
+      "max": 128
+    },
+    {
+      "name": "max_depth",
+      "label": "Max depth",
+      "target": {
+        "node": "n",
+        "input": "max_depth"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 10
+    },
+    {
+      "name": "scale_depth",
+      "label": "Scale depth",
+      "target": {
+        "node": "n",
+        "input": "scale_depth"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HyperTile",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "tile_size": 256,
+        "swap_size": 2,
+        "max_depth": 0,
+        "scale_depth": false
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "tile_size",
+    "swap_size",
+    "max_depth"
+  ]
+}

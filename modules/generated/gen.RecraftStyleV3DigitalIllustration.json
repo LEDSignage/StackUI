@@ -1,0 +1,90 @@
+{
+  "id": "gen.RecraftStyleV3DigitalIllustration",
+  "name": "Recraft Style - Digital Illustration",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftStyleV3DigitalIllustration — Select realistic_image style and optional substyle.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "recraft_style",
+      "type": "RECRAFT_V3_STYLE"
+    }
+  ],
+  "params": [
+    {
+      "name": "substyle",
+      "label": "Substyle",
+      "target": {
+        "node": "n",
+        "input": "substyle"
+      },
+      "type": "ENUM",
+      "default": "None",
+      "options": [
+        "None",
+        "2d_art_poster",
+        "2d_art_poster_2",
+        "antiquarian",
+        "bold_fantasy",
+        "child_book",
+        "child_books",
+        "cover",
+        "crosshatch",
+        "digital_engraving",
+        "engraving_color",
+        "expressionism",
+        "freehand_details",
+        "grain",
+        "grain_20",
+        "graphic_intensity",
+        "hand_drawn",
+        "hand_drawn_outline",
+        "handmade_3d",
+        "hard_comics",
+        "infantile_sketch",
+        "long_shadow",
+        "modern_folk",
+        "multicolor",
+        "neon_calm",
+        "noir",
+        "nostalgic_pastel",
+        "outline_details",
+        "pastel_gradient",
+        "pastel_sketch",
+        "pixel_art",
+        "plastic",
+        "pop_art",
+        "pop_renaissance",
+        "seamless",
+        "street_art",
+        "tablet_sketch",
+        "urban_glow",
+        "urban_sketching",
+        "vanilla_dreams",
+        "young_adult_book",
+        "young_adult_book_2"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftStyleV3DigitalIllustration",
+        "input": "substyle"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftStyleV3DigitalIllustration",
+      "inputs": {
+        "substyle": "None"
+      }
+    }
+  },
+  "outputs": {
+    "recraft_style": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "substyle"
+  ]
+}

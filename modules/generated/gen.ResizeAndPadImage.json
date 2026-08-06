@@ -1,0 +1,113 @@
+{
+  "id": "gen.ResizeAndPadImage",
+  "name": "Resize And Pad Image",
+  "category": "ComfyUI / image/transform",
+  "description": "ResizeAndPadImage",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "target_width",
+      "label": "Target width",
+      "target": {
+        "node": "n",
+        "input": "target_width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "target_height",
+      "label": "Target height",
+      "target": {
+        "node": "n",
+        "input": "target_height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "padding_color",
+      "label": "Padding color",
+      "target": {
+        "node": "n",
+        "input": "padding_color"
+      },
+      "type": "ENUM",
+      "default": "white",
+      "options": [
+        "white",
+        "black"
+      ],
+      "optionsFrom": {
+        "class_type": "ResizeAndPadImage",
+        "input": "padding_color"
+      }
+    },
+    {
+      "name": "interpolation",
+      "label": "Interpolation",
+      "target": {
+        "node": "n",
+        "input": "interpolation"
+      },
+      "type": "ENUM",
+      "default": "area",
+      "options": [
+        "area",
+        "bicubic",
+        "nearest-exact",
+        "bilinear",
+        "lanczos"
+      ],
+      "optionsFrom": {
+        "class_type": "ResizeAndPadImage",
+        "input": "interpolation"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ResizeAndPadImage",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "target_width": 512,
+        "target_height": 512,
+        "padding_color": "white",
+        "interpolation": "area"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "target_width",
+    "target_height",
+    "padding_color"
+  ]
+}

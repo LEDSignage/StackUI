@@ -1,0 +1,76 @@
+{
+  "id": "gen.PairConditioningSetDefaultCombine",
+  "name": "Cond Pair Set Default Combine",
+  "category": "ComfyUI / advanced/hooks/cond pair",
+  "description": "PairConditioningSetDefaultCombine",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "positive_default",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative_default",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "hooks",
+      "type": "HOOKS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "PairConditioningSetDefaultCombine",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "positive_DEFAULT": {
+          "$port": "positive_default"
+        },
+        "negative_DEFAULT": {
+          "$port": "negative_default"
+        },
+        "hooks": {
+          "$port": "hooks"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  }
+}

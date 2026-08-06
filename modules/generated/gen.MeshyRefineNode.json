@@ -1,0 +1,118 @@
+{
+  "id": "gen.MeshyRefineNode",
+  "name": "Meshy: Refine Draft Model",
+  "category": "ComfyUI / partner/3d/Meshy",
+  "description": "MeshyRefineNode — Refine a previously created draft model.",
+  "inPorts": [
+    {
+      "name": "meshy_task_id",
+      "type": "MESHY_TASK_ID"
+    },
+    {
+      "name": "texture_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "meshy_task_id",
+      "type": "MESHY_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    },
+    {
+      "name": "fbx",
+      "type": "FILE_3D_FBX"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "latest",
+      "options": [
+        "latest"
+      ],
+      "optionsFrom": {
+        "class_type": "MeshyRefineNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "enable_pbr",
+      "label": "Enable pbr",
+      "target": {
+        "node": "n",
+        "input": "enable_pbr"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "texture_prompt",
+      "label": "Texture prompt",
+      "target": {
+        "node": "n",
+        "input": "texture_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "MeshyRefineNode",
+      "inputs": {
+        "model": "latest",
+        "meshy_task_id": {
+          "$port": "meshy_task_id"
+        },
+        "enable_pbr": false,
+        "texture_prompt": "",
+        "texture_image": {
+          "$port": "texture_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "meshy_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    },
+    "fbx": {
+      "node": "n",
+      "out": 3
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "meshy_task_id": "meshy_task_id"
+  },
+  "summary": [
+    "model",
+    "enable_pbr",
+    "texture_prompt"
+  ]
+}

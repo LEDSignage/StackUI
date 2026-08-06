@@ -1,0 +1,138 @@
+{
+  "id": "gen.SDPoseDrawKeypoints",
+  "name": "SDPose Draw Keypoints",
+  "category": "ComfyUI / image/detection",
+  "description": "SDPoseDrawKeypoints",
+  "inPorts": [
+    {
+      "name": "keypoints",
+      "type": "POSE_KEYPOINT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "draw_body",
+      "label": "Draw body",
+      "target": {
+        "node": "n",
+        "input": "draw_body"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "draw_hands",
+      "label": "Draw hands",
+      "target": {
+        "node": "n",
+        "input": "draw_hands"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "draw_face",
+      "label": "Draw face",
+      "target": {
+        "node": "n",
+        "input": "draw_face"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "draw_feet",
+      "label": "Draw feet",
+      "target": {
+        "node": "n",
+        "input": "draw_feet"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "stick_width",
+      "label": "Stick width",
+      "target": {
+        "node": "n",
+        "input": "stick_width"
+      },
+      "type": "INT",
+      "default": 4,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "face_point_size",
+      "label": "Face point size",
+      "target": {
+        "node": "n",
+        "input": "face_point_size"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 1,
+      "max": 10,
+      "step": 1
+    },
+    {
+      "name": "score_threshold",
+      "label": "Score threshold",
+      "target": {
+        "node": "n",
+        "input": "score_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.3,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "draw_head",
+      "label": "Draw head",
+      "target": {
+        "node": "n",
+        "input": "draw_head"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SDPoseDrawKeypoints",
+      "inputs": {
+        "keypoints": {
+          "$port": "keypoints"
+        },
+        "draw_body": true,
+        "draw_hands": true,
+        "draw_face": true,
+        "draw_feet": false,
+        "stick_width": 4,
+        "face_point_size": 3,
+        "score_threshold": 0.3,
+        "draw_head": true
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "draw_body",
+    "draw_hands",
+    "draw_face"
+  ]
+}

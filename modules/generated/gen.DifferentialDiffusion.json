@@ -1,0 +1,56 @@
+{
+  "id": "gen.DifferentialDiffusion",
+  "name": "Differential Diffusion",
+  "category": "ComfyUI / experimental",
+  "description": "DifferentialDiffusion",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DifferentialDiffusion",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "strength": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "strength"
+  ]
+}

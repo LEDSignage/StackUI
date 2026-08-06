@@ -1,0 +1,58 @@
+{
+  "id": "gen.RecraftCreateStyleNode",
+  "name": "Recraft Create Style",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftCreateStyleNode — Create a custom style from reference images. Upload 1-5 images to use as style references. Total size of all images is limited to 5 MB.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "style_id",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "style",
+      "label": "Style",
+      "target": {
+        "node": "n",
+        "input": "style"
+      },
+      "type": "ENUM",
+      "default": "realistic_image",
+      "options": [
+        "realistic_image",
+        "digital_illustration"
+      ],
+      "optionsFrom": {
+        "class_type": "RecraftCreateStyleNode",
+        "input": "style"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftCreateStyleNode",
+      "inputs": {
+        "style": "realistic_image",
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "style_id": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "style"
+  ]
+}

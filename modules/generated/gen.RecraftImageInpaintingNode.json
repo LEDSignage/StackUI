@@ -1,0 +1,107 @@
+{
+  "id": "gen.RecraftImageInpaintingNode",
+  "name": "Recraft Image Inpainting",
+  "category": "ComfyUI / partner/image/Recraft",
+  "description": "RecraftImageInpaintingNode — Modify image based on prompt and mask.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    },
+    {
+      "name": "recraft_style",
+      "type": "RECRAFT_V3_STYLE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "n",
+      "label": "N",
+      "target": {
+        "node": "n",
+        "input": "n"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 6
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RecraftImageInpaintingNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "prompt": "",
+        "n": 1,
+        "seed": 0,
+        "recraft_style": {
+          "$port": "recraft_style"
+        },
+        "negative_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "prompt",
+    "n",
+    "seed"
+  ]
+}

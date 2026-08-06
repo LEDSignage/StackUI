@@ -1,0 +1,45 @@
+{
+  "id": "gen.LTXVConcatAVLatent",
+  "name": "Concat AV Latent",
+  "category": "ComfyUI / model/latent/ltxv",
+  "description": "LTXVConcatAVLatent — Merge a video latent and an audio latent into a joint AV latent (any AV model, e.g. LTXV or MiniMax H3).",
+  "inPorts": [
+    {
+      "name": "video_latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "audio_latent",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVConcatAVLatent",
+      "inputs": {
+        "video_latent": {
+          "$port": "video_latent"
+        },
+        "audio_latent": {
+          "$port": "audio_latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video_latent": "latent"
+  }
+}

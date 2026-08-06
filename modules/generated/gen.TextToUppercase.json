@@ -1,0 +1,42 @@
+{
+  "id": "gen.TextToUppercase",
+  "name": "Convert Text to Uppercase (DEPRECATED)",
+  "category": "ComfyUI / text",
+  "description": "TextToUppercase",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "texts",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "texts",
+      "label": "Texts",
+      "target": {
+        "node": "n",
+        "input": "texts"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextToUppercase",
+      "inputs": {
+        "texts": ""
+      }
+    }
+  },
+  "outputs": {
+    "texts": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "texts"
+  ]
+}

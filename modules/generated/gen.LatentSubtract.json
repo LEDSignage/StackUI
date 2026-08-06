@@ -1,0 +1,45 @@
+{
+  "id": "gen.LatentSubtract",
+  "name": "LatentSubtract",
+  "category": "ComfyUI / model/latent/advanced",
+  "description": "LatentSubtract",
+  "inPorts": [
+    {
+      "name": "samples1",
+      "type": "LATENT"
+    },
+    {
+      "name": "samples2",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LatentSubtract",
+      "inputs": {
+        "samples1": {
+          "$port": "samples1"
+        },
+        "samples2": {
+          "$port": "samples2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples1": "latent"
+  }
+}

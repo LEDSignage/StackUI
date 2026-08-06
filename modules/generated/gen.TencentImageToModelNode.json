@@ -1,0 +1,182 @@
+{
+  "id": "gen.TencentImageToModelNode",
+  "name": "Hunyuan3D: Image(s) to Model",
+  "category": "ComfyUI / partner/3d/Tencent",
+  "description": "TencentImageToModelNode",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image_left",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image_right",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image_back",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    },
+    {
+      "name": "obj",
+      "type": "FILE_3D_OBJ"
+    },
+    {
+      "name": "texture_image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "optional_metallic",
+      "type": "IMAGE"
+    },
+    {
+      "name": "optional_normal",
+      "type": "IMAGE"
+    },
+    {
+      "name": "optional_roughness",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "3.0",
+      "options": [
+        "3.0",
+        "3.1"
+      ],
+      "optionsFrom": {
+        "class_type": "TencentImageToModelNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "face_count",
+      "label": "Face count",
+      "target": {
+        "node": "n",
+        "input": "face_count"
+      },
+      "type": "INT",
+      "default": 500000,
+      "min": 3000,
+      "max": 1500000
+    },
+    {
+      "name": "generate_type",
+      "label": "Generate type",
+      "target": {
+        "node": "n",
+        "input": "generate_type"
+      },
+      "type": "ENUM",
+      "default": "Normal",
+      "options": [
+        "Normal",
+        "LowPoly",
+        "Geometry"
+      ],
+      "optionsFrom": {
+        "class_type": "TencentImageToModelNode",
+        "input": "generate_type"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TencentImageToModelNode",
+      "inputs": {
+        "model": "3.0",
+        "image": {
+          "$port": "image"
+        },
+        "face_count": 500000,
+        "generate_type": "Normal",
+        "seed": 0,
+        "image_left": {
+          "$port": "image_left"
+        },
+        "image_right": {
+          "$port": "image_right"
+        },
+        "image_back": {
+          "$port": "image_back"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "glb": {
+      "node": "n",
+      "out": 1
+    },
+    "obj": {
+      "node": "n",
+      "out": 2
+    },
+    "texture_image": {
+      "node": "n",
+      "out": 3
+    },
+    "optional_metallic": {
+      "node": "n",
+      "out": 4
+    },
+    "optional_normal": {
+      "node": "n",
+      "out": 5
+    },
+    "optional_roughness": {
+      "node": "n",
+      "out": 6
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "image": "texture_image"
+  },
+  "summary": [
+    "model",
+    "face_count",
+    "generate_type"
+  ]
+}

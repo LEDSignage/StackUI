@@ -1,0 +1,68 @@
+{
+  "id": "gen.PairConditioningCombine",
+  "name": "Cond Pair Combine",
+  "category": "ComfyUI / advanced/hooks/cond pair",
+  "description": "PairConditioningCombine",
+  "inPorts": [
+    {
+      "name": "positive_a",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative_a",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "positive_b",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative_b",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "PairConditioningCombine",
+      "inputs": {
+        "positive_A": {
+          "$port": "positive_a"
+        },
+        "negative_A": {
+          "$port": "negative_a"
+        },
+        "positive_B": {
+          "$port": "positive_b"
+        },
+        "negative_B": {
+          "$port": "negative_b"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "positive_a": "positive",
+    "negative_a": "negative"
+  }
+}

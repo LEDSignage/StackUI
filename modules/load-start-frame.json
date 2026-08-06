@@ -1,0 +1,22 @@
+{
+  "id": "load-start-frame",
+  "name": "Start frame",
+  "category": "load",
+  "description": "LoadImage, published as first_frame so it cannot be confused with the end frame.",
+  "inPorts": [],
+  "outPorts": [{ "name": "first_frame", "type": "IMAGE" }],
+  "outputs": { "first_frame": { "node": "li", "out": 0 } },
+  "summary": ["image"],
+  "params": [
+    {
+      "name": "image",
+      "label": "Start frame",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": { "node": "li", "input": "image" }
+    }
+  ],
+  "nodes": {
+    "li": { "class_type": "LoadImage", "inputs": { "image": "" } }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "id": "gen.DA3Render",
+  "name": "Render Depth Anything 3",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "DA3Render — Render a depth map, confidence map, or sky mask from Depth Anything 3 geometry data.",
+  "inPorts": [
+    {
+      "name": "da3_geometry",
+      "type": "DA3_GEOMETRY"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "output",
+      "label": "Output",
+      "target": {
+        "node": "n",
+        "input": "output"
+      },
+      "type": "ENUM",
+      "default": "depth",
+      "options": [
+        "depth",
+        "depth_colored",
+        "sky_mask",
+        "confidence"
+      ],
+      "optionsFrom": {
+        "class_type": "DA3Render",
+        "input": "output"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DA3Render",
+      "inputs": {
+        "da3_geometry": {
+          "$port": "da3_geometry"
+        },
+        "output": "depth"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "output"
+  ]
+}

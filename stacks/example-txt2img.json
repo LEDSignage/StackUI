@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 2,
+  "id": "example-txt2img",
+  "name": "Text to image",
+  "lines": [
+    {
+      "id": "l1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t1",
+          "moduleId": "checkpoint",
+          "params": {},
+          "collapsed": true
+        },
+        {
+          "id": "t2",
+          "moduleId": "canvas",
+          "params": {
+            "width": 1024,
+            "height": 1024
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l2",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t3",
+          "moduleId": "prompts",
+          "params": {
+            "positive": "a brass sextant on dark oak, studio light"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t4",
+          "moduleId": "sample",
+          "params": {
+            "steps": 24,
+            "cfg": 6.5
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t5",
+          "moduleId": "decode",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "mode": "parallel",
+      "bypassed": true,
+      "tiles": [
+        {
+          "id": "t6",
+          "moduleId": "upscale-image",
+          "params": {
+            "scale_by": 1.5
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t7",
+          "moduleId": "save-image",
+          "params": {
+            "filename_prefix": "StackUI/txt2img"
+          },
+          "collapsed": true
+        }
+      ]
+    }
+  ],
+  "job": "Make a picture",
+  "model": "SD checkpoint"
+}

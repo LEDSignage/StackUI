@@ -1,0 +1,50 @@
+{
+  "id": "gen.SamplerEulerCFGpp",
+  "name": "SamplerEulerCFG++",
+  "category": "ComfyUI / experimental",
+  "description": "SamplerEulerCFGpp",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "version",
+      "label": "Version",
+      "target": {
+        "node": "n",
+        "input": "version"
+      },
+      "type": "ENUM",
+      "default": "regular",
+      "options": [
+        "regular",
+        "alternative"
+      ],
+      "optionsFrom": {
+        "class_type": "SamplerEulerCFGpp",
+        "input": "version"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerEulerCFGpp",
+      "inputs": {
+        "version": "regular"
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "version"
+  ]
+}

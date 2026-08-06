@@ -1,0 +1,52 @@
+{
+  "id": "gen.SaveLoRA",
+  "name": "Save LoRA Weights",
+  "category": "ComfyUI / model/merging",
+  "description": "SaveLoRA",
+  "inPorts": [
+    {
+      "name": "lora",
+      "type": "LORA_MODEL"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "prefix",
+      "label": "Prefix",
+      "target": {
+        "node": "n",
+        "input": "prefix"
+      },
+      "type": "STRING",
+      "default": "loras/ComfyUI_trained_lora"
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveLoRA",
+      "inputs": {
+        "lora": {
+          "$port": "lora"
+        },
+        "prefix": "loras/ComfyUI_trained_lora",
+        "steps": 0
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "prefix",
+    "steps"
+  ]
+}

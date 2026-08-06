@@ -1,0 +1,131 @@
+{
+  "id": "gen.TextGenerate",
+  "name": "Generate Text",
+  "category": "ComfyUI / text",
+  "description": "TextGenerate",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "video",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "generated_text",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "max_length",
+      "label": "Max length",
+      "target": {
+        "node": "n",
+        "input": "max_length"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 1,
+      "max": 32768
+    },
+    {
+      "name": "sampling_mode",
+      "label": "Sampling mode",
+      "target": {
+        "node": "n",
+        "input": "sampling_mode"
+      },
+      "type": "ENUM",
+      "default": "on",
+      "options": [
+        "on",
+        "off"
+      ],
+      "optionsFrom": {
+        "class_type": "TextGenerate",
+        "input": "sampling_mode"
+      }
+    },
+    {
+      "name": "thinking",
+      "label": "Thinking",
+      "target": {
+        "node": "n",
+        "input": "thinking"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "use_default_template",
+      "label": "Use default template",
+      "target": {
+        "node": "n",
+        "input": "use_default_template"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TextGenerate",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "prompt": "",
+        "max_length": 512,
+        "sampling_mode": "on",
+        "image": {
+          "$port": "image"
+        },
+        "video": {
+          "$port": "video"
+        },
+        "audio": {
+          "$port": "audio"
+        },
+        "thinking": false,
+        "use_default_template": true
+      }
+    }
+  },
+  "outputs": {
+    "generated_text": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "max_length",
+    "sampling_mode"
+  ]
+}

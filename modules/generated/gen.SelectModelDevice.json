@@ -1,0 +1,61 @@
+{
+  "id": "gen.SelectModelDevice",
+  "name": "Select Model Device",
+  "category": "ComfyUI / advanced/multigpu",
+  "description": "SelectModelDevice — Place the diffusion model on a specific device (default / cpu / gpu:N).",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "SelectModelDevice",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SelectModelDevice",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "device"
+  ]
+}

@@ -1,0 +1,195 @@
+{
+  "id": "gen.WanTextToVideoApi",
+  "name": "Wan Text to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "WanTextToVideoApi — Generates a video based on a text prompt.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "wan2.6-t2v",
+      "options": [
+        "wan2.5-t2v-preview",
+        "wan2.6-t2v"
+      ],
+      "optionsFrom": {
+        "class_type": "WanTextToVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "size",
+      "label": "Size",
+      "target": {
+        "node": "n",
+        "input": "size"
+      },
+      "type": "ENUM",
+      "default": "720p: 1:1 (960x960)",
+      "options": [
+        "480p: 1:1 (624x624)",
+        "480p: 16:9 (832x480)",
+        "480p: 9:16 (480x832)",
+        "720p: 1:1 (960x960)",
+        "720p: 16:9 (1280x720)",
+        "720p: 9:16 (720x1280)",
+        "720p: 4:3 (1088x832)",
+        "720p: 3:4 (832x1088)",
+        "1080p: 1:1 (1440x1440)",
+        "1080p: 16:9 (1920x1080)",
+        "1080p: 9:16 (1080x1920)",
+        "1080p: 4:3 (1632x1248)",
+        "1080p: 3:4 (1248x1632)"
+      ],
+      "optionsFrom": {
+        "class_type": "WanTextToVideoApi",
+        "input": "size"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "INT",
+      "default": 5,
+      "min": 5,
+      "max": 15,
+      "step": 5
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "prompt_extend",
+      "label": "Prompt extend",
+      "target": {
+        "node": "n",
+        "input": "prompt_extend"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "shot_type",
+      "label": "Shot type",
+      "target": {
+        "node": "n",
+        "input": "shot_type"
+      },
+      "type": "ENUM",
+      "default": "single",
+      "options": [
+        "single",
+        "multi"
+      ],
+      "optionsFrom": {
+        "class_type": "WanTextToVideoApi",
+        "input": "shot_type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanTextToVideoApi",
+      "inputs": {
+        "model": "wan2.6-t2v",
+        "prompt": "",
+        "negative_prompt": "",
+        "size": "720p: 1:1 (960x960)",
+        "duration": 5,
+        "audio": {
+          "$port": "audio"
+        },
+        "seed": 0,
+        "generate_audio": false,
+        "prompt_extend": true,
+        "watermark": false,
+        "shot_type": "single"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "negative_prompt"
+  ]
+}

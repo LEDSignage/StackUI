@@ -1,0 +1,90 @@
+{
+  "id": "gen.RegexMatch",
+  "name": "Match Text",
+  "category": "ComfyUI / text",
+  "description": "RegexMatch",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "matches",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "regex_pattern",
+      "label": "Regex pattern",
+      "target": {
+        "node": "n",
+        "input": "regex_pattern"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "case_insensitive",
+      "label": "Case insensitive",
+      "target": {
+        "node": "n",
+        "input": "case_insensitive"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "multiline",
+      "label": "Multiline",
+      "target": {
+        "node": "n",
+        "input": "multiline"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "dotall",
+      "label": "Dotall",
+      "target": {
+        "node": "n",
+        "input": "dotall"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RegexMatch",
+      "inputs": {
+        "string": "",
+        "regex_pattern": "",
+        "case_insensitive": true,
+        "multiline": false,
+        "dotall": false
+      }
+    }
+  },
+  "outputs": {
+    "matches": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "regex_pattern",
+    "case_insensitive"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "gen.ImageScale",
+  "name": "Upscale Image",
+  "category": "ComfyUI / image/upscaling",
+  "description": "ImageScale",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "upscale_method",
+      "label": "Upscale method",
+      "target": {
+        "node": "n",
+        "input": "upscale_method"
+      },
+      "type": "ENUM",
+      "default": "nearest-exact",
+      "options": [
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bicubic",
+        "lanczos"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageScale",
+        "input": "upscale_method"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 0,
+      "max": 16384,
+      "step": 1
+    },
+    {
+      "name": "crop",
+      "label": "Crop",
+      "target": {
+        "node": "n",
+        "input": "crop"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "center"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageScale",
+        "input": "crop"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageScale",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "upscale_method": "nearest-exact",
+        "width": 512,
+        "height": 512,
+        "crop": "disabled"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "upscale_method",
+    "width",
+    "height"
+  ]
+}

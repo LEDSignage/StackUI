@@ -1,0 +1,139 @@
+{
+  "id": "gen.WanTextToImageApi",
+  "name": "Wan Text to Image",
+  "category": "ComfyUI / partner/image/Wan",
+  "description": "WanTextToImageApi — Generates an image based on a text prompt.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "wan2.5-t2i-preview",
+      "options": [
+        "wan2.5-t2i-preview"
+      ],
+      "optionsFrom": {
+        "class_type": "WanTextToImageApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 768,
+      "max": 1440,
+      "step": 32
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 768,
+      "max": 1440,
+      "step": 32
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "prompt_extend",
+      "label": "Prompt extend",
+      "target": {
+        "node": "n",
+        "input": "prompt_extend"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanTextToImageApi",
+      "inputs": {
+        "model": "wan2.5-t2i-preview",
+        "prompt": "",
+        "negative_prompt": "",
+        "width": 1024,
+        "height": 1024,
+        "seed": 0,
+        "prompt_extend": true,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "negative_prompt"
+  ]
+}

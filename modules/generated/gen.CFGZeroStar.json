@@ -1,0 +1,38 @@
+{
+  "id": "gen.CFGZeroStar",
+  "name": "CFGZeroStar",
+  "category": "ComfyUI / advanced/guidance",
+  "description": "CFGZeroStar",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "patched_model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CFGZeroStar",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "patched_model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "patched_model"
+  }
+}

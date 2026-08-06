@@ -1,0 +1,280 @@
+{
+  "id": "gen.TripoConversionNode",
+  "name": "Tripo: Convert model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoConversionNode",
+  "inPorts": [
+    {
+      "name": "original_model_task_id",
+      "type": "MODEL_TASK_ID,RIG_TASK_ID,RETARGET_TASK_ID"
+    }
+  ],
+  "outPorts": [],
+  "params": [
+    {
+      "name": "format",
+      "label": "Format",
+      "target": {
+        "node": "n",
+        "input": "format"
+      },
+      "type": "ENUM",
+      "default": "GLTF",
+      "options": [
+        "GLTF",
+        "USDZ",
+        "FBX",
+        "OBJ",
+        "STL",
+        "3MF"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoConversionNode",
+        "input": "format"
+      }
+    },
+    {
+      "name": "quad",
+      "label": "Quad",
+      "target": {
+        "node": "n",
+        "input": "quad"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "face_limit",
+      "label": "Face limit",
+      "target": {
+        "node": "n",
+        "input": "face_limit"
+      },
+      "type": "INT",
+      "default": -1,
+      "min": -1,
+      "max": 2000000
+    },
+    {
+      "name": "texture_size",
+      "label": "Texture size",
+      "target": {
+        "node": "n",
+        "input": "texture_size"
+      },
+      "type": "INT",
+      "default": 4096,
+      "min": 128,
+      "max": 4096
+    },
+    {
+      "name": "texture_format",
+      "label": "Texture format",
+      "target": {
+        "node": "n",
+        "input": "texture_format"
+      },
+      "type": "ENUM",
+      "default": "JPEG",
+      "options": [
+        "BMP",
+        "DPX",
+        "HDR",
+        "JPEG",
+        "OPEN_EXR",
+        "PNG",
+        "TARGA",
+        "TIFF",
+        "WEBP"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoConversionNode",
+        "input": "texture_format"
+      }
+    },
+    {
+      "name": "force_symmetry",
+      "label": "Force symmetry",
+      "target": {
+        "node": "n",
+        "input": "force_symmetry"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "flatten_bottom",
+      "label": "Flatten bottom",
+      "target": {
+        "node": "n",
+        "input": "flatten_bottom"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "flatten_bottom_threshold",
+      "label": "Flatten bottom threshold",
+      "target": {
+        "node": "n",
+        "input": "flatten_bottom_threshold"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "pivot_to_center_bottom",
+      "label": "Pivot to center bottom",
+      "target": {
+        "node": "n",
+        "input": "pivot_to_center_bottom"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "scale_factor",
+      "label": "Scale factor",
+      "target": {
+        "node": "n",
+        "input": "scale_factor"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0
+    },
+    {
+      "name": "with_animation",
+      "label": "With animation",
+      "target": {
+        "node": "n",
+        "input": "with_animation"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "pack_uv",
+      "label": "Pack uv",
+      "target": {
+        "node": "n",
+        "input": "pack_uv"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "bake",
+      "label": "Bake",
+      "target": {
+        "node": "n",
+        "input": "bake"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "part_names",
+      "label": "Part names",
+      "target": {
+        "node": "n",
+        "input": "part_names"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "fbx_preset",
+      "label": "Fbx preset",
+      "target": {
+        "node": "n",
+        "input": "fbx_preset"
+      },
+      "type": "ENUM",
+      "default": "blender",
+      "options": [
+        "blender",
+        "mixamo",
+        "3dsmax"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoConversionNode",
+        "input": "fbx_preset"
+      }
+    },
+    {
+      "name": "export_vertex_colors",
+      "label": "Export vertex colors",
+      "target": {
+        "node": "n",
+        "input": "export_vertex_colors"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "export_orientation",
+      "label": "Export orientation",
+      "target": {
+        "node": "n",
+        "input": "export_orientation"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "align_image",
+        "default"
+      ],
+      "optionsFrom": {
+        "class_type": "TripoConversionNode",
+        "input": "export_orientation"
+      }
+    },
+    {
+      "name": "animate_in_place",
+      "label": "Animate in place",
+      "target": {
+        "node": "n",
+        "input": "animate_in_place"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TripoConversionNode",
+      "inputs": {
+        "original_model_task_id": {
+          "$port": "original_model_task_id"
+        },
+        "format": "GLTF",
+        "quad": false,
+        "face_limit": -1,
+        "texture_size": 4096,
+        "texture_format": "JPEG",
+        "force_symmetry": false,
+        "flatten_bottom": false,
+        "flatten_bottom_threshold": 0,
+        "pivot_to_center_bottom": false,
+        "scale_factor": 1,
+        "with_animation": false,
+        "pack_uv": false,
+        "bake": false,
+        "part_names": "",
+        "fbx_preset": "blender",
+        "export_vertex_colors": false,
+        "export_orientation": "default",
+        "animate_in_place": false
+      }
+    }
+  },
+  "terminal": true,
+  "summary": [
+    "format",
+    "quad",
+    "face_limit"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "id": "gen.WavespeedFlashVSRNode",
+  "name": "FlashVSR Video Upscale",
+  "category": "ComfyUI / partner/video/WaveSpeed",
+  "description": "WavespeedFlashVSRNode — Fast, high-quality video upscaler that boosts resolution and restores clarity for low-resolution or blurry footage.",
+  "inPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "target_resolution",
+      "label": "Target resolution",
+      "target": {
+        "node": "n",
+        "input": "target_resolution"
+      },
+      "type": "ENUM",
+      "default": "720p",
+      "options": [
+        "720p",
+        "1080p",
+        "2K",
+        "4K"
+      ],
+      "optionsFrom": {
+        "class_type": "WavespeedFlashVSRNode",
+        "input": "target_resolution"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WavespeedFlashVSRNode",
+      "inputs": {
+        "video": {
+          "$port": "video"
+        },
+        "target_resolution": "720p"
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "video": "video"
+  },
+  "summary": [
+    "target_resolution"
+  ]
+}

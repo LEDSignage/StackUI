@@ -1,0 +1,94 @@
+{
+  "id": "gen.SamplerDPMPP_SDE",
+  "name": "SamplerDPMPP_SDE",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerDPMPP_SDE",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "r",
+      "label": "R",
+      "target": {
+        "node": "n",
+        "input": "r"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "noise_device",
+      "label": "Noise device",
+      "target": {
+        "node": "n",
+        "input": "noise_device"
+      },
+      "type": "ENUM",
+      "default": "gpu",
+      "options": [
+        "gpu",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "SamplerDPMPP_SDE",
+        "input": "noise_device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerDPMPP_SDE",
+      "inputs": {
+        "eta": 1,
+        "s_noise": 1,
+        "r": 0.5,
+        "noise_device": "gpu"
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "eta",
+    "s_noise",
+    "r"
+  ]
+}

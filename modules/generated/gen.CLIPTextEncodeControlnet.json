@@ -1,0 +1,61 @@
+{
+  "id": "gen.CLIPTextEncodeControlnet",
+  "name": "CLIP Text Encode (Controlnet)",
+  "category": "ComfyUI / model/conditioning",
+  "description": "CLIPTextEncodeControlnet",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeControlnet",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "text": ""
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "text"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "id": "gen.SamplerCustomAdvanced",
+  "name": "SamplerCustomAdvanced",
+  "category": "ComfyUI / model/sampling/custom",
+  "description": "SamplerCustomAdvanced",
+  "inPorts": [
+    {
+      "name": "noise",
+      "type": "NOISE"
+    },
+    {
+      "name": "guider",
+      "type": "GUIDER"
+    },
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    },
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    },
+    {
+      "name": "latent_image",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "output",
+      "type": "LATENT"
+    },
+    {
+      "name": "denoised_output",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerCustomAdvanced",
+      "inputs": {
+        "noise": {
+          "$port": "noise"
+        },
+        "guider": {
+          "$port": "guider"
+        },
+        "sampler": {
+          "$port": "sampler"
+        },
+        "sigmas": {
+          "$port": "sigmas"
+        },
+        "latent_image": {
+          "$port": "latent_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "output": {
+      "node": "n",
+      "out": 0
+    },
+    "denoised_output": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "latent_image": "output"
+  }
+}

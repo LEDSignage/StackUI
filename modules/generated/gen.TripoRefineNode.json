@@ -1,0 +1,55 @@
+{
+  "id": "gen.TripoRefineNode",
+  "name": "Tripo: Refine Draft model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoRefineNode — Refine a draft model created by v1.4 Tripo models only.",
+  "inPorts": [
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_file",
+      "type": "STRING"
+    },
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    },
+    {
+      "name": "glb",
+      "type": "FILE_3D_GLB"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "TripoRefineNode",
+      "inputs": {
+        "model_task_id": {
+          "$port": "model_task_id"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_file": {
+      "node": "n",
+      "out": 0
+    },
+    "model_task_id": {
+      "node": "n",
+      "out": 1
+    },
+    "glb": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "model_task_id": "model_task_id"
+  }
+}

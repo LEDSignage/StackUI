@@ -1,0 +1,46 @@
+{
+  "id": "gen.CurveEditor",
+  "name": "Curve Editor",
+  "category": "ComfyUI / utilities",
+  "description": "CurveEditor",
+  "inPorts": [
+    {
+      "name": "curve",
+      "type": "CURVE"
+    },
+    {
+      "name": "histogram",
+      "type": "HISTOGRAM",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "curve",
+      "type": "CURVE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CurveEditor",
+      "inputs": {
+        "curve": {
+          "$port": "curve"
+        },
+        "histogram": {
+          "$port": "histogram"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "curve": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "curve": "curve"
+  }
+}

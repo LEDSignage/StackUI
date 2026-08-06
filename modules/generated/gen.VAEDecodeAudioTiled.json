@@ -1,0 +1,75 @@
+{
+  "id": "gen.VAEDecodeAudioTiled",
+  "name": "VAE Decode Audio (Tiled)",
+  "category": "ComfyUI / model/latent",
+  "description": "VAEDecodeAudioTiled",
+  "inPorts": [
+    {
+      "name": "samples",
+      "type": "LATENT"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "tile_size",
+      "label": "Tile size",
+      "target": {
+        "node": "n",
+        "input": "tile_size"
+      },
+      "type": "INT",
+      "default": 512,
+      "min": 32,
+      "max": 8192,
+      "step": 8
+    },
+    {
+      "name": "overlap",
+      "label": "Overlap",
+      "target": {
+        "node": "n",
+        "input": "overlap"
+      },
+      "type": "INT",
+      "default": 64,
+      "min": 0,
+      "max": 1024,
+      "step": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VAEDecodeAudioTiled",
+      "inputs": {
+        "samples": {
+          "$port": "samples"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "tile_size": 512,
+        "overlap": 64
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "tile_size",
+    "overlap"
+  ]
+}

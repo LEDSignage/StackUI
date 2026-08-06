@@ -1,0 +1,133 @@
+{
+  "id": "gen.LtxvApiImageToVideo",
+  "name": "LTXV Image To Video",
+  "category": "ComfyUI / partner/video/LTXV",
+  "description": "LtxvApiImageToVideo — Professional-quality videos with customizable duration and resolution based on start image.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "LTX-2 (Pro)",
+      "options": [
+        "LTX-2 (Pro)",
+        "LTX-2 (Fast)"
+      ],
+      "optionsFrom": {
+        "class_type": "LtxvApiImageToVideo",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": 8,
+      "optionsFrom": {
+        "class_type": "LtxvApiImageToVideo",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "1920x1080",
+      "options": [
+        "1920x1080",
+        "2560x1440",
+        "3840x2160"
+      ],
+      "optionsFrom": {
+        "class_type": "LtxvApiImageToVideo",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "fps",
+      "label": "Fps",
+      "target": {
+        "node": "n",
+        "input": "fps"
+      },
+      "type": "ENUM",
+      "default": 25,
+      "optionsFrom": {
+        "class_type": "LtxvApiImageToVideo",
+        "input": "fps"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LtxvApiImageToVideo",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "model": "LTX-2 (Pro)",
+        "prompt": "",
+        "duration": 8,
+        "resolution": "1920x1080",
+        "fps": 25,
+        "generate_audio": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "duration"
+  ]
+}

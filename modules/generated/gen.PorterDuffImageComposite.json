@@ -1,0 +1,107 @@
+{
+  "id": "gen.PorterDuffImageComposite",
+  "name": "Porter-Duff Image Composite",
+  "category": "ComfyUI / image/compositing",
+  "description": "PorterDuffImageComposite",
+  "inPorts": [
+    {
+      "name": "source",
+      "type": "IMAGE"
+    },
+    {
+      "name": "source_alpha",
+      "type": "MASK"
+    },
+    {
+      "name": "destination",
+      "type": "IMAGE"
+    },
+    {
+      "name": "destination_alpha",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "DST",
+      "options": [
+        "ADD",
+        "CLEAR",
+        "DARKEN",
+        "DST",
+        "DST_ATOP",
+        "DST_IN",
+        "DST_OUT",
+        "DST_OVER",
+        "LIGHTEN",
+        "MULTIPLY",
+        "OVERLAY",
+        "SCREEN",
+        "SRC",
+        "SRC_ATOP",
+        "SRC_IN",
+        "SRC_OUT",
+        "SRC_OVER",
+        "XOR"
+      ],
+      "optionsFrom": {
+        "class_type": "PorterDuffImageComposite",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PorterDuffImageComposite",
+      "inputs": {
+        "source": {
+          "$port": "source"
+        },
+        "source_alpha": {
+          "$port": "source_alpha"
+        },
+        "destination": {
+          "$port": "destination"
+        },
+        "destination_alpha": {
+          "$port": "destination_alpha"
+        },
+        "mode": "DST"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    },
+    "mask": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "source": "image",
+    "source_alpha": "mask"
+  },
+  "summary": [
+    "mode"
+  ]
+}

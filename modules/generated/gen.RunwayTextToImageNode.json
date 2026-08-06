@@ -1,0 +1,80 @@
+{
+  "id": "gen.RunwayTextToImageNode",
+  "name": "Runway Text to Image",
+  "category": "ComfyUI / partner/image/Runway",
+  "description": "RunwayTextToImageNode — Generate an image from a text prompt using Runway's Gen 4 model. You can also include reference image to guide the generation.",
+  "inPorts": [
+    {
+      "name": "reference_image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "ENUM",
+      "default": "1920:1080",
+      "options": [
+        "1920:1080",
+        "1080:1920",
+        "1024:1024",
+        "1360:768",
+        "1080:1080",
+        "1168:880",
+        "1440:1080",
+        "1080:1440",
+        "1808:768",
+        "2112:912"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayTextToImageNode",
+        "input": "ratio"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayTextToImageNode",
+      "inputs": {
+        "prompt": "",
+        "ratio": "1920:1080",
+        "reference_image": {
+          "$port": "reference_image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "ratio"
+  ]
+}

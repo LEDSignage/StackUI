@@ -1,0 +1,120 @@
+{
+  "id": "gen.CLIPLoader",
+  "name": "Load CLIP",
+  "category": "ComfyUI / model/loaders",
+  "description": "CLIPLoader — Recipes:",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_name",
+      "label": "Clip name",
+      "target": {
+        "node": "n",
+        "input": "clip_name"
+      },
+      "type": "ENUM",
+      "default": "clip_l.safetensors",
+      "options": [
+        "clip_l.safetensors",
+        "gemma_3_12B_it_fp4_mixed.safetensors",
+        "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+        "qwen_2.5_vl_7b_fp8_scaled.safetensors",
+        "qwen_3_4b.safetensors",
+        "t5xxl_fp16.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPLoader",
+        "input": "clip_name"
+      }
+    },
+    {
+      "name": "type",
+      "label": "Type",
+      "target": {
+        "node": "n",
+        "input": "type"
+      },
+      "type": "ENUM",
+      "default": "stable_diffusion",
+      "options": [
+        "stable_diffusion",
+        "stable_cascade",
+        "sd3",
+        "stable_audio",
+        "mochi",
+        "ltxv",
+        "pixart",
+        "cosmos",
+        "lumina2",
+        "wan",
+        "hidream",
+        "chroma",
+        "ace",
+        "omnigen2",
+        "qwen_image",
+        "hunyuan_image",
+        "flux2",
+        "ovis",
+        "longcat_image",
+        "cogvideox",
+        "lens",
+        "pixeldit",
+        "ideogram4",
+        "boogu",
+        "krea2",
+        "joyimage",
+        "mage",
+        "minimax"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPLoader",
+        "input": "type"
+      }
+    },
+    {
+      "name": "device",
+      "label": "Device",
+      "target": {
+        "node": "n",
+        "input": "device"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "cpu"
+      ],
+      "optionsFrom": {
+        "class_type": "CLIPLoader",
+        "input": "device"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPLoader",
+      "inputs": {
+        "clip_name": "clip_l.safetensors",
+        "type": "stable_diffusion",
+        "device": "default"
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_name",
+    "type",
+    "device"
+  ]
+}

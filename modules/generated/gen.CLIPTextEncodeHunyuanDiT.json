@@ -1,0 +1,64 @@
+{
+  "id": "gen.CLIPTextEncodeHunyuanDiT",
+  "name": "CLIP Text Encode (Hunyuan Image)",
+  "category": "ComfyUI / model/conditioning/hunyuan image",
+  "description": "CLIPTextEncodeHunyuanDiT",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "bert",
+      "label": "Bert",
+      "target": {
+        "node": "n",
+        "input": "bert"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mt5xl",
+      "label": "Mt5xl",
+      "target": {
+        "node": "n",
+        "input": "mt5xl"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeHunyuanDiT",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "bert": "",
+        "mt5xl": ""
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "bert",
+    "mt5xl"
+  ]
+}

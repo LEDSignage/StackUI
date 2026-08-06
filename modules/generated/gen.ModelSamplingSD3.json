@@ -1,0 +1,56 @@
+{
+  "id": "gen.ModelSamplingSD3",
+  "name": "ModelSamplingSD3",
+  "category": "ComfyUI / model/patch/stable diffusion",
+  "description": "ModelSamplingSD3",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "shift",
+      "label": "Shift",
+      "target": {
+        "node": "n",
+        "input": "shift"
+      },
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingSD3",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "shift": 3
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "shift"
+  ]
+}

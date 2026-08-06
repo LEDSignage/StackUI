@@ -1,0 +1,653 @@
+{
+  "id": "gen.ModelMergeAuraflow",
+  "name": "ModelMergeAuraflow",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeAuraflow",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "init_x_linear.",
+      "label": "Init x linear.",
+      "target": {
+        "node": "n",
+        "input": "init_x_linear."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "positional_encoding",
+      "label": "Positional encoding",
+      "target": {
+        "node": "n",
+        "input": "positional_encoding"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "cond_seq_linear.",
+      "label": "Cond seq linear.",
+      "target": {
+        "node": "n",
+        "input": "cond_seq_linear."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "register_tokens",
+      "label": "Register tokens",
+      "target": {
+        "node": "n",
+        "input": "register_tokens"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "t_embedder.",
+      "label": "T embedder.",
+      "target": {
+        "node": "n",
+        "input": "t_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_layers.0.",
+      "label": "Double layers.0.",
+      "target": {
+        "node": "n",
+        "input": "double_layers.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_layers.1.",
+      "label": "Double layers.1.",
+      "target": {
+        "node": "n",
+        "input": "double_layers.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_layers.2.",
+      "label": "Double layers.2.",
+      "target": {
+        "node": "n",
+        "input": "double_layers.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "double_layers.3.",
+      "label": "Double layers.3.",
+      "target": {
+        "node": "n",
+        "input": "double_layers.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.0.",
+      "label": "Single layers.0.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.1.",
+      "label": "Single layers.1.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.2.",
+      "label": "Single layers.2.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.3.",
+      "label": "Single layers.3.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.4.",
+      "label": "Single layers.4.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.5.",
+      "label": "Single layers.5.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.6.",
+      "label": "Single layers.6.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.7.",
+      "label": "Single layers.7.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.8.",
+      "label": "Single layers.8.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.9.",
+      "label": "Single layers.9.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.10.",
+      "label": "Single layers.10.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.11.",
+      "label": "Single layers.11.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.12.",
+      "label": "Single layers.12.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.13.",
+      "label": "Single layers.13.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.14.",
+      "label": "Single layers.14.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.15.",
+      "label": "Single layers.15.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.16.",
+      "label": "Single layers.16.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.17.",
+      "label": "Single layers.17.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.18.",
+      "label": "Single layers.18.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.19.",
+      "label": "Single layers.19.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.19."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.20.",
+      "label": "Single layers.20.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.20."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.21.",
+      "label": "Single layers.21.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.21."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.22.",
+      "label": "Single layers.22.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.22."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.23.",
+      "label": "Single layers.23.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.23."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.24.",
+      "label": "Single layers.24.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.24."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.25.",
+      "label": "Single layers.25.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.25."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.26.",
+      "label": "Single layers.26.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.26."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.27.",
+      "label": "Single layers.27.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.27."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.28.",
+      "label": "Single layers.28.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.28."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.29.",
+      "label": "Single layers.29.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.29."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.30.",
+      "label": "Single layers.30.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.30."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "single_layers.31.",
+      "label": "Single layers.31.",
+      "target": {
+        "node": "n",
+        "input": "single_layers.31."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "modF.",
+      "label": "ModF.",
+      "target": {
+        "node": "n",
+        "input": "modF."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "final_linear.",
+      "label": "Final linear.",
+      "target": {
+        "node": "n",
+        "input": "final_linear."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeAuraflow",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "init_x_linear.": 1,
+        "positional_encoding": 1,
+        "cond_seq_linear.": 1,
+        "register_tokens": 1,
+        "t_embedder.": 1,
+        "double_layers.0.": 1,
+        "double_layers.1.": 1,
+        "double_layers.2.": 1,
+        "double_layers.3.": 1,
+        "single_layers.0.": 1,
+        "single_layers.1.": 1,
+        "single_layers.2.": 1,
+        "single_layers.3.": 1,
+        "single_layers.4.": 1,
+        "single_layers.5.": 1,
+        "single_layers.6.": 1,
+        "single_layers.7.": 1,
+        "single_layers.8.": 1,
+        "single_layers.9.": 1,
+        "single_layers.10.": 1,
+        "single_layers.11.": 1,
+        "single_layers.12.": 1,
+        "single_layers.13.": 1,
+        "single_layers.14.": 1,
+        "single_layers.15.": 1,
+        "single_layers.16.": 1,
+        "single_layers.17.": 1,
+        "single_layers.18.": 1,
+        "single_layers.19.": 1,
+        "single_layers.20.": 1,
+        "single_layers.21.": 1,
+        "single_layers.22.": 1,
+        "single_layers.23.": 1,
+        "single_layers.24.": 1,
+        "single_layers.25.": 1,
+        "single_layers.26.": 1,
+        "single_layers.27.": 1,
+        "single_layers.28.": 1,
+        "single_layers.29.": 1,
+        "single_layers.30.": 1,
+        "single_layers.31.": 1,
+        "modF.": 1,
+        "final_linear.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "init_x_linear.",
+    "positional_encoding",
+    "cond_seq_linear."
+  ]
+}

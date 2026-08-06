@@ -1,0 +1,98 @@
+{
+  "id": "gen.LatentCompositeMasked",
+  "name": "Latent Composite Masked",
+  "category": "ComfyUI / model/latent",
+  "description": "LatentCompositeMasked",
+  "inPorts": [
+    {
+      "name": "destination",
+      "type": "LATENT"
+    },
+    {
+      "name": "source",
+      "type": "LATENT"
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "x",
+      "label": "X",
+      "target": {
+        "node": "n",
+        "input": "x"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "y",
+      "label": "Y",
+      "target": {
+        "node": "n",
+        "input": "y"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "resize_source",
+      "label": "Resize source",
+      "target": {
+        "node": "n",
+        "input": "resize_source"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LatentCompositeMasked",
+      "inputs": {
+        "destination": {
+          "$port": "destination"
+        },
+        "source": {
+          "$port": "source"
+        },
+        "x": 0,
+        "y": 0,
+        "resize_source": false,
+        "mask": {
+          "$port": "mask"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "destination": "latent"
+  },
+  "summary": [
+    "x",
+    "y",
+    "resize_source"
+  ]
+}

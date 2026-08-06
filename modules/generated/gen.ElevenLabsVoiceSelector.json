@@ -1,0 +1,69 @@
+{
+  "id": "gen.ElevenLabsVoiceSelector",
+  "name": "ElevenLabs Voice Selector",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsVoiceSelector — Select a predefined ElevenLabs voice for text-to-speech generation.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "voice",
+      "type": "ELEVENLABS_VOICE"
+    }
+  ],
+  "params": [
+    {
+      "name": "voice",
+      "label": "Voice",
+      "target": {
+        "node": "n",
+        "input": "voice"
+      },
+      "type": "ENUM",
+      "default": "Roger (male, american)",
+      "options": [
+        "Roger (male, american)",
+        "Sarah (female, american)",
+        "Laura (female, american)",
+        "Charlie (male, australian)",
+        "George (male, british)",
+        "Callum (male, american)",
+        "River (neutral, american)",
+        "Harry (male, american)",
+        "Liam (male, american)",
+        "Alice (female, british)",
+        "Matilda (female, american)",
+        "Will (male, american)",
+        "Jessica (female, american)",
+        "Eric (male, american)",
+        "Bella (female, american)",
+        "Chris (male, american)",
+        "Brian (male, american)",
+        "Daniel (male, british)",
+        "Lily (female, british)",
+        "Adam (male, american)",
+        "Bill (male, american)"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsVoiceSelector",
+        "input": "voice"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsVoiceSelector",
+      "inputs": {
+        "voice": "Roger (male, american)"
+      }
+    }
+  },
+  "outputs": {
+    "voice": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "voice"
+  ]
+}

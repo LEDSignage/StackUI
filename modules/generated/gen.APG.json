@@ -1,0 +1,86 @@
+{
+  "id": "gen.APG",
+  "name": "Adaptive Projected Guidance",
+  "category": "ComfyUI / model/sampling/custom",
+  "description": "APG",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "norm_threshold",
+      "label": "Norm threshold",
+      "target": {
+        "node": "n",
+        "input": "norm_threshold"
+      },
+      "type": "FLOAT",
+      "default": 5,
+      "min": 0,
+      "max": 50,
+      "step": 0.1
+    },
+    {
+      "name": "momentum",
+      "label": "Momentum",
+      "target": {
+        "node": "n",
+        "input": "momentum"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -5,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "APG",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "eta": 1,
+        "norm_threshold": 5,
+        "momentum": 0
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "eta",
+    "norm_threshold",
+    "momentum"
+  ]
+}

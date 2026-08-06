@@ -1,0 +1,51 @@
+{
+  "id": "gen.GetImageSize",
+  "name": "Get Image Size",
+  "category": "ComfyUI / image",
+  "description": "GetImageSize — Returns width and height of the image, and passes it through unchanged.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "width",
+      "type": "INT"
+    },
+    {
+      "name": "height",
+      "type": "INT"
+    },
+    {
+      "name": "batch_size",
+      "type": "INT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "GetImageSize",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "width": {
+      "node": "n",
+      "out": 0
+    },
+    "height": {
+      "node": "n",
+      "out": 1
+    },
+    "batch_size": {
+      "node": "n",
+      "out": 2
+    }
+  }
+}

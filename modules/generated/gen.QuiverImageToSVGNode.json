@@ -1,0 +1,85 @@
+{
+  "id": "gen.QuiverImageToSVGNode",
+  "name": "Quiver Image to SVG",
+  "category": "ComfyUI / partner/image/Quiver",
+  "description": "QuiverImageToSVGNode — Vectorize a raster image into SVG using Quiver AI.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [
+    {
+      "name": "auto_crop",
+      "label": "Auto crop",
+      "target": {
+        "node": "n",
+        "input": "auto_crop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "arrow-1.1",
+      "options": [
+        "arrow-1.1",
+        "arrow-1.1-max",
+        "arrow-preview"
+      ],
+      "optionsFrom": {
+        "class_type": "QuiverImageToSVGNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "QuiverImageToSVGNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "auto_crop": false,
+        "model": "arrow-1.1",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "auto_crop",
+    "model",
+    "seed"
+  ]
+}

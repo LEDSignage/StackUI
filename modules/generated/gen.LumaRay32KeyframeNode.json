@@ -1,0 +1,66 @@
+{
+  "id": "gen.LumaRay32KeyframeNode",
+  "name": "Luma Ray 3.2 Keyframe",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaRay32KeyframeNode — Anchor a guide image to a position on the Ray 3.2 output video timeline. Connect this to the 'keyframes' input of the Luma Ray 3.2 Keyframes to Video node; chain several together via the optional 'keyframes' input below.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "keyframes",
+      "type": "LUMA_RAY32_KEYFRAME",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "keyframes",
+      "type": "LUMA_RAY32_KEYFRAME"
+    }
+  ],
+  "params": [
+    {
+      "name": "position",
+      "label": "Position",
+      "target": {
+        "node": "n",
+        "input": "position"
+      },
+      "type": "ENUM",
+      "default": "Fraction of duration (0.0-1.0)",
+      "options": [
+        "Fraction of duration (0.0-1.0)",
+        "Absolute time (seconds)"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaRay32KeyframeNode",
+        "input": "position"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaRay32KeyframeNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "position": "Fraction of duration (0.0-1.0)",
+        "keyframes": {
+          "$port": "keyframes"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "keyframes": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "position"
+  ]
+}

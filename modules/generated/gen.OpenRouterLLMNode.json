@@ -1,0 +1,121 @@
+{
+  "id": "gen.OpenRouterLLMNode",
+  "name": "OpenRouter LLM",
+  "category": "ComfyUI / partner/text/OpenRouter",
+  "description": "OpenRouterLLMNode — Generate text responses through OpenRouter. Routes to a curated set of popular models from Anthropic (Claude), OpenAI (GPT), Google (Gemini), xAI (Grok), DeepSeek, Qwen, Mistral, Z.AI (GLM), Moonshot (Kimi), and Perplexity Sonar.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "anthropic/claude-opus-5",
+      "options": [
+        "anthropic/claude-opus-5",
+        "anthropic/claude-opus-4.8",
+        "anthropic/claude-opus-4.7",
+        "anthropic/claude-fable-5",
+        "anthropic/claude-sonnet-5",
+        "anthropic/claude-haiku-4.5",
+        "openai/gpt-5.6-sol-pro",
+        "openai/gpt-5.6-sol",
+        "openai/gpt-5.6-terra-pro",
+        "openai/gpt-5.6-terra",
+        "openai/gpt-5.6-luna-pro",
+        "openai/gpt-5.6-luna",
+        "openai/gpt-5.5-pro",
+        "openai/gpt-5.5",
+        "google/gemini-3.5-flash",
+        "x-ai/grok-4.5",
+        "x-ai/grok-4.20",
+        "x-ai/grok-4.3",
+        "deepseek/deepseek-v4-pro",
+        "deepseek/deepseek-v4-flash",
+        "deepseek/deepseek-v3.2",
+        "qwen/qwen3.6-max-preview",
+        "qwen/qwen3.6-plus",
+        "qwen/qwen3.6-flash",
+        "mistralai/mistral-large-2512",
+        "mistralai/mistral-medium-3-5",
+        "z-ai/glm-4.6",
+        "z-ai/glm-5",
+        "moonshotai/kimi-k3",
+        "moonshotai/kimi-k2.6",
+        "moonshotai/kimi-k2-thinking",
+        "perplexity/sonar-pro",
+        "perplexity/sonar-reasoning-pro",
+        "perplexity/sonar-deep-research"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenRouterLLMNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "system_prompt",
+      "label": "System prompt",
+      "target": {
+        "node": "n",
+        "input": "system_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenRouterLLMNode",
+      "inputs": {
+        "prompt": "",
+        "model": "anthropic/claude-opus-5",
+        "seed": 0,
+        "system_prompt": ""
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "seed"
+  ]
+}

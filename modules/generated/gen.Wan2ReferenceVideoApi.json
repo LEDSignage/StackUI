@@ -1,0 +1,76 @@
+{
+  "id": "gen.Wan2ReferenceVideoApi",
+  "name": "Wan 2.7 Reference to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "Wan2ReferenceVideoApi — Generate a video featuring a person or object from reference materials. Supports single-character performances and multi-character interactions.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "wan2.7-r2v",
+      "options": [
+        "wan2.7-r2v"
+      ],
+      "optionsFrom": {
+        "class_type": "Wan2ReferenceVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Wan2ReferenceVideoApi",
+      "inputs": {
+        "model": "wan2.7-r2v",
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "gen.SetUnionControlNetType",
+  "name": "Set Union ControlNet Type",
+  "category": "ComfyUI / model/conditioning/controlnet",
+  "description": "SetUnionControlNetType",
+  "inPorts": [
+    {
+      "name": "control_net",
+      "type": "CONTROL_NET"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "control_net",
+      "type": "CONTROL_NET"
+    }
+  ],
+  "params": [
+    {
+      "name": "type",
+      "label": "Type",
+      "target": {
+        "node": "n",
+        "input": "type"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "openpose",
+        "depth",
+        "hed/pidi/scribble/ted",
+        "canny/lineart/anime_lineart/mlsd",
+        "normal",
+        "segment",
+        "tile",
+        "repaint"
+      ],
+      "optionsFrom": {
+        "class_type": "SetUnionControlNetType",
+        "input": "type"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SetUnionControlNetType",
+      "inputs": {
+        "control_net": {
+          "$port": "control_net"
+        },
+        "type": "auto"
+      }
+    }
+  },
+  "outputs": {
+    "control_net": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "control_net": "control_net"
+  },
+  "summary": [
+    "type"
+  ]
+}

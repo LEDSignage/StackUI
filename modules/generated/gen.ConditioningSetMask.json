@@ -1,0 +1,83 @@
+{
+  "id": "gen.ConditioningSetMask",
+  "name": "Conditioning (Set Mask)",
+  "category": "ComfyUI / model/conditioning/transform",
+  "description": "ConditioningSetMask",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "strength",
+      "label": "Strength",
+      "target": {
+        "node": "n",
+        "input": "strength"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "set_cond_area",
+      "label": "Set cond area",
+      "target": {
+        "node": "n",
+        "input": "set_cond_area"
+      },
+      "type": "ENUM",
+      "default": "default",
+      "options": [
+        "default",
+        "mask bounds"
+      ],
+      "optionsFrom": {
+        "class_type": "ConditioningSetMask",
+        "input": "set_cond_area"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConditioningSetMask",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "strength": 1,
+        "set_cond_area": "default"
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "strength",
+    "set_cond_area"
+  ]
+}

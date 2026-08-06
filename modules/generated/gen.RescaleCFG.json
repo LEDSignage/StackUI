@@ -1,0 +1,56 @@
+{
+  "id": "gen.RescaleCFG",
+  "name": "RescaleCFG",
+  "category": "ComfyUI / model/patch",
+  "description": "RescaleCFG",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "multiplier",
+      "label": "Multiplier",
+      "target": {
+        "node": "n",
+        "input": "multiplier"
+      },
+      "type": "FLOAT",
+      "default": 0.7,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RescaleCFG",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "multiplier": 0.7
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "multiplier"
+  ]
+}

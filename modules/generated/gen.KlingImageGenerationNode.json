@@ -1,0 +1,184 @@
+{
+  "id": "gen.KlingImageGenerationNode",
+  "name": "Kling 3.0 Image",
+  "category": "ComfyUI / partner/image/Kling",
+  "description": "KlingImageGenerationNode — Kling Image Generation Node. Generate an image from a text prompt with an optional reference image.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "image_type",
+      "label": "Image type",
+      "target": {
+        "node": "n",
+        "input": "image_type"
+      },
+      "type": "ENUM",
+      "default": "subject",
+      "options": [
+        "subject",
+        "face"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImageGenerationNode",
+        "input": "image_type"
+      }
+    },
+    {
+      "name": "image_fidelity",
+      "label": "Image fidelity",
+      "target": {
+        "node": "n",
+        "input": "image_fidelity"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "human_fidelity",
+      "label": "Human fidelity",
+      "target": {
+        "node": "n",
+        "input": "human_fidelity"
+      },
+      "type": "FLOAT",
+      "default": 0.45,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v3",
+      "options": [
+        "kling-v3",
+        "kling-v2",
+        "kling-v1-5"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImageGenerationNode",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1",
+        "4:3",
+        "3:4",
+        "3:2",
+        "2:3",
+        "21:9"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingImageGenerationNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "n",
+      "label": "N",
+      "target": {
+        "node": "n",
+        "input": "n"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 9
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingImageGenerationNode",
+      "inputs": {
+        "prompt": "",
+        "negative_prompt": "",
+        "image_type": "subject",
+        "image_fidelity": 0.5,
+        "human_fidelity": 0.45,
+        "model_name": "kling-v3",
+        "aspect_ratio": "16:9",
+        "n": 1,
+        "image": {
+          "$port": "image"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "negative_prompt",
+    "image_type"
+  ]
+}

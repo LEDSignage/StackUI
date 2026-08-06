@@ -1,0 +1,77 @@
+{
+  "id": "gen.HappyHorseReferenceVideoApi",
+  "name": "HappyHorse Reference to Video",
+  "category": "ComfyUI / partner/video/Wan",
+  "description": "HappyHorseReferenceVideoApi — Generate a video featuring a person or object from reference materials with the HappyHorse model. Supports single-character performances and multi-character interactions.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "happyhorse-1.1-r2v",
+      "options": [
+        "happyhorse-1.1-r2v",
+        "happyhorse-1.0-r2v"
+      ],
+      "optionsFrom": {
+        "class_type": "HappyHorseReferenceVideoApi",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HappyHorseReferenceVideoApi",
+      "inputs": {
+        "model": "happyhorse-1.1-r2v",
+        "seed": 0,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "seed",
+    "watermark"
+  ]
+}

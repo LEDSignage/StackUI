@@ -1,0 +1,94 @@
+{
+  "id": "gen.SamplerSEEDS2",
+  "name": "SamplerSEEDS2",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerSEEDS2 — This sampler node can represent multiple samplers:",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "solver_type",
+      "label": "Solver type",
+      "target": {
+        "node": "n",
+        "input": "solver_type"
+      },
+      "type": "ENUM",
+      "default": "phi_1",
+      "options": [
+        "phi_1",
+        "phi_2"
+      ],
+      "optionsFrom": {
+        "class_type": "SamplerSEEDS2",
+        "input": "solver_type"
+      }
+    },
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "r",
+      "label": "R",
+      "target": {
+        "node": "n",
+        "input": "r"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0.01,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerSEEDS2",
+      "inputs": {
+        "solver_type": "phi_1",
+        "eta": 1,
+        "s_noise": 1,
+        "r": 0.5
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "solver_type",
+    "eta",
+    "s_noise"
+  ]
+}

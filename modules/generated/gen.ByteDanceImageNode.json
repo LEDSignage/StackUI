@@ -1,0 +1,157 @@
+{
+  "id": "gen.ByteDanceImageNode",
+  "name": "ByteDance Image",
+  "category": "ComfyUI / partner/image/ByteDance",
+  "description": "ByteDanceImageNode — Generate images using ByteDance models via api based on prompt",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "seedream-3-0-t2i-250415",
+      "options": [
+        "seedream-3-0-t2i-250415"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceImageNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "size_preset",
+      "label": "Size preset",
+      "target": {
+        "node": "n",
+        "input": "size_preset"
+      },
+      "type": "ENUM",
+      "default": "1024x1024 (1:1)",
+      "options": [
+        "1024x1024 (1:1)",
+        "864x1152 (3:4)",
+        "1152x864 (4:3)",
+        "1280x720 (16:9)",
+        "720x1280 (9:16)",
+        "832x1248 (2:3)",
+        "1248x832 (3:2)",
+        "1512x648 (21:9)",
+        "2048x2048 (1:1)",
+        "Custom"
+      ],
+      "optionsFrom": {
+        "class_type": "ByteDanceImageNode",
+        "input": "size_preset"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 512,
+      "max": 2048,
+      "step": 64
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 512,
+      "max": 2048,
+      "step": 64
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    },
+    {
+      "name": "guidance_scale",
+      "label": "Guidance scale",
+      "target": {
+        "node": "n",
+        "input": "guidance_scale"
+      },
+      "type": "FLOAT",
+      "default": 2.5,
+      "min": 1,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "watermark",
+      "label": "Watermark",
+      "target": {
+        "node": "n",
+        "input": "watermark"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ByteDanceImageNode",
+      "inputs": {
+        "model": "seedream-3-0-t2i-250415",
+        "prompt": "",
+        "size_preset": "1024x1024 (1:1)",
+        "width": 1024,
+        "height": 1024,
+        "seed": 0,
+        "guidance_scale": 2.5,
+        "watermark": false
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "size_preset"
+  ]
+}

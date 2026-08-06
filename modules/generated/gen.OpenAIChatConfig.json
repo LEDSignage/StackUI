@@ -1,0 +1,77 @@
+{
+  "id": "gen.OpenAIChatConfig",
+  "name": "OpenAI ChatGPT Advanced Options",
+  "category": "ComfyUI / partner/text/OpenAI",
+  "description": "OpenAIChatConfig — Allows specifying advanced configuration options for the OpenAI Chat Nodes.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "openai_chat_config",
+      "type": "OPENAI_CHAT_CONFIG"
+    }
+  ],
+  "params": [
+    {
+      "name": "truncation",
+      "label": "Truncation",
+      "target": {
+        "node": "n",
+        "input": "truncation"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "disabled"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIChatConfig",
+        "input": "truncation"
+      }
+    },
+    {
+      "name": "max_output_tokens",
+      "label": "Max output tokens",
+      "target": {
+        "node": "n",
+        "input": "max_output_tokens"
+      },
+      "type": "INT",
+      "default": 4096,
+      "min": 16,
+      "max": 16384
+    },
+    {
+      "name": "instructions",
+      "label": "Instructions",
+      "target": {
+        "node": "n",
+        "input": "instructions"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenAIChatConfig",
+      "inputs": {
+        "truncation": "auto",
+        "max_output_tokens": 4096,
+        "instructions": ""
+      }
+    }
+  },
+  "outputs": {
+    "openai_chat_config": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "truncation",
+    "max_output_tokens",
+    "instructions"
+  ]
+}

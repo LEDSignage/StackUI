@@ -1,0 +1,205 @@
+{
+  "id": "gen.KSampler",
+  "name": "KSampler",
+  "category": "ComfyUI / model/sampling",
+  "description": "KSampler — Uses the provided model, positive and negative conditioning to denoise the latent image.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent_image",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "cfg",
+      "label": "Cfg",
+      "target": {
+        "node": "n",
+        "input": "cfg"
+      },
+      "type": "FLOAT",
+      "default": 8,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "sampler_name",
+      "label": "Sampler name",
+      "target": {
+        "node": "n",
+        "input": "sampler_name"
+      },
+      "type": "ENUM",
+      "default": "euler",
+      "options": [
+        "euler",
+        "euler_cfg_pp",
+        "euler_ancestral",
+        "euler_ancestral_cfg_pp",
+        "heun",
+        "heunpp2",
+        "exp_heun_2_x0",
+        "exp_heun_2_x0_sde",
+        "dpm_2",
+        "dpm_2_ancestral",
+        "lms",
+        "dpm_fast",
+        "dpm_adaptive",
+        "dpmpp_2s_ancestral",
+        "dpmpp_2s_ancestral_cfg_pp",
+        "dpmpp_sde",
+        "dpmpp_sde_gpu",
+        "dpmpp_2m",
+        "dpmpp_2m_cfg_pp",
+        "dpmpp_2m_sde",
+        "dpmpp_2m_sde_gpu",
+        "dpmpp_2m_sde_heun",
+        "dpmpp_2m_sde_heun_gpu",
+        "dpmpp_3m_sde",
+        "dpmpp_3m_sde_gpu",
+        "ddpm",
+        "lcm",
+        "ipndm",
+        "ipndm_v",
+        "deis",
+        "res_multistep",
+        "res_multistep_cfg_pp",
+        "res_multistep_ancestral",
+        "res_multistep_ancestral_cfg_pp",
+        "gradient_estimation",
+        "gradient_estimation_cfg_pp",
+        "er_sde",
+        "seeds_2",
+        "seeds_3",
+        "sa_solver",
+        "sa_solver_pece",
+        "ddim",
+        "uni_pc",
+        "uni_pc_bh2"
+      ],
+      "optionsFrom": {
+        "class_type": "KSampler",
+        "input": "sampler_name"
+      }
+    },
+    {
+      "name": "scheduler",
+      "label": "Scheduler",
+      "target": {
+        "node": "n",
+        "input": "scheduler"
+      },
+      "type": "ENUM",
+      "default": "simple",
+      "options": [
+        "simple",
+        "sgm_uniform",
+        "karras",
+        "exponential",
+        "ddim_uniform",
+        "beta",
+        "normal",
+        "linear_quadratic",
+        "kl_optimal"
+      ],
+      "optionsFrom": {
+        "class_type": "KSampler",
+        "input": "scheduler"
+      }
+    },
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "target": {
+        "node": "n",
+        "input": "denoise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KSampler",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "seed": 0,
+        "steps": 20,
+        "cfg": 8,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "latent_image": {
+          "$port": "latent_image"
+        },
+        "denoise": 1
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "latent_image": "latent"
+  },
+  "summary": [
+    "seed",
+    "steps",
+    "cfg"
+  ]
+}

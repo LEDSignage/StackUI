@@ -1,0 +1,73 @@
+{
+  "id": "gen.VoxelToMesh",
+  "name": "Voxel to Mesh",
+  "category": "ComfyUI / 3d",
+  "description": "VoxelToMesh — Converts a voxel grid to a mesh.",
+  "inPorts": [
+    {
+      "name": "voxel",
+      "type": "VOXEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mesh",
+      "type": "MESH"
+    }
+  ],
+  "params": [
+    {
+      "name": "algorithm",
+      "label": "Algorithm",
+      "target": {
+        "node": "n",
+        "input": "algorithm"
+      },
+      "type": "ENUM",
+      "default": "surface net",
+      "options": [
+        "surface net",
+        "basic"
+      ],
+      "optionsFrom": {
+        "class_type": "VoxelToMesh",
+        "input": "algorithm"
+      }
+    },
+    {
+      "name": "threshold",
+      "label": "Threshold",
+      "target": {
+        "node": "n",
+        "input": "threshold"
+      },
+      "type": "FLOAT",
+      "default": 0.6,
+      "min": -1,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "VoxelToMesh",
+      "inputs": {
+        "voxel": {
+          "$port": "voxel"
+        },
+        "algorithm": "surface net",
+        "threshold": 0.6
+      }
+    }
+  },
+  "outputs": {
+    "mesh": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "algorithm",
+    "threshold"
+  ]
+}

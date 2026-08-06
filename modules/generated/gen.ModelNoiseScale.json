@@ -1,0 +1,56 @@
+{
+  "id": "gen.ModelNoiseScale",
+  "name": "ModelNoiseScale",
+  "category": "ComfyUI / model/patch",
+  "description": "ModelNoiseScale",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "noise_scale",
+      "label": "Noise scale",
+      "target": {
+        "node": "n",
+        "input": "noise_scale"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 64,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelNoiseScale",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "noise_scale": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "noise_scale"
+  ]
+}

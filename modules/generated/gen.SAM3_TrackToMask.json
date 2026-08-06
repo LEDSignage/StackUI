@@ -1,0 +1,50 @@
+{
+  "id": "gen.SAM3_TrackToMask",
+  "name": "SAM3 Track to Mask",
+  "category": "ComfyUI / image/detection",
+  "description": "SAM3_TrackToMask",
+  "inPorts": [
+    {
+      "name": "track_data",
+      "type": "SAM3_TRACK_DATA"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "masks",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "object_indices",
+      "label": "Object indices",
+      "target": {
+        "node": "n",
+        "input": "object_indices"
+      },
+      "type": "STRING",
+      "default": ""
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SAM3_TrackToMask",
+      "inputs": {
+        "track_data": {
+          "$port": "track_data"
+        },
+        "object_indices": ""
+      }
+    }
+  },
+  "outputs": {
+    "masks": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "object_indices"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "gen.ImageBatch",
+  "name": "Batch Images (DEPRECATED)",
+  "category": "ComfyUI / image/batch",
+  "description": "ImageBatch",
+  "inPorts": [
+    {
+      "name": "image1",
+      "type": "IMAGE"
+    },
+    {
+      "name": "image2",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageBatch",
+      "inputs": {
+        "image1": {
+          "$port": "image1"
+        },
+        "image2": {
+          "$port": "image2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image1": "image"
+  }
+}

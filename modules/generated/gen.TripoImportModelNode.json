@@ -1,0 +1,35 @@
+{
+  "id": "gen.TripoImportModelNode",
+  "name": "Tripo: Import Model",
+  "category": "ComfyUI / partner/3d/Tripo",
+  "description": "TripoImportModelNode — Import an external 3D model (e.g. from Rodin, Hunyuan3D or a local file) into Tripo to use it with Tripo's post-processing nodes: Texture, Rig, Convert. GLB is recommended: textures survive import only when embedded in the file. Note that texturing an imported model requires a texture prompt.",
+  "inPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D_GLB,FILE_3D_FBX,FILE_3D_OBJ,FILE_3D_STL,FILE_3D"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_task_id",
+      "type": "MODEL_TASK_ID"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "TripoImportModelNode",
+      "inputs": {
+        "model_3d": {
+          "$port": "model_3d"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model_task_id": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

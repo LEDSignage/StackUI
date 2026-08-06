@@ -1,0 +1,128 @@
+{
+  "id": "gen.ScaleROPE",
+  "name": "ScaleROPE",
+  "category": "ComfyUI / model/patch",
+  "description": "ScaleROPE — Scale and shift the ROPE of the model.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "scale_x",
+      "label": "Scale x",
+      "target": {
+        "node": "n",
+        "input": "scale_x"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "shift_x",
+      "label": "Shift x",
+      "target": {
+        "node": "n",
+        "input": "shift_x"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -256,
+      "max": 256,
+      "step": 0.1
+    },
+    {
+      "name": "scale_y",
+      "label": "Scale y",
+      "target": {
+        "node": "n",
+        "input": "scale_y"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "shift_y",
+      "label": "Shift y",
+      "target": {
+        "node": "n",
+        "input": "shift_y"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -256,
+      "max": 256,
+      "step": 0.1
+    },
+    {
+      "name": "scale_t",
+      "label": "Scale t",
+      "target": {
+        "node": "n",
+        "input": "scale_t"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    },
+    {
+      "name": "shift_t",
+      "label": "Shift t",
+      "target": {
+        "node": "n",
+        "input": "shift_t"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -256,
+      "max": 256,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ScaleROPE",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "scale_x": 1,
+        "shift_x": 0,
+        "scale_y": 1,
+        "shift_y": 0,
+        "scale_t": 1,
+        "shift_t": 0
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "scale_x",
+    "shift_x",
+    "scale_y"
+  ]
+}

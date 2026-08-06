@@ -1,0 +1,30 @@
+{
+  "id": "prompt-zeroed",
+  "name": "Prompt",
+  "category": "conditioning",
+  "description": "CLIPTextEncode + ConditioningZeroOut — one prompt, with the negative derived by zeroing it. What turbo/distilled models at CFG 1 want.",
+  "inPorts": [{ "name": "clip", "type": "CLIP" }],
+  "outPorts": [
+    { "name": "positive", "type": "CONDITIONING" },
+    { "name": "negative", "type": "CONDITIONING" }
+  ],
+  "outputs": { "positive": { "node": "enc" }, "negative": { "node": "zero" } },
+  "summary": ["prompt"],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "type": "STRING",
+      "multiline": true,
+      "default": "",
+      "target": { "node": "enc", "input": "text" }
+    }
+  ],
+  "nodes": {
+    "enc": { "class_type": "CLIPTextEncode", "inputs": { "text": "", "clip": { "$port": "clip" } } },
+    "zero": {
+      "class_type": "ConditioningZeroOut",
+      "inputs": { "conditioning": { "$node": "enc", "out": 0 } }
+    }
+  }
+}

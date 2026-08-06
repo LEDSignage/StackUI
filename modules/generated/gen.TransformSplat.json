@@ -1,0 +1,170 @@
+{
+  "id": "gen.TransformSplat",
+  "name": "Transform Splat",
+  "category": "ComfyUI / 3d/splat",
+  "description": "TransformSplat — Translate, rotate, and scale a gaussian splat. Non-uniform scale also reshapes every individual splat, slower process.",
+  "inPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "splat",
+      "type": "SPLAT"
+    }
+  ],
+  "params": [
+    {
+      "name": "translate_x",
+      "label": "Translate x",
+      "target": {
+        "node": "n",
+        "input": "translate_x"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -100,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "translate_y",
+      "label": "Translate y",
+      "target": {
+        "node": "n",
+        "input": "translate_y"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -100,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "translate_z",
+      "label": "Translate z",
+      "target": {
+        "node": "n",
+        "input": "translate_z"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -100,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "rotate_x",
+      "label": "Rotate x",
+      "target": {
+        "node": "n",
+        "input": "rotate_x"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -360,
+      "max": 360,
+      "step": 1
+    },
+    {
+      "name": "rotate_y",
+      "label": "Rotate y",
+      "target": {
+        "node": "n",
+        "input": "rotate_y"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -360,
+      "max": 360,
+      "step": 1
+    },
+    {
+      "name": "rotate_z",
+      "label": "Rotate z",
+      "target": {
+        "node": "n",
+        "input": "rotate_z"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": -360,
+      "max": 360,
+      "step": 1
+    },
+    {
+      "name": "scale_x",
+      "label": "Scale x",
+      "target": {
+        "node": "n",
+        "input": "scale_x"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "scale_y",
+      "label": "Scale y",
+      "target": {
+        "node": "n",
+        "input": "scale_y"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "scale_z",
+      "label": "Scale z",
+      "target": {
+        "node": "n",
+        "input": "scale_z"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0.01,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "TransformSplat",
+      "inputs": {
+        "splat": {
+          "$port": "splat"
+        },
+        "translate_x": 0,
+        "translate_y": 0,
+        "translate_z": 0,
+        "rotate_x": 0,
+        "rotate_y": 0,
+        "rotate_z": 0,
+        "scale_x": 1,
+        "scale_y": 1,
+        "scale_z": 1
+      }
+    }
+  },
+  "outputs": {
+    "splat": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "splat": "splat"
+  },
+  "summary": [
+    "translate_x",
+    "translate_y",
+    "translate_z"
+  ]
+}

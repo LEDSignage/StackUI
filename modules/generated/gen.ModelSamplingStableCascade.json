@@ -1,0 +1,56 @@
+{
+  "id": "gen.ModelSamplingStableCascade",
+  "name": "ModelSamplingStableCascade",
+  "category": "ComfyUI / model/patch/stable cascade",
+  "description": "ModelSamplingStableCascade",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "shift",
+      "label": "Shift",
+      "target": {
+        "node": "n",
+        "input": "shift"
+      },
+      "type": "FLOAT",
+      "default": 2,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelSamplingStableCascade",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "shift": 2
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "shift"
+  ]
+}

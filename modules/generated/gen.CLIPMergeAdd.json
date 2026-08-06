@@ -1,0 +1,45 @@
+{
+  "id": "gen.CLIPMergeAdd",
+  "name": "CLIPMergeAdd",
+  "category": "ComfyUI / model/merging",
+  "description": "CLIPMergeAdd",
+  "inPorts": [
+    {
+      "name": "clip1",
+      "type": "CLIP"
+    },
+    {
+      "name": "clip2",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPMergeAdd",
+      "inputs": {
+        "clip1": {
+          "$port": "clip1"
+        },
+        "clip2": {
+          "$port": "clip2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip1": "clip"
+  }
+}

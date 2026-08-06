@@ -1,0 +1,78 @@
+{
+  "id": "gen.Vidu3TextToVideoNode",
+  "name": "Vidu Q3 Text-to-Video Generation",
+  "category": "ComfyUI / partner/video/Vidu",
+  "description": "Vidu3TextToVideoNode — Generate video from a text prompt.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "viduq3-pro",
+      "options": [
+        "viduq3-pro",
+        "viduq3-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "Vidu3TextToVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Vidu3TextToVideoNode",
+      "inputs": {
+        "model": "viduq3-pro",
+        "prompt": "",
+        "seed": 1
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model",
+    "prompt",
+    "seed"
+  ]
+}

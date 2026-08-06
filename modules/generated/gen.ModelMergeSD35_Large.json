@@ -1,0 +1,667 @@
+{
+  "id": "gen.ModelMergeSD35_Large",
+  "name": "ModelMergeSD35_Large",
+  "category": "ComfyUI / model/merging/model specific",
+  "description": "ModelMergeSD35_Large",
+  "inPorts": [
+    {
+      "name": "model1",
+      "type": "MODEL"
+    },
+    {
+      "name": "model2",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "pos_embed.",
+      "label": "Pos embed.",
+      "target": {
+        "node": "n",
+        "input": "pos_embed."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "x_embedder.",
+      "label": "X embedder.",
+      "target": {
+        "node": "n",
+        "input": "x_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "context_embedder.",
+      "label": "Context embedder.",
+      "target": {
+        "node": "n",
+        "input": "context_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "y_embedder.",
+      "label": "Y embedder.",
+      "target": {
+        "node": "n",
+        "input": "y_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "t_embedder.",
+      "label": "T embedder.",
+      "target": {
+        "node": "n",
+        "input": "t_embedder."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.0.",
+      "label": "Joint blocks.0.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.0."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.1.",
+      "label": "Joint blocks.1.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.1."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.2.",
+      "label": "Joint blocks.2.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.2."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.3.",
+      "label": "Joint blocks.3.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.3."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.4.",
+      "label": "Joint blocks.4.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.4."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.5.",
+      "label": "Joint blocks.5.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.5."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.6.",
+      "label": "Joint blocks.6.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.6."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.7.",
+      "label": "Joint blocks.7.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.7."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.8.",
+      "label": "Joint blocks.8.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.8."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.9.",
+      "label": "Joint blocks.9.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.9."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.10.",
+      "label": "Joint blocks.10.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.10."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.11.",
+      "label": "Joint blocks.11.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.11."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.12.",
+      "label": "Joint blocks.12.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.12."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.13.",
+      "label": "Joint blocks.13.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.13."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.14.",
+      "label": "Joint blocks.14.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.14."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.15.",
+      "label": "Joint blocks.15.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.15."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.16.",
+      "label": "Joint blocks.16.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.16."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.17.",
+      "label": "Joint blocks.17.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.17."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.18.",
+      "label": "Joint blocks.18.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.18."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.19.",
+      "label": "Joint blocks.19.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.19."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.20.",
+      "label": "Joint blocks.20.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.20."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.21.",
+      "label": "Joint blocks.21.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.21."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.22.",
+      "label": "Joint blocks.22.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.22."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.23.",
+      "label": "Joint blocks.23.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.23."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.24.",
+      "label": "Joint blocks.24.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.24."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.25.",
+      "label": "Joint blocks.25.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.25."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.26.",
+      "label": "Joint blocks.26.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.26."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.27.",
+      "label": "Joint blocks.27.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.27."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.28.",
+      "label": "Joint blocks.28.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.28."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.29.",
+      "label": "Joint blocks.29.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.29."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.30.",
+      "label": "Joint blocks.30.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.30."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.31.",
+      "label": "Joint blocks.31.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.31."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.32.",
+      "label": "Joint blocks.32.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.32."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.33.",
+      "label": "Joint blocks.33.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.33."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.34.",
+      "label": "Joint blocks.34.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.34."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.35.",
+      "label": "Joint blocks.35.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.35."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.36.",
+      "label": "Joint blocks.36.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.36."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "joint_blocks.37.",
+      "label": "Joint blocks.37.",
+      "target": {
+        "node": "n",
+        "input": "joint_blocks.37."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "final_layer.",
+      "label": "Final layer.",
+      "target": {
+        "node": "n",
+        "input": "final_layer."
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ModelMergeSD35_Large",
+      "inputs": {
+        "model1": {
+          "$port": "model1"
+        },
+        "model2": {
+          "$port": "model2"
+        },
+        "pos_embed.": 1,
+        "x_embedder.": 1,
+        "context_embedder.": 1,
+        "y_embedder.": 1,
+        "t_embedder.": 1,
+        "joint_blocks.0.": 1,
+        "joint_blocks.1.": 1,
+        "joint_blocks.2.": 1,
+        "joint_blocks.3.": 1,
+        "joint_blocks.4.": 1,
+        "joint_blocks.5.": 1,
+        "joint_blocks.6.": 1,
+        "joint_blocks.7.": 1,
+        "joint_blocks.8.": 1,
+        "joint_blocks.9.": 1,
+        "joint_blocks.10.": 1,
+        "joint_blocks.11.": 1,
+        "joint_blocks.12.": 1,
+        "joint_blocks.13.": 1,
+        "joint_blocks.14.": 1,
+        "joint_blocks.15.": 1,
+        "joint_blocks.16.": 1,
+        "joint_blocks.17.": 1,
+        "joint_blocks.18.": 1,
+        "joint_blocks.19.": 1,
+        "joint_blocks.20.": 1,
+        "joint_blocks.21.": 1,
+        "joint_blocks.22.": 1,
+        "joint_blocks.23.": 1,
+        "joint_blocks.24.": 1,
+        "joint_blocks.25.": 1,
+        "joint_blocks.26.": 1,
+        "joint_blocks.27.": 1,
+        "joint_blocks.28.": 1,
+        "joint_blocks.29.": 1,
+        "joint_blocks.30.": 1,
+        "joint_blocks.31.": 1,
+        "joint_blocks.32.": 1,
+        "joint_blocks.33.": 1,
+        "joint_blocks.34.": 1,
+        "joint_blocks.35.": 1,
+        "joint_blocks.36.": 1,
+        "joint_blocks.37.": 1,
+        "final_layer.": 1
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model1": "model"
+  },
+  "summary": [
+    "pos_embed.",
+    "x_embedder.",
+    "context_embedder."
+  ]
+}

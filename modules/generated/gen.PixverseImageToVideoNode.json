@@ -1,0 +1,141 @@
+{
+  "id": "gen.PixverseImageToVideoNode",
+  "name": "PixVerse Image to Video",
+  "category": "ComfyUI / partner/video/PixVerse",
+  "description": "PixverseImageToVideoNode — Generates videos based on prompt and output_size.",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "pixverse_template",
+      "type": "PIXVERSE_TEMPLATE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "quality",
+      "label": "Quality",
+      "target": {
+        "node": "n",
+        "input": "quality"
+      },
+      "type": "ENUM",
+      "default": "540p",
+      "options": [
+        "360p",
+        "540p",
+        "720p",
+        "1080p"
+      ],
+      "optionsFrom": {
+        "class_type": "PixverseImageToVideoNode",
+        "input": "quality"
+      }
+    },
+    {
+      "name": "duration_seconds",
+      "label": "Duration seconds",
+      "target": {
+        "node": "n",
+        "input": "duration_seconds"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "PixverseImageToVideoNode",
+        "input": "duration_seconds"
+      }
+    },
+    {
+      "name": "motion_mode",
+      "label": "Motion mode",
+      "target": {
+        "node": "n",
+        "input": "motion_mode"
+      },
+      "type": "ENUM",
+      "default": "normal",
+      "options": [
+        "normal",
+        "fast"
+      ],
+      "optionsFrom": {
+        "class_type": "PixverseImageToVideoNode",
+        "input": "motion_mode"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "negative_prompt",
+      "label": "Negative prompt",
+      "target": {
+        "node": "n",
+        "input": "negative_prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "PixverseImageToVideoNode",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "prompt": "",
+        "quality": "540p",
+        "duration_seconds": "",
+        "motion_mode": "normal",
+        "seed": 0,
+        "negative_prompt": "",
+        "pixverse_template": {
+          "$port": "pixverse_template"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "quality",
+    "duration_seconds"
+  ]
+}

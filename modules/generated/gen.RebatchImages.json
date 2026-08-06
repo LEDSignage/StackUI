@@ -1,0 +1,55 @@
+{
+  "id": "gen.RebatchImages",
+  "name": "Rebatch Images",
+  "category": "ComfyUI / image/batch",
+  "description": "RebatchImages",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RebatchImages",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "batch_size": 1
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "image"
+  },
+  "summary": [
+    "batch_size"
+  ]
+}

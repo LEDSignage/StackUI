@@ -1,0 +1,100 @@
+{
+  "id": "gen.CLIPAttentionMultiply",
+  "name": "CLIPAttentionMultiply",
+  "category": "ComfyUI / experimental/attention_experiments",
+  "description": "CLIPAttentionMultiply",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "params": [
+    {
+      "name": "q",
+      "label": "Q",
+      "target": {
+        "node": "n",
+        "input": "q"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "k",
+      "label": "K",
+      "target": {
+        "node": "n",
+        "input": "k"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "v",
+      "label": "V",
+      "target": {
+        "node": "n",
+        "input": "v"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    },
+    {
+      "name": "out",
+      "label": "Out",
+      "target": {
+        "node": "n",
+        "input": "out"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPAttentionMultiply",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "q": 1,
+        "k": 1,
+        "v": 1,
+        "out": 1
+      }
+    }
+  },
+  "outputs": {
+    "clip": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "clip": "clip"
+  },
+  "summary": [
+    "q",
+    "k",
+    "v"
+  ]
+}

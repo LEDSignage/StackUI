@@ -1,0 +1,36 @@
+{
+  "id": "gen.PreviewAny",
+  "name": "Preview as Text",
+  "category": "ComfyUI / utilities",
+  "description": "PreviewAny — Preview any input value as text.",
+  "inPorts": [
+    {
+      "name": "source",
+      "type": "*"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "PreviewAny",
+      "inputs": {
+        "source": {
+          "$port": "source"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true
+}

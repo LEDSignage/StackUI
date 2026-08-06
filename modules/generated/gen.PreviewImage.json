@@ -1,0 +1,39 @@
+{
+  "id": "gen.PreviewImage",
+  "name": "Preview Image",
+  "category": "ComfyUI / image",
+  "description": "PreviewImage — Preview the images without saving them to the ComfyUI output directory.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "PreviewImage",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "images": "images"
+  }
+}

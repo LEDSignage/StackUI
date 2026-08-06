@@ -1,0 +1,35 @@
+{
+  "id": "gen.CreateList",
+  "name": "Create List",
+  "category": "ComfyUI / utilities",
+  "description": "CreateList",
+  "inPorts": [
+    {
+      "name": "inputs",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "list",
+      "type": "COMFY_MATCHTYPE_V3"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "CreateList",
+      "inputs": {
+        "inputs": {
+          "$port": "inputs"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "list": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

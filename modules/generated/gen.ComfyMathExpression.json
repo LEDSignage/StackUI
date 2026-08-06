@@ -1,0 +1,67 @@
+{
+  "id": "gen.ComfyMathExpression",
+  "name": "Math Expression",
+  "category": "ComfyUI / utilities",
+  "description": "ComfyMathExpression",
+  "inPorts": [
+    {
+      "name": "values",
+      "type": "COMFY_AUTOGROW_V3"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "float",
+      "type": "FLOAT"
+    },
+    {
+      "name": "int",
+      "type": "INT"
+    },
+    {
+      "name": "bool",
+      "type": "BOOLEAN"
+    }
+  ],
+  "params": [
+    {
+      "name": "expression",
+      "label": "Expression",
+      "target": {
+        "node": "n",
+        "input": "expression"
+      },
+      "type": "STRING",
+      "default": "a + b",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ComfyMathExpression",
+      "inputs": {
+        "expression": "a + b",
+        "values": {
+          "$port": "values"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "float": {
+      "node": "n",
+      "out": 0
+    },
+    "int": {
+      "node": "n",
+      "out": 1
+    },
+    "bool": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "expression"
+  ]
+}

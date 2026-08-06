@@ -1,0 +1,26 @@
+{
+  "id": "gen.LotusConditioning",
+  "name": "LotusConditioning",
+  "category": "ComfyUI / model/conditioning/lotus",
+  "description": "LotusConditioning",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LotusConditioning",
+      "inputs": {}
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  }
+}

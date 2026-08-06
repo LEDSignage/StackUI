@@ -1,0 +1,60 @@
+{
+  "id": "gen.ImageToMask",
+  "name": "Convert Image to Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "ImageToMask",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "channel",
+      "label": "Channel",
+      "target": {
+        "node": "n",
+        "input": "channel"
+      },
+      "type": "ENUM",
+      "default": "red",
+      "options": [
+        "red",
+        "green",
+        "blue",
+        "alpha"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageToMask",
+        "input": "channel"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageToMask",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "channel": "red"
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "channel"
+  ]
+}

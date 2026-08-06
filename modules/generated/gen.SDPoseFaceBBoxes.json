@@ -1,0 +1,65 @@
+{
+  "id": "gen.SDPoseFaceBBoxes",
+  "name": "SDPose Face Bounding Boxes",
+  "category": "ComfyUI / image/detection",
+  "description": "SDPoseFaceBBoxes",
+  "inPorts": [
+    {
+      "name": "keypoints",
+      "type": "POSE_KEYPOINT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "bboxes",
+      "type": "BOUNDING_BOX"
+    }
+  ],
+  "params": [
+    {
+      "name": "scale",
+      "label": "Scale",
+      "target": {
+        "node": "n",
+        "input": "scale"
+      },
+      "type": "FLOAT",
+      "default": 1.5,
+      "min": 1,
+      "max": 10,
+      "step": 0.1
+    },
+    {
+      "name": "force_square",
+      "label": "Force square",
+      "target": {
+        "node": "n",
+        "input": "force_square"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SDPoseFaceBBoxes",
+      "inputs": {
+        "keypoints": {
+          "$port": "keypoints"
+        },
+        "scale": 1.5,
+        "force_square": true
+      }
+    }
+  },
+  "outputs": {
+    "bboxes": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "scale",
+    "force_square"
+  ]
+}

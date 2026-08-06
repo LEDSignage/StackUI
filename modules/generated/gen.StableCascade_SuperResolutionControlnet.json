@@ -1,0 +1,61 @@
+{
+  "id": "gen.StableCascade_SuperResolutionControlnet",
+  "name": "StableCascade_SuperResolutionControlnet",
+  "category": "ComfyUI / experimental/stable cascade",
+  "description": "StableCascade_SuperResolutionControlnet",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "controlnet_input",
+      "type": "IMAGE"
+    },
+    {
+      "name": "stage_c",
+      "type": "LATENT"
+    },
+    {
+      "name": "stage_b",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "StableCascade_SuperResolutionControlnet",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "vae": {
+          "$port": "vae"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "controlnet_input": {
+      "node": "n",
+      "out": 0
+    },
+    "stage_c": {
+      "node": "n",
+      "out": 1
+    },
+    "stage_b": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "image": "controlnet_input"
+  }
+}

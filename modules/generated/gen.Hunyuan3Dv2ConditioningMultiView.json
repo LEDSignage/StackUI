@@ -1,0 +1,68 @@
+{
+  "id": "gen.Hunyuan3Dv2ConditioningMultiView",
+  "name": "Hunyuan3Dv2ConditioningMultiView",
+  "category": "ComfyUI / model/conditioning/hunyuan 3d",
+  "description": "Hunyuan3Dv2ConditioningMultiView",
+  "inPorts": [
+    {
+      "name": "front",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "left",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "back",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "right",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "Hunyuan3Dv2ConditioningMultiView",
+      "inputs": {
+        "front": {
+          "$port": "front"
+        },
+        "left": {
+          "$port": "left"
+        },
+        "back": {
+          "$port": "back"
+        },
+        "right": {
+          "$port": "right"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    }
+  }
+}

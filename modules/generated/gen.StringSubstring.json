@@ -1,0 +1,67 @@
+{
+  "id": "gen.StringSubstring",
+  "name": "Substring",
+  "category": "ComfyUI / text",
+  "description": "StringSubstring",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "string",
+      "label": "String",
+      "target": {
+        "node": "n",
+        "input": "string"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "start",
+      "label": "Start",
+      "target": {
+        "node": "n",
+        "input": "start"
+      },
+      "type": "INT",
+      "default": 0
+    },
+    {
+      "name": "end",
+      "label": "End",
+      "target": {
+        "node": "n",
+        "input": "end"
+      },
+      "type": "INT",
+      "default": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "StringSubstring",
+      "inputs": {
+        "string": "",
+        "start": 0,
+        "end": 0
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "string",
+    "start",
+    "end"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "id": "gen.ConvertArrayToString",
+  "name": "Convert Array to String",
+  "category": "ComfyUI / text",
+  "description": "ConvertArrayToString",
+  "inPorts": [
+    {
+      "name": "array",
+      "type": "ARRAY"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "indent",
+      "label": "Indent",
+      "target": {
+        "node": "n",
+        "input": "indent"
+      },
+      "type": "INT",
+      "default": 2,
+      "min": 0,
+      "max": 8
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ConvertArrayToString",
+      "inputs": {
+        "array": {
+          "$port": "array"
+        },
+        "indent": 2
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "indent"
+  ]
+}

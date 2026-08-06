@@ -1,0 +1,157 @@
+{
+  "id": "gen.WanDancerVideo",
+  "name": "WanDancerVideo",
+  "category": "ComfyUI / model/conditioning/wan/dancer",
+  "description": "WanDancerVideo",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "clip_vision_output_ref",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "mask",
+      "type": "MASK",
+      "optional": true
+    },
+    {
+      "name": "audio_encoder_output",
+      "type": "AUDIO_ENCODER_OUTPUT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 149,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanDancerVideo",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 480,
+        "height": 832,
+        "length": 149,
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "clip_vision_output_ref": {
+          "$port": "clip_vision_output_ref"
+        },
+        "start_image": {
+          "$port": "start_image"
+        },
+        "mask": {
+          "$port": "mask"
+        },
+        "audio_encoder_output": {
+          "$port": "audio_encoder_output"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

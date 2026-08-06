@@ -1,0 +1,56 @@
+{
+  "id": "gen.FluxGuidance",
+  "name": "FluxGuidance",
+  "category": "ComfyUI / model/conditioning/flux",
+  "description": "FluxGuidance",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "guidance",
+      "label": "Guidance",
+      "target": {
+        "node": "n",
+        "input": "guidance"
+      },
+      "type": "FLOAT",
+      "default": 3.5,
+      "min": 0,
+      "max": 100,
+      "step": 0.1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "FluxGuidance",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "guidance": 3.5
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  },
+  "summary": [
+    "guidance"
+  ]
+}

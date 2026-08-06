@@ -1,0 +1,46 @@
+{
+  "id": "gen.SplitAudioChannels",
+  "name": "Split Audio Channels",
+  "category": "ComfyUI / audio",
+  "description": "SplitAudioChannels — Separates the audio into left and right channels.",
+  "inPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "left",
+      "type": "AUDIO"
+    },
+    {
+      "name": "right",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "SplitAudioChannels",
+      "inputs": {
+        "audio": {
+          "$port": "audio"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "left": {
+      "node": "n",
+      "out": 0
+    },
+    "right": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "passThrough": {
+    "audio": "left"
+  }
+}

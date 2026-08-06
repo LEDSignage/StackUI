@@ -1,0 +1,119 @@
+{
+  "id": "gen.Load3DAdvanced",
+  "name": "Load 3D (Advanced)",
+  "category": "ComfyUI / 3d",
+  "description": "Load3DAdvanced",
+  "inPorts": [
+    {
+      "name": "viewport_state",
+      "type": "LOAD_3D"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model_3d",
+      "type": "FILE_3D"
+    },
+    {
+      "name": "model_3d_info",
+      "type": "LOAD3D_MODEL_INFO"
+    },
+    {
+      "name": "camera_info",
+      "type": "LOAD3D_CAMERA"
+    },
+    {
+      "name": "width",
+      "type": "INT"
+    },
+    {
+      "name": "height",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_file",
+      "label": "Model file",
+      "target": {
+        "node": "n",
+        "input": "model_file"
+      },
+      "type": "ENUM",
+      "default": "none",
+      "options": [
+        "none"
+      ],
+      "optionsFrom": {
+        "class_type": "Load3DAdvanced",
+        "input": "model_file"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 4096,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "Load3DAdvanced",
+      "inputs": {
+        "model_file": "none",
+        "viewport_state": {
+          "$port": "viewport_state"
+        },
+        "width": 1024,
+        "height": 1024
+      }
+    }
+  },
+  "outputs": {
+    "model_3d": {
+      "node": "n",
+      "out": 0
+    },
+    "model_3d_info": {
+      "node": "n",
+      "out": 1
+    },
+    "camera_info": {
+      "node": "n",
+      "out": 2
+    },
+    "width": {
+      "node": "n",
+      "out": 3
+    },
+    "height": {
+      "node": "n",
+      "out": 4
+    }
+  },
+  "summary": [
+    "model_file",
+    "width",
+    "height"
+  ]
+}

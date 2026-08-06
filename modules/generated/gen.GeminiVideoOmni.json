@@ -1,0 +1,71 @@
+{
+  "id": "gen.GeminiVideoOmni",
+  "name": "Google Gemini Omni (Video)",
+  "category": "ComfyUI / partner/video/Gemini",
+  "description": "GeminiVideoOmni — Generate a video with audio from a text prompt using Google's Gemini Omni Flash model. Optionally provide reference images and/or videos to guide or edit the result. Describe the desired length (3-10s) and aspect ratio (16:9 or 9:16) directly in the prompt.",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    },
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "Omni Flash",
+      "options": [
+        "Omni Flash"
+      ],
+      "optionsFrom": {
+        "class_type": "GeminiVideoOmni",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 42,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "GeminiVideoOmni",
+      "inputs": {
+        "model": "Omni Flash",
+        "seed": 42
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    },
+    "string": {
+      "node": "n",
+      "out": 1
+    }
+  },
+  "summary": [
+    "model",
+    "seed"
+  ]
+}

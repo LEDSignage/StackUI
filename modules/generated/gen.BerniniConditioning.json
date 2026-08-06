@@ -1,0 +1,168 @@
+{
+  "id": "gen.BerniniConditioning",
+  "name": "Bernini Conditioning",
+  "category": "ComfyUI / model/conditioning/bernini",
+  "description": "BerniniConditioning — Conditioning node for Bernini in-context video/image conditioning. It can be used for the following tasks: t2v (text-to-video), v2v (video-to-video), rv2v (reference-guided video editing), r2v (reference-to-video), ads2v (insert image/video into video).Reference images injected as in-context tokens (r2v, rv2v) are encoded independently at their own native aspect ratio (long edge capped at ref_max_size)",
+  "inPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "source_video",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "reference_video",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "reference_images",
+      "type": "COMFY_AUTOGROW_V3",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 8192,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 8192,
+      "step": 4
+    },
+    {
+      "name": "batch_size",
+      "label": "Batch size",
+      "target": {
+        "node": "n",
+        "input": "batch_size"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 4096
+    },
+    {
+      "name": "ref_max_size",
+      "label": "Ref max size",
+      "target": {
+        "node": "n",
+        "input": "ref_max_size"
+      },
+      "type": "INT",
+      "default": 848,
+      "min": 16,
+      "max": 8192,
+      "step": 16
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BerniniConditioning",
+      "inputs": {
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 832,
+        "height": 480,
+        "length": 81,
+        "batch_size": 1,
+        "source_video": {
+          "$port": "source_video"
+        },
+        "reference_video": {
+          "$port": "reference_video"
+        },
+        "reference_images": {
+          "$port": "reference_images"
+        },
+        "ref_max_size": 848
+      }
+    }
+  },
+  "outputs": {
+    "positive": {
+      "node": "n",
+      "out": 0
+    },
+    "negative": {
+      "node": "n",
+      "out": 1
+    },
+    "latent": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "passThrough": {
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "width",
+    "height",
+    "length"
+  ]
+}

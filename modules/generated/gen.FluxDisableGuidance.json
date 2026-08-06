@@ -1,0 +1,38 @@
+{
+  "id": "gen.FluxDisableGuidance",
+  "name": "FluxDisableGuidance",
+  "category": "ComfyUI / model/conditioning/flux",
+  "description": "FluxDisableGuidance — This node completely disables the guidance embed on Flux and Flux like models",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "FluxDisableGuidance",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  }
+}

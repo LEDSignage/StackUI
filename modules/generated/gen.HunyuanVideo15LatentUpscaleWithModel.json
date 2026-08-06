@@ -1,0 +1,120 @@
+{
+  "id": "gen.HunyuanVideo15LatentUpscaleWithModel",
+  "name": "Hunyuan Video 15 Latent Upscale With Model",
+  "category": "ComfyUI / model/latent/hunyhuan video",
+  "description": "HunyuanVideo15LatentUpscaleWithModel",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "LATENT_UPSCALE_MODEL"
+    },
+    {
+      "name": "samples",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [
+    {
+      "name": "upscale_method",
+      "label": "Upscale method",
+      "target": {
+        "node": "n",
+        "input": "upscale_method"
+      },
+      "type": "ENUM",
+      "default": "bilinear",
+      "options": [
+        "nearest-exact",
+        "bilinear",
+        "area",
+        "bicubic",
+        "bislerp"
+      ],
+      "optionsFrom": {
+        "class_type": "HunyuanVideo15LatentUpscaleWithModel",
+        "input": "upscale_method"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1280,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 720,
+      "min": 0,
+      "max": 16384,
+      "step": 8
+    },
+    {
+      "name": "crop",
+      "label": "Crop",
+      "target": {
+        "node": "n",
+        "input": "crop"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "center"
+      ],
+      "optionsFrom": {
+        "class_type": "HunyuanVideo15LatentUpscaleWithModel",
+        "input": "crop"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "HunyuanVideo15LatentUpscaleWithModel",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "samples": {
+          "$port": "samples"
+        },
+        "upscale_method": "bilinear",
+        "width": 1280,
+        "height": 720,
+        "crop": "disabled"
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples": "latent"
+  },
+  "summary": [
+    "upscale_method",
+    "width",
+    "height"
+  ]
+}

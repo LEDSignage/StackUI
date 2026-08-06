@@ -1,0 +1,94 @@
+{
+  "id": "gen.CheckpointLoader",
+  "name": "Load Checkpoint With Config (DEPRECATED)",
+  "category": "ComfyUI / model/loaders",
+  "description": "CheckpointLoader",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "clip",
+      "type": "CLIP"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    }
+  ],
+  "params": [
+    {
+      "name": "config_name",
+      "label": "Config name",
+      "target": {
+        "node": "n",
+        "input": "config_name"
+      },
+      "type": "ENUM",
+      "default": "anything_v3.yaml",
+      "options": [
+        "anything_v3.yaml",
+        "v1-inference.yaml",
+        "v1-inference_clip_skip_2.yaml",
+        "v1-inference_clip_skip_2_fp16.yaml",
+        "v1-inference_fp16.yaml",
+        "v1-inpainting-inference.yaml",
+        "v2-inference-v.yaml",
+        "v2-inference-v_fp32.yaml",
+        "v2-inference.yaml",
+        "v2-inference_fp32.yaml",
+        "v2-inpainting-inference.yaml"
+      ],
+      "optionsFrom": {
+        "class_type": "CheckpointLoader",
+        "input": "config_name"
+      }
+    },
+    {
+      "name": "ckpt_name",
+      "label": "Ckpt name",
+      "target": {
+        "node": "n",
+        "input": "ckpt_name"
+      },
+      "type": "ENUM",
+      "default": "ltx-2.3-22b-dev-fp8.safetensors",
+      "options": [
+        "ltx-2.3-22b-dev-fp8.safetensors"
+      ],
+      "optionsFrom": {
+        "class_type": "CheckpointLoader",
+        "input": "ckpt_name"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CheckpointLoader",
+      "inputs": {
+        "config_name": "anything_v3.yaml",
+        "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors"
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "clip": {
+      "node": "n",
+      "out": 1
+    },
+    "vae": {
+      "node": "n",
+      "out": 2
+    }
+  },
+  "summary": [
+    "config_name",
+    "ckpt_name"
+  ]
+}

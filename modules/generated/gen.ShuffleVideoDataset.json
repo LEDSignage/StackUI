@@ -1,0 +1,54 @@
+{
+  "id": "gen.ShuffleVideoDataset",
+  "name": "Shuffle Videos List",
+  "category": "ComfyUI / video/batch",
+  "description": "ShuffleVideoDataset — Randomly shuffle the order of videos in a list.",
+  "inPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "videos",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ShuffleVideoDataset",
+      "inputs": {
+        "videos": {
+          "$port": "videos"
+        },
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "videos": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "videos": "videos"
+  },
+  "summary": [
+    "seed"
+  ]
+}

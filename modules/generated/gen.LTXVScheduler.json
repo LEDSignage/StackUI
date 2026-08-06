@@ -1,0 +1,108 @@
+{
+  "id": "gen.LTXVScheduler",
+  "name": "LTXVScheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "LTXVScheduler",
+  "inPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "max_shift",
+      "label": "Max shift",
+      "target": {
+        "node": "n",
+        "input": "max_shift"
+      },
+      "type": "FLOAT",
+      "default": 2.05,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "base_shift",
+      "label": "Base shift",
+      "target": {
+        "node": "n",
+        "input": "base_shift"
+      },
+      "type": "FLOAT",
+      "default": 0.95,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "stretch",
+      "label": "Stretch",
+      "target": {
+        "node": "n",
+        "input": "stretch"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "terminal",
+      "label": "Terminal",
+      "target": {
+        "node": "n",
+        "input": "terminal"
+      },
+      "type": "FLOAT",
+      "default": 0.1,
+      "min": 0,
+      "max": 0.99,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LTXVScheduler",
+      "inputs": {
+        "steps": 20,
+        "max_shift": 2.05,
+        "base_shift": 0.95,
+        "stretch": true,
+        "terminal": 0.1,
+        "latent": {
+          "$port": "latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "steps",
+    "max_shift",
+    "base_shift"
+  ]
+}

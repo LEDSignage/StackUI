@@ -1,0 +1,94 @@
+{
+  "id": "gen.BasicScheduler",
+  "name": "BasicScheduler",
+  "category": "ComfyUI / model/sampling/schedulers",
+  "description": "BasicScheduler",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "sigmas",
+      "type": "SIGMAS"
+    }
+  ],
+  "params": [
+    {
+      "name": "scheduler",
+      "label": "Scheduler",
+      "target": {
+        "node": "n",
+        "input": "scheduler"
+      },
+      "type": "ENUM",
+      "default": "simple",
+      "options": [
+        "simple",
+        "sgm_uniform",
+        "karras",
+        "exponential",
+        "ddim_uniform",
+        "beta",
+        "normal",
+        "linear_quadratic",
+        "kl_optimal"
+      ],
+      "optionsFrom": {
+        "class_type": "BasicScheduler",
+        "input": "scheduler"
+      }
+    },
+    {
+      "name": "steps",
+      "label": "Steps",
+      "target": {
+        "node": "n",
+        "input": "steps"
+      },
+      "type": "INT",
+      "default": 20,
+      "min": 1,
+      "max": 10000
+    },
+    {
+      "name": "denoise",
+      "label": "Denoise",
+      "target": {
+        "node": "n",
+        "input": "denoise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "BasicScheduler",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "scheduler": "simple",
+        "steps": 20,
+        "denoise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sigmas": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "scheduler",
+    "steps",
+    "denoise"
+  ]
+}

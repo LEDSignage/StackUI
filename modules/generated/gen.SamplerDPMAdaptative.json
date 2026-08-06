@@ -1,0 +1,172 @@
+{
+  "id": "gen.SamplerDPMAdaptative",
+  "name": "SamplerDPMAdaptative",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerDPMAdaptative",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "order",
+      "label": "Order",
+      "target": {
+        "node": "n",
+        "input": "order"
+      },
+      "type": "INT",
+      "default": 3,
+      "min": 2,
+      "max": 3
+    },
+    {
+      "name": "rtol",
+      "label": "Rtol",
+      "target": {
+        "node": "n",
+        "input": "rtol"
+      },
+      "type": "FLOAT",
+      "default": 0.05,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "atol",
+      "label": "Atol",
+      "target": {
+        "node": "n",
+        "input": "atol"
+      },
+      "type": "FLOAT",
+      "default": 0.0078,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "h_init",
+      "label": "H init",
+      "target": {
+        "node": "n",
+        "input": "h_init"
+      },
+      "type": "FLOAT",
+      "default": 0.05,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "pcoeff",
+      "label": "Pcoeff",
+      "target": {
+        "node": "n",
+        "input": "pcoeff"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "icoeff",
+      "label": "Icoeff",
+      "target": {
+        "node": "n",
+        "input": "icoeff"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "dcoeff",
+      "label": "Dcoeff",
+      "target": {
+        "node": "n",
+        "input": "dcoeff"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "accept_safety",
+      "label": "Accept safety",
+      "target": {
+        "node": "n",
+        "input": "accept_safety"
+      },
+      "type": "FLOAT",
+      "default": 0.81,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "eta",
+      "label": "Eta",
+      "target": {
+        "node": "n",
+        "input": "eta"
+      },
+      "type": "FLOAT",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    },
+    {
+      "name": "s_noise",
+      "label": "S noise",
+      "target": {
+        "node": "n",
+        "input": "s_noise"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": 0,
+      "max": 100,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerDPMAdaptative",
+      "inputs": {
+        "order": 3,
+        "rtol": 0.05,
+        "atol": 0.0078,
+        "h_init": 0.05,
+        "pcoeff": 0,
+        "icoeff": 1,
+        "dcoeff": 0,
+        "accept_safety": 0.81,
+        "eta": 0,
+        "s_noise": 1
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "order",
+    "rtol",
+    "atol"
+  ]
+}

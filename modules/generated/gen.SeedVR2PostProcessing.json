@@ -1,0 +1,70 @@
+{
+  "id": "gen.SeedVR2PostProcessing",
+  "name": "Post-Process SeedVR2 Output",
+  "category": "ComfyUI / image/post-processors",
+  "description": "SeedVR2PostProcessing — Align the generated image with the original resized image and apply color correction.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    },
+    {
+      "name": "original_resized_images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "color_correction_method",
+      "label": "Color correction method",
+      "target": {
+        "node": "n",
+        "input": "color_correction_method"
+      },
+      "type": "ENUM",
+      "default": "lab",
+      "options": [
+        "lab",
+        "wavelet",
+        "adain",
+        "none"
+      ],
+      "optionsFrom": {
+        "class_type": "SeedVR2PostProcessing",
+        "input": "color_correction_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SeedVR2PostProcessing",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "original_resized_images": {
+          "$port": "original_resized_images"
+        },
+        "color_correction_method": "lab"
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "color_correction_method"
+  ]
+}

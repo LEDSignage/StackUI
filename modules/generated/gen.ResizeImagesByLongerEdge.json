@@ -1,0 +1,55 @@
+{
+  "id": "gen.ResizeImagesByLongerEdge",
+  "name": "Resize Images by Longer Edge (DEPRECATED)",
+  "category": "ComfyUI / image/transform",
+  "description": "ResizeImagesByLongerEdge — Resize images so that the longer edge matches the specified dimension while preserving aspect ratio.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "longer_edge",
+      "label": "Longer edge",
+      "target": {
+        "node": "n",
+        "input": "longer_edge"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 1,
+      "max": 8192
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ResizeImagesByLongerEdge",
+      "inputs": {
+        "images": {
+          "$port": "images"
+        },
+        "longer_edge": 1024
+      }
+    }
+  },
+  "outputs": {
+    "images": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "images": "images"
+  },
+  "summary": [
+    "longer_edge"
+  ]
+}

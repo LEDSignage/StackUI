@@ -1,0 +1,53 @@
+{
+  "id": "gen.ImageColorToMask",
+  "name": "Convert Image Color to Mask",
+  "category": "ComfyUI / image/mask",
+  "description": "ImageColorToMask",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "mask",
+      "type": "MASK"
+    }
+  ],
+  "params": [
+    {
+      "name": "color",
+      "label": "Color",
+      "target": {
+        "node": "n",
+        "input": "color"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16777215,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageColorToMask",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "color": 0
+      }
+    }
+  },
+  "outputs": {
+    "mask": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "color"
+  ]
+}

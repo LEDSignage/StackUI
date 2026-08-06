@@ -1,0 +1,109 @@
+{
+  "id": "gen.KlingVideoNode",
+  "name": "Kling 3.0 Video",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingVideoNode — Generate videos with Kling V3. Supports text-to-video and image-to-video with optional storyboard multi-prompt and audio generation.",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "multi_shot",
+      "label": "Multi shot",
+      "target": {
+        "node": "n",
+        "input": "multi_shot"
+      },
+      "type": "ENUM",
+      "default": "disabled",
+      "options": [
+        "disabled",
+        "1 storyboard",
+        "2 storyboards",
+        "3 storyboards",
+        "4 storyboards",
+        "5 storyboards",
+        "6 storyboards"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingVideoNode",
+        "input": "multi_shot"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "kling-v3",
+      "options": [
+        "kling-v3",
+        "kling-3.0-turbo"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 2147483647
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingVideoNode",
+      "inputs": {
+        "multi_shot": "disabled",
+        "generate_audio": true,
+        "model": "kling-v3",
+        "seed": 0,
+        "start_frame": {
+          "$port": "start_frame"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "multi_shot",
+    "generate_audio",
+    "model"
+  ]
+}

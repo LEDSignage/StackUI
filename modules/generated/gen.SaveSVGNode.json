@@ -1,0 +1,54 @@
+{
+  "id": "gen.SaveSVGNode",
+  "name": "Save SVG",
+  "category": "ComfyUI / image",
+  "description": "SaveSVGNode — Save SVG files on disk.",
+  "inPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "svg",
+      "type": "SVG"
+    }
+  ],
+  "params": [
+    {
+      "name": "filename_prefix",
+      "label": "Filename prefix",
+      "target": {
+        "node": "n",
+        "input": "filename_prefix"
+      },
+      "type": "STRING",
+      "default": "svg/ComfyUI"
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SaveSVGNode",
+      "inputs": {
+        "svg": {
+          "$port": "svg"
+        },
+        "filename_prefix": "svg/ComfyUI"
+      }
+    }
+  },
+  "outputs": {
+    "svg": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "terminal": true,
+  "passThrough": {
+    "svg": "svg"
+  },
+  "summary": [
+    "filename_prefix"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "gen.ImageFlip",
+  "name": "Flip Image",
+  "category": "ComfyUI / image/transform",
+  "description": "ImageFlip",
+  "inPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "params": [
+    {
+      "name": "flip_method",
+      "label": "Flip method",
+      "target": {
+        "node": "n",
+        "input": "flip_method"
+      },
+      "type": "ENUM",
+      "default": "x-axis: vertically",
+      "options": [
+        "x-axis: vertically",
+        "y-axis: horizontally"
+      ],
+      "optionsFrom": {
+        "class_type": "ImageFlip",
+        "input": "flip_method"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ImageFlip",
+      "inputs": {
+        "image": {
+          "$port": "image"
+        },
+        "flip_method": "x-axis: vertically"
+      }
+    }
+  },
+  "outputs": {
+    "image": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "image": "image"
+  },
+  "summary": [
+    "flip_method"
+  ]
+}

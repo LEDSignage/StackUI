@@ -1,0 +1,44 @@
+{
+  "id": "gen.SamplerARVideo",
+  "name": "Sampler AR Video",
+  "category": "ComfyUI / model/sampling/samplers",
+  "description": "SamplerARVideo",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "sampler",
+      "type": "SAMPLER"
+    }
+  ],
+  "params": [
+    {
+      "name": "num_frame_per_block",
+      "label": "Num frame per block",
+      "target": {
+        "node": "n",
+        "input": "num_frame_per_block"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1,
+      "max": 64
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "SamplerARVideo",
+      "inputs": {
+        "num_frame_per_block": 1
+      }
+    }
+  },
+  "outputs": {
+    "sampler": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "num_frame_per_block"
+  ]
+}

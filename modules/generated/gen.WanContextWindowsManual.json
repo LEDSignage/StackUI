@@ -1,0 +1,168 @@
+{
+  "id": "gen.WanContextWindowsManual",
+  "name": "Wan Context Windows",
+  "category": "ComfyUI / model/patch/wan",
+  "description": "WanContextWindowsManual — Set context windows for Wan-like models.",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    }
+  ],
+  "params": [
+    {
+      "name": "context_length",
+      "label": "Context length",
+      "target": {
+        "node": "n",
+        "input": "context_length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "context_overlap",
+      "label": "Context overlap",
+      "target": {
+        "node": "n",
+        "input": "context_overlap"
+      },
+      "type": "INT",
+      "default": 30,
+      "min": 0
+    },
+    {
+      "name": "context_schedule",
+      "label": "Context schedule",
+      "target": {
+        "node": "n",
+        "input": "context_schedule"
+      },
+      "type": "ENUM",
+      "default": "standard_uniform",
+      "options": [
+        "standard_static",
+        "standard_uniform",
+        "looped_uniform",
+        "batched"
+      ],
+      "optionsFrom": {
+        "class_type": "WanContextWindowsManual",
+        "input": "context_schedule"
+      }
+    },
+    {
+      "name": "context_stride",
+      "label": "Context stride",
+      "target": {
+        "node": "n",
+        "input": "context_stride"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 1
+    },
+    {
+      "name": "closed_loop",
+      "label": "Closed loop",
+      "target": {
+        "node": "n",
+        "input": "closed_loop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "fuse_method",
+      "label": "Fuse method",
+      "target": {
+        "node": "n",
+        "input": "fuse_method"
+      },
+      "type": "ENUM",
+      "default": "pyramid",
+      "options": [
+        "pyramid",
+        "relative",
+        "flat",
+        "overlap-linear"
+      ],
+      "optionsFrom": {
+        "class_type": "WanContextWindowsManual",
+        "input": "fuse_method"
+      }
+    },
+    {
+      "name": "freenoise",
+      "label": "Freenoise",
+      "target": {
+        "node": "n",
+        "input": "freenoise"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    },
+    {
+      "name": "retain_first_frame",
+      "label": "Retain first frame",
+      "target": {
+        "node": "n",
+        "input": "retain_first_frame"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "split_conds_to_windows",
+      "label": "Split conds to windows",
+      "target": {
+        "node": "n",
+        "input": "split_conds_to_windows"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanContextWindowsManual",
+      "inputs": {
+        "model": {
+          "$port": "model"
+        },
+        "context_length": 81,
+        "context_overlap": 30,
+        "context_schedule": "standard_uniform",
+        "context_stride": 1,
+        "closed_loop": false,
+        "fuse_method": "pyramid",
+        "freenoise": true,
+        "retain_first_frame": false,
+        "split_conds_to_windows": false
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "model": "model"
+  },
+  "summary": [
+    "context_length",
+    "context_overlap",
+    "context_schedule"
+  ]
+}

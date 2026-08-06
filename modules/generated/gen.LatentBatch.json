@@ -1,0 +1,45 @@
+{
+  "id": "gen.LatentBatch",
+  "name": "Batch Latents (DEPRECATED)",
+  "category": "ComfyUI / model/latent/batch",
+  "description": "LatentBatch",
+  "inPorts": [
+    {
+      "name": "samples1",
+      "type": "LATENT"
+    },
+    {
+      "name": "samples2",
+      "type": "LATENT"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "latent",
+      "type": "LATENT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "LatentBatch",
+      "inputs": {
+        "samples1": {
+          "$port": "samples1"
+        },
+        "samples2": {
+          "$port": "samples2"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "latent": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "samples1": "latent"
+  }
+}

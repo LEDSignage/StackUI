@@ -1,0 +1,127 @@
+{
+  "id": "gen.KlingTextToVideoWithAudio",
+  "name": "Kling 2.6 Text to Video with Audio",
+  "category": "ComfyUI / partner/video/Kling",
+  "description": "KlingTextToVideoWithAudio",
+  "inPorts": [],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "model_name",
+      "label": "Model name",
+      "target": {
+        "node": "n",
+        "input": "model_name"
+      },
+      "type": "ENUM",
+      "default": "kling-v2-6",
+      "options": [
+        "kling-v2-6"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingTextToVideoWithAudio",
+        "input": "model_name"
+      }
+    },
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "pro",
+      "options": [
+        "pro"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingTextToVideoWithAudio",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "16:9",
+        "9:16",
+        "1:1"
+      ],
+      "optionsFrom": {
+        "class_type": "KlingTextToVideoWithAudio",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "KlingTextToVideoWithAudio",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "generate_audio",
+      "label": "Generate audio",
+      "target": {
+        "node": "n",
+        "input": "generate_audio"
+      },
+      "type": "BOOLEAN",
+      "default": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "KlingTextToVideoWithAudio",
+      "inputs": {
+        "model_name": "kling-v2-6",
+        "prompt": "",
+        "mode": "pro",
+        "aspect_ratio": "16:9",
+        "duration": "",
+        "generate_audio": true
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "model_name",
+    "prompt",
+    "mode"
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "id": "gen.LumaVideoNode",
+  "name": "Luma Text to Video",
+  "category": "ComfyUI / partner/video/Luma",
+  "description": "LumaVideoNode — Generates videos synchronously based on prompt and output_size.",
+  "inPorts": [
+    {
+      "name": "luma_concepts",
+      "type": "LUMA_CONCEPTS",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "ray-2",
+      "options": [
+        "ray-2",
+        "ray-flash-2",
+        "ray-1-6"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaVideoNode",
+        "input": "model"
+      }
+    },
+    {
+      "name": "aspect_ratio",
+      "label": "Aspect ratio",
+      "target": {
+        "node": "n",
+        "input": "aspect_ratio"
+      },
+      "type": "ENUM",
+      "default": "16:9",
+      "options": [
+        "1:1",
+        "16:9",
+        "9:16",
+        "4:3",
+        "3:4",
+        "21:9",
+        "9:21"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaVideoNode",
+        "input": "aspect_ratio"
+      }
+    },
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "ENUM",
+      "default": "540p",
+      "options": [
+        "540p",
+        "720p",
+        "1080p",
+        "4k"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaVideoNode",
+        "input": "resolution"
+      }
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "5s",
+      "options": [
+        "5s",
+        "9s"
+      ],
+      "optionsFrom": {
+        "class_type": "LumaVideoNode",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "loop",
+      "label": "Loop",
+      "target": {
+        "node": "n",
+        "input": "loop"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "LumaVideoNode",
+      "inputs": {
+        "prompt": "",
+        "model": "ray-2",
+        "aspect_ratio": "16:9",
+        "resolution": "540p",
+        "duration": "5s",
+        "loop": false,
+        "seed": 0,
+        "luma_concepts": {
+          "$port": "luma_concepts"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "model",
+    "aspect_ratio"
+  ]
+}

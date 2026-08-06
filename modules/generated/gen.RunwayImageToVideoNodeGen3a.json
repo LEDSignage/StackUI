@@ -1,0 +1,101 @@
+{
+  "id": "gen.RunwayImageToVideoNodeGen3a",
+  "name": "Runway Image to Video (Gen3a Turbo)",
+  "category": "ComfyUI / partner/video/Runway",
+  "description": "RunwayImageToVideoNodeGen3a — Generate a video from a single starting frame using Gen3a Turbo model. Before diving in, review these best practices to ensure that your input selections will set your generation up for success: https://help.runwayml.com/hc/en-us/articles/33927968552339-Creating-with-Act-One-on-Gen-3-Alpha-and-Turbo.",
+  "inPorts": [
+    {
+      "name": "start_frame",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "video",
+      "type": "VIDEO"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "duration",
+      "label": "Duration",
+      "target": {
+        "node": "n",
+        "input": "duration"
+      },
+      "type": "ENUM",
+      "default": "",
+      "optionsFrom": {
+        "class_type": "RunwayImageToVideoNodeGen3a",
+        "input": "duration"
+      }
+    },
+    {
+      "name": "ratio",
+      "label": "Ratio",
+      "target": {
+        "node": "n",
+        "input": "ratio"
+      },
+      "type": "ENUM",
+      "default": "768:1280",
+      "options": [
+        "768:1280",
+        "1280:768"
+      ],
+      "optionsFrom": {
+        "class_type": "RunwayImageToVideoNodeGen3a",
+        "input": "ratio"
+      }
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 4294967295,
+      "step": 1
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "RunwayImageToVideoNodeGen3a",
+      "inputs": {
+        "prompt": "",
+        "start_frame": {
+          "$port": "start_frame"
+        },
+        "duration": "",
+        "ratio": "768:1280",
+        "seed": 0
+      }
+    }
+  },
+  "outputs": {
+    "video": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "duration",
+    "ratio"
+  ]
+}

@@ -1,0 +1,113 @@
+{
+  "id": "gen.OpenAIChatNode",
+  "name": "OpenAI ChatGPT",
+  "category": "ComfyUI / partner/text/OpenAI",
+  "description": "OpenAIChatNode — Generate text responses from an OpenAI model.",
+  "inPorts": [
+    {
+      "name": "images",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "files",
+      "type": "OPENAI_INPUT_FILES",
+      "optional": true
+    },
+    {
+      "name": "advanced_options",
+      "type": "OPENAI_CHAT_CONFIG",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "string",
+      "type": "STRING"
+    }
+  ],
+  "params": [
+    {
+      "name": "prompt",
+      "label": "Prompt",
+      "target": {
+        "node": "n",
+        "input": "prompt"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "persist_context",
+      "label": "Persist context",
+      "target": {
+        "node": "n",
+        "input": "persist_context"
+      },
+      "type": "BOOLEAN",
+      "default": false
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "gpt-5.6-sol",
+      "options": [
+        "gpt-5.6-sol",
+        "gpt-5.6-terra",
+        "gpt-5.6-luna",
+        "gpt-5.5-pro",
+        "gpt-5.5",
+        "gpt-5",
+        "gpt-5-mini",
+        "gpt-5-nano",
+        "gpt-4.1",
+        "gpt-4.1-mini",
+        "gpt-4.1-nano",
+        "o4-mini",
+        "o3",
+        "o1-pro",
+        "o1"
+      ],
+      "optionsFrom": {
+        "class_type": "OpenAIChatNode",
+        "input": "model"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "OpenAIChatNode",
+      "inputs": {
+        "prompt": "",
+        "persist_context": false,
+        "model": "gpt-5.6-sol",
+        "images": {
+          "$port": "images"
+        },
+        "files": {
+          "$port": "files"
+        },
+        "advanced_options": {
+          "$port": "advanced_options"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "string": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "prompt",
+    "persist_context",
+    "model"
+  ]
+}

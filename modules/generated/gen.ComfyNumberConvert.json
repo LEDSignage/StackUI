@@ -1,0 +1,43 @@
+{
+  "id": "gen.ComfyNumberConvert",
+  "name": "Convert Number",
+  "category": "ComfyUI / utilities",
+  "description": "ComfyNumberConvert",
+  "inPorts": [
+    {
+      "name": "value",
+      "type": "INT,FLOAT,STRING,BOOLEAN"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "float",
+      "type": "FLOAT"
+    },
+    {
+      "name": "int",
+      "type": "INT"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ComfyNumberConvert",
+      "inputs": {
+        "value": {
+          "$port": "value"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "float": {
+      "node": "n",
+      "out": 0
+    },
+    "int": {
+      "node": "n",
+      "out": 1
+    }
+  }
+}

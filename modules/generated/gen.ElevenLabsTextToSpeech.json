@@ -1,0 +1,149 @@
+{
+  "id": "gen.ElevenLabsTextToSpeech",
+  "name": "ElevenLabs Text to Speech",
+  "category": "ComfyUI / partner/audio/ElevenLabs",
+  "description": "ElevenLabsTextToSpeech — Convert text to speech.",
+  "inPorts": [
+    {
+      "name": "voice",
+      "type": "ELEVENLABS_VOICE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "audio",
+      "type": "AUDIO"
+    }
+  ],
+  "params": [
+    {
+      "name": "text",
+      "label": "Text",
+      "target": {
+        "node": "n",
+        "input": "text"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "stability",
+      "label": "Stability",
+      "target": {
+        "node": "n",
+        "input": "stability"
+      },
+      "type": "FLOAT",
+      "default": 0.5,
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    },
+    {
+      "name": "apply_text_normalization",
+      "label": "Apply text normalization",
+      "target": {
+        "node": "n",
+        "input": "apply_text_normalization"
+      },
+      "type": "ENUM",
+      "default": "auto",
+      "options": [
+        "auto",
+        "on",
+        "off"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsTextToSpeech",
+        "input": "apply_text_normalization"
+      }
+    },
+    {
+      "name": "model",
+      "label": "Model",
+      "target": {
+        "node": "n",
+        "input": "model"
+      },
+      "type": "ENUM",
+      "default": "eleven_multilingual_v2",
+      "options": [
+        "eleven_multilingual_v2",
+        "eleven_v3"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsTextToSpeech",
+        "input": "model"
+      }
+    },
+    {
+      "name": "language_code",
+      "label": "Language code",
+      "target": {
+        "node": "n",
+        "input": "language_code"
+      },
+      "type": "STRING",
+      "default": ""
+    },
+    {
+      "name": "seed",
+      "label": "Seed",
+      "target": {
+        "node": "n",
+        "input": "seed"
+      },
+      "type": "INT",
+      "default": 1,
+      "min": 0,
+      "max": 2147483647
+    },
+    {
+      "name": "output_format",
+      "label": "Output format",
+      "target": {
+        "node": "n",
+        "input": "output_format"
+      },
+      "type": "ENUM",
+      "default": "mp3_44100_192",
+      "options": [
+        "mp3_44100_192",
+        "opus_48000_192"
+      ],
+      "optionsFrom": {
+        "class_type": "ElevenLabsTextToSpeech",
+        "input": "output_format"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "ElevenLabsTextToSpeech",
+      "inputs": {
+        "voice": {
+          "$port": "voice"
+        },
+        "text": "",
+        "stability": 0.5,
+        "apply_text_normalization": "auto",
+        "model": "eleven_multilingual_v2",
+        "language_code": "",
+        "seed": 1,
+        "output_format": "mp3_44100_192"
+      }
+    }
+  },
+  "outputs": {
+    "audio": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "text",
+    "stability",
+    "apply_text_normalization"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "gen.ImageCompare",
+  "name": "Compare Images",
+  "category": "ComfyUI / image",
+  "description": "ImageCompare — Compares two images side by side with a slider.",
+  "inPorts": [
+    {
+      "name": "compare_view",
+      "type": "IMAGECOMPARE"
+    },
+    {
+      "name": "image_a",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "image_b",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ImageCompare",
+      "inputs": {
+        "compare_view": {
+          "$port": "compare_view"
+        },
+        "image_a": {
+          "$port": "image_a"
+        },
+        "image_b": {
+          "$port": "image_b"
+        }
+      }
+    }
+  },
+  "terminal": true
+}

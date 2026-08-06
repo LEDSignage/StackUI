@@ -1,0 +1,143 @@
+{
+  "id": "gen.CLIPTextEncodeSDXL",
+  "name": "CLIP Text Encode (SDXL)",
+  "category": "ComfyUI / model/conditioning/stable diffusion",
+  "description": "CLIPTextEncodeSDXL",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "crop_w",
+      "label": "Crop w",
+      "target": {
+        "node": "n",
+        "input": "crop_w"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "crop_h",
+      "label": "Crop h",
+      "target": {
+        "node": "n",
+        "input": "crop_h"
+      },
+      "type": "INT",
+      "default": 0,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "target_width",
+      "label": "Target width",
+      "target": {
+        "node": "n",
+        "input": "target_width"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "target_height",
+      "label": "Target height",
+      "target": {
+        "node": "n",
+        "input": "target_height"
+      },
+      "type": "INT",
+      "default": 1024,
+      "min": 0,
+      "max": 16384
+    },
+    {
+      "name": "text_g",
+      "label": "Text g",
+      "target": {
+        "node": "n",
+        "input": "text_g"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "text_l",
+      "label": "Text l",
+      "target": {
+        "node": "n",
+        "input": "text_l"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeSDXL",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "width": 1024,
+        "height": 1024,
+        "crop_w": 0,
+        "crop_h": 0,
+        "target_width": 1024,
+        "target_height": 1024,
+        "text_g": "",
+        "text_l": ""
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "width",
+    "height",
+    "crop_w"
+  ]
+}

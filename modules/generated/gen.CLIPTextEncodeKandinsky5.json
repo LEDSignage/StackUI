@@ -1,0 +1,64 @@
+{
+  "id": "gen.CLIPTextEncodeKandinsky5",
+  "name": "CLIP Text Encode (Kandinsky 5)",
+  "category": "ComfyUI / model/conditioning/kandinsky",
+  "description": "CLIPTextEncodeKandinsky5",
+  "inPorts": [
+    {
+      "name": "clip",
+      "type": "CLIP"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [
+    {
+      "name": "clip_l",
+      "label": "Clip l",
+      "target": {
+        "node": "n",
+        "input": "clip_l"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    },
+    {
+      "name": "qwen25_7b",
+      "label": "Qwen25 7b",
+      "target": {
+        "node": "n",
+        "input": "qwen25_7b"
+      },
+      "type": "STRING",
+      "default": "",
+      "multiline": true
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "CLIPTextEncodeKandinsky5",
+      "inputs": {
+        "clip": {
+          "$port": "clip"
+        },
+        "clip_l": "",
+        "qwen25_7b": ""
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "clip_l",
+    "qwen25_7b"
+  ]
+}

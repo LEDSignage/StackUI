@@ -1,0 +1,100 @@
+{
+  "id": "gen.DA3Inference",
+  "name": "Run Depth Anything 3",
+  "category": "ComfyUI / image/geometry estimation",
+  "description": "DA3Inference — Run Depth Anything 3 on an image. In multi-view mode each image is treated as a separate view of the same scene.",
+  "inPorts": [
+    {
+      "name": "da3_model",
+      "type": "DA3_MODEL"
+    },
+    {
+      "name": "image",
+      "type": "IMAGE"
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "da3_geometry",
+      "type": "DA3_GEOMETRY"
+    }
+  ],
+  "params": [
+    {
+      "name": "resolution",
+      "label": "Resolution",
+      "target": {
+        "node": "n",
+        "input": "resolution"
+      },
+      "type": "INT",
+      "default": 504,
+      "min": 140,
+      "max": 2520,
+      "step": 14
+    },
+    {
+      "name": "resize_method",
+      "label": "Resize method",
+      "target": {
+        "node": "n",
+        "input": "resize_method"
+      },
+      "type": "ENUM",
+      "default": "upper_bound_resize",
+      "options": [
+        "upper_bound_resize",
+        "lower_bound_resize"
+      ],
+      "optionsFrom": {
+        "class_type": "DA3Inference",
+        "input": "resize_method"
+      }
+    },
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "mono",
+      "options": [
+        "mono",
+        "multiview"
+      ],
+      "optionsFrom": {
+        "class_type": "DA3Inference",
+        "input": "mode"
+      }
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "DA3Inference",
+      "inputs": {
+        "da3_model": {
+          "$port": "da3_model"
+        },
+        "image": {
+          "$port": "image"
+        },
+        "resolution": 504,
+        "resize_method": "upper_bound_resize",
+        "mode": "mono"
+      }
+    }
+  },
+  "outputs": {
+    "da3_geometry": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "summary": [
+    "resolution",
+    "resize_method",
+    "mode"
+  ]
+}

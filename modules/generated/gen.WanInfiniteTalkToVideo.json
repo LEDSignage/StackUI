@@ -1,0 +1,226 @@
+{
+  "id": "gen.WanInfiniteTalkToVideo",
+  "name": "WanInfiniteTalkToVideo",
+  "category": "ComfyUI / model/conditioning/wan/infinite talk",
+  "description": "WanInfiniteTalkToVideo",
+  "inPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "model_patch",
+      "type": "MODEL_PATCH"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "vae",
+      "type": "VAE"
+    },
+    {
+      "name": "audio_encoder_output_1",
+      "type": "AUDIO_ENCODER_OUTPUT"
+    },
+    {
+      "name": "clip_vision_output",
+      "type": "CLIP_VISION_OUTPUT",
+      "optional": true
+    },
+    {
+      "name": "start_image",
+      "type": "IMAGE",
+      "optional": true
+    },
+    {
+      "name": "previous_frames",
+      "type": "IMAGE",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "model",
+      "type": "MODEL"
+    },
+    {
+      "name": "positive",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "negative",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT"
+    },
+    {
+      "name": "trim_image",
+      "type": "INT"
+    }
+  ],
+  "params": [
+    {
+      "name": "mode",
+      "label": "Mode",
+      "target": {
+        "node": "n",
+        "input": "mode"
+      },
+      "type": "ENUM",
+      "default": "single_speaker",
+      "options": [
+        "single_speaker",
+        "two_speakers"
+      ],
+      "optionsFrom": {
+        "class_type": "WanInfiniteTalkToVideo",
+        "input": "mode"
+      }
+    },
+    {
+      "name": "width",
+      "label": "Width",
+      "target": {
+        "node": "n",
+        "input": "width"
+      },
+      "type": "INT",
+      "default": 832,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "height",
+      "label": "Height",
+      "target": {
+        "node": "n",
+        "input": "height"
+      },
+      "type": "INT",
+      "default": 480,
+      "min": 16,
+      "max": 16384,
+      "step": 16
+    },
+    {
+      "name": "length",
+      "label": "Length",
+      "target": {
+        "node": "n",
+        "input": "length"
+      },
+      "type": "INT",
+      "default": 81,
+      "min": 1,
+      "max": 16384,
+      "step": 4
+    },
+    {
+      "name": "motion_frame_count",
+      "label": "Motion frame count",
+      "target": {
+        "node": "n",
+        "input": "motion_frame_count"
+      },
+      "type": "INT",
+      "default": 9,
+      "min": 1,
+      "max": 33,
+      "step": 1
+    },
+    {
+      "name": "audio_scale",
+      "label": "Audio scale",
+      "target": {
+        "node": "n",
+        "input": "audio_scale"
+      },
+      "type": "FLOAT",
+      "default": 1,
+      "min": -10,
+      "max": 10,
+      "step": 0.01
+    }
+  ],
+  "nodes": {
+    "n": {
+      "class_type": "WanInfiniteTalkToVideo",
+      "inputs": {
+        "mode": "single_speaker",
+        "model": {
+          "$port": "model"
+        },
+        "model_patch": {
+          "$port": "model_patch"
+        },
+        "positive": {
+          "$port": "positive"
+        },
+        "negative": {
+          "$port": "negative"
+        },
+        "vae": {
+          "$port": "vae"
+        },
+        "width": 832,
+        "height": 480,
+        "length": 81,
+        "audio_encoder_output_1": {
+          "$port": "audio_encoder_output_1"
+        },
+        "motion_frame_count": 9,
+        "audio_scale": 1,
+        "clip_vision_output": {
+          "$port": "clip_vision_output"
+        },
+        "start_image": {
+          "$port": "start_image"
+        },
+        "previous_frames": {
+          "$port": "previous_frames"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "model": {
+      "node": "n",
+      "out": 0
+    },
+    "positive": {
+      "node": "n",
+      "out": 1
+    },
+    "negative": {
+      "node": "n",
+      "out": 2
+    },
+    "latent": {
+      "node": "n",
+      "out": 3
+    },
+    "trim_image": {
+      "node": "n",
+      "out": 4
+    }
+  },
+  "passThrough": {
+    "model": "model",
+    "positive": "positive",
+    "negative": "negative"
+  },
+  "summary": [
+    "mode",
+    "width",
+    "height"
+  ]
+}

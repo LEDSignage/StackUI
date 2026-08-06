@@ -1,0 +1,46 @@
+{
+  "id": "gen.ReferenceLatent",
+  "name": "Set Reference Latent",
+  "category": "ComfyUI / model/conditioning",
+  "description": "ReferenceLatent — This node sets the guiding latent for an edit model. If the model supports it you can chain multiple to set multiple reference images.",
+  "inPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    },
+    {
+      "name": "latent",
+      "type": "LATENT",
+      "optional": true
+    }
+  ],
+  "outPorts": [
+    {
+      "name": "conditioning",
+      "type": "CONDITIONING"
+    }
+  ],
+  "params": [],
+  "nodes": {
+    "n": {
+      "class_type": "ReferenceLatent",
+      "inputs": {
+        "conditioning": {
+          "$port": "conditioning"
+        },
+        "latent": {
+          "$port": "latent"
+        }
+      }
+    }
+  },
+  "outputs": {
+    "conditioning": {
+      "node": "n",
+      "out": 0
+    }
+  },
+  "passThrough": {
+    "conditioning": "conditioning"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "id": "prompts",
+  "name": "Prompts",
+  "category": "conditioning",
+  "description": "Two CLIPTextEncode nodes — the positive and negative conditioning.",
+  "inPorts": [{ "name": "clip", "type": "CLIP" }],
+  "outPorts": [
+    { "name": "positive", "type": "CONDITIONING" },
+    { "name": "negative", "type": "CONDITIONING" }
+  ],
+  "outputs": { "positive": { "node": "pos" }, "negative": { "node": "neg" } },
+  "summary": ["positive"],
+  "params": [
+    {
+      "name": "positive",
+      "label": "Positive",
+      "type": "STRING",
+      "multiline": true,
+      "default": "",
+      "target": { "node": "pos", "input": "text" }
+    },
+    {
+      "name": "negative",
+      "label": "Negative",
+      "type": "STRING",
+      "multiline": true,
+      "default": "text, watermark, blurry",
+      "target": { "node": "neg", "input": "text" }
+    }
+  ],
+  "nodes": {
+    "pos": { "class_type": "CLIPTextEncode", "inputs": { "text": "", "clip": { "$port": "clip" } } },
+    "neg": { "class_type": "CLIPTextEncode", "inputs": { "text": "", "clip": { "$port": "clip" } } }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "z-image-model",
+  "name": "Z-Image model",
+  "category": "load",
+  "description": "UNETLoader + ModelSamplingAuraFlow — the Z-Image Turbo diffusion model, shifted.",
+  "inPorts": [],
+  "outPorts": [{ "name": "model", "type": "MODEL" }],
+  "outputs": { "model": { "node": "shift" } },
+  "summary": ["unet_name", "shift"],
+  "params": [
+    {
+      "name": "unet_name",
+      "label": "Diffusion model",
+      "type": "ENUM",
+      "default": "z_image_turbo_bf16.safetensors",
+      "optionsFrom": { "class_type": "UNETLoader", "input": "unet_name" },
+      "target": { "node": "unet", "input": "unet_name" }
+    },
+    {
+      "name": "weight_dtype",
+      "label": "Weight dtype",
+      "type": "ENUM",
+      "default": "default",
+      "optionsFrom": { "class_type": "UNETLoader", "input": "weight_dtype" },
+      "target": { "node": "unet", "input": "weight_dtype" }
+    },
+    {
+      "name": "shift",
+      "label": "Shift",
+      "type": "FLOAT",
+      "default": 3,
+      "min": 0,
+      "max": 100,
+      "step": 0.1,
+      "target": { "node": "shift", "input": "shift" }
+    }
+  ],
+  "nodes": {
+    "unet": {
+      "class_type": "UNETLoader",
+      "inputs": { "unet_name": "z_image_turbo_bf16.safetensors", "weight_dtype": "default" }
+    },
+    "shift": {
+      "class_type": "ModelSamplingAuraFlow",
+      "inputs": { "shift": 3, "model": { "$node": "unet", "out": 0 } }
+    }
+  }
+}
