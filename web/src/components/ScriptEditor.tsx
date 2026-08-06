@@ -8,6 +8,39 @@ type Props = {
   onChange: (script: Script) => void;
 };
 
+/** Whole seconds where they are whole, one decimal where they are not. */
+const fmt = (n: number) => (Number.isInteger(n) ? `${n}s` : `${n.toFixed(1)}s`);
+
+/**
+ * Timing mistakes that produce a bad clip with no error anywhere.
+ *
+ * Ordered by position so the messages read down the list the way the shots do.
+ */
+export function problems(script: Script): string[] {
+  const out: string[] = [];
+  const shots = [...script.shots].sort((a, b) => a.from - b.from);
+
+  shots.forEach((s, i) => {
+    const n = script.shots.indexOf(s) + 1;
+    if (s.to <= s.from) {
+      out.push(`Shot ${n} has no length — it starts and ends at ${fmt(s.from)}. Give it a duration.`);
+      return;
+    }
+    const prev = shots[i - 1];
+    if (prev && s.from > prev.to + 0.01) {
+      out.push(`Nothing covers ${fmt(prev.to)}–${fmt(s.from)}. The model is left to invent it.`);
+    }
+    if (prev && s.from < prev.to - 0.01) {
+      out.push(`Shot ${n} starts at ${fmt(s.from)}, before the previous one ends at ${fmt(prev.to)}.`);
+    }
+  });
+
+  if (shots.length && shots[0]!.from > 0.01) {
+    out.push(`Nothing covers 0s–${fmt(shots[0]!.from)} at the start.`);
+  }
+  return out;
+}
+
 /**
  * The shot list.
  *
@@ -59,28 +92,43 @@ export function ScriptEditor({ script, clipSeconds, onChange }: Props) {
 
         {script.shots.map((shot, i) => (
           <div className="shot" key={i}>
+            {/* Both fields are points on the clip's timeline, not a length.
+                They were two bare number boxes with a dash between them, which
+                reads as "starts at, lasts" — a shot entered as 2 and 2 became a
+                zero-length shot at the two second mark, silently, and left a
+                hole in the clip. The labels are visible now, and problems()
+                below says so when the numbers do not add up. */}
             <div className="shot-head">
               <span className="shot-n">Shot {i + 1}</span>
-              <input
-                type="number"
-                className="param-input shot-time"
-                min={0}
-                step={0.5}
-                value={shot.from}
-                onChange={(e) => setShot(i, { from: Number(e.target.value) })}
-                title="Starts at (seconds)"
-              />
-              <span className="shot-dash">–</span>
-              <input
-                type="number"
-                className="param-input shot-time"
-                min={0}
-                step={0.5}
-                value={shot.to}
-                onChange={(e) => setShot(i, { to: Number(e.target.value) })}
-                title="Ends at (seconds)"
-              />
-              <span className="muted small">s</span>
+
+              <label className="shot-field">
+                <span className="shot-field-label">from</span>
+                <input
+                  type="number"
+                  className="param-input shot-time"
+                  min={0}
+                  step={0.5}
+                  value={shot.from}
+                  onChange={(e) => setShot(i, { from: Number(e.target.value) })}
+                />
+              </label>
+
+              <label className="shot-field">
+                <span className="shot-field-label">to</span>
+                <input
+                  type="number"
+                  className="param-input shot-time"
+                  min={0}
+                  step={0.5}
+                  value={shot.to}
+                  onChange={(e) => setShot(i, { to: Number(e.target.value) })}
+                />
+              </label>
+
+              <span className="muted small">
+                seconds{shot.to > shot.from && ` · ${fmt(shot.to - shot.from)} long`}
+              </span>
+
               <span className="spacer" />
               <button
                 className="link danger"
@@ -107,6 +155,15 @@ export function ScriptEditor({ script, clipSeconds, onChange }: Props) {
         >
           + Add shot
         </button>
+
+        {/* Timing problems the model cannot tell you about. A shot with no
+            length, or a stretch of the clip no shot covers, produces a video
+            that looks broken for reasons nothing on screen explains. */}
+        {problems(script).map((p, i) => (
+          <p className="warning small script-warn" key={i}>
+            {p}
+          </p>
+        ))}
 
         {over && (
           <p className="warning small script-warn">
