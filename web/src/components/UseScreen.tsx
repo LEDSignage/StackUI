@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import type {
   CompileIssue,
   Module,
@@ -14,6 +15,7 @@ import { ParamControl } from './ParamControl.tsx';
 import { InputBar } from './InputBar.tsx';
 import { ScriptEditor } from './ScriptEditor.tsx';
 import { MediaBrowser } from './MediaBrowser.tsx';
+import { useSplit } from '../lib/useSplit.ts';
 
 type Props = {
   stack: Stack;
@@ -88,6 +90,9 @@ export function UseScreen({
 }: Props) {
   const busy = run.status === 'queued' || run.status === 'running';
 
+  const inner = useRef<HTMLDivElement>(null);
+  const split = useSplit(inner);
+
   /** Write a control's value, plus any params it keeps in step with. */
   const write = (control: StackControl, value: unknown) => {
     onParam(control.tileId, control.param, value);
@@ -122,7 +127,20 @@ export function UseScreen({
 
   return (
     <div className="use">
-      <div className="use-inner">
+      <div
+        className={`use-inner ${split.dragging ? 'is-dragging' : ''}`}
+        ref={inner}
+        /* A width set by dragging overrides the default proportion; before
+           that the columns stay fluid, so a narrow window is not held to a
+           split chosen on a wide one. */
+        style={
+          split.width === null
+            ? undefined
+            : /* Three tracks: settings, handle, result — the handle is a grid
+                 child, so a two-track template would push the result out. */
+              { gridTemplateColumns: `${split.width}px 0 minmax(0, 1fr)` }
+        }
+      >
       <div className="use-controls">
         {stack.inputs && onAddInput && onRemoveInput && (
           <InputBar
@@ -265,6 +283,30 @@ export function UseScreen({
         )}
 
         {run.status === 'error' && <p className="error">{run.message}</p>}
+      </div>
+
+      {/* Drag to set the split; double-click to put it back. */}
+      <div
+        className="split-handle"
+        onPointerDown={split.onPointerDown}
+        onDoubleClick={split.reset}
+        role="separator"
+        aria-orientation="vertical"
+        title="Drag to resize — double-click to reset"
+      >
+        <span className="split-grip" />
+      </div>
+
+      {/* Drag to set the split; double-click to put it back. */}
+      <div
+        className="split-handle"
+        onPointerDown={split.onPointerDown}
+        onDoubleClick={split.reset}
+        role="separator"
+        aria-orientation="vertical"
+        title="Drag to resize — double-click to reset"
+      >
+        <span className="split-grip" />
       </div>
 
       {/* The right half of the screen. It holds the last result, and doubles as

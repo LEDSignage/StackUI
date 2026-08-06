@@ -29,9 +29,9 @@
   --gap-line: 22px;
   --gap-tile: 10px;
 
-  --fs-body: 14px;
-  --fs-small: 13px;
-  --fs-tiny: 12px;
+  --fs-body: 16px;
+  --fs-small: 15px;
+  --fs-tiny: 14px;
 
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-dur: 190ms;
@@ -1686,7 +1686,7 @@ button.stop:hover {
 }
 
 .stack-name {
-  font-size: 15px;
+  font-size: 17px;
   border-radius: var(--radius-sm);
 }
 
@@ -1940,13 +1940,13 @@ body {
 /* Headings carry weight rather than size, as on the reference: a section title
    is only a point larger than the body but clearly heavier and pure white. */
 .use-group-title {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 650;
   letter-spacing: -0.014em;
   color: #fff;
 }
 .panel-label {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 450;
   color: var(--muted);
 }
@@ -2079,7 +2079,7 @@ button.primary.big,
     padding: 14px;
   }
   .use-inner {
-    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1.45fr) 0 minmax(0, 1fr);
     height: 100%;
     min-height: 0;
   }
@@ -2152,4 +2152,61 @@ input[type='number'].param-input {
 }
 .input-pos .param-input {
   min-width: 84px;
+}
+
+/* ── Split handle ───────────────────────────────────────────────────────── */
+/*
+   A hit area wider than the line it draws. Four pixels is honest about where
+   the boundary is and miserable to actually grab, so the handle is 14px of
+   target with a 2px rule down the middle of it.
+*/
+@media (min-width: 1100px) {
+  .use-inner {
+    /* Three tracks now: settings, handle, result. The handle sits in the gap
+       that was already there, so nothing loses width to it. */
+    grid-template-columns: minmax(0, 1.45fr) 0 minmax(0, 1fr);
+  }
+  .split-handle {
+    position: relative;
+    width: 16px;
+    margin: 0 -8px;
+    cursor: col-resize;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Above both columns, so it stays grabbable over the video. */
+    z-index: 5;
+    touch-action: none;
+  }
+  .split-grip {
+    width: 2px;
+    height: 46px;
+    border-radius: 999px;
+    background: var(--line);
+    transition: background var(--ease-dur) var(--ease);
+  }
+  .split-handle:hover .split-grip {
+    background: #6a6a76;
+    height: 76px;
+  }
+  .use-inner.is-dragging .split-grip {
+    background: var(--cta);
+    height: 100%;
+    border-radius: 0;
+  }
+  /* A drag must not be interrupted by the pointer entering a video or an
+     iframe, which would otherwise swallow the move events. */
+  .use-inner.is-dragging * {
+    pointer-events: none;
+  }
+  .use-inner.is-dragging .split-handle {
+    pointer-events: auto;
+  }
+}
+
+/* Below the breakpoint the columns are stacked, so there is nothing to split. */
+@media (max-width: 1099px) {
+  .split-handle {
+    display: none;
+  }
 }
