@@ -2252,3 +2252,83 @@ input[type='number'].param-input {
   min-height: 150px;
   background: #101012;
 }
+
+/* ── Video player ───────────────────────────────────────────────────────── */
+/*
+   Our own controls, always the same four whatever the width. Chrome's native
+   bar folds itself into an overflow menu on a narrow element and there is no
+   way to stop it, which left library tiles showing a "⋮" and nothing else.
+*/
+.player {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #101012;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.player-video {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
+  cursor: pointer;
+  display: block;
+}
+.player-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: #17171a;
+  border-top: 1px solid var(--line);
+}
+.player-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 4px 5px;
+  border-radius: 6px;
+  flex: none;
+}
+.player-btn:hover {
+  background: var(--tile-hi);
+}
+.player-track {
+  flex: 1;
+  height: 5px;
+  min-width: 24px;
+  border-radius: 999px;
+  background: #34343b;
+  cursor: pointer;
+}
+.player-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--cta);
+}
+.player-time {
+  font-size: var(--fs-tiny);
+  color: var(--muted);
+  flex: none;
+  white-space: nowrap;
+}
+
+/* In the grid the player is the thumbnail. */
+.media-thumb.player {
+  aspect-ratio: auto;
+  min-height: 0;
+}
+.media-thumb.player .player-video {
+  aspect-ratio: 16 / 9;
+}
+/* The time readout is the first thing to go when a tile is narrow — the
+   buttons and the scrubber are what you actually use. */
+@media (max-width: 1500px) {
+  .media-inline:not(.is-full) .player-time {
+    display: none;
+  }
+}
