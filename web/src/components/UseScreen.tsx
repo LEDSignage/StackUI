@@ -297,18 +297,6 @@ export function UseScreen({
         <span className="split-grip" />
       </div>
 
-      {/* Drag to set the split; double-click to put it back. */}
-      <div
-        className="split-handle"
-        onPointerDown={split.onPointerDown}
-        onDoubleClick={split.reset}
-        role="separator"
-        aria-orientation="vertical"
-        title="Drag to resize — double-click to reset"
-      >
-        <span className="split-grip" />
-      </div>
-
       {/* The right half of the screen. It holds the last result, and doubles as
           the output library — the same pane, two tabs, so finding an older clip
           does not mean covering the settings you are working on. */}
