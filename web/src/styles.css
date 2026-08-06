@@ -2332,3 +2332,21 @@ input[type='number'].param-input {
     display: none;
   }
 }
+
+/* The player bar is a fixed row: it never shrinks away, and the icons keep
+   their size whatever the tile does. */
+.player-bar {
+  flex: none;
+  min-height: 34px;
+}
+.player-btn svg {
+  display: block;
+}
+.player-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  min-height: 24px;
+  color: var(--text);
+}
