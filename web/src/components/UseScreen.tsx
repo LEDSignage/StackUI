@@ -92,6 +92,15 @@ export function UseScreen({
   // Show the re-timed file when there is one, otherwise the original.
   const shownUrl = !file ? null : (convert?.status === 'done' && convert.url) || viewUrl(file);
 
+  /**
+   * Whether the shot list is deciding the clip length.
+   *
+   * Having a script is not enough — it has to have shots in it. Keying off the
+   * script alone turned the Seconds box into a readout on a page with an empty
+   * shot list, so there was no way to say how long the clip should be at all.
+   */
+  const shotsDriveLength = (stack.script?.shots.length ?? 0) > 0;
+
   const scriptTarget = stack.script?.target;
   const fields = (stack.controls ?? [])
     .filter((c) => !(scriptTarget && c.tileId === scriptTarget.tileId && c.param === scriptTarget.param))
@@ -145,7 +154,7 @@ export function UseScreen({
                     /* A derived value carries its "from your shots" note on the
                        same line, so it needs the room a number box does not. */
                     className={`panel panel-${
-                      control.seconds && stack.script ? 'medium' : sizeOf(param)
+                      control.seconds && shotsDriveLength ? 'medium' : sizeOf(param)
                     }`}
                     key={`${control.tileId}.${control.param}`}
                     /* Hints are tooltips, not a line of text under every
@@ -157,7 +166,7 @@ export function UseScreen({
                       {control.label}
                       {control.hint && <span className="panel-why">?</span>}
                     </div>
-                    {control.seconds && stack.script ? (
+                    {control.seconds && shotsDriveLength ? (
                       /* Derived, not typed. The shot list already says how long
                          the video is; a second box saying something different
                          is how a five second shot list ended up inside a ten
