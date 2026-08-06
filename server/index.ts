@@ -62,6 +62,23 @@ const comfyProxy = createProxyMiddleware({
   proxyTimeout: 0,
   timeout: 0,
   on: {
+    /**
+     * Strip the browser's cross-origin headers.
+     *
+     * ComfyUI refuses any request carrying an `Origin` that does not match the
+     * host it is listening on — a CSRF guard. Our page is served from :8790 and
+     * ComfyUI is on :8188, so every POST the browser makes arrives with a
+     * mismatched Origin and comes back 403. Uploads were the visible casualty.
+     *
+     * This hop is server to server, not a browser cross-origin request, so the
+     * headers carry no meaning here and removing them makes the request look
+     * like exactly what it is. Same reason `Referer` goes: ComfyUI checks it
+     * the same way when Origin is absent.
+     */
+    proxyReq(proxyReq) {
+      proxyReq.removeHeader('origin');
+      proxyReq.removeHeader('referer');
+    },
     error(err, _req, res) {
       const message = `Cannot reach ComfyUI at ${COMFY_URL} — ${err.message}`;
       if ('writeHead' in res && !res.headersSent) {
