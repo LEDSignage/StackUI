@@ -2059,3 +2059,97 @@ button.primary.big,
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 10px;
 }
+
+/* ── Two columns that scroll on their own ───────────────────────────────── */
+/*
+   The page itself does not scroll: each column does, inside its own height.
+ 
+   With one scrollbar for the whole screen, nudging the shot list also dragged
+   the video out of view, and reaching the bottom of a long settings column
+   pushed the result off the top. They are two separate things to look at, so
+   they get two separate scrollbars.
+ 
+   The settings also get the larger share. The video is the smaller of the two
+   problems: it only has to be legible, while the left column is holding a shot
+   list, a reference bar and a dozen fields.
+*/
+@media (min-width: 1100px) {
+  .use {
+    overflow: hidden;
+    padding: 14px;
+  }
+  .use-inner {
+    grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+    height: 100%;
+    min-height: 0;
+  }
+  .use-controls {
+    height: 100%;
+    overflow-y: auto;
+    /* Clear of its own scrollbar, so nothing sits under it. */
+    padding-right: 6px;
+  }
+  .use-result {
+    position: static;
+    height: 100%;
+    max-height: none;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;
+  }
+  /* Only the body of the pane scrolls; the tabs stay put at the top of it. */
+  .use-result-head {
+    flex: none;
+  }
+  .use-output {
+    min-height: 0;
+  }
+  .use-media {
+    max-height: 100%;
+  }
+}
+
+/* Slim, unobtrusive scrollbars — two of them on screen at once would otherwise
+   be two grey stripes down the middle of the app. */
+.use-controls,
+.media-inline {
+  scrollbar-width: thin;
+  scrollbar-color: #45454d transparent;
+}
+.use-controls::-webkit-scrollbar,
+.media-inline::-webkit-scrollbar {
+  width: 8px;
+}
+.use-controls::-webkit-scrollbar-thumb,
+.media-inline::-webkit-scrollbar-thumb {
+  background: #45454d;
+  border-radius: 999px;
+}
+.use-controls::-webkit-scrollbar-track,
+.media-inline::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* ── Number fields ──────────────────────────────────────────────────────── */
+/*
+   Room for the spinner.
+ 
+   Chrome draws the up/down arrows inside the field's right edge, on top of
+   whatever is there. At the widths these boxes had, the arrows landed over the
+   last digit — 1920 looked like 192 with something on the end of it.
+*/
+input[type='number'].param-input {
+  padding-right: 4px;
+  min-width: 96px;
+}
+.use-group-body > .panel-small {
+  width: 132px;
+}
+.shot-head .shot-time {
+  width: 78px;
+  min-width: 0;
+}
+.input-pos .param-input {
+  min-width: 84px;
+}
