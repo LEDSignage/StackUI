@@ -13,7 +13,15 @@ import { viewUrl } from '../lib/comfy.ts';
  * and the button is absent entirely when the output folder is on another
  * machine and the server could not honour it anyway.
  */
-export function MediaBrowser({ onClose, refreshKey }: { onClose: () => void; refreshKey?: unknown }) {
+export function MediaBrowser({
+  onClose,
+  refreshKey,
+}: {
+  /** Given, it renders as a sheet over the page with a Close button. Omitted,
+      it renders bare, to sit inside a column that is already on screen. */
+  onClose?: () => void;
+  refreshKey?: unknown;
+}) {
   const [files, setFiles] = useState<MediaFile[]>([]);
   const [writable, setWritable] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
@@ -40,6 +48,7 @@ export function MediaBrowser({ onClose, refreshKey }: { onClose: () => void; ref
 
   // Escape closes, as it does everywhere else a panel covers the page.
   useEffect(() => {
+    if (!onClose) return;
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -59,11 +68,10 @@ export function MediaBrowser({ onClose, refreshKey }: { onClose: () => void; ref
     }
   };
 
-  return (
-    <div className="media" onClick={onClose}>
-      <div className="media-panel" onClick={(e) => e.stopPropagation()}>
+  const body = (
+    <div className={onClose ? 'media-panel' : 'media-inline'} onClick={(e) => e.stopPropagation()}>
         <div className="media-head">
-          <span className="panel-label">Library</span>
+          {onClose && <span className="panel-label">Library</span>}
 
           <div className="modeswitch">
             {(['all', 'video', 'image'] as const).map((f) => (
@@ -86,9 +94,11 @@ export function MediaBrowser({ onClose, refreshKey }: { onClose: () => void; ref
           <button className="ghost" onClick={() => void load()}>
             Refresh
           </button>
-          <button className="ghost" onClick={onClose}>
-            Close
-          </button>
+          {onClose && (
+            <button className="ghost" onClick={onClose}>
+              Close
+            </button>
+          )}
         </div>
 
         {error && <p className="error">{error}</p>}
@@ -145,8 +155,15 @@ export function MediaBrowser({ onClose, refreshKey }: { onClose: () => void; ref
             );
           })}
         </div>
-      </div>
     </div>
+  );
+
+  return onClose ? (
+    <div className="media" onClick={onClose}>
+      {body}
+    </div>
+  ) : (
+    body
   );
 }
 

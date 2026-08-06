@@ -13,6 +13,7 @@ import type { RunState } from '../lib/useRun.ts';
 import { ParamControl } from './ParamControl.tsx';
 import { InputBar } from './InputBar.tsx';
 import { ScriptEditor } from './ScriptEditor.tsx';
+import { MediaBrowser } from './MediaBrowser.tsx';
 
 type Props = {
   stack: Stack;
@@ -43,7 +44,12 @@ type Props = {
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
   vram?: { total: number; free: number } | null;
+  /** Which half of the right pane is showing. */
+  pane: RightPane;
+  onPane: (pane: RightPane) => void;
 };
+
+export type RightPane = 'result' | 'library';
 
 /**
  * A job page: the controls this pipeline chose to expose, and the result.
@@ -77,6 +83,8 @@ export function UseScreen({
   clearFirst,
   onClearFirst,
   vram,
+  pane,
+  onPane,
 }: Props) {
   const busy = run.status === 'queued' || run.status === 'running';
 
@@ -259,11 +267,26 @@ export function UseScreen({
         {run.status === 'error' && <p className="error">{run.message}</p>}
       </div>
 
-      {/* The result sits at the bottom, full width, with everything above it. */}
+      {/* The right half of the screen. It holds the last result, and doubles as
+          the output library — the same pane, two tabs, so finding an older clip
+          does not mean covering the settings you are working on. */}
       <div className="use-result">
         <div className="use-result-head">
-          <span className="panel-label">Result</span>
-          {onConvertFps && (
+          <div className="modeswitch">
+            <button
+              className={`mode ${pane === 'result' ? 'mode-on' : ''}`}
+              onClick={() => onPane('result')}
+            >
+              Result
+            </button>
+            <button
+              className={`mode ${pane === 'library' ? 'mode-on' : ''}`}
+              onClick={() => onPane('library')}
+            >
+              Library
+            </button>
+          </div>
+          {pane === 'result' && onConvertFps && (
             <label className="fps-toggle" title="Re-times the finished clip with motion-compensated interpolation. The added frames are invented, so fast motion can smear.">
               <input
                 type="checkbox"
@@ -277,24 +300,30 @@ export function UseScreen({
             </label>
           )}
         </div>
-        <div className="use-output">
-          {shownUrl ? (
-            isVideo(file!) ? (
-              <video src={shownUrl} controls loop autoPlay className="use-media" />
-            ) : (
-              <img src={shownUrl} alt="" className="use-media" />
-            )
-          ) : (
-            <span className="muted">{busy ? 'Generating…' : 'Nothing yet'}</span>
-          )}
-        </div>
-        {file && (
-          <div className="use-output-bar">
-            <span className="muted mono small">{file.filename}</span>
-            <a className="ghost" href={shownUrl ?? viewUrl(file)} download={file.filename}>
-              Download
-            </a>
-          </div>
+        {pane === 'library' ? (
+          <MediaBrowser refreshKey={run.files.length} />
+        ) : (
+          <>
+            <div className="use-output">
+              {shownUrl ? (
+                isVideo(file!) ? (
+                  <video src={shownUrl} controls loop autoPlay className="use-media" />
+                ) : (
+                  <img src={shownUrl} alt="" className="use-media" />
+                )
+              ) : (
+                <span className="muted">{busy ? 'Generating…' : 'Nothing yet'}</span>
+              )}
+            </div>
+            {file && (
+              <div className="use-output-bar">
+                <span className="muted mono small">{file.filename}</span>
+                <a className="ghost" href={shownUrl ?? viewUrl(file)} download={file.filename}>
+                  Download
+                </a>
+              </div>
+            )}
+          </>
         )}
       </div>
       </div>

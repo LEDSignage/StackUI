@@ -4,13 +4,13 @@
   /* Near-black page, cards a step above it, inputs a step below. Three flat
      surfaces and one hairline border carry the whole app — no gradients, no
      shadows, nothing that needs a second look to place. */
-  --bg: #0c0c0e;
-  --panel: #18181b;
-  --tile: #121214;
-  --tile-hi: #202024;
-  --line: #2a2a2f;
-  --text: #f2f2f4;
-  --muted: #8a8a93;
+  --bg: #1b1b1e;
+  --panel: #252529;
+  --tile: #2e2e33;
+  --tile-hi: #35353b;
+  --line: #3a3a41;
+  --text: #ededf0;
+  --muted: #9a9aa3;
 
   /* The primary action is white on black. It is the only bright thing on the
      page, so it never has to compete for attention. */
@@ -1677,7 +1677,7 @@ button.stop:hover {
   border-color: #4a4a52;
 }
 .param-input::placeholder {
-  color: #5f5f68;
+  color: #6f6f79;
 }
 .param-textarea {
   min-height: 84px;
@@ -1708,8 +1708,8 @@ button.primary:hover:not(:disabled) {
 }
 button.primary:disabled,
 button.primary.big:disabled {
-  background: #202024;
-  color: #5f5f68;
+  background: #313137;
+  color: #6f6f79;
 }
 
 /* The one action the whole page builds towards, across the full width. */
@@ -1800,7 +1800,7 @@ button.stop {
 /* ── Media ──────────────────────────────────────────────────────────────── */
 
 .use-output {
-  background: #0a0a0c;
+  background: #141416;
   border-radius: var(--radius);
 }
 .use-media,
@@ -1813,7 +1813,7 @@ button.stop {
    another filled box. */
 .upload {
   background: var(--tile);
-  border: 1px dashed #3a3a42;
+  border: 1px dashed #45454d;
   border-radius: var(--radius-sm);
   transition: border-color var(--ease-dur) var(--ease);
 }
@@ -1898,4 +1898,164 @@ button.stop {
 .media-item {
   border-radius: var(--radius-sm);
   background: var(--panel);
+}
+
+/* ── Type ───────────────────────────────────────────────────────────────── */
+/*
+   Inter, served from this machine.
+ 
+   The palette alone did not move the needle: what makes that reference page
+   look the way it does is largely the typeface. On Windows the old stack
+   resolved to Segoe UI, whose wider letterforms and looser spacing read as a
+   different piece of software no matter what the colours are.
+ 
+   One variable file, 48 kB, no external request — the app must keep working on
+   a machine with no route to the internet, which the GPU box may well be.
+*/
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/inter.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  /* Inter sets a touch wide at UI sizes; the reference is visibly tighter. */
+  letter-spacing: -0.011em;
+  font-feature-settings: 'cv05' 1, 'ss03' 1;
+}
+
+body {
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Headings carry weight rather than size, as on the reference: a section title
+   is only a point larger than the body but clearly heavier and pure white. */
+.use-group-title {
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.014em;
+  color: #fff;
+}
+.panel-label {
+  font-size: 13px;
+  font-weight: 450;
+  color: var(--muted);
+}
+.stack-name {
+  font-weight: 650;
+  letter-spacing: -0.018em;
+}
+button,
+.mode,
+.ghost,
+a.ghost {
+  font-weight: 500;
+}
+button.primary,
+button.primary.big,
+.modeswitch .mode-on {
+  font-weight: 600;
+}
+.mono {
+  font-feature-settings: normal;
+  letter-spacing: 0;
+}
+
+/* Room to breathe. The reference gives every card noticeably more padding than
+   a dense tool would, and that spacing is half of why it reads as calm. */
+.use-group {
+  padding: 16px 18px;
+}
+.use-group-body {
+  gap: 14px;
+}
+.use-inner {
+  gap: 16px;
+}
+.shot {
+  padding: 14px;
+}
+
+/* ── Split screen ───────────────────────────────────────────────────────── */
+/*
+   Settings on the left, output on the right, both on screen at once.
+ 
+   Stacked, the result sat below the fold on every job with more than a couple
+   of controls, so you scrolled down to look at a clip and back up to change
+   anything. Side by side, the right column is also where the output library
+   lives — browsing an older clip no longer covers the settings you are editing.
+*/
+@media (min-width: 1100px) {
+  .use {
+    padding: 16px;
+  }
+  .use-inner {
+    max-width: none;
+    display: grid;
+    /* The left column is sized for the widest thing it holds — a prompt box —
+       and the right takes whatever is left, since a video benefits from it. */
+    grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+    gap: 16px;
+    align-items: start;
+    height: 100%;
+  }
+  .use-controls {
+    min-width: 0;
+  }
+  /* The result stays put while the settings scroll past it. */
+  .use-result {
+    position: sticky;
+    top: 0;
+    max-height: calc(100vh - 92px);
+    min-width: 0;
+  }
+  .use-media {
+    max-height: calc(100vh - 220px);
+  }
+}
+
+.use-result {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  gap: 12px;
+}
+.use-result-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.use-output {
+  flex: 1;
+  min-height: 260px;
+}
+
+/* The library, inside the pane rather than over the page. */
+.media-inline {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  flex: 1;
+  overflow: auto;
+}
+.media-inline .media-head {
+  position: static;
+  padding: 0;
+  background: none;
+}
+/* Narrower than the full-page sheet, so the cards get smaller. */
+.media-inline .media-grid {
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
 }

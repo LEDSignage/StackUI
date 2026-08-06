@@ -14,8 +14,7 @@ import { StackView, type DropTarget } from './components/StackView.tsx';
 import { ModuleLibraryPanel } from './components/ModuleLibraryPanel.tsx';
 import { OutputPanel } from './components/OutputPanel.tsx';
 import { DragLog } from './components/DragLog.tsx';
-import { UseScreen } from './components/UseScreen.tsx';
-import { MediaBrowser } from './components/MediaBrowser.tsx';
+import { UseScreen, type RightPane } from './components/UseScreen.tsx';
 import { Confirm } from './components/Confirm.tsx';
 import { dragDebug } from './lib/dragDebug.ts';
 
@@ -34,7 +33,8 @@ export default function App() {
   const [stacks, setStacks] = useState<StackSummary[]>([]);
   const [drag, setDrag] = useState<DragPayload | null>(null);
   const [showJson, setShowJson] = useState(false);
-  const [showMedia, setShowMedia] = useState(false);
+  /** Which half of the job page's right pane is showing. */
+  const [pane, setPane] = useState<RightPane>('result');
   const [confirmClear, setConfirmClear] = useState(false);
   const [mode, setMode] = useState<Mode>('stack');
 
@@ -392,7 +392,10 @@ export default function App() {
 
         <button
           className="ghost"
-          onClick={() => setShowMedia(true)}
+          onClick={() => {
+            setMode('simple');
+            setPane((p) => (p === 'library' ? 'result' : 'library'));
+          }}
           title="Everything ComfyUI has made — play, download, delete"
         >
           Library
@@ -441,15 +444,6 @@ export default function App() {
         />
       )}
 
-      {showMedia && (
-        <MediaBrowser
-          onClose={() => setShowMedia(false)}
-          /* Reopening after a run should show that run's output, not the list
-             as it stood when the panel was last built. */
-          refreshKey={run.files.length}
-        />
-      )}
-
       {mode === 'simple' ? (
         <div className="main">
           <UseScreen
@@ -465,6 +459,8 @@ export default function App() {
             clearFirst={clearFirst}
             onClearFirst={setClearFirst}
             vram={vram}
+            pane={pane}
+            onPane={setPane}
             onBuild={() => setMode('stack')}
             activeTileName={activeTileName}
             /* Only offered where the model cannot reach the rate you want on
