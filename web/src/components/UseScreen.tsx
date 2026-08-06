@@ -142,7 +142,11 @@ export function UseScreen({
               <div className="use-group-body">
                 {items.map(({ control, tile, param }) => (
                   <div
-                    className={`panel panel-${sizeOf(param)}`}
+                    /* A derived value carries its "from your shots" note on the
+                       same line, so it needs the room a number box does not. */
+                    className={`panel panel-${
+                      control.seconds && stack.script ? 'medium' : sizeOf(param)
+                    }`}
                     key={`${control.tileId}.${control.param}`}
                     /* Hints are tooltips, not a line of text under every
                        control. Four visible hints cost four lines and pushed

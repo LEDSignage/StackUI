@@ -1581,6 +1581,9 @@ button.stop:hover {
   align-items: baseline;
   gap: 8px;
   min-height: 34px;
+  /* One line. Wrapped onto two it read as a broken control rather than a
+     figure with a note beside it. */
+  white-space: nowrap;
 }
 .derived-value {
   font-size: 17px;
