@@ -26,7 +26,14 @@ import { fileURLToPath } from 'node:url';
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
 const OUT_DIR = join(ROOT, 'modules', 'generated');
-const SOURCE = process.env.COMFY_URL ?? 'http://10.130.91.138:8188';
+
+// Same .env the server reads. Plain JS, so this cannot import shared/env.ts.
+try {
+  process.loadEnvFile(join(ROOT, '.env'));
+} catch {
+  /* no .env — default applies */
+}
+const SOURCE = process.env.COMFY_URL ?? 'http://127.0.0.1:8188';
 
 /** Types that are settings you type in, not connections between nodes. */
 const WIDGET_TYPES = new Set(['INT', 'FLOAT', 'STRING', 'BOOLEAN']);

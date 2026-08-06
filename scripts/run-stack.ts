@@ -16,10 +16,13 @@ import { fileURLToPath } from 'node:url';
 import { compile } from '../shared/compile.ts';
 import { migrate } from '../shared/migrate.ts';
 import type { Module, ModuleLibrary } from '../shared/types.ts';
+import { loadEnvFile } from '../shared/env.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(HERE, '..');
-const COMFY = process.env.COMFY_URL ?? 'http://10.130.91.138:8188';
+
+loadEnvFile(join(ROOT, '.env'));
+const COMFY = process.env.COMFY_URL ?? 'http://127.0.0.1:8188';
 
 const file = process.argv[2];
 const dry = process.argv.includes('--dry');

@@ -23,7 +23,7 @@ server on `:8790`.
 
 | Var | Default | Meaning |
 |---|---|---|
-| `COMFY_URL` | `http://10.130.91.138:8188` | The ComfyUI box |
+| `COMFY_URL` | `http://127.0.0.1:8188` | Where ComfyUI is. The default suits running on the ComfyUI machine itself; set it to `http://<box>:8188` when developing from another workstation. |
 | `PORT` | `8790` | Stack UI server port |
 
 ```bash

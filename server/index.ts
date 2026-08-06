@@ -19,6 +19,7 @@ import type { Dirent } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Module, Stack } from '../shared/types.ts';
+import { loadEnvFile } from '../shared/env.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
@@ -28,8 +29,13 @@ const DIST_DIR = join(ROOT, 'dist');
 /** Where re-timed videos land. Derived files, safe to delete. */
 const CONVERTED_DIR = join(ROOT, 'storage', 'converted');
 
+loadEnvFile(join(ROOT, '.env'));
+
 const PORT = Number(process.env.PORT ?? 8790);
-const COMFY_URL = process.env.COMFY_URL ?? 'http://10.130.91.138:8188';
+// Loopback by default: the normal deployment runs on the same machine as
+// ComfyUI. Point it elsewhere with COMFY_URL — in a .env, or in the
+// environment. Nothing about one particular box belongs in the source.
+const COMFY_URL = process.env.COMFY_URL ?? 'http://127.0.0.1:8188';
 
 const app = express();
 

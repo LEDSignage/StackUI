@@ -89,7 +89,8 @@ Running it
 ----------
 Double-click start.cmd, or run "npm start" in this folder.
 
-Then from any machine on the network:  http://10.130.91.138:8790
+Then from any machine on the network:  http://<this machine's IP>:8790
+(run "ipconfig" here to find it)
 
 Settings
 --------
