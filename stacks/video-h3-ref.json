@@ -49,6 +49,13 @@
       "tileId": "t-sched",
       "param": "steps",
       "group": "Quality"
+    },
+    {
+      "label": "Reference sizing",
+      "tileId": "t-h3",
+      "param": "ref_image_size",
+      "group": "Quality",
+      "hint": "'max' sizes each reference to a 2048px short edge, independent of the output shape — better likeness, several times slower. 'match' squeezes them into the output's own pixel area, which distorts them badly on a very wide or very tall canvas."
     }
   ],
   "inputs": {
@@ -205,7 +212,7 @@
             "width": 1344,
             "height": 768,
             "length": 243,
-            "ref_image_size": "match"
+            "ref_image_size": "max"
           },
           "collapsed": false
         }

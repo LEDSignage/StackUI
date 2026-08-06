@@ -79,6 +79,19 @@ const comfyProxy = createProxyMiddleware({
       proxyReq.removeHeader('origin');
       proxyReq.removeHeader('referer');
     },
+
+    /**
+     * And again for the websocket, which takes its own path.
+     *
+     * Missing this left the live connection 403ing and reconnecting on a
+     * backoff loop for as long as the page was open — a warning per attempt in
+     * ComfyUI's log, and no progress in the UI, while ordinary requests worked
+     * fine and made it look like the socket was the only thing broken.
+     */
+    proxyReqWs(proxyReq) {
+      proxyReq.removeHeader('origin');
+      proxyReq.removeHeader('referer');
+    },
     error(err, _req, res) {
       const message = `Cannot reach ComfyUI at ${COMFY_URL} — ${err.message}`;
       if ('writeHead' in res && !res.headersSent) {
