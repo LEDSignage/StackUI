@@ -16,6 +16,7 @@ import { OutputPanel } from './components/OutputPanel.tsx';
 import { DragLog } from './components/DragLog.tsx';
 import { UseScreen } from './components/UseScreen.tsx';
 import { MediaBrowser } from './components/MediaBrowser.tsx';
+import { Confirm } from './components/Confirm.tsx';
 import { dragDebug } from './lib/dragDebug.ts';
 
 type Mode = 'simple' | 'stack';
@@ -34,9 +35,10 @@ export default function App() {
   const [drag, setDrag] = useState<DragPayload | null>(null);
   const [showJson, setShowJson] = useState(false);
   const [showMedia, setShowMedia] = useState(false);
+  const [confirmClear, setConfirmClear] = useState(false);
   const [mode, setMode] = useState<Mode>('stack');
 
-  const { run, wsOpen, elapsed, start, interrupt } = useRun();
+  const { run, wsOpen, elapsed, start, interrupt, reset } = useRun();
 
   /** Clear the card before queueing. See freeMemory for why this matters. */
   const [clearFirst, setClearFirst] = useState(true);
@@ -351,6 +353,31 @@ export default function App() {
           </button>
         </div>
 
+        {/* Page-level actions live up here, not among the fields. Clear is only
+            offered on the job page: in Build you are editing the pipeline, and
+            emptying its prompts from there would come out of nowhere. */}
+        {mode === 'simple' &&
+          (beforeClear ? (
+            <button
+              className="ghost"
+              onClick={() => {
+                setStack(beforeClear);
+                setBeforeClear(null);
+              }}
+            >
+              ↩ Undo clear
+            </button>
+          ) : (
+            <button
+              className="ghost"
+              disabled={run.status === 'queued' || run.status === 'running'}
+              onClick={() => setConfirmClear(true)}
+              title="Empties the prompts, chosen files and shot list. Size, seed, steps and frame rate stay as they are."
+            >
+              Clear fields
+            </button>
+          ))}
+
         <button
           className="ghost"
           onClick={() => setShowMedia(true)}
@@ -385,6 +412,23 @@ export default function App() {
         </button>
       </header>
 
+      {confirmClear && (
+        <Confirm
+          title="Clear the fields?"
+          detail="The prompt, the chosen files and the shot list are emptied. Size, seed, steps and frame rate stay as they are."
+          onYes={() => {
+            setBeforeClear(stack);
+            setStack((s) => ops.clearJobFields(s, library));
+            // The result panel too. Leaving the last video sitting there under
+            // an empty form is the one thing that still looks unfinished — and
+            // the file is not lost, it is in the Library.
+            reset();
+            setConfirmClear(false);
+          }}
+          onNo={() => setConfirmClear(false)}
+        />
+      )}
+
       {showMedia && (
         <MediaBrowser
           onClose={() => setShowMedia(false)}
@@ -408,18 +452,6 @@ export default function App() {
             onInterrupt={() => void interrupt()}
             clearFirst={clearFirst}
             onClearFirst={setClearFirst}
-            onClearFields={() => {
-              setBeforeClear(stack);
-              setStack((s) => ops.clearJobFields(s, library));
-            }}
-            onUndoClear={
-              beforeClear
-                ? () => {
-                    setStack(beforeClear);
-                    setBeforeClear(null);
-                  }
-                : null
-            }
             vram={vram}
             onBuild={() => setMode('stack')}
             activeTileName={activeTileName}

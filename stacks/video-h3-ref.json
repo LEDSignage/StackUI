@@ -156,7 +156,7 @@
           "id": "in.ref.702332dd.0",
           "moduleId": "h3-ref-image-0",
           "params": {
-            "image": "image_b2a11ffe.png"
+            "image": ""
           },
           "collapsed": true
         }
@@ -171,7 +171,7 @@
           "id": "in.ref.d1eeb094.0",
           "moduleId": "h3-ref-image-1",
           "params": {
-            "image": "Untitled-1.jpg"
+            "image": ""
           },
           "collapsed": true
         }
@@ -186,7 +186,7 @@
           "id": "in.ref.70fd39eb.0",
           "moduleId": "h3-ref-image-2",
           "params": {
-            "image": "Pulse Logo-concepts-blueOnWhite.png"
+            "image": ""
           },
           "collapsed": true
         }
@@ -201,7 +201,7 @@
           "id": "t-h3",
           "moduleId": "h3-reference-to-video",
           "params": {
-            "prompt": "Warm evening light, shallow depth of field, unhurried.\n\nTimeline:\n[0s-2s] The sign fills the frame, light catching its edge.\n[2s-5s] Slow drift back, the street coming into view behind it.\n\nNo cuts, no camera shake, no text overlays.\n\nAudio: Low room tone, distant traffic, no music.",
+            "prompt": "",
             "width": 1344,
             "height": 768,
             "length": 243,
@@ -321,20 +321,9 @@
       "tileId": "t-h3",
       "param": "prompt"
     },
-    "vision": "Warm evening light, shallow depth of field, unhurried.",
-    "shots": [
-      {
-        "from": 0,
-        "to": 2,
-        "text": "The sign fills the frame, light catching its edge."
-      },
-      {
-        "from": 2,
-        "to": 5,
-        "text": "Slow drift back, the street coming into view behind it."
-      }
-    ],
-    "audio": "Low room tone, distant traffic, no music.",
-    "rules": "No cuts, no camera shake, no text overlays."
+    "vision": "",
+    "shots": [],
+    "audio": "",
+    "rules": ""
   }
 }

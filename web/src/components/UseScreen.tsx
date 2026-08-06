@@ -42,10 +42,6 @@ type Props = {
   /** Clear the card before queueing. */
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
-  /** Empty the page's prompts, files and script, ready for the next job. */
-  onClearFields: () => void;
-  /** Present for a while after clearing, so a mis-click is recoverable. */
-  onUndoClear?: (() => void) | null;
   vram?: { total: number; free: number } | null;
 };
 
@@ -80,8 +76,6 @@ export function UseScreen({
   onScript,
   clearFirst,
   onClearFirst,
-  onClearFields,
-  onUndoClear,
   vram,
 }: Props) {
   const busy = run.status === 'queued' || run.status === 'running';
@@ -113,27 +107,6 @@ export function UseScreen({
     <div className="use">
       <div className="use-inner">
       <div className="use-controls">
-        {/* Above the fields it empties, not down beside Generate. Clearing is
-            what you do *before* filling the page in, so it belongs where you
-            start rather than where you finish — and it is no longer sitting
-            next to the unrelated "Clear GPU first". */}
-        <div className="use-top">
-          {onUndoClear ? (
-            <button className="ghost" onClick={onUndoClear}>
-              ↩ Undo clear
-            </button>
-          ) : (
-            <button
-              className="ghost"
-              disabled={busy}
-              onClick={onClearFields}
-              title="Empties the prompts, chosen files and shot list. Size, seed, steps and frame rate stay as they are."
-            >
-              Clear fields
-            </button>
-          )}
-        </div>
-
         {stack.inputs && onAddInput && onRemoveInput && (
           <InputBar
             spec={stack.inputs}
