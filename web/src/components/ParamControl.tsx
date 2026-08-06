@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useId, useState } from 'react';
 import type { Param } from '@shared/types.ts';
 import { uploadImage } from '../lib/comfy.ts';
 
@@ -97,6 +97,11 @@ function renderControl(param: Param, v: unknown, onChange: (value: unknown) => v
 function ImageUpload({ value, onChange }: { value: string; onChange: (v: string) => void }) {
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  // Unique per control. This used to be derived from the value, so every empty
+  // slot on the page shared the id "up-new" — and a label activates the first
+  // input with a matching id, so clicking the third reference opened the picker
+  // for the first one and the file landed in the wrong slot.
+  const inputId = useId();
 
   // Uploads land in ComfyUI's input folder, so that is where to read them back.
   const preview = value
@@ -133,11 +138,11 @@ function ImageUpload({ value, onChange }: { value: string; onChange: (v: string)
       <input
         type="file"
         accept="image/*,video/*"
-        id={`up-${value || 'new'}`}
+        id={inputId}
         hidden
         onChange={(e) => void send(e.target.files?.[0])}
       />
-      <label htmlFor={`up-${value || 'new'}`} className="upload-label">
+      <label htmlFor={inputId} className="upload-label">
         {preview ? (
           <>
             {/* A video and a still both go into the same port — ComfyUI treats a

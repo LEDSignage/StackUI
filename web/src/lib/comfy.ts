@@ -170,8 +170,17 @@ export async function uploadImage(file: File): Promise<{ name: string; subfolder
   const form = new FormData();
   form.append('image', file);
   form.append('overwrite', 'false');
-  const res = await fetch(`${BASE}/upload/image`, { method: 'POST', body: form });
-  if (!res.ok) throw new Error(`Upload failed: ${res.status} ${await res.text()}`);
+  let res: Response;
+  try {
+    res = await fetch(`${BASE}/upload/image`, { method: 'POST', body: form });
+  } catch (err) {
+    // A dead server or a dropped connection surfaces as a bare "Failed to
+    // fetch", which tells you nothing about which end gave up.
+    throw new Error(`Could not reach Stack UI to upload ${file.name} — ${(err as Error).message}`);
+  }
+  if (!res.ok) {
+    throw new Error(`Upload of ${file.name} failed: ${res.status} ${(await res.text()).slice(0, 200)}`);
+  }
   return res.json();
 }
 
