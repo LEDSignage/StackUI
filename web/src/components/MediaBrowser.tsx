@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { deleteMedia, fetchMedia, type MediaFile } from '../lib/api.ts';
 import { viewUrl } from '../lib/comfy.ts';
+import { Confirm } from './Confirm.tsx';
 
 /**
  * Everything ComfyUI has made, newest first.
@@ -14,21 +15,22 @@ import { viewUrl } from '../lib/comfy.ts';
  * machine and the server could not honour it anyway.
  */
 export function MediaBrowser({
-  onClose,
   refreshKey,
+  full,
+  onFull,
 }: {
-  /** Given, it renders as a sheet over the page with a Close button. Omitted,
-      it renders bare, to sit inside a column that is already on screen. */
-  onClose?: () => void;
   refreshKey?: unknown;
+  /** Whether it is filling the window rather than sitting in the right pane. */
+  full?: boolean;
+  onFull?: (full: boolean) => void;
 }) {
   const [files, setFiles] = useState<MediaFile[]>([]);
   const [writable, setWritable] = useState(false);
   const [state, setState] = useState<'loading' | 'ready' | 'failed'>('loading');
   const [error, setError] = useState('');
   const [filter, setFilter] = useState<'all' | 'video' | 'image'>('all');
-  /** The file awaiting a second click on Delete. */
-  const [confirming, setConfirming] = useState<string | null>(null);
+  /** The file the delete dialogue is asking about. */
+  const [confirming, setConfirming] = useState<MediaFile | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -46,33 +48,29 @@ export function MediaBrowser({
     void load();
   }, [load, refreshKey]);
 
-  // Escape closes, as it does everywhere else a panel covers the page.
+  // Escape leaves full screen, as it does in every other viewer.
   useEffect(() => {
-    if (!onClose) return;
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
+    if (!full || !onFull) return;
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onFull(false);
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [onClose]);
+  }, [full, onFull]);
 
   const shown = filter === 'all' ? files : files.filter((f) => f.kind === filter);
 
   const remove = async (file: MediaFile) => {
-    const key = keyOf(file);
-    if (confirming !== key) return setConfirming(key);
     setConfirming(null);
     try {
       await deleteMedia(file);
-      setFiles((current) => current.filter((f) => keyOf(f) !== key));
+      setFiles((current) => current.filter((f) => keyOf(f) !== keyOf(file)));
     } catch (err) {
       setError((err as Error).message);
     }
   };
 
-  const body = (
-    <div className={onClose ? 'media-panel' : 'media-inline'} onClick={(e) => e.stopPropagation()}>
+  return (
+    <div className={`media-inline ${full ? 'is-full' : ''}`}>
         <div className="media-head">
-          {onClose && <span className="panel-label">Library</span>}
-
           <div className="modeswitch">
             {(['all', 'video', 'image'] as const).map((f) => (
               <button
@@ -94,9 +92,13 @@ export function MediaBrowser({
           <button className="ghost" onClick={() => void load()}>
             Refresh
           </button>
-          {onClose && (
-            <button className="ghost" onClick={onClose}>
-              Close
+          {onFull && (
+            <button
+              className="ghost"
+              onClick={() => onFull(!full)}
+              title={full ? 'Back to the side panel — or press Escape' : 'Fill the window'}
+            >
+              {full ? 'Exit full screen' : 'Full screen'}
             </button>
           )}
         </div>
@@ -142,12 +144,8 @@ export function MediaBrowser({
                     Download
                   </a>
                   {writable && (
-                    <button
-                      className={confirming === key ? 'stop' : 'ghost'}
-                      onClick={() => void remove(file)}
-                      onBlur={() => setConfirming((c) => (c === key ? null : c))}
-                    >
-                      {confirming === key ? 'Delete for good?' : 'Delete'}
+                    <button className="ghost" onClick={() => setConfirming(file)}>
+                      Delete
                     </button>
                   )}
                 </div>
@@ -155,15 +153,17 @@ export function MediaBrowser({
             );
           })}
         </div>
-    </div>
-  );
 
-  return onClose ? (
-    <div className="media" onClick={onClose}>
-      {body}
+        {confirming && (
+          <Confirm
+            title="Delete this file?"
+            detail={`${confirming.filename} is removed from the output folder for good. This cannot be undone.`}
+            yes="Delete"
+            onYes={() => void remove(confirming)}
+            onNo={() => setConfirming(null)}
+          />
+        )}
     </div>
-  ) : (
-    body
   );
 }
 

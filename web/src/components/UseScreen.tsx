@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import type {
   CompileIssue,
   Module,
@@ -90,6 +90,9 @@ export function UseScreen({
 }: Props) {
   const busy = run.status === 'queued' || run.status === 'running';
 
+  /** The library filling the window instead of the right pane. */
+  const [libraryFull, setLibraryFull] = useState(false);
+
   const inner = useRef<HTMLDivElement>(null);
   const split = useSplit(inner);
 
@@ -126,7 +129,7 @@ export function UseScreen({
     .filter((x): x is NonNullable<typeof x> => x !== null);
 
   return (
-    <div className="use">
+    <div className={`use ${libraryFull && pane === 'library' ? 'has-full-library' : ''}`}>
       <div
         className={`use-inner ${split.dragging ? 'is-dragging' : ''}`}
         ref={inner}
@@ -331,7 +334,7 @@ export function UseScreen({
           )}
         </div>
         {pane === 'library' ? (
-          <MediaBrowser refreshKey={run.files.length} />
+          <MediaBrowser refreshKey={run.files.length} full={libraryFull} onFull={setLibraryFull} />
         ) : (
           <>
             <div className="use-output">

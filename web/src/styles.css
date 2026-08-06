@@ -2214,3 +2214,34 @@ input[type='number'].param-input {
     display: none;
   }
 }
+
+/* ── Full-screen library ────────────────────────────────────────────────── */
+/*
+   The library taking the whole page rather than the right pane.
+ 
+   It is the same panel, given the room — not a second implementation and not a
+   sheet floating over the page. Escape or the button puts it back in the pane
+   with the settings still where you left them.
+*/
+.use.has-full-library .use-inner {
+  display: block;
+}
+.use.has-full-library .use-controls,
+.use.has-full-library .split-handle,
+.use.has-full-library .use-result-head .fps-toggle {
+  display: none;
+}
+.use.has-full-library .use-result {
+  height: 100%;
+  max-height: none;
+  position: static;
+}
+.media-inline.is-full .media-grid {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* The delete dialogue sits above everything, including a full-screen library. */
+.media {
+  z-index: 60;
+}
