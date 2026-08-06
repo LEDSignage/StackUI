@@ -153,7 +153,17 @@ export function UseScreen({
                       {control.label}
                       {control.hint && <span className="panel-why">?</span>}
                     </div>
-                    {control.seconds ? (
+                    {control.seconds && stack.script ? (
+                      /* Derived, not typed. The shot list already says how long
+                         the video is; a second box saying something different
+                         is how a five second shot list ended up inside a ten
+                         second clip with the model left to fill the gap. */
+                      <DerivedSeconds
+                        frames={Number(tile.params[param.name] ?? param.default ?? 0)}
+                        spec={control.seconds}
+                        fps={resolveFps(control.seconds.fps, stack, library)}
+                      />
+                    ) : control.seconds ? (
                       <SecondsControl
                         spec={control.seconds}
                         frames={Number(tile.params[param.name] ?? param.default ?? 0)}
@@ -314,6 +324,25 @@ const snap = (frames: number, { step, offset }: SecondsSpec) =>
  * what was typed. That is not worth mentioning on screen; showing the frame
  * count and the grid arithmetic just made the control confusing.
  */
+/**
+ * The clip length, read off the shot list rather than typed.
+ *
+ * Shows the real figure, not the rounded one. The frame grid means the clip is
+ * usually a fraction longer than the shots — 5s of shots at 24fps on H3's 17n+5
+ * grid is 5.04s — and pretending otherwise would have the readout disagree with
+ * the file you get back.
+ */
+function DerivedSeconds({ frames, spec, fps }: { frames: number; spec: SecondsSpec; fps: number }) {
+  const seconds = (frames - spec.offset) / fps;
+  const shown = Math.round(seconds * 100) / 100;
+  return (
+    <div className="derived" title="Set by the shot list. Add or extend a shot to make the clip longer.">
+      <span className="derived-value">{shown}s</span>
+      <span className="muted small">from your shots</span>
+    </div>
+  );
+}
+
 function SecondsControl({
   spec,
   frames,

@@ -11,8 +11,10 @@ import {
   type Module,
   type ModuleLibrary,
   type Stack,
+  type StackControl,
   type Tile,
 } from '@shared/types.ts';
+import { scriptDuration } from '@shared/script.ts';
 
 import { shortId as uid } from './uid.ts';
 
@@ -209,6 +211,61 @@ export function removeInput(stack: Stack, group: string): Stack {
 /** How many of this kind exist, for the ceiling check. */
 export const inputCount = (stack: Stack, kindId: string) =>
   inputList(stack).filter((r) => r.kind === kindId).length;
+
+// ── Clip length ─────────────────────────────────────────────────────────────
+
+/** The rate a seconds-control divides by: a fixed number, or another param. */
+function fpsOf(spec: NonNullable<StackControl['seconds']>, stack: Stack, library: ModuleLibrary): number {
+  const { fps } = spec;
+  if (typeof fps === 'number') return fps || 1;
+  const tile = findTile(stack, fps.tileId);
+  const fallback = library[tile?.moduleId ?? '']?.params.find((p) => p.name === fps.param)?.default;
+  return Number(tile?.params[fps.param] ?? fallback ?? 1) || 1;
+}
+
+/** The control that holds this pipeline's clip length, if it has one. */
+export const secondsControl = (stack: Stack): StackControl | undefined =>
+  (stack.controls ?? []).find((c) => c.seconds);
+
+/** What the clip length would be, in seconds, if the shot list decided it. */
+export function clipSecondsFromScript(stack: Stack): number | null {
+  if (!stack.script) return null;
+  const runs = scriptDuration(stack.script);
+  return runs > 0 ? runs : null;
+}
+
+/**
+ * Make the clip as long as the shot list, where there is a shot list.
+ *
+ * Two places said how long the video was: the Seconds box and the end of the
+ * last shot. Nothing reconciled them, so a five second shot list inside a ten
+ * second clip left the model five seconds to invent — which it duly did.
+ *
+ * The shot list is the thing being authored, so it wins. The result is snapped
+ * up to the model's own frame grid (H3 takes 17n+5, LTX 8n+1), which is why the
+ * clip can land a few hundredths past the shot total and cannot be exact.
+ *
+ * A stack with no script, or a script with no shots, is left alone.
+ */
+export function syncClipLength(stack: Stack, library: ModuleLibrary): Stack {
+  const control = secondsControl(stack);
+  const seconds = clipSecondsFromScript(stack);
+  if (!control?.seconds || seconds === null) return stack;
+
+  const { step, offset } = control.seconds;
+  const wanted = seconds * fpsOf(control.seconds, stack, library) + offset;
+  // Nearest, not up. H3's grid step is 17 frames — 0.7s — so always rounding up
+  // would hand the model most of a second nothing in the shot list covers,
+  // which is the very gap this is meant to close. Nearest lands within half a
+  // step either way, a few hundredths of a second in practice.
+  const frames = Math.max(offset, Math.round((wanted - offset) / step) * step + offset);
+
+  if (findTile(stack, control.tileId)?.params[control.param] === frames) return stack;
+
+  let out = setParam(stack, control.tileId, control.param, frames);
+  for (const also of control.also ?? []) out = setParam(out, also.tileId, also.param, frames);
+  return out;
+}
 
 /**
  * Empty the page ready for the next job.

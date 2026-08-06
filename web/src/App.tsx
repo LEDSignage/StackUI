@@ -117,6 +117,18 @@ export default function App() {
     setMode(stack.lines.length > 0 ? 'simple' : 'stack');
   }, [stack.id, stack.lines.length > 0]);
 
+  /**
+   * Bring a freshly loaded stack's clip length into line with its shot list.
+   *
+   * Editing the script keeps the two in step from then on, but a stack saved
+   * before the length was derived — or edited by hand — opens with them
+   * disagreeing, and the mismatch would sit there until the next script edit.
+   */
+  useEffect(() => {
+    if (!stack.script || !Object.keys(library).length) return;
+    setStack((s) => ops.syncClipLength(s, library));
+  }, [stack.id, library]);
+
   // ── Frame rate conversion ─────────────────────────────────────────────────
 
   const [convertStatus, setConvertStatus] = useState<'idle' | 'working' | 'done' | 'failed'>('idle');
@@ -476,12 +488,14 @@ export default function App() {
                     // so the compiled graph always carries the assembled text.
                     setStack((st) => {
                       const withScript = { ...st, script };
-                      return ops.setParam(
+                      const withPrompt = ops.setParam(
                         withScript,
                         script.target.tileId,
                         script.target.param,
                         compose(script),
                       );
+                      // The shot list is also what says how long the clip is.
+                      return ops.syncClipLength(withPrompt, library);
                     })
                 : undefined
             }

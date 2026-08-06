@@ -1574,3 +1574,15 @@ button.stop:hover {
 .shot-head .shot-time {
   width: 5.5ch;
 }
+
+/* A value the page works out for itself. Reads as a fact, not a field. */
+.derived {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-height: 34px;
+}
+.derived-value {
+  font-size: 17px;
+  font-variant-numeric: tabular-nums;
+}
