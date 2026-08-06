@@ -2245,3 +2245,10 @@ input[type='number'].param-input {
 .media {
   z-index: 60;
 }
+
+/* A clip in the grid needs to be tall enough for its own controls: at a 16:9
+   box the control bar covers most of a short thumbnail. */
+.media-thumb {
+  min-height: 150px;
+  background: #101012;
+}

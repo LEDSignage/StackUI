@@ -340,7 +340,16 @@ export function UseScreen({
             <div className="use-output">
               {shownUrl ? (
                 isVideo(file!) ? (
-                  <video src={shownUrl} controls loop autoPlay className="use-media" />
+                  <video
+                    src={shownUrl}
+                    controls
+                    loop
+                    autoPlay
+                    playsInline
+                    controlsList="nodownload noremoteplayback"
+                    disablePictureInPicture
+                    className="use-media"
+                  />
                 ) : (
                   <img src={shownUrl} alt="" className="use-media" />
                 )

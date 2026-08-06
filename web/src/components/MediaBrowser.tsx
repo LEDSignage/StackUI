@@ -122,10 +122,24 @@ export function MediaBrowser({
             const key = keyOf(file);
             return (
               <figure className="media-item" key={key}>
-                {/* No autoplay and no preload: a folder of twenty clips would
-                    otherwise pull every one of them down at once. */}
+                {/* Metadata only — enough for the first frame and a working
+                    play button, without pulling twenty whole clips down at
+                    once. With preload="none" Chrome has nothing to play, so it
+                    draws an empty control bar: no play button, just the
+                    overflow menu, which looks broken because it is.
+
+                    controlsList and disablePictureInPicture strip that menu
+                    back to the controls that make sense here. */}
                 {file.kind === 'video' ? (
-                  <video src={url} controls preload="none" className="media-thumb" />
+                  <video
+                    src={url}
+                    controls
+                    preload="metadata"
+                    playsInline
+                    controlsList="nodownload noremoteplayback"
+                    disablePictureInPicture
+                    className="media-thumb"
+                  />
                 ) : (
                   <img src={url} alt="" loading="lazy" className="media-thumb" />
                 )}

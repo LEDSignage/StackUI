@@ -149,7 +149,17 @@ function ImageUpload({ value, onChange }: { value: string; onChange: (v: string)
                 picture as a batch of one frame — so this control handles both
                 and picks the element by extension. */}
             {VIDEO_FILE.test(value) ? (
-              <video src={preview} className="upload-preview" muted loop playsInline controls />
+              <video
+                src={preview}
+                className="upload-preview"
+                muted
+                loop
+                playsInline
+                controls
+                preload="metadata"
+                controlsList="nodownload noremoteplayback"
+                disablePictureInPicture
+              />
             ) : (
               <img src={preview} alt={value} className="upload-preview" />
             )}

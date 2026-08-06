@@ -64,7 +64,15 @@ export function OutputPanel({
       {files.length > 0 && file && (
         <div className="output-view">
           {isVideo(file) ? (
-            <video src={viewUrl(file)} controls loop className="output-media" />
+            <video
+              src={viewUrl(file)}
+              controls
+              loop
+              playsInline
+              controlsList="nodownload noremoteplayback"
+              disablePictureInPicture
+              className="output-media"
+            />
           ) : (
             <img src={viewUrl(file)} alt={file.filename} className="output-media" />
           )}
