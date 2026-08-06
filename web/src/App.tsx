@@ -15,6 +15,7 @@ import { ModuleLibraryPanel } from './components/ModuleLibraryPanel.tsx';
 import { OutputPanel } from './components/OutputPanel.tsx';
 import { DragLog } from './components/DragLog.tsx';
 import { UseScreen } from './components/UseScreen.tsx';
+import { MediaBrowser } from './components/MediaBrowser.tsx';
 import { dragDebug } from './lib/dragDebug.ts';
 
 type Mode = 'simple' | 'stack';
@@ -32,6 +33,7 @@ export default function App() {
   const [stacks, setStacks] = useState<StackSummary[]>([]);
   const [drag, setDrag] = useState<DragPayload | null>(null);
   const [showJson, setShowJson] = useState(false);
+  const [showMedia, setShowMedia] = useState(false);
   const [mode, setMode] = useState<Mode>('stack');
 
   const { run, wsOpen, elapsed, start, interrupt } = useRun();
@@ -349,6 +351,14 @@ export default function App() {
           </button>
         </div>
 
+        <button
+          className="ghost"
+          onClick={() => setShowMedia(true)}
+          title="Everything ComfyUI has made — play, download, delete"
+        >
+          Library
+        </button>
+
         <span className="spacer" />
 
         <button
@@ -374,6 +384,15 @@ export default function App() {
           drag log
         </button>
       </header>
+
+      {showMedia && (
+        <MediaBrowser
+          onClose={() => setShowMedia(false)}
+          /* Reopening after a run should show that run's output, not the list
+             as it stood when the panel was last built. */
+          refreshKey={run.files.length}
+        />
+      )}
 
       {mode === 'simple' ? (
         <div className="main">

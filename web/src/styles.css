@@ -1451,3 +1451,85 @@ button.stop:hover {
   color: var(--warn);
   border-color: var(--warn);
 }
+
+/* ── Media library ────────────────────────────────────────────────────────
+   A sheet over the page rather than a fourth mode: you open it to fetch a
+   file and go back to what you were doing. */
+
+.media {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgb(0 0 0 / 0.6);
+  display: flex;
+  padding: 24px;
+}
+.media-panel {
+  margin: auto;
+  width: min(1200px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: auto;
+}
+.media-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  /* Stays put while the grid scrolls under it — with fifty files the Close
+     button would otherwise be somewhere off the top of the sheet. */
+  position: sticky;
+  top: -16px;
+  padding: 4px 0;
+  background: var(--panel);
+  z-index: 1;
+}
+
+.media-grid {
+  display: grid;
+  /* Wide enough that a 16:9 clip is worth looking at, and no wider. */
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+}
+.media-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0;
+  padding: 8px;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+.media-thumb {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #0d0f13;
+  border-radius: 6px;
+}
+.media-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  /* Long generated names must not stretch the column. */
+  min-width: 0;
+}
+.media-caption > span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.media-actions {
+  display: flex;
+  gap: 8px;
+}
+.media-actions > * {
+  flex: 1;
+  text-align: center;
+}

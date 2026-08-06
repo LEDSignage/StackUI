@@ -39,6 +39,36 @@ export async function deleteStack(id: string): Promise<void> {
   await fetch(`/api/stacks/${id}`, { method: 'DELETE' });
 }
 
+// ── Media ───────────────────────────────────────────────────────────────────
+
+export type MediaFile = {
+  filename: string;
+  subfolder: string;
+  type: 'output';
+  kind: 'image' | 'video';
+  /** Bytes. */
+  size: number;
+  /** Epoch milliseconds. */
+  modified: number;
+};
+
+/** Everything ComfyUI has made, newest first. */
+export async function fetchMedia(): Promise<{ writable: boolean; files: MediaFile[] }> {
+  return json('/api/media');
+}
+
+export async function deleteMedia(file: MediaFile): Promise<void> {
+  const res = await fetch('/api/media', {
+    method: 'DELETE',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ filename: file.filename, subfolder: file.subfolder }),
+  });
+  if (!res.ok) {
+    const body = (await res.json().catch(() => ({}))) as { error?: string };
+    throw new Error(body.error ?? `Delete failed: ${res.status}`);
+  }
+}
+
 async function json<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path} → ${res.status}`);

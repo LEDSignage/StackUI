@@ -14,12 +14,13 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { readdir, readFile, writeFile, unlink, mkdir } from 'node:fs/promises';
+import { readdir, readFile, writeFile, unlink, mkdir, stat } from 'node:fs/promises';
 import type { Dirent } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import type { Module, Stack } from '../shared/types.ts';
 import { loadEnvFile } from '../shared/env.ts';
+import { insideOutput } from '../shared/outputPath.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
@@ -147,6 +148,147 @@ app.delete('/api/stacks/:id', async (req, res) => {
     res.json({ ok: true });
   } catch {
     res.status(404).json({ error: `No stack "${id}".` });
+  }
+});
+
+// ── Media library ───────────────────────────────────────────────────────────
+//
+// ComfyUI can list its output folder but cannot tell you when a file was made,
+// how big it is, or delete one. Reading the folder ourselves gives all three —
+// and Stack UI normally runs on the ComfyUI machine, so the folder is local.
+//
+// Where it is comes from ComfyUI itself: /internal/folder_paths reports model
+// directories, and the shared ones sit inside the output folder, so the parent
+// of any ".../output/<something>" is the folder we want. COMFY_OUTPUT overrides
+// it when that guess is wrong.
+
+let outputDir: string | null | undefined;
+
+async function findOutputDir(): Promise<string | null> {
+  if (outputDir !== undefined) return outputDir;
+
+  const configured = process.env.COMFY_OUTPUT;
+  if (configured) return (outputDir = existsSync(configured) ? configured : null);
+
+  try {
+    const res = await fetch(`${COMFY_URL}/internal/folder_paths`);
+    const paths = (await res.json()) as Record<string, string[]>;
+    for (const list of Object.values(paths)) {
+      for (const p of list) {
+        const match = /^(.*[\\/]output)[\\/]/.exec(p);
+        if (match && existsSync(match[1]!)) return (outputDir = match[1]!);
+      }
+    }
+  } catch {
+    /* box unreachable — fall through */
+  }
+  return (outputDir = null);
+}
+
+const VIDEO = /\.(mp4|webm|mov|mkv|avi|gif)$/i;
+const IMAGE = /\.(png|jpe?g|webp|bmp|tiff?)$/i;
+
+/**
+ * The listing ComfyUI can give us, for when the folder is on another machine.
+ *
+ * Entries look like `clip_00004_.mp4 [output]`, newest first, with no size and
+ * no date — so those come back as zero and the browser hides them rather than
+ * inventing a timestamp. Enough to find and download a file; not enough to
+ * delete one, which is why this path reports writable: false.
+ */
+async function listViaComfy(): Promise<unknown[]> {
+  try {
+    const res = await fetch(`${COMFY_URL}/internal/files/output`);
+    if (!res.ok) return [];
+    const raw = (await res.json()) as string[];
+    return raw.flatMap((entry) => {
+      const path = entry.replace(/\s*\[[^\]]*\]\s*$/, '');
+      const kind = VIDEO.test(path) ? 'video' : IMAGE.test(path) ? 'image' : null;
+      if (!kind) return [];
+      const cut = Math.max(path.lastIndexOf('/'), path.lastIndexOf('\\'));
+      return [
+        {
+          filename: cut === -1 ? path : path.slice(cut + 1),
+          subfolder: cut === -1 ? '' : path.slice(0, cut),
+          type: 'output',
+          kind,
+          size: 0,
+          modified: 0,
+        },
+      ];
+    });
+  } catch {
+    return [];
+  }
+}
+
+/**
+ * Everything ComfyUI has produced, newest first.
+ *
+ * `writable` is false when the folder is not on this machine — a development
+ * copy talking to the box across the network can still list and play files
+ * through the proxy, but must not offer a delete button it cannot honour.
+ */
+app.get('/api/media', async (_req, res) => {
+  const dir = await findOutputDir();
+  if (!dir) return res.json({ writable: false, files: await listViaComfy() });
+
+  const files: unknown[] = [];
+
+  // One level of subfolders. ComfyUI writes into named subfolders when a node
+  // asks it to, and deeper nesting is not something it produces on its own.
+  const scan = async (sub: string) => {
+    let entries: Dirent[];
+    try {
+      entries = await readdir(join(dir, sub), { withFileTypes: true });
+    } catch {
+      return;
+    }
+    for (const entry of entries) {
+      if (entry.isDirectory()) {
+        if (!sub) await scan(entry.name);
+        continue;
+      }
+      const kind = VIDEO.test(entry.name) ? 'video' : IMAGE.test(entry.name) ? 'image' : null;
+      if (!kind) continue;
+      try {
+        const info = await stat(join(dir, sub, entry.name));
+        files.push({
+          filename: entry.name,
+          subfolder: sub,
+          type: 'output',
+          kind,
+          size: info.size,
+          modified: info.mtimeMs,
+        });
+      } catch {
+        /* vanished between listing and stat */
+      }
+    }
+  };
+
+  await scan('');
+  files.sort((a, b) => (b as { modified: number }).modified - (a as { modified: number }).modified);
+  res.json({ writable: true, files });
+});
+
+app.delete('/api/media', async (req, res) => {
+  const dir = await findOutputDir();
+  if (!dir) return res.status(409).json({ error: 'The output folder is not on this machine.' });
+
+  const { filename, subfolder = '' } = req.body ?? {};
+  if (typeof filename !== 'string' || typeof subfolder !== 'string') {
+    return res.status(400).json({ error: 'Bad request.' });
+  }
+
+  const target = insideOutput(dir, subfolder, filename);
+  if (!target) return res.status(400).json({ error: 'Outside the output folder.' });
+
+  try {
+    await unlink(target);
+    res.json({ ok: true });
+  } catch (err) {
+    res.status(404).json({ error: (err as Error).message });
   }
 });
 
