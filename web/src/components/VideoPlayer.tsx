@@ -69,7 +69,7 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
   const pct = duration ? (time / duration) * 100 : 0;
 
   return (
-    <div className={`player ${className ?? ''}`}>
+    <div className={`player ${playing ? 'is-playing' : ''} ${className ?? ''}`}>
       <video
         ref={video}
         src={src}
@@ -80,19 +80,20 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
         onClick={toggle}
       />
 
+      {/* Over the picture, bottom right, on hover — a bar underneath cost every
+          tile 34px of height and still could not fit its own contents at tile
+          width. The scrubber is the full width of the bottom edge, where it has
+          the room to be worth dragging. */}
+      <div className="player-track" onClick={seek} role="slider" aria-valuenow={Math.round(pct)}>
+        <div className="player-fill" style={{ width: `${pct}%` }} />
+      </div>
+
       <div className="player-bar">
         <button className="player-btn" onClick={toggle} title={playing ? 'Pause' : 'Play'}>
           {playing ? <Pause /> : <Play />}
         </button>
 
-        {/* Click anywhere on the track to seek. */}
-        <div className="player-track" onClick={seek} role="slider" aria-valuenow={Math.round(pct)}>
-          <div className="player-fill" style={{ width: `${pct}%` }} />
-        </div>
-
-        <span className="player-time mono">
-          {clock(time)} / {clock(duration)}
-        </span>
+        <span className="player-time mono">{clock(time)}</span>
 
         <button
           className="player-btn"

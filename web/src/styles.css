@@ -2380,3 +2380,91 @@ input[type='number'].param-input {
 .media-grid .player-time {
   display: none;
 }
+
+/* ── Player controls: over the picture ──────────────────────────────────── */
+/*
+   A bar under the video cost every tile 34px of height and still could not fit
+   its own contents at tile width. These sit on the picture instead, bottom
+   right, and appear on hover — so a grid of clips is a grid of pictures until
+   you go to use one.
+ 
+   They stay up while the clip is playing, since that is exactly when you want
+   the pause button without hunting for it.
+*/
+.player {
+  position: relative;
+  overflow: hidden;
+}
+.player-video {
+  border-radius: var(--radius-sm);
+}
+
+.player-bar {
+  position: absolute;
+  right: 6px;
+  bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px 4px;
+  border: none;
+  border-radius: 8px;
+  /* Dark enough to sit on a bright frame without a shadow. */
+  background: rgb(12 12 14 / 0.72);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--ease-dur) var(--ease);
+  pointer-events: none;
+}
+.player:hover .player-bar,
+.player:focus-within .player-bar,
+.player.is-playing .player-bar {
+  opacity: 1;
+  pointer-events: auto;
+}
+.player-btn {
+  color: #fff;
+  min-width: 24px;
+  min-height: 22px;
+  padding: 3px 4px;
+}
+.player-btn:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+.player-time {
+  color: #d8d8de;
+  padding: 0 4px;
+  font-size: 11px;
+}
+
+/* The scrubber runs the width of the bottom edge, where there is room to aim. */
+.player-track {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 4px;
+  border-radius: 0;
+  background: rgb(255 255 255 / 0.18);
+  opacity: 0;
+  transition: opacity var(--ease-dur) var(--ease);
+}
+.player:hover .player-track,
+.player.is-playing .player-track {
+  opacity: 1;
+}
+.player-track:hover {
+  height: 7px;
+}
+.player-fill {
+  border-radius: 0;
+}
+
+/* The tile is the picture again — no bar taking a slice off the bottom. */
+.media-thumb.player .player-video {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}
+.media-grid .player-time {
+  display: inline;
+}
