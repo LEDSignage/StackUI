@@ -2327,11 +2327,6 @@ input[type='number'].param-input {
 }
 /* The time readout is the first thing to go when a tile is narrow — the
    buttons and the scrubber are what you actually use. */
-@media (max-width: 1500px) {
-  .media-inline:not(.is-full) .player-time {
-    display: none;
-  }
-}
 
 /* The player bar is a fixed row: it never shrinks away, and the icons keep
    their size whatever the tile does. */
@@ -2349,4 +2344,39 @@ input[type='number'].param-input {
   min-width: 26px;
   min-height: 24px;
   color: var(--text);
+}
+
+/* ── Player bar: nothing gets clipped ───────────────────────────────────── */
+/*
+   The bar was laid out as if it had room it does not have. On a 180px tile the
+   two buttons, the scrubber and "0:00 / 0:07" come to more than the width, and
+   `overflow: hidden` on the player quietly cut the right-hand end off — so the
+   mute and full-screen buttons were drawn and then chopped away.
+ 
+   Now the fixed things are fixed, the track absorbs what is left, and the time
+   is dropped in the grid entirely: at tile size the buttons and the scrubber
+   are what you use, and the clip length is already a column in the caption.
+*/
+.player {
+  overflow: visible;
+}
+.player-video {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+.player-bar {
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  flex-wrap: nowrap;
+  gap: 6px;
+  padding: 6px;
+  overflow: hidden;
+}
+.player-btn {
+  flex: 0 0 auto;
+}
+.player-track {
+  flex: 1 1 auto;
+  min-width: 16px;
+}
+.media-grid .player-time {
+  display: none;
 }
