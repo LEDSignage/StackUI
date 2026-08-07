@@ -2468,3 +2468,102 @@ input[type='number'].param-input {
 .media-grid .player-time {
   display: inline;
 }
+
+/* ── Player: bar below, two buttons over the frame ──────────────────────── */
+/*
+   Play and the scrubber belong under the picture where they always are. Mute
+   and full screen are the occasional ones, and they are what made the bar wider
+   than a tile — so they moved onto the frame, bottom right, on hover.
+*/
+.player {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: visible;
+}
+.player-video {
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+/* Back to a row under the video, and now it fits: two fewer buttons. */
+.player-bar {
+  position: static;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 8px;
+  background: #17171a;
+  border: none;
+  border-top: 1px solid var(--line);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: none;
+  flex: none;
+  min-height: 32px;
+  overflow: hidden;
+}
+.player-bar .player-btn {
+  color: var(--text);
+}
+.player-bar .player-btn:hover {
+  background: var(--tile-hi);
+}
+.player-bar .player-time {
+  color: var(--muted);
+  font-size: var(--fs-tiny);
+  flex: 0 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* The scrubber sits in the bar again. */
+.player-track {
+  position: static;
+  flex: 1 1 auto;
+  min-width: 16px;
+  height: 5px;
+  border-radius: 999px;
+  background: #34343b;
+  opacity: 1;
+}
+.player-track:hover {
+  height: 7px;
+}
+.player-fill {
+  border-radius: 999px;
+}
+
+/* The two that moved onto the picture. */
+.player-over {
+  position: absolute;
+  right: 6px;
+  /* Above the bar, not over it. */
+  bottom: 40px;
+  display: flex;
+  gap: 2px;
+  padding: 3px 4px;
+  border-radius: 8px;
+  background: rgb(12 12 14 / 0.72);
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity var(--ease-dur) var(--ease);
+  pointer-events: none;
+}
+.player:hover .player-over,
+.player:focus-within .player-over {
+  opacity: 1;
+  pointer-events: auto;
+}
+.player-over .player-btn {
+  color: #fff;
+}
+.player-over .player-btn:hover {
+  background: rgb(255 255 255 / 0.16);
+}
+
+/* The time is back, so it needs to be allowed again. */
+.media-grid .player-time {
+  display: inline;
+}

@@ -80,21 +80,10 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
         onClick={toggle}
       />
 
-      {/* Over the picture, bottom right, on hover — a bar underneath cost every
-          tile 34px of height and still could not fit its own contents at tile
-          width. The scrubber is the full width of the bottom edge, where it has
-          the room to be worth dragging. */}
-      <div className="player-track" onClick={seek} role="slider" aria-valuenow={Math.round(pct)}>
-        <div className="player-fill" style={{ width: `${pct}%` }} />
-      </div>
-
-      <div className="player-bar">
-        <button className="player-btn" onClick={toggle} title={playing ? 'Pause' : 'Play'}>
-          {playing ? <Pause /> : <Play />}
-        </button>
-
-        <span className="player-time mono">{clock(time)}</span>
-
+      {/* Mute and full screen only, over the frame on hover. They are the two
+          you reach for occasionally, and the two that pushed the bar past the
+          width of a tile — where overflow quietly cut them off. */}
+      <div className="player-over">
         <button
           className="player-btn"
           onClick={() => {
@@ -109,6 +98,21 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
         <button className="player-btn" onClick={fullscreen} title="Full screen">
           <Expand />
         </button>
+      </div>
+
+      {/* Play and the scrubber stay put, under the picture, always visible. */}
+      <div className="player-bar">
+        <button className="player-btn" onClick={toggle} title={playing ? 'Pause' : 'Play'}>
+          {playing ? <Pause /> : <Play />}
+        </button>
+
+        <div className="player-track" onClick={seek} role="slider" aria-valuenow={Math.round(pct)}>
+          <div className="player-fill" style={{ width: `${pct}%` }} />
+        </div>
+
+        <span className="player-time mono">
+          {clock(time)} / {clock(duration)}
+        </span>
       </div>
     </div>
   );
