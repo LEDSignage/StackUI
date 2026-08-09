@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import type { Module, ModuleLibrary, Stack } from '@shared/types.ts';
 import { compile } from '@shared/compile.ts';
 import { compose } from '@shared/script.ts';
+import { fixGuideSize, type SizeFix } from '@shared/guideSize.ts';
 import { indexIssues, toCarry } from '@shared/validate.ts';
 import { resolvePort } from '@shared/compile.ts';
 import { fetchModules, fetchStack, fetchStacks, saveStack, type StackSummary } from './lib/api.ts';
@@ -36,6 +37,8 @@ export default function App() {
   /** Which half of the job page's right pane is showing. */
   const [pane, setPane] = useState<RightPane>('result');
   const [confirmClear, setConfirmClear] = useState(false);
+  /** Set when a run was submitted larger than asked for; see fixGuideSize. */
+  const [sizeFix, setSizeFix] = useState<SizeFix | null>(null);
   const [mode, setMode] = useState<Mode>('stack');
 
   const { run, wsOpen, elapsed, start, interrupt, reset } = useRun();
@@ -180,6 +183,48 @@ export default function App() {
     };
   }, [run.status, run.files, convertFps]);
 
+  /**
+   * Crop the finished clip back to the size that was asked for.
+   *
+   * The other half of fixGuideSize: the job went out at the next multiple of 32
+   * to get past ComfyUI's guide-frame crash, so the file is a few pixels larger
+   * than requested. This trims it, and the trimmed copy is what the page shows
+   * and what Download hands you.
+   */
+  const [fittedUrl, setFittedUrl] = useState<string | null>(null);
+  useEffect(() => {
+    const file = run.files[run.files.length - 1];
+    if (run.status !== 'done' || !file || !sizeFix) {
+      setFittedUrl(null);
+      return;
+    }
+    if (!/\.(mp4|webm|mov|mkv)$/i.test(file.filename)) return;
+
+    let cancelled = false;
+    void fetch('/api/fit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        filename: file.filename,
+        subfolder: file.subfolder ?? '',
+        type: file.type ?? 'output',
+        width: sizeFix.width,
+        height: sizeFix.height,
+      }),
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error('fit failed'))))
+      .then((body: { url: string }) => {
+        if (!cancelled) setFittedUrl(body.url);
+      })
+      // Failing here is not worth an error on screen: the clip exists and
+      // plays, it is just eight pixels taller than asked for.
+      .catch(() => {});
+
+    return () => {
+      cancelled = true;
+    };
+  }, [run.status, run.files, sizeFix]);
+
   // ── Job / model selectors ─────────────────────────────────────────────────
 
   const jobs = useMemo(() => [...new Set(stacks.map((s) => s.job))].sort(), [stacks]);
@@ -267,7 +312,12 @@ export default function App() {
       // Unload first, so a big model is not loading into a card that is already
       // full — that spills into system RAM and the run stalls silently.
       if (clearFirst) await freeMemory().catch(() => {});
-      await start(result.prompt, result.tileMap).catch(() => {
+      // Submit at a size ComfyUI can survive; the finished file is cropped
+      // back to what was asked for. A copy, so the compiled result stays a
+      // faithful view of the stack.
+      const prompt = JSON.parse(JSON.stringify(result.prompt));
+      setSizeFix(fixGuideSize(prompt));
+      await start(prompt, result.tileMap).catch(() => {
         /* useRun already put it on the tiles */
       });
     })();
@@ -467,12 +517,12 @@ export default function App() {
                its own. LTX takes any frame_rate, so its page has no `output`
                block and no toggle; H3 is locked to 24fps, so its page does. */
             convert={
-              stack.output
+              stack.output || fittedUrl
                 ? {
                     enabled: convertFps > 0,
                     fps: convertFps || 30,
                     status: convertStatus,
-                    url: convertedUrl,
+                    url: convertedUrl ?? fittedUrl,
                   }
                 : undefined
             }

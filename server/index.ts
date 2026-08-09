@@ -21,6 +21,7 @@ import { fileURLToPath } from 'node:url';
 import type { Module, Stack } from '../shared/types.ts';
 import { loadEnvFile } from '../shared/env.ts';
 import { insideOutput } from '../shared/outputPath.ts';
+import { patchComfy, describe as describePatch } from './patchComfy.ts';
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(HERE, '..');
@@ -372,6 +373,54 @@ app.post('/api/convert-fps', async (req, res) => {
   res.json({ url: `/converted/${encodeURIComponent(out)}`, cached: false });
 });
 
+/**
+ * Crop a finished video to an exact size.
+ *
+ * The other half of the guide-frame workaround: the job is submitted at a size
+ * ComfyUI can survive — the next multiple of 32 — and the extra pixels come
+ * off here, so what you asked for is what you get. A centre crop rather than a
+ * scale, because there is nothing to gain from resampling every frame to lose
+ * eight rows.
+ */
+app.post('/api/fit', async (req, res) => {
+  const { filename, subfolder = '', type = 'output', width, height } = req.body ?? {};
+
+  if (typeof filename !== 'string' || !filename || filename.includes('..')) {
+    return res.status(400).json({ error: 'Bad filename.' });
+  }
+  const w = Math.round(Number(width));
+  const h = Math.round(Number(height));
+  if (!Number.isFinite(w) || !Number.isFinite(h) || w < 16 || h < 16 || w > 8192 || h > 8192) {
+    return res.status(400).json({ error: 'Bad size.' });
+  }
+
+  const out = `${w}x${h}-${filename.replace(/[^A-Za-z0-9._-]/g, '_')}`;
+  const outPath = join(CONVERTED_DIR, out);
+  await mkdir(CONVERTED_DIR, { recursive: true });
+
+  if (existsSync(outPath)) return res.json({ url: `/converted/${encodeURIComponent(out)}`, cached: true });
+
+  const q = new URLSearchParams({ filename, subfolder, type });
+  try {
+    await runFfmpeg([
+      '-y',
+      '-i',
+      `${COMFY_URL}/view?${q}`,
+      // min() so a video already at or below the target is left alone rather
+      // than the crop failing outright.
+      '-filter:v',
+      `crop=min(iw\\,${w}):min(ih\\,${h}):(iw-min(iw\\,${w}))/2:(ih-min(ih\\,${h}))/2`,
+      '-c:a',
+      'copy',
+      outPath,
+    ]);
+  } catch (err) {
+    return res.status(500).json({ error: `ffmpeg failed: ${(err as Error).message}` });
+  }
+
+  res.json({ url: `/converted/${encodeURIComponent(out)}`, cached: false });
+});
+
 function runFfmpeg(args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
     const proc = spawn('ffmpeg', args, { windowsHide: true });
@@ -440,4 +489,11 @@ server.on('upgrade', comfyProxy.upgrade!);
 server.listen(PORT, () => {
   console.log(`Stack UI server  →  http://localhost:${PORT}`);
   console.log(`ComfyUI proxy    →  ${COMFY_URL}  (as /comfy/*)`);
+
+  // A ComfyUI update puts the original file back and the guide-frame crash
+  // returns with no warning, so it is checked on every start rather than left
+  // to be rediscovered through a failed render. STACKUI_NO_PATCH=1 skips it.
+  if (!process.env.STACKUI_NO_PATCH) {
+    void patchComfy().then((r) => console.log(describePatch(r)));
+  }
 });
