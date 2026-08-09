@@ -76,6 +76,47 @@ export function useRun() {
     const id = localStorage.getItem(IN_FLIGHT);
     return id ? { ...initial, promptId: id, status: 'running', startedAt: Date.now() } : initial;
   });
+
+  /**
+   * Prove the restored job is real, or forget it.
+   *
+   * A prompt id lives in localStorage so a reload can rejoin a run in progress.
+   * Nothing checked it was still a thing: if ComfyUI restarted, or the job was
+   * cancelled from elsewhere, the id survived and the page showed "Working…"
+   * for a run that no longer existed anywhere — and, because the id never
+   * cleared, it came back on every reload. From the outside that is Stack UI
+   * inventing a job and sending nothing to ComfyUI.
+   *
+   * So on load the id is checked against the queue and the history. Present in
+   * either, it stands. In neither, it is dropped and the page goes idle.
+   */
+  useEffect(() => {
+    const id = localStorage.getItem(IN_FLIGHT);
+    if (!id) return;
+    let cancelled = false;
+
+    void (async () => {
+      const [queue, history] = await Promise.all([
+        fetch('/comfy/queue').then((r) => r.json()).catch(() => null),
+        fetch(`/comfy/history/${id}`).then((r) => r.json()).catch(() => null),
+      ]);
+      if (cancelled) return;
+
+      const inQueue = [...(queue?.queue_running ?? []), ...(queue?.queue_pending ?? [])].some(
+        (item: unknown[]) => String(item[1]) === id,
+      );
+      const finished = history && history[id];
+      if (inQueue || finished) return;
+
+      localStorage.removeItem(IN_FLIGHT);
+      promptIdRef.current = null;
+      setRun((prev) => (prev.promptId === id && prev.status === 'running' ? initial : prev));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
   const [wsOpen, setWsOpen] = useState(false);
 
   /** The map the *current* run was submitted with. */
