@@ -46,6 +46,21 @@ export function compile(
 
   let sawTerminal = false;
 
+  /**
+   * Input slots with no file are left out of the graph entirely.
+   *
+   * A repeatable input — a reference image, a start frame — is a slot you may
+   * or may not use. Compiling an empty one produced "has no file chosen" as an
+   * *error*, which disables Generate: three reference slots on the page meant
+   * filling all three or deleting the ones you did not want before the button
+   * would light up. An empty slot is not a mistake, it is an empty slot.
+   *
+   * The whole group goes, not just the loader: a start-frame slot is a loader
+   * plus the node that applies it, and dropping only the loader would leave the
+   * second node demanding an image nothing provides.
+   */
+  const skipped = emptyInputGroups(stack, library);
+
   for (const line of stack.lines) {
     // parallel: everyone on the line sees the same starting state
     const lineCarry: Carry = new Map(carry);
@@ -54,6 +69,9 @@ export function compile(
     carryAtLine[line.id] = snapshot(lineCarry);
 
     for (const tile of line.tiles) {
+      const group = inputGroupOf(tile.id);
+      if (group && skipped.has(group)) continue;
+
       const module = library[tile.moduleId];
 
       if (!module) {
@@ -210,6 +228,40 @@ export function compile(
     issues,
     ok: !issues.some((i) => i.severity === 'error'),
   };
+}
+
+// ── Empty input slots ───────────────────────────────────────────────────────
+
+/** Tiles belonging to one repeatable input are named `in.<kind>.<group>.<i>`. */
+const INPUT_TILE = /^in\.[A-Za-z0-9]+\.([A-Za-z0-9]+)\.\d+$/;
+
+export const inputGroupOf = (tileId: string): string | null => INPUT_TILE.exec(tileId)?.[1] ?? null;
+
+/**
+ * The input groups with nothing in their file slot.
+ *
+ * One empty file anywhere in the group condemns the group, since the tiles of a
+ * group exist to carry that one file into the graph.
+ */
+function emptyInputGroups(stack: Stack, library: ModuleLibrary): Set<string> {
+  const empty = new Set<string>();
+
+  for (const line of stack.lines) {
+    for (const tile of line.tiles) {
+      const group = inputGroupOf(tile.id);
+      if (!group) continue;
+
+      const module = library[tile.moduleId];
+      if (!module) continue;
+
+      for (const param of module.params) {
+        if (param.type !== 'IMAGE_UPLOAD') continue;
+        const v = tile.params[param.name] ?? param.default;
+        if (v === '' || v === undefined || v === null) empty.add(group);
+      }
+    }
+  }
+  return empty;
 }
 
 // ── Bypass ──────────────────────────────────────────────────────────────────

@@ -340,9 +340,52 @@ export function useRun() {
     if (!id || (run.status !== 'queued' && run.status !== 'running')) return;
 
     let cancelled = false;
+    /**
+     * How many checks in a row have found the job nowhere at all.
+     *
+     * A run that vanishes — ComfyUI restarted, or it was cleared from another
+     * client — leaves nothing in the queue and nothing in the history, so
+     * waiting for either is waiting forever. Several misses rather than one,
+     * because a busy ComfyUI can drop a request, and a single timeout is not
+     * evidence the job is gone.
+     */
+    let missing = 0;
+
     const timer = setInterval(async () => {
       const entry = await fetchHistory(id).catch(() => null);
-      if (cancelled || !entry?.status) return;
+      if (cancelled) return;
+
+      if (!entry) {
+        const queue = await fetch('/comfy/queue')
+          .then((r) => r.json())
+          .catch(() => null);
+        if (cancelled) return;
+
+        const queued =
+          queue &&
+          [...(queue.queue_running ?? []), ...(queue.queue_pending ?? [])].some(
+            (item: unknown[]) => String(item[1]) === id,
+          );
+        // No answer at all is not evidence either way — only a good answer that
+        // does not mention the job counts against it.
+        if (queue && !queued && ++missing >= 5) {
+          setRun((prev) =>
+            prev.promptId === id
+              ? {
+                  ...prev,
+                  status: 'error',
+                  message:
+                    'This job is no longer on the box — ComfyUI was restarted, or the queue was cleared.',
+                  finishedAt: Date.now(),
+                }
+              : prev,
+          );
+        }
+        return;
+      }
+
+      missing = 0;
+      if (!entry.status) return;
 
       const failed = entry.status.status_str === 'error';
       if (!failed && !entry.status.completed) return;

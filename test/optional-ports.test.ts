@@ -94,3 +94,26 @@ test('required ports still resolve by type', () => {
     assert.deepEqual(unresolved, [], `${id}: ${unresolved.map((i) => i.message).join('; ')}`);
   }
 });
+
+test('an unused reference slot does not block Generate', () => {
+  // Three slots on the page, one image chosen. The other two are empty because
+  // they are not being used, which is not an error — it used to disable the
+  // button until you deleted them.
+  const { ok, issues, prompt } = compile(withOneImage(), LIB);
+  const errors = issues.filter((i) => i.severity === 'error');
+
+  assert.deepEqual(errors, [], errors.map((e) => e.message).join('; '));
+  assert.ok(ok, 'the stack compiles');
+
+  const loaders = Object.values(prompt).filter((n) => n.class_type === 'LoadImage');
+  assert.equal(loaders.length, 1, 'only the slot with a file is in the graph');
+});
+
+test('a slot with a file still reaches the reference node', () => {
+  const { prompt } = compile(withOneImage(), LIB);
+  const ref = Object.values(prompt).find((n) => n.class_type === 'MiniMaxH3ReferenceToVideo')!;
+  const wired = Object.entries(ref.inputs).filter(([k, v]) => k.startsWith('ref_') && Array.isArray(v));
+
+  assert.equal(wired.length, 1, `expected one reference wired, got ${wired.map(([k]) => k).join(', ')}`);
+  assert.ok(wired[0]![0].startsWith('ref_images.'), 'and it is an image slot, not a video one');
+});
