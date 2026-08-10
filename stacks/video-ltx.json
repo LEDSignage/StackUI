@@ -82,16 +82,6 @@
           "collapsed": true
         },
         {
-          "id": "t-text",
-          "moduleId": "gen.LTXAVTextEncoderLoader",
-          "params": {
-            "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
-            "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
-            "device": "default"
-          },
-          "collapsed": true
-        },
-        {
           "id": "t-latent",
           "moduleId": "gen.EmptyLTXVLatentVideo",
           "params": {
@@ -99,6 +89,23 @@
             "height": 768,
             "length": 121,
             "batch_size": 1
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l1b",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-text",
+          "moduleId": "gen.LTXAVTextEncoderLoader",
+          "params": {
+            "text_encoder": "gemma_3_12B_it_fp4_mixed.safetensors",
+            "ckpt_name": "ltx-2.3-22b-dev-fp8.safetensors",
+            "device": "default"
           },
           "collapsed": true
         }

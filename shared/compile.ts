@@ -65,6 +65,15 @@ export function compile(
     // parallel: everyone on the line sees the same starting state
     const lineCarry: Carry = new Map(carry);
     const pending: Carry = new Map();
+    /**
+     * Which tile published each pending name, so a collision can be named.
+     *
+     * Across lines, a later name replacing an earlier one is the carry working
+     * as intended. Within one line it is two tiles fighting over the same name,
+     * one of them silently losing — which is how two reference slots sharing a
+     * loader made an image disappear with nothing on screen to say so.
+     */
+    const publishedBy = new Map<string, string>();
 
     carryAtLine[line.id] = snapshot(lineCarry);
 
@@ -182,6 +191,16 @@ export function compile(
           });
           continue;
         }
+        const rival = publishedBy.get(port.name);
+        if (rival && rival !== tile.id) {
+          issues.push({
+            tileId: tile.id,
+            severity: 'warning',
+            code: 'duplicate-output',
+            message: `Two tiles on this line both provide "${port.name}". Only this one is used; the other is ignored.`,
+          });
+        }
+        publishedBy.set(port.name, tile.id);
         pending.set(port.name, { ...src, type: port.type });
       }
 

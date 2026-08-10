@@ -17,7 +17,7 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { compile } from '../shared/compile.ts';
 import { migrate } from '../shared/migrate.ts';
-import type { Module, ModuleLibrary } from '../shared/types.ts';
+import type { Module, ModuleLibrary, Stack } from '../shared/types.ts';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
@@ -116,4 +116,39 @@ test('a slot with a file still reaches the reference node', () => {
 
   assert.equal(wired.length, 1, `expected one reference wired, got ${wired.map(([k]) => k).join(', ')}`);
   assert.ok(wired[0]![0].startsWith('ref_images.'), 'and it is an image slot, not a video one');
+});
+
+test('two tiles on one line fighting over a name is reported', () => {
+  // The silent version of this made an image vanish: two reference slots
+  // sharing a loader published the same name, the second won, and the first
+  // was simply not in the graph.
+  const stack = load('video-h3-ref');
+  const withClash: Stack = {
+    ...stack,
+    lines: [
+      ...stack.lines,
+      {
+        id: 'clash',
+        mode: 'parallel',
+        bypassed: false,
+        tiles: [
+          { id: 'a', moduleId: 'h3-ref-image-0', params: { image: 'x.png' }, collapsed: true },
+          { id: 'b', moduleId: 'h3-ref-image-0', params: { image: 'y.png' }, collapsed: true },
+        ],
+      },
+    ],
+  };
+
+  const { issues } = compile(withClash, LIB);
+  const clash = issues.filter((i) => i.code === 'duplicate-output');
+  assert.ok(clash.length > 0, 'the collision is reported');
+  assert.match(clash[0]!.message, /both provide/);
+});
+
+test('the shipped pipelines have no such collisions', () => {
+  for (const id of ['video-ltx', 'video-h3', 'video-h3-ref', 'example-z-image', 'example-txt2img']) {
+    const { issues } = compile(load(id), LIB);
+    const clash = issues.filter((i) => i.code === 'duplicate-output');
+    assert.deepEqual(clash, [], `${id}: ${clash.map((i) => i.message).join('; ')}`);
+  }
 });

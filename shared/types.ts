@@ -317,7 +317,9 @@ export type CompileIssue = {
     | 'no-terminal'
     | 'bad-node-ref'
     | 'missing-output'
-    | 'empty-file';
+    | 'empty-file'
+    /** Two tiles on one line publish the same name; only one is used. */
+    | 'duplicate-output';
   message: string;
 };
 
