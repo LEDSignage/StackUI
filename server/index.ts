@@ -178,8 +178,11 @@ app.get('/api/stacks/:id', async (req, res) => {
  * mid-write leaves a half-written file that no longer parses, and the stack is
  * simply gone.
  */
-app.put('/api/stacks/:id', async (req, res) => {
-  const id = safeId(req.params.id);
+// POST as well as PUT: a page being closed can only flush its last edit with
+// navigator.sendBeacon, which is POST-only and cannot be talked out of it.
+app.all('/api/stacks/:id', async (req, res, next) => {
+  if (req.method !== 'PUT' && req.method !== 'POST') return next();
+  const id = safeId(String(req.params.id));
   if (!id) return res.status(400).json({ error: 'Bad stack id.' });
 
   const body = req.body as Stack | undefined;

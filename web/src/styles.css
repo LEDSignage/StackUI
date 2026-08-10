@@ -2567,3 +2567,13 @@ input[type='number'].param-input {
 .media-grid .player-time {
   display: inline;
 }
+
+/* The one thing in the header that should be alarming when it appears. */
+.save-failed {
+  color: var(--err);
+  border: 1px solid var(--err);
+  border-radius: 999px;
+  padding: 4px 11px;
+  font-size: var(--fs-small);
+  white-space: nowrap;
+}

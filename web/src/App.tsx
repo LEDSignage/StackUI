@@ -244,19 +244,72 @@ export default function App() {
   // ── Persist ───────────────────────────────────────────────────────────────
 
   const saveTimer = useRef<number>(0);
+  /** The newest edit not yet written, so it can be flushed on the way out. */
+  const unsaved = useRef<Stack | null>(null);
+  /**
+   * Whether the last save failed.
+   *
+   * It used to be swallowed. Everything here is autosaved and there is no Save
+   * button, so a server that has stopped accepting writes looks exactly like
+   * one that is working — until a reload brings back an hour-old pipeline.
+   */
+  const [saveFailed, setSaveFailed] = useState(false);
+
+  const writeStack = useCallback(async (s: Stack) => {
+    try {
+      await saveStack(s);
+      localStorage.setItem(LAST_STACK, s.id);
+      if (unsaved.current?.id === s.id) unsaved.current = null;
+      setSaveFailed(false);
+    } catch {
+      setSaveFailed(true);
+    }
+  }, []);
+
   useEffect(() => {
     if (stack.lines.length === 0) return;
     // Don't litter stacks/ with "Untitled stack" files. A stack becomes a saved
     // job once it has a name; before that it is scratch work.
     if (stack.name === UNTITLED) return;
+    unsaved.current = stack;
     clearTimeout(saveTimer.current);
-    saveTimer.current = window.setTimeout(() => {
-      void saveStack(stack)
-        .then(() => localStorage.setItem(LAST_STACK, stack.id))
-        .catch(() => {});
-    }, 600);
+    saveTimer.current = window.setTimeout(() => void writeStack(stack), 600);
     return () => clearTimeout(saveTimer.current);
-  }, [stack]);
+  }, [stack, writeStack]);
+
+  /**
+   * Write the pending edit before leaving this pipeline.
+   *
+   * Edits are debounced, and switching model or job replaces the whole stack —
+   * so the last half-second of typing was cancelled with the timer and never
+   * written. Type into the prompt, switch model, come back: the last thing you
+   * typed was gone.
+   */
+  useEffect(() => {
+    return () => {
+      const pending = unsaved.current;
+      if (pending && pending.name !== UNTITLED && pending.lines.length) {
+        clearTimeout(saveTimer.current);
+        void writeStack(pending);
+      }
+    };
+  }, [stack.id, writeStack]);
+
+  /** And on the way out of the page entirely. */
+  useEffect(() => {
+    const onLeave = () => {
+      const pending = unsaved.current;
+      if (!pending || pending.name === UNTITLED || !pending.lines.length) return;
+      // fetch with keepalive is the only thing that reliably survives an
+      // unload; a normal request is cancelled with the page.
+      navigator.sendBeacon?.(
+        `/api/stacks/${pending.id}`,
+        new Blob([JSON.stringify(pending)], { type: 'application/json' }),
+      );
+    };
+    window.addEventListener('pagehide', onLeave);
+    return () => window.removeEventListener('pagehide', onLeave);
+  }, []);
 
   // ── Drop validity ─────────────────────────────────────────────────────────
 
@@ -468,6 +521,18 @@ export default function App() {
         <span className={`ws ${wsOpen ? 'ws-on' : ''}`} title={wsOpen ? 'Live' : 'No websocket'}>
           ws
         </span>
+
+        {/* Silence here used to mean either "saved" or "not saved and never
+            will be". Everything autosaves and there is no Save button, so a
+            server that has stopped accepting writes has to say so. */}
+        {saveFailed && (
+          <span
+            className="save-failed"
+            title="Your edits are not reaching the server. They are still on screen, but a reload will lose them."
+          >
+            ● not saving
+          </span>
+        )}
         <button
           className="ghost small"
           onClick={() => dragDebug.toggle()}
