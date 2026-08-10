@@ -12,3 +12,6 @@ storage/
 
 *.log
 .cache/
+
+# Save-before-overwrite copies, written by the server.
+*.bak

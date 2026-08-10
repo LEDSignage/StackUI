@@ -177,10 +177,30 @@ export function addInput(stack: Stack, kind: InputKind): Stack {
 
   const group = uid();
   const lines = [...stack.lines];
-  // A slot may need its own loader — see loaderByIndex on InputKind.
-  const existing = inputCount(stack, kind.id);
+
+  /**
+   * The lowest loader not already in use — not the number of slots.
+   *
+   * Each slot loads through its own module because each publishes a
+   * differently-named output: H3's nine reference images are addressed
+   * individually as ref_image_0 … _8. Counting the slots breaks the moment one
+   * is removed: with slots 0, 1 and 2, deleting the first leaves a count of 2,
+   * so the next Add hands out loader 2 again. Two slots then publish the same
+   * name, the later one overwrites the earlier in the carry, and one of your
+   * images silently never reaches the model.
+   */
+  const inUse = new Set(
+    stack.lines.flatMap((l) => l.tiles).filter((t) => inputRefOf(t.id)?.kind === kind.id).map((t) => t.moduleId),
+  );
+  const loaders = kind.loaderByIndex ?? [];
+  const slot = loaders.findIndex((id) => !inUse.has(id));
+  // Every loader taken. The Add button is disabled at the ceiling so this
+  // should not be reachable, but falling through would create the duplicate
+  // this function exists to prevent.
+  if (loaders.length && slot === -1) return stack;
+
   kind.template.forEach((t, i) => {
-    const moduleId = i === 0 ? (kind.loaderByIndex?.[existing] ?? t.moduleId) : t.moduleId;
+    const moduleId = i === 0 ? (loaders[slot] ?? t.moduleId) : t.moduleId;
     lines.splice(at + i, 0, {
       id: uid(),
       mode: 'parallel',

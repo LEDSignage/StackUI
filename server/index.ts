@@ -14,7 +14,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { createServer } from 'node:http';
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { readdir, readFile, writeFile, unlink, mkdir, stat } from 'node:fs/promises';
+import { readdir, readFile, writeFile, unlink, mkdir, stat, rename, copyFile } from 'node:fs/promises';
 import type { Dirent } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -163,11 +163,47 @@ app.get('/api/stacks/:id', async (req, res) => {
   }
 });
 
+/**
+ * Save a stack.
+ *
+ * These files are the work: the prompts, the sizes, the shot lists. The page
+ * autosaves on every keystroke, so this endpoint is hit constantly, and two
+ * things that were true of it are not acceptable for something holding work.
+ *
+ * It wrote whatever it was given. A body that was not a stack — an empty
+ * object from a failed serialisation, a truncated request — replaced a working
+ * pipeline with junk, and the only sign was the page coming back empty later.
+ *
+ * And it wrote in place. writeFile truncates first, so a crash or a full disk
+ * mid-write leaves a half-written file that no longer parses, and the stack is
+ * simply gone.
+ */
 app.put('/api/stacks/:id', async (req, res) => {
   const id = safeId(req.params.id);
   if (!id) return res.status(400).json({ error: 'Bad stack id.' });
+
+  const body = req.body as Stack | undefined;
+  if (!body || typeof body !== 'object' || !Array.isArray(body.lines) || typeof body.id !== 'string') {
+    return res.status(400).json({ error: 'That is not a stack — refusing to overwrite the saved one.' });
+  }
+
   await mkdir(STACKS_DIR, { recursive: true });
-  await writeFile(join(STACKS_DIR, `${id}.json`), JSON.stringify(req.body, null, 2), 'utf8');
+  const path = join(STACKS_DIR, `${id}.json`);
+
+  // Keep the previous version. One bad save is then recoverable by hand, which
+  // it was not before.
+  if (existsSync(path)) {
+    await copyFile(path, `${path}.bak`).catch(() => {});
+  }
+
+  // Write beside it and rename: rename is atomic, so the file on disk is
+  // either the old one or the new one and never half of either. The temp name
+  // deliberately does not end in .json — loadAll takes every .json in the
+  // folder, and a stray one once showed up in the app as a duplicate pipeline.
+  const tmp = `${path}.tmp`;
+  await writeFile(tmp, JSON.stringify(body, null, 2), 'utf8');
+  await rename(tmp, path);
+
   res.json({ ok: true });
 });
 
