@@ -265,6 +265,22 @@ export function resolvePort(
   const declared = module.inPorts.find((p) => p.name === portName);
   if (!declared) return null;
 
+  /**
+   * An optional port is matched by name, or not at all.
+   *
+   * The type fallback exists so a module need not spell out the obvious — the
+   * one LATENT in scope is the one you meant. On an optional port it does the
+   * opposite. MiniMaxH3ReferenceToVideo has nine reference *image* ports and
+   * three reference *video* ports, and all twelve are typed IMAGE: loading a
+   * single reference image wired that image into every one of them, video
+   * slots included, and the run died on "reference videos need at least 5
+   * frames" for videos that had never been loaded.
+   *
+   * Nothing is lost by refusing. An unwired optional port is precisely the
+   * "not provided" the node expects, which is what optional means.
+   */
+  if (declared.optional) return null;
+
   const sameType = [...carry.values()].filter((e) => e.type === declared.type);
   return sameType.length === 1 ? sameType[0]! : null;
 }
