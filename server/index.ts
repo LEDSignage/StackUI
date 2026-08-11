@@ -460,15 +460,60 @@ app.post('/api/fit', async (req, res) => {
   res.json({ url: `/converted/${encodeURIComponent(out)}`, cached: false });
 });
 
+/**
+ * Where ffmpeg is, or null.
+ *
+ * PATH first, then the places Windows installers actually put it. Spawning
+ * "ffmpeg" and hoping was fine until it was not: with ffmpeg absent, both the
+ * frame-rate conversion and the 1080p crop failed with `spawn ffmpeg ENOENT`,
+ * which says nothing about what to install or where to put it.
+ *
+ * FFMPEG_PATH overrides everything, for an install somewhere of your own.
+ */
+let ffmpegPath: string | null | undefined;
+
+function findFfmpeg(): string | null {
+  if (ffmpegPath !== undefined) return ffmpegPath;
+
+  const configured = process.env.FFMPEG_PATH;
+  if (configured) return (ffmpegPath = existsSync(configured) ? configured : null);
+
+  const local = process.env.LOCALAPPDATA ?? '';
+  const candidates = [
+    // Alongside Stack UI, for a copy dropped in by hand.
+    join(ROOT, 'ffmpeg', 'ffmpeg.exe'),
+    join(ROOT, 'ffmpeg.exe'),
+    'C:\\ffmpeg\\bin\\ffmpeg.exe',
+    'C:\\Program Files\\ffmpeg\\bin\\ffmpeg.exe',
+    // winget's shim directory, and Chocolatey.
+    join(local, 'Microsoft', 'WinGet', 'Links', 'ffmpeg.exe'),
+    'C:\\ProgramData\\chocolatey\\bin\\ffmpeg.exe',
+  ];
+  for (const c of candidates) if (existsSync(c)) return (ffmpegPath = c);
+
+  // Not found anywhere known — fall back to the bare name so a PATH install
+  // still works, and let the spawn error say so if it does not.
+  return (ffmpegPath = null);
+}
+
+/** The one message worth showing when ffmpeg is simply not installed. */
+const NO_FFMPEG =
+  'ffmpeg is not installed on the ComfyUI machine, so video cannot be re-timed or cropped. ' +
+  'Install it (winget install Gyan.FFmpeg), or set FFMPEG_PATH to point at ffmpeg.exe.';
+
 function runFfmpeg(args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
-    const proc = spawn('ffmpeg', args, { windowsHide: true });
+    const proc = spawn(findFfmpeg() ?? 'ffmpeg', args, { windowsHide: true });
     let tail = '';
     // ffmpeg reports progress on stderr; keep only the end for the error message.
     proc.stderr.on('data', (d) => {
       tail = (tail + String(d)).slice(-1500);
     });
-    proc.on('error', (e) => reject(new Error(`could not start ffmpeg — ${e.message}`)));
+    // ENOENT here means ffmpeg is not there at all, which is worth saying in
+    // words rather than passing on a spawn error.
+    proc.on('error', (e) =>
+      reject(new Error((e as NodeJS.ErrnoException).code === 'ENOENT' ? NO_FFMPEG : `could not start ffmpeg — ${e.message}`)),
+    );
     proc.on('close', (code) =>
       code === 0 ? resolve() : reject(new Error(tail.split('\n').slice(-4).join(' ').trim())),
     );
