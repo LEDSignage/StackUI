@@ -2611,3 +2611,12 @@ input[type='number'].param-input {
   color: var(--cta-text);
   font-weight: 600;
 }
+
+/* The prompt is the thing you actually read and edit, and at two rows a preset
+   paragraph arrived as a slot you scrolled through a line at a time. It gets
+   the height. Only the full-width panel, so the shot, sound and rules boxes in
+   the script editor stay compact. */
+.use-group-body > .panel-full .param-textarea {
+  min-height: 260px;
+  line-height: 1.6;
+}
