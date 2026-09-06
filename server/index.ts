@@ -235,10 +235,15 @@ app.delete('/api/stacks/:id', async (req, res) => {
 let outputDir: string | null | undefined;
 
 async function findOutputDir(): Promise<string | null> {
-  if (outputDir !== undefined) return outputDir;
+  // Only a *found* directory is remembered. Caching the failure meant that a
+  // Stack UI started a few seconds before ComfyUI asked once, got nothing, and
+  // spent the rest of its life on the read-only fallback listing — no sizes, no
+  // dates, no subfolders, no delete, and every render you had just made missing
+  // from the library.
+  if (outputDir) return outputDir;
 
   const configured = process.env.COMFY_OUTPUT;
-  if (configured) return (outputDir = existsSync(configured) ? configured : null);
+  if (configured && existsSync(configured)) return (outputDir = configured);
 
   try {
     const res = await fetch(`${COMFY_URL}/internal/folder_paths`);
@@ -250,9 +255,9 @@ async function findOutputDir(): Promise<string | null> {
       }
     }
   } catch {
-    /* box unreachable — fall through */
+    /* box not up yet — ask again next time */
   }
-  return (outputDir = null);
+  return null;
 }
 
 const VIDEO = /\.(mp4|webm|mov|mkv|avi|gif)$/i;
