@@ -255,14 +255,14 @@
   ],
   "presets": [
     {
-      "id": "sheen",
-      "label": "Light sweep",
-      "hint": "A single highlight travels across the artwork. The safest one — nothing moves but the light.",
+      "id": "life",
+      "label": "Bring it to life",
+      "hint": "The general one. Finds whatever is in the poster and animates each thing plausibly.",
       "values": [
         {
           "tileId": "t-h3",
           "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nA single soft specular highlight travels slowly across the poster from left to right, once, catching the glossy and metallic parts of the artwork as it passes and leaving them as they were. The light is the only thing that moves.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nKeep every movement small and believable — the kind of motion you would see standing in front of the real scene for five seconds, not a performance. Nothing enters or leaves the frame.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
         },
         {
           "tileId": "t-sched",
@@ -272,138 +272,138 @@
       ]
     },
     {
-      "id": "bokeh",
-      "label": "Bokeh drift",
-      "hint": "Soft out-of-focus lights drift behind the artwork. Good for a dark or photographic poster.",
+      "id": "people",
+      "label": "People",
+      "hint": "Posters led by a face or a figure — staff, patrons, performers.",
       "values": [
         {
           "tileId": "t-h3",
           "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nSoft, out-of-focus circles of warm light drift slowly upward behind the artwork, well out of focus and low in contrast, passing behind the design without ever crossing in front of the text. A faint, even glow breathes gently in the background.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "neon",
-      "label": "Neon pulse",
-      "hint": "Glowing elements breathe. For posters with neon, LED or lit signage in them.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nThe neon, LED and lit elements already in the artwork pulse gently — brightening and dimming in a slow, even rhythm, with their glow spilling faintly onto the surfaces beside them. The colours stay exactly as designed; only their brightness changes.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "push",
-      "label": "Slow push",
-      "hint": "A very slight zoom in and back out. Adds life to a flat poster without moving anything.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nAn extremely slow push in — no more than two or three percent — easing to a stop halfway through and drifting back out, so the framing at the end is identical to the framing at the start. The whole poster scales together as one flat image; nothing inside it moves independently.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "confetti",
-      "label": "Confetti",
-      "hint": "Celebratory falling confetti. Openings, launches, prize nights.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nFine confetti and small foil streamers fall gently through the frame in front of the poster, catching the light as they turn, drifting rather than raining. They are sparse enough that every word stays completely readable at all times, and the frame is clear of them at the end.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "sparkle",
-      "label": "Jackpot sparkle",
-      "hint": "Coin glints and gold sparkle. Gaming floors, jackpot and promotion boards.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nSmall gold sparkles and brief star-shaped glints appear and fade across the gold, coin and jackpot elements of the artwork, each one lasting a fraction of a second, scattered and irregular. A slow warm shimmer passes over the metallic areas.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "atmosphere",
-      "label": "Smoke & haze",
-      "hint": "Slow atmospheric haze. Late-night bar, live music, dark artwork.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nThin haze drifts slowly across the lower part of the frame, lit from behind so it glows faintly, moving like still air rather than wind. Shadows deepen and lift almost imperceptibly.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "steam",
-      "label": "Steam & pour",
-      "hint": "Rising steam and gentle liquid movement. Bistro, coffee, dining.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nFine steam rises slowly from the hot food and drink shown in the artwork, curling and thinning as it goes. Any liquid in frame moves with a slight, slow surface ripple. The food itself does not change shape or position.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
-        },
-        {
-          "tileId": "t-sched",
-          "param": "steps",
-          "value": 20
-        }
-      ]
-    },
-    {
-      "id": "minimal",
-      "label": "Barely there",
-      "hint": "Almost imperceptible movement. For dense, text-heavy posters where nothing may be risked.",
-      "values": [
-        {
-          "tileId": "t-h3",
-          "param": "prompt",
-          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nAlmost nothing moves. A barely perceptible breath of light across the artwork and the faintest shift in the shadows, at the very edge of noticing. Treat any motion as a risk to be minimised.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThe people are the subject. They breathe, blink, and shift their weight; hair and clothing settle; expressions hold and soften rather than changing to a different expression. Faces keep their exact identity, features and proportions throughout — nobody turns into someone else. Hands and held objects stay as they are.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
         },
         {
           "tileId": "t-sched",
           "param": "steps",
           "value": 24
+        }
+      ]
+    },
+    {
+      "id": "food",
+      "label": "Food & drink",
+      "hint": "Bistro, coffee, dining and bar artwork.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThe food and drink are the subject. Steam rises and thins from anything hot; a poured drink settles and its head creeps; bubbles rise; condensation beads and runs; sauces and liquids ripple slowly. Nothing is eaten, poured away or consumed, and no plate or glass changes what it holds.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "gaming",
+      "label": "Gaming floor",
+      "hint": "Machines, jackpots and gaming room photography.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThe gaming floor is the subject. Machine screens and jackpot displays glow and cycle their own light, reels and wheels turn slowly, and the room lighting shifts across the surfaces. Any number shown on a screen stays exactly the number it is — digits never change or re-form.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 24
+        }
+      ]
+    },
+    {
+      "id": "stage",
+      "label": "Live music",
+      "hint": "Bands, DJs, stage and event photography.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThe stage is the subject. Lighting rigs sweep and change colour, haze drifts through the beams, performers move with the music, and crowd figures shift and raise their hands. The energy is continuous rather than building to a moment.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "venue",
+      "label": "Venue & exterior",
+      "hint": "Building shots, beer gardens, pools, car parks, signage in situ.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThe location is the subject. Foliage and water move in a light breeze, clouds drift, reflections travel across glass, signage and window light glows, and any people present move naturally at a distance. The architecture itself is completely rigid — no wall, roofline or sign bends or shifts.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "gentle",
+      "label": "Gentle",
+      "hint": "The general one, dialled right down. For posters where the artwork is delicate or busy.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nKeep the motion at the very edge of noticing: a breath, a blink, a slow settle, a drift of light. If in doubt, move less. It should read as a photograph that happens to be alive rather than as a video.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 24
+        }
+      ]
+    },
+    {
+      "id": "bold",
+      "label": "Lively",
+      "hint": "The general one, pushed. For simple artwork that can carry more movement.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nLet the movement be clearly visible and energetic — full gestures, real motion in the elements that can carry it — while every subject stays recognisably itself and in its own part of the frame.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "graphic",
+      "label": "Graphic poster",
+      "hint": "For artwork that is all type, logo and flat colour, with no photography to animate.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed. Every designed element — the headline, all body text, prices, dates, times, logos, brand marks, panels, borders and flat colour blocks — is graphic furniture, not a subject. It stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the entire clip. No letter re-forms, no word changes, nothing slides, scales or drifts. The camera is locked off, the composition never changes, and the final frame matches the first frame exactly.\n\nBring the photographed subjects within the artwork to life. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, fabric, lights, machinery — and give each one the motion it would really have, continuously and independently, as though the poster were a window onto a live scene. Motion is confined to those subjects and to what they naturally affect: their own shadows, reflections and the light falling on them.\n\nThis poster is graphic rather than photographic, so there are no real subjects to animate. Instead, light moves across it: a slow specular sheen travelling over the glossy and metallic areas, gradients shifting gently, any glow or neon element breathing in brightness. The shapes and colours themselves are fixed.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles. No transitions, no cuts, no camera movement, no zoom, no pan."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
         }
       ]
     }
