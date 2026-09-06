@@ -2577,3 +2577,37 @@ input[type='number'].param-input {
   font-size: var(--fs-small);
   white-space: nowrap;
 }
+
+/* ── Presets ────────────────────────────────────────────────────────────── */
+/* Chips, not a dropdown: the whole point is seeing the options at a glance and
+   getting one into the fields in a single click. */
+.presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.preset {
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--text);
+  padding: 7px 15px;
+  font: inherit;
+  font-size: var(--fs-small);
+  cursor: pointer;
+  transition:
+    background var(--ease-dur) var(--ease),
+    border-color var(--ease-dur) var(--ease);
+}
+.preset:hover {
+  background: var(--tile-hi);
+  border-color: #4a4a52;
+}
+/* Marked while its values are still in the fields. Editing the prompt clears
+   it, which is correct: it is no longer that preset. */
+.preset-on {
+  background: var(--cta);
+  border-color: var(--cta);
+  color: var(--cta-text);
+  font-weight: 600;
+}

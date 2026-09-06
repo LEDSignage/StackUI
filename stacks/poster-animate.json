@@ -1,0 +1,411 @@
+{
+  "schemaVersion": 2,
+  "id": "poster-animate",
+  "name": "Animate a poster",
+  "job": "Animate a poster",
+  "model": "MiniMax H3",
+  "output": {
+    "convertFps": 30
+  },
+  "controls": [
+    {
+      "label": "How it moves",
+      "tileId": "t-h3",
+      "param": "prompt",
+      "group": "The animation",
+      "hint": "H3 takes a rich prompt — you can describe a timeline, and it generates sound too."
+    },
+    {
+      "label": "Width",
+      "tileId": "t-h3",
+      "param": "width",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Height",
+      "tileId": "t-h3",
+      "param": "height",
+      "group": "Size and timing"
+    },
+    {
+      "label": "Seconds",
+      "tileId": "t-h3",
+      "param": "length",
+      "group": "Size and timing",
+      "seconds": {
+        "fps": 24,
+        "step": 17,
+        "offset": 5
+      }
+    },
+    {
+      "label": "Seed",
+      "tileId": "t-noise",
+      "param": "noise_seed",
+      "group": "Quality"
+    },
+    {
+      "label": "Steps",
+      "tileId": "t-sched",
+      "param": "steps",
+      "group": "Quality"
+    }
+  ],
+  "inputs": {
+    "label": "The poster",
+    "kinds": [
+      {
+        "id": "poster",
+        "label": "Poster",
+        "max": 1,
+        "beforeTile": "t-h3",
+        "template": [
+          {
+            "moduleId": "load-poster"
+          }
+        ],
+        "file": {
+          "index": 0,
+          "param": "image"
+        }
+      }
+    ],
+    "note": "The artwork as supplied. It is used as both the first and the last frame, so the clip loops and the typography cannot drift."
+  },
+  "lines": [
+    {
+      "id": "l1",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-unet",
+          "moduleId": "gen.UNETLoader",
+          "params": {
+            "unet_name": "minimax_h3_fl2va_pruned_int8_convrot.safetensors",
+            "weight_dtype": "default"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-clip",
+          "moduleId": "gen.CLIPLoader",
+          "params": {
+            "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+            "type": "minimax",
+            "device": "default"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-vae",
+          "moduleId": "gen.VAELoader",
+          "params": {
+            "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-avae",
+          "moduleId": "h3-audio-vae",
+          "params": {
+            "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l-poster",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "in.poster.p1.0",
+          "moduleId": "load-poster",
+          "params": {
+            "image": ""
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l3",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-h3",
+          "moduleId": "gen.MiniMaxH3ImageToVideo",
+          "params": {
+            "prompt": "Warm evening light, shallow depth of field, unhurried.\n\nTimeline:\n[0s-2s] The sign fills the frame, light catching its edge.\n[2s-5s] Slow drift back, the street coming into view behind it.\n\nNo cuts, no camera shake, no text overlays.\n\nAudio: Low room tone, distant traffic, no music.",
+            "width": 1344,
+            "height": 768,
+            "length": 124
+          },
+          "collapsed": false
+        }
+      ]
+    },
+    {
+      "id": "l4",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-guider",
+          "moduleId": "gen.BasicGuider",
+          "params": {},
+          "collapsed": true
+        },
+        {
+          "id": "t-sampler",
+          "moduleId": "gen.KSamplerSelect",
+          "params": {
+            "sampler_name": "res_multistep"
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-sched",
+          "moduleId": "gen.BasicScheduler",
+          "params": {
+            "scheduler": "simple",
+            "steps": 20,
+            "denoise": 1
+          },
+          "collapsed": true
+        },
+        {
+          "id": "t-noise",
+          "moduleId": "gen.RandomNoise",
+          "params": {
+            "noise_seed": 1234
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l5",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-sample",
+          "moduleId": "sample-advanced",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l6",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-decode",
+          "moduleId": "gen.VAEDecode",
+          "params": {},
+          "collapsed": true
+        },
+        {
+          "id": "t-decode-audio",
+          "moduleId": "decode-audio",
+          "params": {},
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l7",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-video",
+          "moduleId": "create-video",
+          "params": {
+            "fps": 24,
+            "bit_depth": 8
+          },
+          "collapsed": true
+        }
+      ]
+    },
+    {
+      "id": "l8",
+      "mode": "parallel",
+      "bypassed": false,
+      "tiles": [
+        {
+          "id": "t-save",
+          "moduleId": "gen.SaveVideo",
+          "params": {
+            "filename_prefix": "StackUI/h3",
+            "format": "auto",
+            "codec": "auto"
+          },
+          "collapsed": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "id": "sheen",
+      "label": "Light sweep",
+      "hint": "A single highlight travels across the artwork. The safest one — nothing moves but the light.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nA single soft specular highlight travels slowly across the poster from left to right, once, catching the glossy and metallic parts of the artwork as it passes and leaving them as they were. The light is the only thing that moves.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "bokeh",
+      "label": "Bokeh drift",
+      "hint": "Soft out-of-focus lights drift behind the artwork. Good for a dark or photographic poster.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nSoft, out-of-focus circles of warm light drift slowly upward behind the artwork, well out of focus and low in contrast, passing behind the design without ever crossing in front of the text. A faint, even glow breathes gently in the background.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "neon",
+      "label": "Neon pulse",
+      "hint": "Glowing elements breathe. For posters with neon, LED or lit signage in them.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nThe neon, LED and lit elements already in the artwork pulse gently — brightening and dimming in a slow, even rhythm, with their glow spilling faintly onto the surfaces beside them. The colours stay exactly as designed; only their brightness changes.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "push",
+      "label": "Slow push",
+      "hint": "A very slight zoom in and back out. Adds life to a flat poster without moving anything.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nAn extremely slow push in — no more than two or three percent — easing to a stop halfway through and drifting back out, so the framing at the end is identical to the framing at the start. The whole poster scales together as one flat image; nothing inside it moves independently.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "confetti",
+      "label": "Confetti",
+      "hint": "Celebratory falling confetti. Openings, launches, prize nights.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nFine confetti and small foil streamers fall gently through the frame in front of the poster, catching the light as they turn, drifting rather than raining. They are sparse enough that every word stays completely readable at all times, and the frame is clear of them at the end.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "sparkle",
+      "label": "Jackpot sparkle",
+      "hint": "Coin glints and gold sparkle. Gaming floors, jackpot and promotion boards.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nSmall gold sparkles and brief star-shaped glints appear and fade across the gold, coin and jackpot elements of the artwork, each one lasting a fraction of a second, scattered and irregular. A slow warm shimmer passes over the metallic areas.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "atmosphere",
+      "label": "Smoke & haze",
+      "hint": "Slow atmospheric haze. Late-night bar, live music, dark artwork.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nThin haze drifts slowly across the lower part of the frame, lit from behind so it glows faintly, moving like still air rather than wind. Shadows deepen and lift almost imperceptibly.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "steam",
+      "label": "Steam & pour",
+      "hint": "Rising steam and gentle liquid movement. Bistro, coffee, dining.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nFine steam rises slowly from the hot food and drink shown in the artwork, curling and thinning as it goes. Any liquid in frame moves with a slight, slow surface ripple. The food itself does not change shape or position.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 20
+        }
+      ]
+    },
+    {
+      "id": "minimal",
+      "label": "Barely there",
+      "hint": "Almost imperceptible movement. For dense, text-heavy posters where nothing may be risked.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster. Every designed element — the headline, all body text, prices, dates, times, logos and brand marks — stays exactly where it is, at exactly the same size, perfectly sharp and completely unchanged for the whole clip. No letter re-forms, no word changes, nothing slides or drifts. The camera is locked off. The final frame matches the first frame exactly.\n\nAlmost nothing moves. A barely perceptible breath of light across the artwork and the faintest shift in the shadows, at the very edge of noticing. Treat any motion as a risk to be minimised.\n\nDo not add or alter any text. No new logos, captions, watermarks or subtitles."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 24
+        }
+      ]
+    }
+  ]
+}

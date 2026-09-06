@@ -1,0 +1,28 @@
+{
+  "id": "load-poster",
+  "name": "The poster",
+  "category": "load",
+  "description": "The supplied artwork, published as both first_frame and last_frame. One upload, both ends of the clip: the video starts and finishes on the exact poster, so it loops cleanly and the typography cannot drift away over the run.",
+  "inPorts": [],
+  "outPorts": [
+    { "name": "first_frame", "type": "IMAGE" },
+    { "name": "last_frame", "type": "IMAGE" }
+  ],
+  "outputs": {
+    "first_frame": { "node": "li", "out": 0 },
+    "last_frame": { "node": "li", "out": 0 }
+  },
+  "summary": ["image"],
+  "params": [
+    {
+      "name": "image",
+      "label": "Poster artwork",
+      "type": "IMAGE_UPLOAD",
+      "default": "",
+      "target": { "node": "li", "input": "image" }
+    }
+  ],
+  "nodes": {
+    "li": { "class_type": "LoadImage", "inputs": { "image": "" } }
+  }
+}

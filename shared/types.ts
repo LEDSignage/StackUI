@@ -33,6 +33,8 @@ export type Stack = {
   inputs?: InputList;
   /** A shot-by-shot prompt, assembled into one string. */
   script?: Script;
+  /** One-click setups shown above the controls. */
+  presets?: Preset[];
 };
 
 /**
@@ -305,6 +307,25 @@ export type CarryEntry = {
 export type Carry = Map<string, CarryEntry>;
 /** A carry entry with its port name, for serialising a carry out of the compiler. */
 export type NamedCarryEntry = CarryEntry & { name: string };
+
+/**
+ * A one-click setup: a named button that fills in several controls at once.
+ *
+ * Most of what makes a good clip is in the wording of the prompt, and typing
+ * the same careful paragraph every time is how it stops being careful. A preset
+ * is that paragraph, plus whatever settings go with it, behind a button.
+ *
+ * Values are written the same way the controls write them, so a preset is a
+ * starting point and not a mode — change anything you like afterwards.
+ */
+export type Preset = {
+  id: string;
+  /** On the button. */
+  label: string;
+  /** In its tooltip: what this one actually does. */
+  hint?: string;
+  values: { tileId: string; param: string; value: unknown }[];
+};
 
 export type CompileIssue = {
   /** Which tile to surface this against. Absent = stack-level (e.g. no terminal). */

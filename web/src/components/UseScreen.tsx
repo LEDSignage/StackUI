@@ -8,6 +8,7 @@ import type {
   StackControl,
   InputKind,
   Script,
+  Preset,
 } from '@shared/types.ts';
 import { isVideo, viewUrl } from '../lib/comfy.ts';
 import type { RunState } from '../lib/useRun.ts';
@@ -15,6 +16,7 @@ import { ParamControl } from './ParamControl.tsx';
 import { InputBar } from './InputBar.tsx';
 import { ScriptEditor } from './ScriptEditor.tsx';
 import { MediaBrowser } from './MediaBrowser.tsx';
+import { PresetBar } from './PresetBar.tsx';
 import { useSplit } from '../lib/useSplit.ts';
 
 type Props = {
@@ -42,6 +44,7 @@ type Props = {
   onAddInput?: (kind: InputKind) => void;
   onRemoveInput?: (group: string) => void;
   onScript?: (script: Script) => void;
+  onPreset?: (preset: Preset) => void;
   /** Clear the card before queueing. */
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
@@ -82,6 +85,7 @@ export function UseScreen({
   onAddInput,
   onRemoveInput,
   onScript,
+  onPreset,
   clearFirst,
   onClearFirst,
   vram,
@@ -145,6 +149,9 @@ export function UseScreen({
         }
       >
       <div className="use-controls">
+        {stack.presets?.length && onPreset ? (
+          <PresetBar presets={stack.presets} stack={stack} onApply={onPreset} />
+        ) : null}
         {stack.inputs && onAddInput && onRemoveInput && (
           <InputBar
             spec={stack.inputs}

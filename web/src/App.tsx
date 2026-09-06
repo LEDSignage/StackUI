@@ -574,6 +574,16 @@ export default function App() {
             clearFirst={clearFirst}
             onClearFirst={setClearFirst}
             vram={vram}
+            onPreset={(preset) =>
+              setStack((st) => {
+                // A preset is a starting point: it writes into the ordinary
+                // controls and leaves everything else, including the poster
+                // already uploaded, exactly as it is.
+                let out = st;
+                for (const v of preset.values) out = ops.setParam(out, v.tileId, v.param, v.value);
+                return out;
+              })
+            }
             pane={pane}
             onPane={setPane}
             onBuild={() => setMode('stack')}
