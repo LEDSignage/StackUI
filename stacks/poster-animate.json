@@ -19,13 +19,15 @@
       "label": "Width",
       "tileId": "t-h3",
       "param": "width",
-      "group": "Size and timing"
+      "group": "Size and timing",
+      "hint": "Set from the poster when you upload it. Change it if you want a different shape."
     },
     {
       "label": "Height",
       "tileId": "t-h3",
       "param": "height",
-      "group": "Size and timing"
+      "group": "Size and timing",
+      "hint": "Set from the poster when you upload it. Change it if you want a different shape."
     },
     {
       "label": "Seconds",
@@ -357,6 +359,23 @@
       ]
     },
     {
+      "id": "type",
+      "label": "Type in motion",
+      "hint": "Lets the type move and glow as well. Riskier — check every word in the result before it goes out.",
+      "values": [
+        {
+          "tileId": "t-h3",
+          "param": "prompt",
+          "value": "The image is a finished promotional poster, already designed.\n\nBring the whole poster to life, the typography included. Work out what is actually depicted — people, faces, food, drink, fire, water, foliage, lights — and give each one the motion it would really have. The text and logos may also move: settling into place, drifting slightly, glowing, or catching a highlight as light passes over them.\n\nEvery word must stay exactly the word it is. The spelling, the letterforms, the typeface, the weight, the colour and the spacing are fixed and must survive every frame perfectly legibly — text may be moved, lit or faded as a whole rigid object, but never re-drawn, re-lettered, warped, stretched or replaced. Prices, dates and times are never altered. If a piece of text cannot be moved without changing it, leave that piece completely still.\n\nThe camera is locked off and the final frame matches the first frame exactly, with every element back in its designed position. No new text, logos, captions or watermarks."
+        },
+        {
+          "tileId": "t-sched",
+          "param": "steps",
+          "value": 24
+        }
+      ]
+    },
+    {
       "id": "gentle",
       "label": "Gentle",
       "hint": "The general one, dialled right down. For posters where the artwork is delicate or busy.",
@@ -407,5 +426,19 @@
         }
       ]
     }
-  ]
+  ],
+  "canvas": {
+    "from": {
+      "tileId": "in.poster.p1.0",
+      "param": "image"
+    },
+    "width": {
+      "tileId": "t-h3",
+      "param": "width"
+    },
+    "height": {
+      "tileId": "t-h3",
+      "param": "height"
+    }
+  }
 }

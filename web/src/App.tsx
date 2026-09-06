@@ -3,6 +3,7 @@ import type { Module, ModuleLibrary, Stack } from '@shared/types.ts';
 import { compile } from '@shared/compile.ts';
 import { compose } from '@shared/script.ts';
 import { fixGuideSize, type SizeFix } from '@shared/guideSize.ts';
+import { fitToAspect, measureUpload } from './lib/fitCanvas.ts';
 import { indexIssues, toCarry } from '@shared/validate.ts';
 import { resolvePort } from '@shared/compile.ts';
 import { fetchModules, fetchStack, fetchStacks, saveStack, type StackSummary } from './lib/api.ts';
@@ -224,6 +225,43 @@ export default function App() {
       cancelled = true;
     };
   }, [run.status, run.files, sizeFix]);
+
+  /**
+   * Take the output's shape from the uploaded artwork.
+   *
+   * A poster rendered at the wrong aspect is a wasted render — the artwork is
+   * squeezed or cropped before the model starts — and remembering to type the
+   * right numbers for every client's poster is exactly the kind of step that
+   * gets forgotten once. The poster knows its own proportions, so they are read
+   * off it, held to about the pixel count the model likes, and snapped to the
+   * 32-grid a start frame needs.
+   */
+  useEffect(() => {
+    const fit = stack.canvas;
+    if (!fit) return;
+    const filename = String(ops.findTile(stack, fit.from.tileId)?.params[fit.from.param] ?? '');
+    if (!filename) return;
+
+    let cancelled = false;
+    void measureUpload(filename).then((size) => {
+      if (cancelled || !size) return;
+      const box = fitToAspect(size.width, size.height, fit.pixels);
+      if (!box) return;
+      setStack((s) => {
+        const current = ops.findTile(s, fit.width.tileId)?.params[fit.width.param];
+        const currentH = ops.findTile(s, fit.height.tileId)?.params[fit.height.param];
+        if (current === box.width && currentH === box.height) return s;
+        const withW = ops.setParam(s, fit.width.tileId, fit.width.param, box.width);
+        return ops.setParam(withW, fit.height.tileId, fit.height.param, box.height);
+      });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+    // Keyed on the filename: re-measuring on every keystroke would fight you
+    // if you deliberately typed a different size.
+  }, [stack.canvas, stack.canvas && ops.findTile(stack, stack.canvas.from.tileId)?.params[stack.canvas.from.param]]);
 
   // ── Job / model selectors ─────────────────────────────────────────────────
 

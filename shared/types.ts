@@ -35,6 +35,8 @@ export type Stack = {
   script?: Script;
   /** One-click setups shown above the controls. */
   presets?: Preset[];
+  /** Size the output from an uploaded image's own shape. */
+  canvas?: CanvasFit;
 };
 
 /**
@@ -318,6 +320,28 @@ export type NamedCarryEntry = CarryEntry & { name: string };
  * Values are written the same way the controls write them, so a preset is a
  * starting point and not a mode — change anything you like afterwards.
  */
+/**
+ * Take the output's shape from an uploaded image.
+ *
+ * Animating a poster at the wrong aspect is a wasted render: the artwork is
+ * squeezed or cropped before the model even starts. The poster already knows
+ * its own proportions, so the width and height follow it rather than being
+ * typed in and remembered.
+ *
+ * Pixel count is held roughly constant instead of a fixed long edge — a tall
+ * portrait poster and a wide banner should cost about the same to render, and
+ * the model has a budget it works well within.
+ */
+export type CanvasFit = {
+  /** The upload to measure. */
+  from: { tileId: string; param: string };
+  /** Where the measurements go. */
+  width: { tileId: string; param: string };
+  height: { tileId: string; param: string };
+  /** Roughly how many pixels the output should be. Default 1,032,192. */
+  pixels?: number;
+};
+
 export type Preset = {
   id: string;
   /** On the button. */
