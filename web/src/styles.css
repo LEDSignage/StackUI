@@ -2722,6 +2722,10 @@ input[type='number'].param-input {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
+  /* Never shrinks. The textarea above it grows to fill the dialog and has a
+     min-height, so this row is the only thing in the column that *can* give —
+     and it gave, squashing Copy and "Use this prompt" out of existence. */
+  flex: none;
 }
 
 /* Stacked on anything narrow — two columns of nothing helps no one. */
