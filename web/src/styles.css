@@ -2718,21 +2718,20 @@ input[type='number'].param-input {
   font-size: var(--fs-body);
   resize: none;
 }
-.prompt-block-actions {
+/* The footer sits outside the scrolling area, so nothing can squash it flat
+   or push it below the fold — both of which happened when it lived inside. */
+.prompt-foot {
   display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-  /* Never shrinks, and never scrolls out of reach.
-     The textarea above grows and carries a min-height, so this row was first
-     squashed to nothing and then, once that was fixed, pushed below the fold
-     on any prompt long enough to make the panel scroll — which is why the
-     buttons were there on some clips and not others. Pinned to the bottom of
-     the scrolling area, they are always where you left them. */
+  align-items: center;
+  gap: 10px;
   flex: none;
-  position: sticky;
-  bottom: 0;
-  padding: 8px 0 2px;
-  background: linear-gradient(to top, var(--panel) 70%, transparent);
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+/* With more than one prompt in the graph, the one the footer acts on. */
+.prompt-block.is-active .param-textarea {
+  border-color: #5a5a64;
 }
 
 /* Stacked on anything narrow — two columns of nothing helps no one. */

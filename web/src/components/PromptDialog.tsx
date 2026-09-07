@@ -28,6 +28,8 @@ export function PromptDialog({
   onUse?: (prompt: string) => void;
 }) {
   const [copied, setCopied] = useState<number | null>(null);
+  /** Which prompt the footer acts on. Nearly always the only one. */
+  const [active, setActive] = useState(0);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose();
@@ -84,30 +86,55 @@ export function PromptDialog({
             )}
 
             {prompts.map((text, i) => (
-              <div className="prompt-block" key={i}>
+              <div
+                className={`prompt-block ${prompts.length > 1 && i === active ? 'is-active' : ''}`}
+                key={i}
+                onFocus={() => setActive(i)}
+                onClick={() => setActive(i)}
+              >
+                {prompts.length > 1 && (
+                  <span className="muted small">
+                    {i === 0 ? 'Prompt' : `Also in this graph (${i + 1})`}
+                  </span>
+                )}
                 {/* Read-only, but selectable — copying a paragraph out by hand
                     is the fallback when the clipboard is not permitted. */}
                 <textarea className="param-input param-textarea" readOnly value={text} />
-                <div className="prompt-block-actions">
-                  <button className="ghost" onClick={() => void copy(text, i)}>
-                    {copied === i ? 'Copied' : 'Copy'}
-                  </button>
-                  {onUse && (
-                    <button
-                      className="primary"
-                      onClick={() => {
-                        onUse(text);
-                        onClose();
-                      }}
-                    >
-                      Use this prompt
-                    </button>
-                  )}
-                </div>
               </div>
             ))}
           </div>
         </div>
+
+        {/* Outside the scrolling area on purpose.
+            Inside it these were squashed flat by the growing textarea, and then
+            — once that was fixed — pushed below the fold by any prompt long
+            enough to scroll. Which is why they were there on short clips and
+            missing on long ones. In the footer there is nothing left to hide
+            them behind. */}
+        {prompts.length > 0 && (
+          <div className="prompt-foot">
+            {prompts.length > 1 && (
+              <span className="muted small">
+                Acting on {active === 0 ? 'the prompt' : `prompt ${active + 1}`} — click another to switch
+              </span>
+            )}
+            <span className="spacer" />
+            <button className="ghost" onClick={() => void copy(prompts[active] ?? '', active)}>
+              {copied === active ? 'Copied' : 'Copy'}
+            </button>
+            {onUse && (
+              <button
+                className="primary"
+                onClick={() => {
+                  onUse(prompts[active] ?? '');
+                  onClose();
+                }}
+              >
+                Use this prompt
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
