@@ -94,24 +94,6 @@ export async function fetchRunRecord(file: {
   return res.json();
 }
 
-export type Verdict = { verdict: 'keep' | 'reject'; note: string; at: number };
-
-export async function fetchVerdicts(): Promise<Record<string, Verdict>> {
-  return json('/api/verdicts');
-}
-
-export async function setVerdict(
-  key: string,
-  verdict: 'keep' | 'reject' | null,
-  note = '',
-): Promise<void> {
-  await fetch('/api/verdicts', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ key, verdict, note }),
-  });
-}
-
 async function json<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path} → ${res.status}`);

@@ -375,15 +375,12 @@ app.delete('/api/media', async (req, res) => {
 // included. Nothing was reading it, so a day of iterating left no way to see
 // which wording produced which clip — the record existed and was unusable.
 //
-// The verdict is the part genuinely not recorded anywhere. It cannot be
-// reconstructed from the files later, and it is the difference between a folder
-// of renders and something worth training on.
+// There is no separate verdict to record: a render you kept is a render you
+// did not delete.
 
 /** Anything ending in a known extension is a file, however chatty its name. */
 const FILENAME = /.(png|jpe?g|webp|gif|bmp|mp4|webm|mov|safetensors|ckpt|pt|bin|gguf)$/i;
 const SETTINGS = new Set(['seed', 'noise_seed', 'steps', 'width', 'height', 'length', 'cfg', 'fps']);
-
-const VERDICTS = join(ROOT, 'storage', 'verdicts.json');
 
 /** Pull the executed graph back out of a finished file. */
 app.get('/api/media/prompt', async (req, res) => {
@@ -434,39 +431,6 @@ function probe(file: string): Promise<string> {
     proc.on('close', () => (out.trim() ? resolve(out.trim()) : reject(new Error('no prompt tag'))));
   });
 }
-
-/** Every verdict, keyed by subfolder/filename. */
-app.get('/api/verdicts', async (_req, res) => {
-  try {
-    res.json(JSON.parse(await readFile(VERDICTS, 'utf8')));
-  } catch {
-    res.json({});
-  }
-});
-
-app.post('/api/verdicts', async (req, res) => {
-  const { key, verdict, note } = req.body ?? {};
-  if (typeof key !== 'string' || !key) return res.status(400).json({ error: 'Bad key.' });
-  if (verdict !== 'keep' && verdict !== 'reject' && verdict !== null) {
-    return res.status(400).json({ error: 'Verdict must be keep, reject or null.' });
-  }
-
-  let all: Record<string, unknown> = {};
-  try {
-    all = JSON.parse(await readFile(VERDICTS, 'utf8'));
-  } catch {
-    /* first one */
-  }
-
-  if (verdict === null) delete all[key];
-  else all[key] = { verdict, note: typeof note === 'string' ? note : '', at: Date.now() };
-
-  await mkdir(dirname(VERDICTS), { recursive: true });
-  const tmp = `${VERDICTS}.tmp`;
-  await writeFile(tmp, JSON.stringify(all, null, 2), 'utf8');
-  await rename(tmp, VERDICTS);
-  res.json({ ok: true });
-});
 
 // ── Frame rate conversion ───────────────────────────────────────────────────
 

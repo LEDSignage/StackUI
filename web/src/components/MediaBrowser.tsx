@@ -1,14 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import {
-  deleteMedia,
-  fetchMedia,
-  fetchRunRecord,
-  fetchVerdicts,
-  setVerdict,
-  type MediaFile,
-  type RunRecord,
-  type Verdict,
-} from '../lib/api.ts';
+import { deleteMedia, fetchMedia, fetchRunRecord, type MediaFile, type RunRecord } from '../lib/api.ts';
 import { viewUrl } from '../lib/comfy.ts';
 import { Confirm } from './Confirm.tsx';
 import { VideoPlayer } from './VideoPlayer.tsx';
@@ -44,12 +35,6 @@ export function MediaBrowser({
   /** The file whose prompt is open, and what it said. */
   const [showing, setShowing] = useState<string | null>(null);
   const [record, setRecord] = useState<RunRecord | { error: string } | null>(null);
-  const [verdicts, setVerdicts] = useState<Record<string, Verdict>>({});
-
-  useEffect(() => {
-    void fetchVerdicts().then(setVerdicts).catch(() => {});
-  }, [refreshKey]);
-
   /** Read what made this clip, out of the clip. */
   const openPrompt = async (file: MediaFile) => {
     const key = keyOf(file);
@@ -63,17 +48,6 @@ export function MediaBrowser({
     }
   };
 
-  const judge = async (file: MediaFile, v: 'keep' | 'reject') => {
-    const key = keyOf(file);
-    const next = verdicts[key]?.verdict === v ? null : v;
-    setVerdicts((all) => {
-      const copy = { ...all };
-      if (next === null) delete copy[key];
-      else copy[key] = { verdict: next, note: copy[key]?.note ?? '', at: Date.now() };
-      return copy;
-    });
-    await setVerdict(key, next, verdicts[key]?.note ?? '').catch(() => {});
-  };
 
   const load = useCallback(async () => {
     try {
@@ -183,31 +157,6 @@ export function MediaBrowser({
                     {file.modified ? `${when(file.modified)} · ${mb(file.size)}` : ' '}
                   </span>
                 </figcaption>
-                {/* Keep and Reject are the only thing here that cannot be
-                    recovered later: the files hold their own prompts, but
-                    nothing records which of them was any good. */}
-                {file.kind === 'video' && (
-                  <div className="media-verdict">
-                    <button
-                      className={`chip ${verdicts[key]?.verdict === 'keep' ? 'chip-keep' : ''}`}
-                      onClick={() => void judge(file, 'keep')}
-                      title="Worth keeping"
-                    >
-                      Keep
-                    </button>
-                    <button
-                      className={`chip ${verdicts[key]?.verdict === 'reject' ? 'chip-reject' : ''}`}
-                      onClick={() => void judge(file, 'reject')}
-                      title="Did not work"
-                    >
-                      Reject
-                    </button>
-                    <button className="chip" onClick={() => void openPrompt(file)}>
-                      {showing === key ? 'Hide prompt' : 'Prompt'}
-                    </button>
-                  </div>
-                )}
-
                 {showing === key && (
                   <div className="media-prompt">
                     {!record && <span className="muted small">Reading the file…</span>}
@@ -236,6 +185,11 @@ export function MediaBrowser({
                   <a className="ghost" href={url} download={file.filename}>
                     Download
                   </a>
+                  {file.kind === 'video' && (
+                    <button className="ghost" onClick={() => void openPrompt(file)}>
+                      {showing === key ? 'Hide' : 'Prompt'}
+                    </button>
+                  )}
                   {writable && (
                     <button className="ghost" onClick={() => setConfirming(file)}>
                       Delete
