@@ -622,6 +622,29 @@ export default function App() {
                 return out;
               })
             }
+            onUsePrompt={(text) => {
+              /* Where the prompt goes depends on the pipeline: a scripted one
+                 assembles it from parts, so the raw text belongs in the vision
+                 box rather than overwriting the assembled result. */
+              setStack((st) => {
+                if (st.script) {
+                  const script = { ...st.script, vision: text };
+                  return ops.setParam(
+                    { ...st, script },
+                    script.target.tileId,
+                    script.target.param,
+                    compose(script),
+                  );
+                }
+                const target = (st.controls ?? []).find((c) => {
+                  const tile = ops.findTile(st, c.tileId);
+                  const param = tile && library[tile.moduleId]?.params.find((p) => p.name === c.param);
+                  return param?.type === 'STRING' && param.multiline;
+                });
+                return target ? ops.setParam(st, target.tileId, target.param, text) : st;
+              });
+              setPane('result');
+            }}
             pane={pane}
             onPane={setPane}
             onBuild={() => setMode('stack')}

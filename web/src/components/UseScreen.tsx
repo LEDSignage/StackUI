@@ -45,6 +45,8 @@ type Props = {
   onRemoveInput?: (group: string) => void;
   onScript?: (script: Script) => void;
   onPreset?: (preset: Preset) => void;
+  /** Put an old prompt back into this page. */
+  onUsePrompt?: (prompt: string) => void;
   /** Clear the card before queueing. */
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
@@ -86,6 +88,7 @@ export function UseScreen({
   onRemoveInput,
   onScript,
   onPreset,
+  onUsePrompt,
   clearFirst,
   onClearFirst,
   vram,
@@ -341,7 +344,12 @@ export function UseScreen({
           )}
         </div>
         {pane === 'library' ? (
-          <MediaBrowser refreshKey={run.files.length} full={libraryFull} onFull={setLibraryFull} />
+          <MediaBrowser
+            refreshKey={run.files.length}
+            full={libraryFull}
+            onFull={setLibraryFull}
+            onUsePrompt={onUsePrompt}
+          />
         ) : (
           <>
             <div className="use-output">

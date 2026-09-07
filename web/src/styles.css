@@ -2636,3 +2636,87 @@ input[type='number'].param-input {
   gap: 4px 12px;
   color: var(--muted);
 }
+
+/* ── The prompt behind a clip ───────────────────────────────────────────── */
+/*
+   This lived inside a library tile, which put four paragraphs of prompt into a
+   box 180px wide. Technically the information; practically unreadable. It is
+   the whole point of the feature, so it gets a dialog and the clip beside it.
+*/
+.prompt-dialog {
+  margin: auto;
+  width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.prompt-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+.prompt-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 16px;
+  min-height: 0;
+  overflow: hidden;
+}
+.prompt-clip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.prompt-clip img {
+  width: 100%;
+  border-radius: var(--radius-sm);
+}
+.prompt-settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 14px;
+  color: var(--muted);
+}
+.prompt-settings b {
+  color: var(--text);
+  font-weight: 600;
+}
+.prompt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.prompt-block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+/* Tall enough for a whole preset without scrolling inside a scroller. */
+.prompt-text .param-textarea {
+  min-height: 260px;
+  line-height: 1.6;
+}
+.prompt-block-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+/* Stacked on anything narrow — two columns of nothing helps no one. */
+@media (max-width: 900px) {
+  .prompt-body {
+    grid-template-columns: minmax(0, 1fr);
+    overflow-y: auto;
+  }
+}

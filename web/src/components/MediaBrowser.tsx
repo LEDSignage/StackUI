@@ -3,6 +3,7 @@ import { deleteMedia, fetchMedia, fetchRunRecord, type MediaFile, type RunRecord
 import { viewUrl } from '../lib/comfy.ts';
 import { Confirm } from './Confirm.tsx';
 import { VideoPlayer } from './VideoPlayer.tsx';
+import { PromptDialog } from './PromptDialog.tsx';
 
 /**
  * Everything ComfyUI has made, newest first.
@@ -19,11 +20,14 @@ export function MediaBrowser({
   refreshKey,
   full,
   onFull,
+  onUsePrompt,
 }: {
   refreshKey?: unknown;
   /** Whether it is filling the window rather than sitting in the right pane. */
   full?: boolean;
   onFull?: (full: boolean) => void;
+  /** Put a prompt back into the job page. */
+  onUsePrompt?: (prompt: string) => void;
 }) {
   const [files, setFiles] = useState<MediaFile[]>([]);
   const [writable, setWritable] = useState(false);
@@ -33,13 +37,11 @@ export function MediaBrowser({
   /** The file the delete dialogue is asking about. */
   const [confirming, setConfirming] = useState<MediaFile | null>(null);
   /** The file whose prompt is open, and what it said. */
-  const [showing, setShowing] = useState<string | null>(null);
+  const [showing, setShowing] = useState<MediaFile | null>(null);
   const [record, setRecord] = useState<RunRecord | { error: string } | null>(null);
   /** Read what made this clip, out of the clip. */
   const openPrompt = async (file: MediaFile) => {
-    const key = keyOf(file);
-    if (showing === key) return setShowing(null);
-    setShowing(key);
+    setShowing(file);
     setRecord(null);
     try {
       setRecord(await fetchRunRecord(file));
@@ -157,37 +159,13 @@ export function MediaBrowser({
                     {file.modified ? `${when(file.modified)} · ${mb(file.size)}` : ' '}
                   </span>
                 </figcaption>
-                {showing === key && (
-                  <div className="media-prompt">
-                    {!record && <span className="muted small">Reading the file…</span>}
-                    {record && 'error' in record && <span className="error small">{record.error}</span>}
-                    {record && 'prompts' in record && (
-                      <>
-                        {record.prompts.length === 0 && (
-                          <span className="muted small">No prompt text in this one.</span>
-                        )}
-                        {record.prompts.map((t, i) => (
-                          <textarea key={i} className="param-input param-textarea" readOnly value={t} />
-                        ))}
-                        <div className="media-settings mono small">
-                          {Object.entries(record.settings).map(([k, v]) => (
-                            <span key={k}>
-                              {k} {String(v)}
-                            </span>
-                          ))}
-                        </div>
-                      </>
-                    )}
-                  </div>
-                )}
-
                 <div className="media-actions">
                   <a className="ghost" href={url} download={file.filename}>
                     Download
                   </a>
                   {file.kind === 'video' && (
                     <button className="ghost" onClick={() => void openPrompt(file)}>
-                      {showing === key ? 'Hide' : 'Prompt'}
+                      Prompt
                     </button>
                   )}
                   {writable && (
@@ -200,6 +178,15 @@ export function MediaBrowser({
             );
           })}
         </div>
+
+        {showing && (
+          <PromptDialog
+            file={showing}
+            record={record}
+            onClose={() => setShowing(null)}
+            onUse={onUsePrompt}
+          />
+        )}
 
         {confirming && (
           <Confirm
