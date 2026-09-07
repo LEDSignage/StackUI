@@ -2722,10 +2722,17 @@ input[type='number'].param-input {
   display: flex;
   gap: 8px;
   justify-content: flex-end;
-  /* Never shrinks. The textarea above it grows to fill the dialog and has a
-     min-height, so this row is the only thing in the column that *can* give —
-     and it gave, squashing Copy and "Use this prompt" out of existence. */
+  /* Never shrinks, and never scrolls out of reach.
+     The textarea above grows and carries a min-height, so this row was first
+     squashed to nothing and then, once that was fixed, pushed below the fold
+     on any prompt long enough to make the panel scroll — which is why the
+     buttons were there on some clips and not others. Pinned to the bottom of
+     the scrolling area, they are always where you left them. */
   flex: none;
+  position: sticky;
+  bottom: 0;
+  padding: 8px 0 2px;
+  background: linear-gradient(to top, var(--panel) 70%, transparent);
 }
 
 /* Stacked on anything narrow — two columns of nothing helps no one. */
