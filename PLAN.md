@@ -26,6 +26,7 @@ Starting point, all on the 32-grid H3 needs and inside its pixel budget:
 | 9:16 | 768 x 1344 | phone, stories, tower signage |
 | 1:1 | 1024 x 1024 | social feed |
 | 21:9 | 1792 x 768 | wide banners, LED strips |
+| 1:4 | 512 x 2048 | infill signs, downscaled to 688 x 172 |
 
 All on a 768 short edge. 1344x768 is what MiniMax's node ships with and what
 their hosted service means by "768P", so it is the shape H3 was built around —
@@ -33,7 +34,15 @@ which settles the earlier question of whether to use it or a truer 16:9 at
 1536x864. Play to the model's default and upscale afterwards where a delivery
 needs 1080p.
 
-The four ratios are ones MiniMax's own service offers. 4:5 was dropped as not
+1:4 is the venue infill signs, and it is the one outside MiniMax's advertised
+range — they stop at 21:9. It is worth a real try rather than an assumption,
+because the artwork is supplied at that ratio: the model is animating a
+composition that already exists rather than inventing one, which is what went
+wrong at 11:1 earlier, where it tiled a normal-shaped scene across the width.
+512 x 2048 is the largest 1:4 inside the pixel budget, and three times the
+width the sign actually needs.
+
+The other four ratios are ones MiniMax's own service offers. 4:5 was dropped as not
 needed; their portrait option is 3:4 if one is ever wanted.
 
 Durations 5s and 10s, which land on 124 and 243 frames — H3 counts in 17n+5 at
