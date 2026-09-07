@@ -69,6 +69,49 @@ export async function deleteMedia(file: MediaFile): Promise<void> {
   }
 }
 
+/** The prompt and settings that produced a finished file. */
+export type RunRecord = {
+  prompts: string[];
+  settings: Record<string, unknown>;
+};
+
+/**
+ * Read back what made a clip.
+ *
+ * ComfyUI writes the executed graph into the file itself, so this works on
+ * everything already rendered — nothing had to be recording for it.
+ */
+export async function fetchRunRecord(file: {
+  filename: string;
+  subfolder: string;
+}): Promise<RunRecord> {
+  const q = new URLSearchParams({ filename: file.filename, subfolder: file.subfolder });
+  const res = await fetch(`/api/media/prompt?${q}`);
+  if (!res.ok) {
+    const body = (await res.json().catch(() => ({}))) as { error?: string };
+    throw new Error(body.error ?? 'No prompt stored in that file.');
+  }
+  return res.json();
+}
+
+export type Verdict = { verdict: 'keep' | 'reject'; note: string; at: number };
+
+export async function fetchVerdicts(): Promise<Record<string, Verdict>> {
+  return json('/api/verdicts');
+}
+
+export async function setVerdict(
+  key: string,
+  verdict: 'keep' | 'reject' | null,
+  note = '',
+): Promise<void> {
+  await fetch('/api/verdicts', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ key, verdict, note }),
+  });
+}
+
 async function json<T>(path: string): Promise<T> {
   const res = await fetch(path);
   if (!res.ok) throw new Error(`${path} → ${res.status}`);

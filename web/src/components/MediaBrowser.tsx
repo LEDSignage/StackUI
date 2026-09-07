@@ -1,5 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
-import { deleteMedia, fetchMedia, type MediaFile } from '../lib/api.ts';
+import {
+  deleteMedia,
+  fetchMedia,
+  fetchRunRecord,
+  fetchVerdicts,
+  setVerdict,
+  type MediaFile,
+  type RunRecord,
+  type Verdict,
+} from '../lib/api.ts';
 import { viewUrl } from '../lib/comfy.ts';
 import { Confirm } from './Confirm.tsx';
 import { VideoPlayer } from './VideoPlayer.tsx';
@@ -32,6 +41,39 @@ export function MediaBrowser({
   const [filter, setFilter] = useState<'all' | 'video' | 'image'>('all');
   /** The file the delete dialogue is asking about. */
   const [confirming, setConfirming] = useState<MediaFile | null>(null);
+  /** The file whose prompt is open, and what it said. */
+  const [showing, setShowing] = useState<string | null>(null);
+  const [record, setRecord] = useState<RunRecord | { error: string } | null>(null);
+  const [verdicts, setVerdicts] = useState<Record<string, Verdict>>({});
+
+  useEffect(() => {
+    void fetchVerdicts().then(setVerdicts).catch(() => {});
+  }, [refreshKey]);
+
+  /** Read what made this clip, out of the clip. */
+  const openPrompt = async (file: MediaFile) => {
+    const key = keyOf(file);
+    if (showing === key) return setShowing(null);
+    setShowing(key);
+    setRecord(null);
+    try {
+      setRecord(await fetchRunRecord(file));
+    } catch (err) {
+      setRecord({ error: (err as Error).message });
+    }
+  };
+
+  const judge = async (file: MediaFile, v: 'keep' | 'reject') => {
+    const key = keyOf(file);
+    const next = verdicts[key]?.verdict === v ? null : v;
+    setVerdicts((all) => {
+      const copy = { ...all };
+      if (next === null) delete copy[key];
+      else copy[key] = { verdict: next, note: copy[key]?.note ?? '', at: Date.now() };
+      return copy;
+    });
+    await setVerdict(key, next, verdicts[key]?.note ?? '').catch(() => {});
+  };
 
   const load = useCallback(async () => {
     try {
@@ -141,6 +183,55 @@ export function MediaBrowser({
                     {file.modified ? `${when(file.modified)} · ${mb(file.size)}` : ' '}
                   </span>
                 </figcaption>
+                {/* Keep and Reject are the only thing here that cannot be
+                    recovered later: the files hold their own prompts, but
+                    nothing records which of them was any good. */}
+                {file.kind === 'video' && (
+                  <div className="media-verdict">
+                    <button
+                      className={`chip ${verdicts[key]?.verdict === 'keep' ? 'chip-keep' : ''}`}
+                      onClick={() => void judge(file, 'keep')}
+                      title="Worth keeping"
+                    >
+                      Keep
+                    </button>
+                    <button
+                      className={`chip ${verdicts[key]?.verdict === 'reject' ? 'chip-reject' : ''}`}
+                      onClick={() => void judge(file, 'reject')}
+                      title="Did not work"
+                    >
+                      Reject
+                    </button>
+                    <button className="chip" onClick={() => void openPrompt(file)}>
+                      {showing === key ? 'Hide prompt' : 'Prompt'}
+                    </button>
+                  </div>
+                )}
+
+                {showing === key && (
+                  <div className="media-prompt">
+                    {!record && <span className="muted small">Reading the file…</span>}
+                    {record && 'error' in record && <span className="error small">{record.error}</span>}
+                    {record && 'prompts' in record && (
+                      <>
+                        {record.prompts.length === 0 && (
+                          <span className="muted small">No prompt text in this one.</span>
+                        )}
+                        {record.prompts.map((t, i) => (
+                          <textarea key={i} className="param-input param-textarea" readOnly value={t} />
+                        ))}
+                        <div className="media-settings mono small">
+                          {Object.entries(record.settings).map(([k, v]) => (
+                            <span key={k}>
+                              {k} {String(v)}
+                            </span>
+                          ))}
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+
                 <div className="media-actions">
                   <a className="ghost" href={url} download={file.filename}>
                     Download

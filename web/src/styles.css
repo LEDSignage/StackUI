@@ -2620,3 +2620,57 @@ input[type='number'].param-input {
   min-height: 260px;
   line-height: 1.6;
 }
+
+/* ── What made a clip, and what you thought of it ───────────────────────── */
+
+.media-verdict {
+  display: flex;
+  gap: 6px;
+}
+.chip {
+  flex: 1;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  padding: 5px 8px;
+  font: inherit;
+  font-size: var(--fs-tiny);
+  cursor: pointer;
+}
+.chip:hover {
+  background: var(--tile-hi);
+  color: var(--text);
+}
+.chip-keep {
+  background: color-mix(in srgb, var(--ok) 22%, transparent);
+  border-color: var(--ok);
+  color: #cdf3de;
+}
+.chip-reject {
+  background: color-mix(in srgb, var(--err) 20%, transparent);
+  border-color: var(--err);
+  color: #ffd6cd;
+}
+
+/* The prompt, read back out of the file that was rendered with it. */
+.media-prompt {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+.media-prompt .param-textarea {
+  min-height: 120px;
+  font-size: var(--fs-tiny);
+  line-height: 1.5;
+}
+.media-settings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  color: var(--muted);
+}

@@ -367,6 +367,107 @@ app.delete('/api/media', async (req, res) => {
   }
 });
 
+
+// ── What made a clip, and what you thought of it ─────────────────────────────
+//
+// ComfyUI buries the executed graph in the file it writes: an mp4 carries a
+// `prompt` tag holding the whole API-format job, prompt text and settings
+// included. Nothing was reading it, so a day of iterating left no way to see
+// which wording produced which clip — the record existed and was unusable.
+//
+// The verdict is the part genuinely not recorded anywhere. It cannot be
+// reconstructed from the files later, and it is the difference between a folder
+// of renders and something worth training on.
+
+/** Anything ending in a known extension is a file, however chatty its name. */
+const FILENAME = /.(png|jpe?g|webp|gif|bmp|mp4|webm|mov|safetensors|ckpt|pt|bin|gguf)$/i;
+const SETTINGS = new Set(['seed', 'noise_seed', 'steps', 'width', 'height', 'length', 'cfg', 'fps']);
+
+const VERDICTS = join(ROOT, 'storage', 'verdicts.json');
+
+/** Pull the executed graph back out of a finished file. */
+app.get('/api/media/prompt', async (req, res) => {
+  const dir = await findOutputDir();
+  if (!dir) return res.status(409).json({ error: 'The output folder is not on this machine.' });
+
+  const target = insideOutput(dir, String(req.query.subfolder ?? ''), String(req.query.filename ?? ''));
+  if (!target) return res.status(400).json({ error: 'Outside the output folder.' });
+
+  try {
+    const raw = await probe(target);
+    const graph = JSON.parse(raw);
+
+    // The interesting part is the text, not the graph. Pull out anything that
+    // reads like a written prompt, plus the settings worth comparing runs on.
+    const texts: string[] = [];
+    const settings: Record<string, unknown> = {};
+    for (const node of Object.values(graph) as { class_type: string; inputs: Record<string, unknown> }[]) {
+      for (const [k, v] of Object.entries(node.inputs ?? {})) {
+        // Prose, not a filename. "ChatGPT Image Jul 2, 2026, 03_09_38 PM.png" is
+        // long and has spaces in it, and is not a prompt.
+        if (typeof v === 'string' && v.length > 40 && /s/.test(v) && !FILENAME.test(v)) {
+          texts.push(v);
+        }
+        // A value, not a wire. Size is often fed from another node, and
+        // ["5054", 0] means "whatever that node's second output was".
+        if (SETTINGS.has(k) && (typeof v === 'number' || typeof v === 'string')) settings[k] = v;
+        if (k === 'image' && typeof v === 'string') settings.image = v;
+      }
+    }
+    res.json({ prompts: [...new Set(texts)], settings });
+  } catch (err) {
+    res.status(404).json({ error: `No prompt stored in that file — ${(err as Error).message}` });
+  }
+});
+
+/** ffprobe's view of one metadata tag. */
+function probe(file: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const proc = spawn(
+      findFfmpeg()?.replace(/ffmpeg(.exe)?$/i, (m) => m.replace('ffmpeg', 'ffprobe')) ?? 'ffprobe',
+      ['-v', 'error', '-show_entries', 'format_tags=prompt', '-of', 'default=nw=1:nk=1', file],
+      { windowsHide: true },
+    );
+    let out = '';
+    proc.stdout.on('data', (d) => (out += String(d)));
+    proc.on('error', (e) => reject(new Error(e.message.includes('ENOENT') ? NO_FFMPEG : e.message)));
+    proc.on('close', () => (out.trim() ? resolve(out.trim()) : reject(new Error('no prompt tag'))));
+  });
+}
+
+/** Every verdict, keyed by subfolder/filename. */
+app.get('/api/verdicts', async (_req, res) => {
+  try {
+    res.json(JSON.parse(await readFile(VERDICTS, 'utf8')));
+  } catch {
+    res.json({});
+  }
+});
+
+app.post('/api/verdicts', async (req, res) => {
+  const { key, verdict, note } = req.body ?? {};
+  if (typeof key !== 'string' || !key) return res.status(400).json({ error: 'Bad key.' });
+  if (verdict !== 'keep' && verdict !== 'reject' && verdict !== null) {
+    return res.status(400).json({ error: 'Verdict must be keep, reject or null.' });
+  }
+
+  let all: Record<string, unknown> = {};
+  try {
+    all = JSON.parse(await readFile(VERDICTS, 'utf8'));
+  } catch {
+    /* first one */
+  }
+
+  if (verdict === null) delete all[key];
+  else all[key] = { verdict, note: typeof note === 'string' ? note : '', at: Date.now() };
+
+  await mkdir(dirname(VERDICTS), { recursive: true });
+  const tmp = `${VERDICTS}.tmp`;
+  await writeFile(tmp, JSON.stringify(all, null, 2), 'utf8');
+  await rename(tmp, VERDICTS);
+  res.json({ ok: true });
+});
+
 // ── Frame rate conversion ───────────────────────────────────────────────────
 
 /**
