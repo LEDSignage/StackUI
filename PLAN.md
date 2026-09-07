@@ -20,22 +20,19 @@ artwork does, with an override.
 
 Starting point, all on the 32-grid H3 needs and inside its pixel budget:
 
-| Ratio | Size | For |
+| Orientation | Size | For |
 |---|---|---|
-| 16:9 | 1344 x 768 | screens, in-venue displays |
-| 9:16 | 768 x 1344 | phone, stories, tower signage |
-| 1:1 | 1024 x 1024 | social feed |
-| 21:9 | 1792 x 768 | wide banners, LED strips |
+| Landscape | 1344 x 768 | screens, in-venue displays |
+| Portrait | 768 x 1344 | phone, stories, tower signage |
 
-Built on a 768 short edge, which is what MiniMax's own service means by "768P"
-and why the node defaults to 1344x768. Their hosted H3 offers exactly 16:9,
-4:3, 1:1, 3:4, 9:16 and 21:9, so these four are ratios the model was actually
-built around rather than ones that are mathematically tidy.
+The model's own default, and its own default turned on its side. 1344x768 is
+what MiniMax's node ships with and what their hosted service means by "768P",
+so it is the shape H3 was built around — play to that rather than to a
+mathematically tidier 16:9, and upscale afterwards if a delivery needs 1080p.
 
-Note their "16:9" is 1344x768, a ratio of 1.750 rather than 1.778 — MiniMax
-snap to their own grid and call it 16:9. An earlier draft of this table used
-1536x864, which is truer 16:9 and less likely to be what the model has seen.
-Worth settling by rendering the same poster both ways with a fixed seed.
+Square and 21:9 were in an earlier draft and are dropped. Two orientations is a
+simpler thing to offer a client than four sizes, and neither of those was a
+shape the model is unusually good at.
 
 Durations 5s and 10s, which land on 124 and 243 frames — H3 counts in 17n+5 at
 24fps and cannot hit exact seconds.
