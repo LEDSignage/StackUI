@@ -20,19 +20,21 @@ artwork does, with an override.
 
 Starting point, all on the 32-grid H3 needs and inside its pixel budget:
 
-| Orientation | Size | For |
+| Ratio | Size | For |
 |---|---|---|
-| Landscape | 1344 x 768 | screens, in-venue displays |
-| Portrait | 768 x 1344 | phone, stories, tower signage |
+| 16:9 | 1344 x 768 | screens, in-venue displays |
+| 9:16 | 768 x 1344 | phone, stories, tower signage |
+| 1:1 | 1024 x 1024 | social feed |
+| 21:9 | 1792 x 768 | wide banners, LED strips |
 
-The model's own default, and its own default turned on its side. 1344x768 is
-what MiniMax's node ships with and what their hosted service means by "768P",
-so it is the shape H3 was built around — play to that rather than to a
-mathematically tidier 16:9, and upscale afterwards if a delivery needs 1080p.
+All on a 768 short edge. 1344x768 is what MiniMax's node ships with and what
+their hosted service means by "768P", so it is the shape H3 was built around —
+which settles the earlier question of whether to use it or a truer 16:9 at
+1536x864. Play to the model's default and upscale afterwards where a delivery
+needs 1080p.
 
-Square and 21:9 were in an earlier draft and are dropped. Two orientations is a
-simpler thing to offer a client than four sizes, and neither of those was a
-shape the model is unusually good at.
+The four ratios are ones MiniMax's own service offers. 4:5 was dropped as not
+needed; their portrait option is 3:4 if one is ever wanted.
 
 Durations 5s and 10s, which land on 124 and 243 frames — H3 counts in 17n+5 at
 24fps and cannot hit exact seconds.
