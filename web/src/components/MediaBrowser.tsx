@@ -39,15 +39,6 @@ export function MediaBrowser({
   /** The file whose prompt is open, and what it said. */
   const [showing, setShowing] = useState<MediaFile | null>(null);
   const [record, setRecord] = useState<RunRecord | { error: string } | null>(null);
-  /**
-   * Bumped by Refresh, and added to every media URL.
-   *
-   * Reloading the listing was not a refresh: the URLs it produced were the same
-   * as before, so the browser served the clips it already had. Pressing Refresh
-   * after a render that reused a deleted file's name showed the old video and
-   * looked like the button did nothing.
-   */
-  const [nonce, setNonce] = useState(0);
   /** Read what made this clip, out of the clip. */
   const openPrompt = async (file: MediaFile) => {
     setShowing(file);
@@ -60,8 +51,7 @@ export function MediaBrowser({
   };
 
 
-  const load = useCallback(async (force = false) => {
-    if (force) setNonce(Date.now());
+  const load = useCallback(async () => {
     try {
       const res = await fetchMedia();
       setFiles(res.files);
@@ -118,7 +108,11 @@ export function MediaBrowser({
 
           <span className="spacer" />
 
-          <button className="ghost" onClick={() => void load(true)} title="Re-read the folder and reload every clip">
+          {/* Re-reading the folder is enough: a file whose content changed has
+              a new modification time, so its URL changes and the browser
+              fetches it again. One that has not changed stays cached, which is
+              what keeps a hundred-clip library from stampeding ComfyUI. */}
+          <button className="ghost" onClick={() => void load()} title="Re-read the output folder">
             Refresh
           </button>
           {onFull && (
@@ -147,9 +141,10 @@ export function MediaBrowser({
 
         <div className="media-grid">
           {shown.map((file) => {
-            // The nonce, when set, makes every URL new — which is what makes
-            // Refresh actually fetch the files again rather than the listing.
-            const url = viewUrl({ ...file, modified: nonce || file.modified });
+            // Versioned by the file's own timestamp, so only a file that has
+            // actually changed gets a new URL. A single nonce across the whole
+            // library made every clip reload at once and buried ComfyUI.
+            const url = viewUrl(file);
             const key = keyOf(file);
             return (
               <figure className="media-item" key={key}>

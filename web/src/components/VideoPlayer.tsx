@@ -14,6 +14,29 @@ import { useCallback, useEffect, useRef, useState } from 'react';
  */
 export function VideoPlayer({ src, className }: { src: string; className?: string }) {
   const video = useRef<HTMLVideoElement>(null);
+  const shell = useRef<HTMLDivElement>(null);
+
+  /**
+   * Only load once it is on screen.
+   *
+   * preload="metadata" on every tile means one request per clip the moment the
+   * library opens — with a hundred clips that is a hundred simultaneous file
+   * streams, and ComfyUI's file serving simply stops: headers come back
+   * instantly and bodies never arrive, for everything, including requests from
+   * elsewhere. The browser cache used to hide this; giving each file a stable
+   * versioned URL removed that cover and the stampede became visible.
+   */
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    const el = shell.current;
+    if (!el || near) return;
+    const io = new IntersectionObserver(
+      (entries) => entries.some((e) => e.isIntersecting) && setNear(true),
+      { rootMargin: '300px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [near]);
   const [playing, setPlaying] = useState(false);
   const [muted, setMuted] = useState(false);
   const [time, setTime] = useState(0);
@@ -69,10 +92,10 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
   const pct = duration ? (time / duration) * 100 : 0;
 
   return (
-    <div className={`player ${playing ? 'is-playing' : ''} ${className ?? ''}`}>
+    <div className={`player ${playing ? 'is-playing' : ''} ${className ?? ''}`} ref={shell}>
       <video
         ref={video}
-        src={src}
+        src={near ? src : undefined}
         preload="metadata"
         playsInline
         loop
