@@ -116,7 +116,15 @@ export function UseScreen({
   const progress = overall(run);
 
   // Show the re-timed file when there is one, otherwise the original.
-  const shownUrl = !file ? null : (convert?.status === 'done' && convert.url) || viewUrl(file);
+  //
+  // Stamped with when this run finished, because a filename is not a unique
+  // clip: ComfyUI reuses the lowest free number, so a fresh render can land on
+  // the name of one you deleted and the browser will happily play the old one
+  // it still has cached.
+  const shownUrl = !file
+    ? null
+    : (convert?.status === 'done' && convert.url) ||
+      viewUrl({ ...file, modified: run.finishedAt ?? run.startedAt ?? undefined });
 
   /**
    * Whether the shot list is deciding the clip length.
@@ -386,7 +394,7 @@ export function UseScreen({
             {file && (
               <div className="use-output-bar">
                 <span className="muted mono small">{file.filename}</span>
-                <a className="ghost" href={shownUrl ?? viewUrl(file)} download={file.filename}>
+                <a className="ghost" href={shownUrl ?? ''} download={file.filename}>
                   Download
                 </a>
               </div>

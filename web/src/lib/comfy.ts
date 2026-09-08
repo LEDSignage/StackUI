@@ -149,12 +149,24 @@ export function collectFiles(entry: HistoryEntry): Array<OutputFile & { nodeId: 
 
 // ── /view ───────────────────────────────────────────────────────────────────
 
-export function viewUrl(file: OutputFile): string {
+export function viewUrl(file: OutputFile & { modified?: number }): string {
   const q = new URLSearchParams({
     filename: file.filename,
     subfolder: file.subfolder ?? '',
     type: file.type ?? 'output',
   });
+  /**
+   * A filename is not a unique clip.
+   *
+   * ComfyUI numbers its output from the lowest free slot, so deleting a render
+   * frees its name for the next one. Two different videos then share a URL, and
+   * the browser quite reasonably serves the one it already has — a poster
+   * rendered at 864x1536 played back as the 192x704 clip that used to have that
+   * name, and the thumbnail showed black at 0:00.
+   *
+   * The modification time makes each version its own URL.
+   */
+  if (file.modified) q.set('v', String(Math.round(file.modified)));
   return `${BASE}/view?${q}`;
 }
 
