@@ -3,7 +3,7 @@ import type { Module, ModuleLibrary, Stack } from '@shared/types.ts';
 import { compile } from '@shared/compile.ts';
 import { compose } from '@shared/script.ts';
 import { fixGuideSize, type SizeFix } from '@shared/guideSize.ts';
-import { fitToAspect, measureUpload } from './lib/fitCanvas.ts';
+import { fitToAspect, measureUpload, withFittedCanvas } from './lib/fitCanvas.ts';
 import { indexIssues, toCarry } from '@shared/validate.ts';
 import { resolvePort } from '@shared/compile.ts';
 import { fetchModules, fetchStack, fetchStacks, saveStack, type StackSummary } from './lib/api.ts';
@@ -412,19 +412,28 @@ export default function App() {
   const onQueue = useCallback(() => {
     if (!result.ok) return;
     void (async () => {
-      // Unload first, so a big model is not loading into a card that is already
-      // full — that spills into system RAM and the run stalls silently.
+      // Settle the canvas before compiling, not hopefully-before. Measuring
+      // downloads the poster, so the effect that does this on upload can still
+      // be in flight when Generate is pressed — which submitted the previous
+      // size.
+      const sized = await withFittedCanvas(stack, ops.setParam, ops.inputRefOf2);
+      if (sized !== stack) setStack(sized);
+      const compiled = sized === stack ? result : compile(sized, library);
+      if (!compiled.ok) return;
+
+      // Unload first, so a big model is not loading into a card that is
+      // already full — that spills into system RAM and the run stalls silently.
       if (clearFirst) await freeMemory().catch(() => {});
       // Submit at a size ComfyUI can survive; the finished file is cropped
       // back to what was asked for. A copy, so the compiled result stays a
       // faithful view of the stack.
-      const prompt = JSON.parse(JSON.stringify(result.prompt));
+      const prompt = JSON.parse(JSON.stringify(compiled.prompt));
       setSizeFix(fixGuideSize(prompt));
-      await start(prompt, result.tileMap).catch(() => {
+      await start(prompt, compiled.tileMap).catch(() => {
         /* useRun already put it on the tiles */
       });
     })();
-  }, [result, start, clearFirst]);
+  }, [result, start, clearFirst, stack, library]);
 
   const activeTileName = useMemo(() => {
     const tileId = Object.entries(run.tiles).find(([, s]) => s === 'running')?.[0];

@@ -154,6 +154,9 @@ export const inputRefOf = (tileId: string): InputRef | null => {
   return m ? { kind: m[1]!, group: m[2]! } : null;
 };
 
+/** Just the kind, for callers that only care which sort of input a tile is. */
+export const inputRefOf2 = (tileId: string): string | null => inputRefOf(tileId)?.kind ?? null;
+
 /** Every input in the stack, in the order they appear. */
 export function inputList(stack: Stack): InputRef[] {
   const seen: InputRef[] = [];

@@ -1,4 +1,4 @@
-import type { CanvasFit } from '@shared/types.ts';
+import type { CanvasFit, Stack } from '@shared/types.ts';
 
 /** H3's own default is 1344x768. Keep to about that many pixels. */
 const DEFAULT_PIXELS = 1344 * 768;
@@ -63,3 +63,40 @@ export function measureUpload(filename: string): Promise<{ width: number; height
 }
 
 export type { CanvasFit };
+
+/**
+ * The stack with its canvas already sized from the artwork.
+ *
+ * The effect that watches the upload does the same thing, but it cannot be
+ * relied on: measuring means downloading the poster, which takes seconds over
+ * the network, and pressing Generate before that lands submitted the previous
+ * size. Doing it here as well makes the submitted graph correct regardless of
+ * timing — the effect keeps the fields honest on screen, this keeps the render
+ * honest.
+ *
+ * Returns the stack unchanged when there is nothing to do, so callers can use
+ * it unconditionally.
+ */
+export async function withFittedCanvas(
+  stack: Stack,
+  setParam: (s: Stack, tileId: string, param: string, value: unknown) => Stack,
+  inputKindOf: (tileId: string) => string | null,
+): Promise<Stack> {
+  const fit = stack.canvas;
+  if (!fit) return stack;
+
+  const source = stack.lines
+    .flatMap((l) => l.tiles)
+    .find((tile) => inputKindOf(tile.id) === fit.from.inputKind);
+  const filename = String(source?.params[fit.from.param] ?? '');
+  if (!filename) return stack;
+
+  const size = await measureUpload(filename);
+  if (!size) return stack;
+
+  const box = fitToAspect(size.width, size.height, fit.pixels);
+  if (!box) return stack;
+
+  const out = setParam(stack, fit.width.tileId, fit.width.param, box.width);
+  return setParam(out, fit.height.tileId, fit.height.param, box.height);
+}
