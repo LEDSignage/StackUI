@@ -332,7 +332,9 @@ export function UseScreen({
       {/* The right half of the screen. It holds the last result, and doubles as
           the output library — the same pane, two tabs, so finding an older clip
           does not mean covering the settings you are working on. */}
-      <div className="use-result">
+      {/* Keyed by the run, so a new generation builds a new pane rather than
+          updating the old one in place. */}
+      <div className="use-result" key={run.promptId ?? 'idle'}>
         <div className="use-result-head">
           <div className="modeswitch">
             <button

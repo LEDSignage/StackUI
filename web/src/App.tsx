@@ -421,6 +421,18 @@ export default function App() {
   const onQueue = useCallback(() => {
     if (!result.ok) return;
     void (async () => {
+      // Nothing from the last run survives into this one. The result pane has
+      // shown the previous clip after a completed generation more than once,
+      // under a different filename and a different URL, and every explanation
+      // for it has been wrong. Clearing the lot at the point of submit means
+      // there is nothing left to show by mistake: no files, no converted copy,
+      // no cropped copy.
+      reset();
+      setConvertedUrl(null);
+      setConvertStatus('idle');
+      setFittedUrl(null);
+      setSizeFix(null);
+
       // Settle the canvas before compiling, not hopefully-before. Measuring
       // downloads the poster, so the effect that does this on upload can still
       // be in flight when Generate is pressed — which submitted the previous
