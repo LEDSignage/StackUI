@@ -455,7 +455,7 @@ app.post('/api/convert-fps', async (req, res) => {
     return res.status(400).json({ error: 'Bad fps.' });
   }
 
-  const out = `${rate}fps-${filename.replace(/[^A-Za-z0-9._-]/g, '_')}`;
+  const out = `${rate}fps-${await stamp(filename, subfolder)}`;
   const outPath = join(CONVERTED_DIR, out);
   await mkdir(CONVERTED_DIR, { recursive: true });
 
@@ -503,7 +503,7 @@ app.post('/api/fit', async (req, res) => {
     return res.status(400).json({ error: 'Bad size.' });
   }
 
-  const out = `${w}x${h}-${filename.replace(/[^A-Za-z0-9._-]/g, '_')}`;
+  const out = `${w}x${h}-${await stamp(filename, subfolder)}`;
   const outPath = join(CONVERTED_DIR, out);
   await mkdir(CONVERTED_DIR, { recursive: true });
 
@@ -570,6 +570,29 @@ function findFfmpeg(): string | null {
 const NO_FFMPEG =
   'ffmpeg is not installed on the ComfyUI machine, so video cannot be re-timed or cropped. ' +
   'Install it (winget install Gyan.FFmpeg), or set FFMPEG_PATH to point at ffmpeg.exe.';
+
+/**
+ * A cache name that changes when the file behind it does.
+ *
+ * These were keyed on the filename alone, and a filename is not a unique clip:
+ * ComfyUI numbers its output from the lowest free slot, so deleting a render
+ * frees that name for the next one. The converted copy of the old clip was then
+ * served instantly for the new one — a fresh generation played back as the
+ * previous video, and only a full page reload showed the truth, because that
+ * fell back to the unconverted original.
+ */
+async function stamp(filename: string, subfolder: string): Promise<string> {
+  const safe = filename.replace(/[^A-Za-z0-9._-]/g, '_');
+  const dir = await findOutputDir();
+  const path = dir && insideOutput(dir, subfolder, filename);
+  if (!path) return safe;
+  try {
+    const info = await stat(path);
+    return `${Math.round(info.mtimeMs)}-${safe}`;
+  } catch {
+    return safe;
+  }
+}
 
 function runFfmpeg(args: string[]): Promise<void> {
   return new Promise((resolve, reject) => {
