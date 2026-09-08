@@ -239,7 +239,11 @@ export default function App() {
   useEffect(() => {
     const fit = stack.canvas;
     if (!fit) return;
-    const filename = String(ops.findTile(stack, fit.from.tileId)?.params[fit.from.param] ?? '');
+    // The first slot of that kind, whatever id it happens to have today.
+    const source = stack.lines
+      .flatMap((l) => l.tiles)
+      .find((tile) => ops.inputRefOf(tile.id)?.kind === fit.from.inputKind);
+    const filename = String(source?.params[fit.from.param] ?? '');
     if (!filename) return;
 
     let cancelled = false;
@@ -261,7 +265,15 @@ export default function App() {
     };
     // Keyed on the filename: re-measuring on every keystroke would fight you
     // if you deliberately typed a different size.
-  }, [stack.canvas, stack.canvas && ops.findTile(stack, stack.canvas.from.tileId)?.params[stack.canvas.from.param]]);
+    // Keyed on the filename: re-measuring on every keystroke would fight you
+    // if you deliberately typed a different size.
+  }, [
+    stack.canvas,
+    stack.lines
+      .flatMap((l) => l.tiles)
+      .find((t) => stack.canvas && ops.inputRefOf(t.id)?.kind === stack.canvas.from.inputKind)
+      ?.params[stack.canvas?.from.param ?? ''],
+  ]);
 
   // ── Job / model selectors ─────────────────────────────────────────────────
 

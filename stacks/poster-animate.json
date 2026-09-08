@@ -310,7 +310,7 @@
   ],
   "canvas": {
     "from": {
-      "tileId": "in.poster.p1.0",
+      "inputKind": "poster",
       "param": "image"
     },
     "width": {

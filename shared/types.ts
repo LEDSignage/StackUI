@@ -333,8 +333,15 @@ export type NamedCarryEntry = CarryEntry & { name: string };
  * the model has a budget it works well within.
  */
 export type CanvasFit = {
-  /** The upload to measure. */
-  from: { tileId: string; param: string };
+  /**
+   * The upload to measure.
+   *
+   * By input kind, not by tile: slots are added and removed, and each new one
+   * gets a fresh id. Naming a tile meant the rule quietly stopped applying the
+   * first time a poster slot was replaced — it was watching something that no
+   * longer existed, and the size simply never updated again.
+   */
+  from: { inputKind: string; param: string };
   /** Where the measurements go. */
   width: { tileId: string; param: string };
   height: { tileId: string; param: string };
