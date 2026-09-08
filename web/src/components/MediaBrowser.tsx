@@ -159,18 +159,30 @@ export function MediaBrowser({
                     {file.modified ? `${when(file.modified)} · ${mb(file.size)}` : ' '}
                   </span>
                 </figcaption>
+                {/* Icons, not words. Three labelled buttons do not fit a tile
+                    and the third was clipped off the card entirely; drawn at
+                    this size all three sit on one row with room to spare, and
+                    the name lives in the tooltip. */}
                 <div className="media-actions">
-                  <a className="ghost" href={url} download={file.filename}>
-                    Download
+                  <a className="icon-btn" href={url} download={file.filename} title="Download">
+                    <IconDownload />
                   </a>
                   {file.kind === 'video' && (
-                    <button className="ghost" onClick={() => void openPrompt(file)}>
-                      Prompt
+                    <button
+                      className="icon-btn"
+                      onClick={() => void openPrompt(file)}
+                      title="The prompt that made this"
+                    >
+                      <IconPrompt />
                     </button>
                   )}
                   {writable && (
-                    <button className="ghost" onClick={() => setConfirming(file)}>
-                      Delete
+                    <button
+                      className="icon-btn icon-danger"
+                      onClick={() => setConfirming(file)}
+                      title="Delete this file"
+                    >
+                      <IconTrash />
                     </button>
                   )}
                 </div>
@@ -214,3 +226,28 @@ function when(ms: number): string {
   if (mins < 24 * 60) return `${Math.round(mins / 60)} hr ago`;
   return new Date(ms).toLocaleDateString();
 }
+
+/*
+ * Drawn rather than typed — the same reason as the player's controls. A glyph
+ * font is a dependency on whatever happens to be installed, and the last set of
+ * characters rendered as empty boxes.
+ */
+const icon = { width: 15, height: 15, viewBox: '0 0 16 16', fill: 'none', stroke: 'currentColor', strokeWidth: 1.5, strokeLinecap: 'round', strokeLinejoin: 'round' } as const;
+
+const IconDownload = () => (
+  <svg {...icon} aria-hidden>
+    <path d="M8 2v8M4.5 7l3.5 3 3.5-3M2.5 13.5h11" />
+  </svg>
+);
+
+const IconPrompt = () => (
+  <svg {...icon} aria-hidden>
+    <path d="M3 3.5h10M3 6.5h10M3 9.5h7M3 12.5h4" />
+  </svg>
+);
+
+const IconTrash = () => (
+  <svg {...icon} aria-hidden>
+    <path d="M2.5 4h11M6 4V2.5h4V4M4 4l.7 9.5h6.6L12 4M6.5 6.5v5M9.5 6.5v5" />
+  </svg>
+);

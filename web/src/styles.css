@@ -1522,21 +1522,44 @@ button.stop:hover {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+/* A row of icons, small enough that three of them never crowd a tile.
+   Labelled buttons did not fit 180px and the last was clipped off the card,
+   which read as the button having been removed. The names are in the tooltips. */
 .media-actions {
   display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  gap: 4px;
+  justify-content: flex-end;
 }
-/* Wrap rather than overflow. Three buttons sharing a 180px tile equally cannot
-   fit "Download", so the row ran past the edge of the card and Delete — last in
-   it — was clipped away entirely. It read as the button having been removed. */
-.media-actions > * {
-  flex: 1 1 auto;
-  min-width: 0;
-  text-align: center;
-  padding: 7px 10px;
-  font-size: var(--fs-tiny);
-  white-space: nowrap;
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  padding: 0;
+  flex: none;
+  background: var(--tile);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--ease-dur) var(--ease),
+    color var(--ease-dur) var(--ease);
+}
+.icon-btn:hover {
+  background: var(--tile-hi);
+  color: var(--text);
+}
+.icon-btn svg {
+  display: block;
+}
+/* The one that cannot be undone reads as itself on hover, not before. */
+.icon-danger:hover {
+  background: color-mix(in srgb, var(--err) 22%, transparent);
+  border-color: var(--err);
+  color: #ffd6cd;
 }
 
 /* Page-level actions, above the fields they act on. Right-aligned so it does
