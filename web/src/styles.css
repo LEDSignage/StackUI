@@ -1524,11 +1524,19 @@ button.stop:hover {
 }
 .media-actions {
   display: flex;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
 }
+/* Wrap rather than overflow. Three buttons sharing a 180px tile equally cannot
+   fit "Download", so the row ran past the edge of the card and Delete — last in
+   it — was clipped away entirely. It read as the button having been removed. */
 .media-actions > * {
-  flex: 1;
+  flex: 1 1 auto;
+  min-width: 0;
   text-align: center;
+  padding: 7px 10px;
+  font-size: var(--fs-tiny);
+  white-space: nowrap;
 }
 
 /* Page-level actions, above the fields they act on. Right-aligned so it does

@@ -51,6 +51,8 @@ type Props = {
   clearFirst?: boolean;
   onClearFirst?: (on: boolean) => void;
   vram?: { total: number; free: number } | null;
+  /** The size the running job actually went out at. */
+  submitted?: { width: number; height: number } | null;
   /** Which half of the right pane is showing. */
   pane: RightPane;
   onPane: (pane: RightPane) => void;
@@ -92,6 +94,7 @@ export function UseScreen({
   clearFirst,
   onClearFirst,
   vram,
+  submitted,
   pane,
   onPane,
 }: Props) {
@@ -291,7 +294,15 @@ export function UseScreen({
         {busy && (
           <div className="use-progress">
             <div className="use-progress-fill" style={{ width: `${Math.round(progress * 100)}%` }} />
-            <span className="use-progress-label">{activeTileName ?? 'starting…'}</span>
+            <span className="use-progress-label">
+              {activeTileName ?? 'starting…'}
+              {submitted && (
+                <span className="muted mono small">
+                  {' · '}
+                  {submitted.width}×{submitted.height}
+                </span>
+              )}
+            </span>
           </div>
         )}
 

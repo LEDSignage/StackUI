@@ -40,6 +40,15 @@ export default function App() {
   const [confirmClear, setConfirmClear] = useState(false);
   /** Set when a run was submitted larger than asked for; see fixGuideSize. */
   const [sizeFix, setSizeFix] = useState<SizeFix | null>(null);
+  /**
+   * The size actually sent to the box.
+   *
+   * Read back out of the submitted graph rather than from the fields, because
+   * the two disagreeing is exactly the failure this is here to catch: a render
+   * came back at the previous job's shape while the page showed the right one,
+   * and there was no way to know until seven minutes of GPU time had gone.
+   */
+  const [submitted, setSubmitted] = useState<{ width: number; height: number } | null>(null);
   const [mode, setMode] = useState<Mode>('stack');
 
   const { run, wsOpen, elapsed, start, interrupt, reset } = useRun();
@@ -429,6 +438,12 @@ export default function App() {
       // faithful view of the stack.
       const prompt = JSON.parse(JSON.stringify(compiled.prompt));
       setSizeFix(fixGuideSize(prompt));
+
+      // Straight from the graph on its way out the door.
+      const sizedNode = Object.values(prompt).find(
+        (n: any) => typeof n?.inputs?.width === 'number' && typeof n?.inputs?.height === 'number',
+      ) as { inputs: { width: number; height: number } } | undefined;
+      setSubmitted(sizedNode ? { ...sizedNode.inputs } : null);
       await start(prompt, compiled.tileMap).catch(() => {
         /* useRun already put it on the tiles */
       });
@@ -666,6 +681,7 @@ export default function App() {
               });
               setPane('result');
             }}
+            submitted={submitted}
             pane={pane}
             onPane={setPane}
             onBuild={() => setMode('stack')}
