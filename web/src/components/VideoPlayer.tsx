@@ -49,6 +49,14 @@ export function VideoPlayer({ src, className }: { src: string; className?: strin
     else el.pause();
   }, []);
 
+  // A changed source has to be loaded explicitly. Setting src alone leaves the
+  // element showing the frames it has already decoded, which is how one clip
+  // ends up playing under another one's name.
+  useEffect(() => {
+    const el = video.current;
+    if (el && near) el.load();
+  }, [src, near]);
+
   // Keep our state in step with the element, which can be driven from elsewhere
   // — the keyboard, or the browser pausing a background tab.
   useEffect(() => {

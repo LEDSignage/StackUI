@@ -374,7 +374,13 @@ export function UseScreen({
             <div className="use-output">
               {shownUrl ? (
                 isVideo(file!) ? (
+                  /* Keyed by the URL so every result gets its own element.
+                     Changing src on a mounted <video> does not reliably
+                     reload it: the element keeps the frames it has already
+                     decoded, which is how a new render showed up as the
+                     previous clip even under a different filename. */
                   <video
+                    key={shownUrl}
                     src={shownUrl}
                     controls
                     loop
@@ -385,7 +391,7 @@ export function UseScreen({
                     className="use-media"
                   />
                 ) : (
-                  <img src={shownUrl} alt="" className="use-media" />
+                  <img key={shownUrl} src={shownUrl} alt="" className="use-media" />
                 )
               ) : (
                 <span className="muted">{busy ? 'Generating…' : 'Nothing yet'}</span>
