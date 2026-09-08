@@ -39,6 +39,15 @@ export function MediaBrowser({
   /** The file whose prompt is open, and what it said. */
   const [showing, setShowing] = useState<MediaFile | null>(null);
   const [record, setRecord] = useState<RunRecord | { error: string } | null>(null);
+  /**
+   * Bumped by Refresh, and added to every media URL.
+   *
+   * Reloading the listing was not a refresh: the URLs it produced were the same
+   * as before, so the browser served the clips it already had. Pressing Refresh
+   * after a render that reused a deleted file's name showed the old video and
+   * looked like the button did nothing.
+   */
+  const [nonce, setNonce] = useState(0);
   /** Read what made this clip, out of the clip. */
   const openPrompt = async (file: MediaFile) => {
     setShowing(file);
@@ -51,7 +60,8 @@ export function MediaBrowser({
   };
 
 
-  const load = useCallback(async () => {
+  const load = useCallback(async (force = false) => {
+    if (force) setNonce(Date.now());
     try {
       const res = await fetchMedia();
       setFiles(res.files);
@@ -108,7 +118,7 @@ export function MediaBrowser({
 
           <span className="spacer" />
 
-          <button className="ghost" onClick={() => void load()}>
+          <button className="ghost" onClick={() => void load(true)} title="Re-read the folder and reload every clip">
             Refresh
           </button>
           {onFull && (
@@ -137,7 +147,9 @@ export function MediaBrowser({
 
         <div className="media-grid">
           {shown.map((file) => {
-            const url = viewUrl(file);
+            // The nonce, when set, makes every URL new — which is what makes
+            // Refresh actually fetch the files again rather than the listing.
+            const url = viewUrl({ ...file, modified: nonce || file.modified });
             const key = keyOf(file);
             return (
               <figure className="media-item" key={key}>
